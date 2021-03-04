@@ -1,0 +1,1 @@
+[TO JEST SPOSÓB PUSHOWANIA I ROBIENIA PR](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow)
