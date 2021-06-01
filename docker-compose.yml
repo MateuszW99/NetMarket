@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  db:
+    container_name: db
+    image: "mcr.microsoft.com/mssql/server:2019-latest"
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=Netmarket123!
+  api:
+    container_name: api
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+      - "5005:5005"
+    depends_on:
+      - db
+  client:
+    container_name: client
+    build:
+      context: ./src/Client
+      dockerfile: ./Dockerfile
+    ports:
+      - "5006:80"
+    depends_on:
+      - api
