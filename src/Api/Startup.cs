@@ -1,3 +1,6 @@
+using Api.Common;
+using Application;
+using Infrastructure;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -18,6 +21,10 @@ namespace Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddApplication(Configuration);
+            services.AddInfrastructure(Configuration);
+            services.AddHttpContextAccessor();
+            services.AddSwagger();
             services.AddControllers();
             services.AddRazorPages();
         }
@@ -37,9 +44,16 @@ namespace Api
                 app.UseHsts();
             }
 
+            app.UseSwagger();
+
+            app.UseSwaggerUI(config =>
+            {
+                config.SwaggerEndpoint("swagger/v1/swagger.json", "NetMarket API");
+                config.RoutePrefix = string.Empty;
+            });
+            
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>
