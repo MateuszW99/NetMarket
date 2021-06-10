@@ -1,10 +1,14 @@
 ﻿using System.Collections.Generic;
+using System.Text;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 
 namespace Api.Common
 {
-    public static class StartupExtensions
+    public static class ServiceInstallers
     {
         public static IServiceCollection AddSwagger(this IServiceCollection services)
         {
@@ -47,6 +51,36 @@ namespace Api.Common
                 });
             });
             
+            return services;
+        }
+
+        public static IServiceCollection AddJwtAuthentication(this IServiceCollection services, IConfiguration configuration)
+        {
+            var jwtSettings = new JwtSettings();
+            configuration.Bind(nameof(JwtSettings), jwtSettings);
+            services.AddSingleton(jwtSettings);
+
+            services.AddAuthentication(options =>
+                {
+                    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+                    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                })
+                .AddJwtBearer(jwtOptions =>
+                {
+                    jwtOptions.SaveToken = true;
+                    jwtOptions.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuerSigningKey = true,
+                        IssuerSigningKey =  new SymmetricSecurityKey(Encoding.ASCII.GetBytes(jwtSettings.Secret)),
+                        ValidateIssuer = false,
+                        ValidateAudience = false,
+                        RequireExpirationTime = true,
+                        ValidateLifetime = true
+                    };
+                });
+                
+
             return services;
         }
     }
