@@ -19,7 +19,9 @@ namespace Infrastructure.Persistence
         
         public async Task<int> SaveChangesAsync(CancellationToken cancellationToken)
         {
-            throw new System.NotImplementedException();
+
+            await SaveChangesAsync(cancellationToken);
+            return 0;
         }
     }
 }
