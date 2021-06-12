@@ -20,7 +20,7 @@ namespace Api
             try
             {
                 var context = services.GetRequiredService<ApplicationDbContext>();
-                await context.Database.MigrateAsync();
+                //await context.Database.MigrateAsync();
             }
             catch (Exception ex)
             {
