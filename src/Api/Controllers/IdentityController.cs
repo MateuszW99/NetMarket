@@ -36,11 +36,24 @@ namespace Api
             });
         }
         
-        // [HttpPost("register")]
-        // public async Task<IActionResult> Login()
-        // {
-        //     
-        // }
+        [HttpPost("login")]
+        public async Task<IActionResult> Login([FromBody] UserLoginRequest request)
+        {
+            var loginResponse = await _identityService.LoginAsync(request.Email, request.Password);
+
+            if (!loginResponse.Success)
+            {
+                return BadRequest(new AuthFailedResponse()
+                {
+                    ErrorMessages = loginResponse.ErrorMessages
+                });
+            }
+            
+            return Ok(new AuthSuccessResponse()
+            {
+                Token = loginResponse.Token
+            });
+        }
 
 
     }
