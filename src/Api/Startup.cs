@@ -25,7 +25,7 @@ namespace Api
             services.AddInfrastructure(Configuration);
             services.AddJwtAuthentication(Configuration);
             services.AddHttpContextAccessor();
-
+            services.AddSwagger();
             services.AddControllers();
             services.AddRazorPages();
         }
