@@ -24,6 +24,7 @@ namespace Api
         {
             services.AddApplication(Configuration);
             services.AddInfrastructure(Configuration);
+            services.AddJwtAuthentication(Configuration);
             services.AddHttpContextAccessor();
             services.AddSwagger();
             services.AddControllers();
@@ -36,7 +37,6 @@ namespace Api
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseMigrationsEndPoint();
                 app.UseSerilogRequestLogging();
             }
             else
@@ -57,6 +57,8 @@ namespace Api
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseRouting();
+
+            app.UseAuthentication();
 
             app.UseEndpoints(endpoints =>
             {

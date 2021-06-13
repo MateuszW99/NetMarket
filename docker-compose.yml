@@ -6,9 +6,13 @@ services:
     image: "mcr.microsoft.com/mssql/server:2019-latest"
     environment:
       - ACCEPT_EULA=Y
-      - SA_PASSWORD=Netmarket123!
+      - MSSQL_SA_PASSWORD=Netmarket123!
+      - MSSQL_TCP_PORT=1433
+    ports:
+      - "1400:1433"
   api:
     container_name: api
+    restart: always
     build:
       context: .
       dockerfile: ./Dockerfile
@@ -18,6 +22,7 @@ services:
       - db
   client:
     container_name: client
+    restart: always
     build:
       context: ./src/Client
       dockerfile: ./Dockerfile
