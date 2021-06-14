@@ -21,7 +21,7 @@ namespace Infrastructure
             
             services.AddIdentityCore<ApplicationUser>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
-
+            
             return services;
         }
     }

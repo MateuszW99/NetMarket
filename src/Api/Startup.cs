@@ -21,10 +21,11 @@ namespace Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddHttpContextAccessor();
+            services.AddInternalServices(Configuration);
             services.AddApplication(Configuration);
             services.AddInfrastructure(Configuration);
             services.AddJwtAuthentication(Configuration);
-            services.AddHttpContextAccessor();
             services.AddSwagger();
             services.AddControllers();
             services.AddRazorPages();
@@ -57,7 +58,8 @@ namespace Api
             app.UseRouting();
 
             app.UseAuthentication();
-
+            app.UseAuthorization();
+            
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

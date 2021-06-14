@@ -83,8 +83,15 @@ namespace Api.Common
                         ValidateLifetime = true
                     };
                 });
-                
 
+            services.AddAuthorization();
+            
+            return services;
+        }
+
+        public static IServiceCollection AddInternalServices(this IServiceCollection services, IConfiguration configuration)
+        {
+            services.AddTransient<IHttpService, HttpService>();
             return services;
         }
     }
