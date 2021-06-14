@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Serilog;
 
 namespace Api
 {
@@ -36,6 +37,7 @@ namespace Api
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseSerilogRequestLogging();
             }
             else
             {
@@ -51,7 +53,7 @@ namespace Api
                 config.SwaggerEndpoint("swagger/v1/swagger.json", "NetMarket API");
                 config.RoutePrefix = string.Empty;
             });
-            
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseRouting();
