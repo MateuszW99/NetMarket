@@ -1,11 +1,10 @@
 ﻿using System.Threading.Tasks;
 using Application.Common.Interfaces;
-using Application.Identity;
 using Application.Identity.Requests;
 using Application.Identity.Responses;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Api
+namespace Api.Controllers
 {
     [Route("api/[controller]")]
     public class IdentityController : ControllerBase
