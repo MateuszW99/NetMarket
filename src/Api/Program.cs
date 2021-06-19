@@ -5,9 +5,11 @@ using Infrastructure.Persistence;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
+using Serilog;
 
 namespace Api
 {
@@ -20,10 +22,19 @@ namespace Api
             using var scope = host.Services.CreateScope();
             var services = scope.ServiceProvider;
 
+            var config = new ConfigurationBuilder()
+                .AddJsonFile("appsettings.json")
+                .Build();
+
+            Log.Logger = new LoggerConfiguration()
+                .ReadFrom.Configuration(config)
+                .CreateLogger();
+            
             try
             {
+                Log.Information("Starting up");
                 var context = services.GetRequiredService<ApplicationDbContext>();
-                await context.Database.EnsureCreatedAsync();
+                await context.Database.MigrateAsync();
                 
                 var roleManager = services.GetRequiredService<RoleManager<IdentityRole<Guid>>>();
                 if (!await roleManager.RoleExistsAsync(Roles.User))
@@ -52,11 +63,15 @@ namespace Api
                         NormalizedName = Roles.Admin.ToUpper()
                     });
                 }
-
+        
             }
             catch (Exception ex)
             {
-                // TODO: add logs
+                Log.Fatal(ex, "Application start-up failed");
+            }
+            finally
+            {
+                Log.CloseAndFlush();
             }
             
             await host.RunAsync();
@@ -64,9 +79,7 @@ namespace Api
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder =>
-                {
-                    webBuilder.UseStartup<Startup>();
-                });
+                .UseSerilog()
+                .ConfigureWebHostDefaults(webBuilder => { webBuilder.UseStartup<Startup>(); });
     }
 }

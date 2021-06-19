@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using Api.Common;
 using Application.Common.Interfaces;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
@@ -19,6 +20,7 @@ namespace Api.Controllers
         }
 
         [HttpGet("get")]
+        [Authorize(Roles = "User")]
         public async Task<IActionResult> Get()
         {
             var userId = _httpService.GetUserId();
@@ -28,7 +30,7 @@ namespace Api.Controllers
                 return BadRequest();
             }
 
-            return Ok(userId);
+            return Ok(new {Id = userId, Role = HttpContext.User.IsInRole(Roles.User)});
         }
     }
 }
