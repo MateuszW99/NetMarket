@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Text;
-using Api.Common.Services;
+using Api.Services;
 using Application.Common.Interfaces;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Configuration;
@@ -65,11 +65,11 @@ namespace Api.Common
             services.AddTransient<IIdentityService, IdentityService>();
             
             services.AddAuthentication(options =>
-                {
-                    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
-                    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-                })
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
                 .AddJwtBearer(jwtOptions =>
                 {
                     jwtOptions.SaveToken = true;
@@ -84,7 +84,23 @@ namespace Api.Common
                     };
                 });
 
-            services.AddAuthorization();
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy(Policies.UserAccess, 
+                    policy => policy.RequireAssertion(context =>
+                        context.User.IsInRole(Roles.User) ||
+                        context.User.IsInRole(Roles.Supervisor) ||
+                        context.User.IsInRole(Roles.Admin)));  
+                
+                options.AddPolicy(Policies.SupervisorAccess, 
+                    policy => policy.RequireAssertion(context =>
+                        context.User.IsInRole(Roles.Supervisor) ||
+                        context.User.IsInRole(Roles.Admin)));
+                
+                options.AddPolicy(Policies.AdminAccess, 
+                    policy => policy.RequireAssertion(context =>
+                        context.User.IsInRole(Roles.Admin)));
+            });
             
             return services;
         }

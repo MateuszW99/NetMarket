@@ -3,7 +3,7 @@ using System.Security.Claims;
 using Application.Common.Interfaces;
 using Microsoft.AspNetCore.Http;
 
-namespace Api.Common.Services
+namespace Api.Services
 {
     public class HttpService : IHttpService
     {
