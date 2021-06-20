@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Linq;
+using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 using Application.Common.Interfaces;
+using Domain.Common;
 using Infrastructure.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -12,16 +15,46 @@ namespace Infrastructure.Persistence
     public class ApplicationDbContext 
         : IdentityDbContext<ApplicationUser, IdentityRole<Guid>, Guid>, IApplicationDbContext
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
+        private readonly IDomainEventService _domainEventService;
+        
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options, IDomainEventService domainEventService) 
+            : base(options)
         {
+            _domainEventService = domainEventService;
         }
         
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+            base.OnModelCreating(builder);
+        }
         
         public async Task<int> SaveChangesAsync(CancellationToken cancellationToken)
         {
+            var result = await base.SaveChangesAsync(cancellationToken);
+            // TODO : act in case of faulted task
+            await DispatchEvents();
+            return result;
+        }
 
-            await SaveChangesAsync(cancellationToken);
-            return 0;
+        private async Task DispatchEvents()
+        {
+            while (true)
+            {
+                var domainEventEntity = ChangeTracker
+                    .Entries<IHasDomainEvent>()
+                    .Select(x => x.Entity.DomainEvents)
+                    .SelectMany(x => x)
+                    .FirstOrDefault(e => !e.IsPublished);
+
+                if (domainEventEntity == null)
+                {
+                    break;
+                }
+
+                domainEventEntity.IsPublished = true;
+                await _domainEventService.Publish(domainEventEntity);
+            }
         }
     }
 }

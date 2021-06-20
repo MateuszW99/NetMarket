@@ -8,6 +8,7 @@ namespace Domain.Entities
     {
         public Guid Id { get; set; }
         public Guid ItemSizeId { get; set; }
+        public ItemSize ItemSize { get; set; }
         public decimal Price { get; set; }
         public bool IsCanceled { get; set; }
         
