@@ -1,11 +1,14 @@
 using System;
 using System.Threading.Tasks;
+using Api.Common;
 using Infrastructure.Persistence;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Tokens;
 using Serilog;
 
 namespace Api
@@ -26,13 +29,41 @@ namespace Api
             Log.Logger = new LoggerConfiguration()
                 .ReadFrom.Configuration(config)
                 .CreateLogger();
-
+            
             try
             {
                 Log.Information("Starting up");
                 var context = services.GetRequiredService<ApplicationDbContext>();
                 await context.Database.MigrateAsync();
-                await host.RunAsync();
+                
+                var roleManager = services.GetRequiredService<RoleManager<IdentityRole<Guid>>>();
+                if (!await roleManager.RoleExistsAsync(Roles.User))
+                {
+                    await roleManager.CreateAsync(new IdentityRole<Guid>()
+                    {
+                        Name = Roles.User,
+                        NormalizedName = Roles.User.ToUpper()
+                    });
+                }
+                
+                if (!await roleManager.RoleExistsAsync(Roles.Supervisor))
+                {
+                    await roleManager.CreateAsync(new IdentityRole<Guid>()
+                    {
+                        Name = Roles.Supervisor,
+                        NormalizedName = Roles.Supervisor.ToUpper()
+                    });
+                }
+                
+                if (!await roleManager.RoleExistsAsync(Roles.Admin))
+                {
+                    await roleManager.CreateAsync(new IdentityRole<Guid>()
+                    {
+                        Name = Roles.Admin,
+                        NormalizedName = Roles.Admin.ToUpper()
+                    });
+                }
+        
             }
             catch (Exception ex)
             {
@@ -42,6 +73,8 @@ namespace Api
             {
                 Log.CloseAndFlush();
             }
+            
+            await host.RunAsync();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>

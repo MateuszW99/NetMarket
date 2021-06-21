@@ -1,6 +1,8 @@
-﻿using Application.Common.Interfaces;
+﻿using System;
+using Application.Common.Interfaces;
 using Infrastructure.Identity;
 using Infrastructure.Persistence;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -20,8 +22,9 @@ namespace Infrastructure
             services.AddTransient<IApplicationDbContext>(provider => provider.GetService<ApplicationDbContext>());
             
             services.AddIdentityCore<ApplicationUser>()
+                .AddRoles<IdentityRole<Guid>>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
-
+            
             return services;
         }
     }
