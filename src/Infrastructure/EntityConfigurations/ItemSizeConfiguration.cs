@@ -9,9 +9,13 @@ namespace Infrastructure.EntityConfigurations
         public void Configure(EntityTypeBuilder<ItemSize> builder)
         {
             builder.HasKey(e => e.Id);
+            
             builder.HasOne(e => e.Item);
+            
             builder.HasOne(e => e.Size);
-            builder.Property(e => e.SizeId).IsRequired(false);
+            
+            builder.Property(e => e.SizeId)
+                .IsRequired(false);
         }
     }
 }

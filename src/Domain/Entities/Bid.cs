@@ -6,7 +6,7 @@ namespace Domain.Entities
 {
     public class Bid : BaseEntity, IHasDomainEvent
     {        
-        public Guid Id { get; set; }
+        public Guid Id { get; init; }
         public Guid ItemSizeId { get; set; }
         public ItemSize ItemSize { get; set; }
         public decimal Price { get; set; }

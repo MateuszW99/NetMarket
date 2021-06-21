@@ -9,10 +9,14 @@ namespace Infrastructure.EntityConfigurations
         public void Configure(EntityTypeBuilder<Bid> builder)
         {
             builder.Ignore(e => e.DomainEvents);
+            
             builder.HasKey(e => e.Id);
+            
             builder.HasOne(e => e.ItemSize);
+            
             builder.Property(e => e.Price)
                 .HasColumnType("money");
+            
             builder.Property(e => e.IsCanceled)
                 .HasDefaultValue(false);
         }

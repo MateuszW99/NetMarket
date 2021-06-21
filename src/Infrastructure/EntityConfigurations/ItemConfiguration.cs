@@ -8,9 +8,45 @@ namespace Infrastructure.EntityConfigurations
     {
         public void Configure(EntityTypeBuilder<Item> builder)
         {
-            builder.HasKey(e => e.Id);
+            builder.Ignore(e => e.DomainEvents);
             
-            // TODO: add missing logic
+            builder.HasKey(e => e.Id);
+
+            builder.Property(e => e.Name)
+                .IsRequired(true)
+                .HasMaxLength(150);
+
+            builder.Property(e => e.ReleaseDate)
+                .IsRequired(false);
+            
+            builder.Property(e => e.Make)
+                .IsRequired(true)
+                .HasMaxLength(150);
+            
+            builder.Property(e => e.Model)
+                .IsRequired(true)
+                .HasMaxLength(150);
+
+            builder.Property(e => e.RetailPrice)
+                .HasDefaultValue(0.0)
+                .HasColumnType("money");
+
+            builder.Property(e => e.Description)
+                .IsRequired(false)
+                .HasMaxLength(500);
+
+            builder.Property(e => e.ImageUrl)
+                .IsRequired(false);
+            
+            builder.Property(e => e.SmallImageUrl)
+                .IsRequired(false);
+            
+            builder.Property(e => e.ThumbUrl)
+                .IsRequired(false);
+
+            builder.Property(e => e.BrandId)
+                .IsRequired();
+            builder.HasOne(e => e.Brand);
         }
     }
 }

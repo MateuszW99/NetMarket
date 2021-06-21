@@ -2,6 +2,7 @@
 using Application.Common.Interfaces;
 using Infrastructure.Identity;
 using Infrastructure.Persistence;
+using Infrastructure.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -20,6 +21,8 @@ namespace Infrastructure
                     x => x.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
 
             services.AddTransient<IApplicationDbContext>(provider => provider.GetService<ApplicationDbContext>());
+
+            services.AddTransient<IDomainEventService, DomainEventService>();
             
             services.AddIdentityCore<ApplicationUser>()
                 .AddRoles<IdentityRole<Guid>>()

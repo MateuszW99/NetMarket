@@ -2,9 +2,9 @@
 
 namespace Domain.Entities
 {
-    public class Category
+    public class Brand
     {
-        public Guid Id { get; set; }
+        public Guid Id { get; init; }
         public string Name { get; set; }
     }
 }

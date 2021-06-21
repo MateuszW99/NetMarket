@@ -1,12 +1,12 @@
 ﻿using System;
-using Domain.Enums;
+using Domain.Entities;
 using Microsoft.AspNetCore.Identity;
 
 namespace Infrastructure.Identity
 {
     public class ApplicationUser : IdentityUser<Guid>
     {
-        public SellerLevel SellerLevel { get; set; }
-        public int SalesCompleted { get; set; }
+        public Guid UserSettingsId { get; set; }
+        public UserSettings UserSettings { get; set; }
     }
 }
