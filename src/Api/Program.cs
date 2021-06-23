@@ -63,7 +63,8 @@ namespace Api
                         NormalizedName = Roles.Admin.ToUpper()
                     });
                 }
-        
+                
+                await host.RunAsync();
             }
             catch (Exception ex)
             {
@@ -74,7 +75,6 @@ namespace Api
                 Log.CloseAndFlush();
             }
             
-            await host.RunAsync();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
