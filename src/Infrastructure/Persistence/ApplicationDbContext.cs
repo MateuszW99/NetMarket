@@ -5,6 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Application.Common.Interfaces;
 using Domain.Common;
+using Domain.Entities;
 using Infrastructure.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -22,6 +23,15 @@ namespace Infrastructure.Persistence
         {
             _domainEventService = domainEventService;
         }
+        
+        public DbSet<Ask> Asks { get; set; }
+        public DbSet<Bid> Bids { get; set; }
+        public DbSet<Brand> Brands { get; set; }
+        public DbSet<Item> Items { get; set; }
+        public DbSet<ItemSize> ItemSizes { get; set; }
+        public DbSet<Size> Sizes { get; set; }
+        public DbSet<Transaction> Transactions { get; set; }
+        public DbSet<UserSettings> UserSettings { get; set; }
         
         protected override void OnModelCreating(ModelBuilder builder)
         {

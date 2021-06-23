@@ -13,10 +13,10 @@ namespace Infrastructure.EntityConfigurations
             
             builder.HasKey(e => e.Id);
 
+            builder.HasOne(e => e.Ask);
             builder.Property(e => e.AskId)
                 .IsRequired();
-            builder.HasOne(e => e.Ask);
-            
+
             builder.HasOne(e => e.Bid);
             builder.Property(e => e.BidId)
                 .IsRequired();
@@ -32,13 +32,16 @@ namespace Infrastructure.EntityConfigurations
                 .IsRequired();
 
             builder.Property(e => e.SellerFee)
-                .HasColumnType("money");
+                .HasColumnType("money")
+                .IsRequired();
             
             builder.Property(e => e.BuyerFee)
-                .HasColumnType("money");
+                .HasColumnType("money")
+                .IsRequired();
 
             builder.Property(e => e.Payout)
-                .HasColumnType("money");
+                .HasColumnType("money")
+                .IsRequired();
         }
     }
 }
