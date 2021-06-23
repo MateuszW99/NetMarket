@@ -252,9 +252,11 @@ namespace Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AskId");
+                    b.HasIndex("AskId")
+                        .IsUnique();
 
-                    b.HasIndex("BidId");
+                    b.HasIndex("BidId")
+                        .IsUnique();
 
                     b.ToTable("Transactions");
                 });
@@ -591,15 +593,15 @@ namespace Infrastructure.Migrations
             modelBuilder.Entity("Domain.Entities.Transaction", b =>
                 {
                     b.HasOne("Domain.Entities.Ask", "Ask")
-                        .WithMany()
-                        .HasForeignKey("AskId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .WithOne()
+                        .HasForeignKey("Domain.Entities.Transaction", "AskId")
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("Domain.Entities.Bid", "Bid")
-                        .WithMany()
-                        .HasForeignKey("BidId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .WithOne()
+                        .HasForeignKey("Domain.Entities.Transaction", "BidId")
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Ask");

@@ -13,11 +13,15 @@ namespace Infrastructure.EntityConfigurations
             
             builder.HasKey(e => e.Id);
 
-            builder.HasOne(e => e.Ask);
+            builder.HasOne(e => e.Ask)
+                .WithOne()
+                .OnDelete(DeleteBehavior.NoAction);
             builder.Property(e => e.AskId)
                 .IsRequired();
 
-            builder.HasOne(e => e.Bid);
+            builder.HasOne(e => e.Bid)
+                .WithOne()
+                .OnDelete(DeleteBehavior.NoAction);
             builder.Property(e => e.BidId)
                 .IsRequired();
 
