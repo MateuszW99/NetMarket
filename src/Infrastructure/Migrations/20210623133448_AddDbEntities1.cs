@@ -76,7 +76,7 @@ namespace Infrastructure.Migrations
                     Make = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
                     Model = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
                     RetailPrice = table.Column<decimal>(type: "money", nullable: false, defaultValue: 0m),
-                    Description = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(1500)", maxLength: 1500, nullable: true),
                     ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     SmallImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ThumbUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),

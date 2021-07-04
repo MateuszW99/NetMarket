@@ -1,7 +1,12 @@
 using System;
+using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 using Api.Common;
+using Application.Common.Interfaces;
+using Domain.Entities;
 using Infrastructure.Persistence;
+using Infrastructure.Services;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -63,7 +68,16 @@ namespace Api
                         NormalizedName = Roles.Admin.ToUpper()
                     });
                 }
-        
+
+                if (!await context.Items.AnyAsync())
+                {
+                    var itemSeeder = services.GetRequiredService<ISeeder<List<Item>>>();
+                    var items = await itemSeeder.Seed();
+                    await context.Items.AddRangeAsync(items);
+                    await context.SaveChangesAsync(CancellationToken.None);
+                }
+                
+
             }
             catch (Exception ex)
             {

@@ -39,7 +39,7 @@ namespace Infrastructure.Persistence
             base.OnModelCreating(builder);
         }
         
-        public async Task<int> SaveChangesAsync(CancellationToken cancellationToken)
+        public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken)
         {
             var result = await base.SaveChangesAsync(cancellationToken);
             // TODO : act in case of faulted task

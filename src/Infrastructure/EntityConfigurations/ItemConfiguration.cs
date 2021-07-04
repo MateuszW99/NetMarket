@@ -33,7 +33,7 @@ namespace Infrastructure.EntityConfigurations
 
             builder.Property(e => e.Description)
                 .IsRequired(false)
-                .HasMaxLength(500);
+                .HasMaxLength(1000);
 
             builder.Property(e => e.ImageUrl)
                 .IsRequired(false);

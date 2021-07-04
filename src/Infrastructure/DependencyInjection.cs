@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using Application.Common.Interfaces;
+using Domain.Entities;
 using Infrastructure.Identity;
 using Infrastructure.Persistence;
 using Infrastructure.Services;
@@ -23,7 +25,9 @@ namespace Infrastructure
             services.AddTransient<IApplicationDbContext>(provider => provider.GetService<ApplicationDbContext>());
 
             services.AddTransient<IDomainEventService, DomainEventService>();
-            
+            services.AddTransient<ISeeder<List<Item>>, ItemSeeder>();
+            services.AddTransient<ISeeder<List<Size>>, SizeSeeder>();
+
             services.AddIdentityCore<ApplicationUser>()
                 .AddRoles<IdentityRole<Guid>>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
