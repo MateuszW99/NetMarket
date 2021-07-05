@@ -8,7 +8,7 @@ namespace Domain.Entities
     public class UserSettings : BaseEntity, IHasDomainEvent
     {
         public Guid Id { get; init; }
-        
+        public Guid UserId { get; init; }
         public SellerLevel SellerLevel { get; set; }
         public int SalesCompleted { get; set; }
         public string PaypalEmail { get; set; }

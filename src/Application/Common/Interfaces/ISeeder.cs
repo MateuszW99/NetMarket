@@ -2,8 +2,13 @@
 
 namespace Application.Common.Interfaces
 {
+    public interface ISeeder
+    {
+        Task SeedAsync();
+    }
+    
     public interface ISeeder<T>
     {
-        Task<T> Seed();
+        Task<T> SeedAsync();
     }
 }

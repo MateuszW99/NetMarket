@@ -42,7 +42,6 @@ namespace Infrastructure.Persistence
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken)
         {
             var result = await base.SaveChangesAsync(cancellationToken);
-            // TODO : act in case of faulted task
             await DispatchEvents();
             return result;
         }
@@ -53,9 +52,10 @@ namespace Infrastructure.Persistence
             {
                 var domainEventEntity = ChangeTracker
                     .Entries<IHasDomainEvent>()
+                    .Where(x => x.Entity?.DomainEvents != null)
                     .Select(x => x.Entity.DomainEvents)
                     .SelectMany(x => x)
-                    .FirstOrDefault(e => !e.IsPublished);
+                    .FirstOrDefault(dE => !dE.IsPublished);
 
                 if (domainEventEntity == null)
                 {

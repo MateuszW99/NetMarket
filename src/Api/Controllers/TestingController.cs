@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Api.Common;
 using Application.Common.Interfaces;
+using Infrastructure.Data;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

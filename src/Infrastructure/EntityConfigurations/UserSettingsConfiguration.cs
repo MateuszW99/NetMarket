@@ -1,6 +1,7 @@
 ﻿using System;
 using Domain.Entities;
 using Domain.Enums;
+using Infrastructure.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -13,6 +14,12 @@ namespace Infrastructure.EntityConfigurations
             builder.Ignore(e => e.DomainEvents);
             
             builder.HasKey(e => e.Id);
+            builder.Property(e => e.UserId).IsRequired();
+            
+            builder.HasOne<ApplicationUser>()
+                .WithOne()
+                .HasForeignKey<UserSettings>(x => x.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
             
             builder.Property(e => e.SellerLevel)
                 .HasDefaultValue(SellerLevel.Beginner)

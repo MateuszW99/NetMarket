@@ -11,9 +11,9 @@ namespace Infrastructure.Services
 {
     public class SizeSeeder : ISeeder<List<Size>>
     {
-        public async Task<List<Size>> Seed()
+        public async Task<List<Size>> SeedAsync()
         {
-            var jsonData = await File.ReadAllTextAsync("./../../../data/sizes.json");
+            var jsonData = await File.ReadAllTextAsync("Data/sizes.json");
             var data = JsonConvert.DeserializeObject<string[]>(jsonData);
             return data.Select(x => new Size()
             {
