@@ -49,11 +49,8 @@ namespace Infrastructure.Services
                     Id = Guid.NewGuid()
                 };
                 _brands.Add(brand);
-            }    
-                 
+            }
 
-            DateTime.TryParse(obj.SelectToken("releaseDate").ToString(), out var releaseDate);
-            
             Item item = new Item()
             {
                 Id = new Guid(obj.SelectToken("id").ToString()),
@@ -64,7 +61,6 @@ namespace Infrastructure.Services
                 ThumbUrl = obj.SelectToken("media").SelectToken("thumbUrl").ToString(),
                 BrandId = brand.Id,
                 Brand = brand,
-                ReleaseDate = releaseDate,
                 Model = obj.SelectToken("model").ToString(),
                 Make = obj.SelectToken("make").ToString(),
                 Description = obj.SelectToken("description").ToString()

@@ -137,9 +137,6 @@ namespace Infrastructure.Migrations
                         .HasMaxLength(150)
                         .HasColumnType("nvarchar(150)");
 
-                    b.Property<DateTime?>("ReleaseDate")
-                        .HasColumnType("datetime2");
-
                     b.Property<decimal>("RetailPrice")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("money")

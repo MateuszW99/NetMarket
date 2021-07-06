@@ -16,9 +16,6 @@ namespace Infrastructure.EntityConfigurations
                 .IsRequired(true)
                 .HasMaxLength(150);
 
-            builder.Property(e => e.ReleaseDate)
-                .IsRequired(false);
-            
             builder.Property(e => e.Make)
                 .IsRequired(true)
                 .HasMaxLength(150);
