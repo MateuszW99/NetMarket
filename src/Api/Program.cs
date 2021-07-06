@@ -76,6 +76,7 @@ namespace Api
             }
             
             await host.RunAsync();
+            
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
