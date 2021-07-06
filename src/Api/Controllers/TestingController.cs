@@ -3,7 +3,7 @@ using Application.Common.Interfaces;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Roles = Infrastructure.Data.Roles;
+using Infrastructure.Data;
 
 namespace Api.Controllers
 {
