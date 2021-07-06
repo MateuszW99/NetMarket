@@ -8,11 +8,10 @@ using System.Threading.Tasks;
 using Api.Common;
 using Application.Common.Interfaces;
 using Application.Identity;
-using Infrastructure.Data;
 using Infrastructure.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
-using Roles = Infrastructure.Data.Roles;
+using Infrastructure.Data;
 
 namespace Api.Services
 {
