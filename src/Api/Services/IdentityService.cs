@@ -12,6 +12,7 @@ using Infrastructure.Data;
 using Infrastructure.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
+using Roles = Infrastructure.Data.Roles;
 
 namespace Api.Services
 {
