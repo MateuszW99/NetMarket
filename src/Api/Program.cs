@@ -64,7 +64,9 @@ namespace Api
                     await context.SaveChangesAsync(CancellationToken.None);
                 }
                 
+                await host.RunAsync();
                 Log.Information("Api running");
+                
             }
             catch (Exception ex)
             {
@@ -74,9 +76,6 @@ namespace Api
             {
                 Log.CloseAndFlush();
             }
-            
-            await host.RunAsync();
-            
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
