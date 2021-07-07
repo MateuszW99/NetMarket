@@ -1,7 +1,13 @@
 using System;
+using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 using Api.Common;
+using Application.Common.Interfaces;
+using Domain.Entities;
+using Infrastructure.Data;
 using Infrastructure.Persistence;
+using Infrastructure.Services;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -29,42 +35,38 @@ namespace Api
             Log.Logger = new LoggerConfiguration()
                 .ReadFrom.Configuration(config)
                 .CreateLogger();
+            Log.Information("Starting up");
             
             try
             {
-                Log.Information("Starting up");
                 var context = services.GetRequiredService<ApplicationDbContext>();
                 await context.Database.MigrateAsync();
                 
-                var roleManager = services.GetRequiredService<RoleManager<IdentityRole<Guid>>>();
-                if (!await roleManager.RoleExistsAsync(Roles.User))
-                {
-                    await roleManager.CreateAsync(new IdentityRole<Guid>()
-                    {
-                        Name = Roles.User,
-                        NormalizedName = Roles.User.ToUpper()
-                    });
-                }
+                var roleSeeder = services.GetRequiredService<RoleSeeder>();
+                await roleSeeder.SeedAsync();
+
+                var userSeeder = services.GetRequiredService<UserSeeder>();
+                await userSeeder.SeedAsync();
                 
-                if (!await roleManager.RoleExistsAsync(Roles.Supervisor))
+                if (!await context.Items.AnyAsync())
                 {
-                    await roleManager.CreateAsync(new IdentityRole<Guid>()
-                    {
-                        Name = Roles.Supervisor,
-                        NormalizedName = Roles.Supervisor.ToUpper()
-                    });
+                    var itemSeeder = services.GetRequiredService<ISeeder<List<Item>>>();
+                    var items = await itemSeeder.SeedAsync();
+                    await context.Items.AddRangeAsync(items);
+                    await context.SaveChangesAsync(CancellationToken.None);
                 }
-                
-                if (!await roleManager.RoleExistsAsync(Roles.Admin))
+
+                if (!await context.Sizes.AnyAsync())
                 {
-                    await roleManager.CreateAsync(new IdentityRole<Guid>()
-                    {
-                        Name = Roles.Admin,
-                        NormalizedName = Roles.Admin.ToUpper()
-                    });
+                    var sizeSeeder = services.GetRequiredService<ISeeder<List<Size>>>();
+                    var sizes = await sizeSeeder.SeedAsync();
+                    await context.Sizes.AddRangeAsync(sizes);
+                    await context.SaveChangesAsync(CancellationToken.None);
                 }
                 
                 await host.RunAsync();
+                Log.Information("Api running");
+                
             }
             catch (Exception ex)
             {
@@ -74,7 +76,6 @@ namespace Api
             {
                 Log.CloseAndFlush();
             }
-            
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>

@@ -11,6 +11,7 @@ using Application.Identity;
 using Infrastructure.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
+using Infrastructure.Data;
 
 namespace Api.Services
 {

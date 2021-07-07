@@ -2,6 +2,7 @@
 using System.Text;
 using Api.Services;
 using Application.Common.Interfaces;
+using Infrastructure.Data;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
