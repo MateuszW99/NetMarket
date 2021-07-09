@@ -14,6 +14,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="10.2.3" />
+    <PackageReference Include="FluentValidation.AspNetCore" Version="10.2.3" />
+    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="10.2.3" />
     <PackageReference Include="MediatR" Version="9.0.0" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="9.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.7" />
@@ -38,6 +41,7 @@
     <Folder Include="Models\Items\Commands" />
     <Folder Include="Models\Items\Queries" />
     <Folder Include="Models\Items\Responses" />
+    <Folder Include="Models\Test" />
     <Folder Include="Models\Transactions\Commands" />
     <Folder Include="Models\Transactions\Queries" />
     <Folder Include="Models\Transactions\Responses" />
