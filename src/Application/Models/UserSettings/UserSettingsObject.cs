@@ -1,6 +1,8 @@
-﻿namespace Application.Models.UserSettings
+﻿using Application.Common.Mappings;
+
+namespace Application.Models.UserSettings
 {
-    public class UserSettingsObject
+    public class UserSettingsObject : IMapFrom<Domain.Entities.UserSettings>
     {
         public string Id { get; set; }
         public string UserId { get; set; }

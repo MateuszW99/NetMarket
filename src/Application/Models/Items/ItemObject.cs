@@ -1,8 +1,10 @@
-﻿using Application.Models.Brands;
+﻿using Application.Common.Mappings;
+using Application.Models.Brands;
+using Domain.Entities;
 
 namespace Application.Models.Items
 {
-    public class ItemObject
+    public class ItemObject : IMapFrom<Item>
     {
         public string Id { get; init; }
         public string Name { get; set; }

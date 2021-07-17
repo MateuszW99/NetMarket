@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Application.Common.Mappings;
 using Application.Models.Asks;
 using Application.Models.Bids;
+using Domain.Entities;
 
 namespace Application.Models.Transactions
 {
-    public class TransactionObject
+    public class TransactionObject : IMapFrom<Transaction>
     {
         public string Id { get; set; }
         public AskObject Ask { get; set; }
