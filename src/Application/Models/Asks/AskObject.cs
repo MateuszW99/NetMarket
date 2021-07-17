@@ -18,7 +18,8 @@ namespace Application.Models.Asks
         public void Mapping(Profile profile)
         {
             profile.CreateMap<Ask, AskObject>()
-                .ForMember(d => d.Size, opt => opt.MapFrom(a => a.ItemSize))
+                .ForMember(d => d.Item, opt => opt.MapFrom(a => a.ItemSize.Item))
+                .ForMember(d => d.Size, opt => opt.MapFrom(a => a.ItemSize.Size))
                 .ForMember(d => d.UserId, opt => opt.MapFrom(a => a.CreatedBy));
         }
     }

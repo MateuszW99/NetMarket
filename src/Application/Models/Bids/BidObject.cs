@@ -14,14 +14,13 @@ namespace Application.Models.Bids
         public decimal Price { get; set; }
         public bool IsCanceled { get; set; }
         public string UserId { get; set; }
-        
+
         public void Mapping(Profile profile)
         {
             profile.CreateMap<Bid, BidObject>()
-                .ForMember(d => d.Size, opt => opt.MapFrom(b => b.ItemSize))
+                .ForMember(d => d.Item, opt => opt.MapFrom(a => a.ItemSize.Item))
+                .ForMember(d => d.Size, opt => opt.MapFrom(a => a.ItemSize.Size))
                 .ForMember(d => d.UserId, opt => opt.MapFrom(b => b.CreatedBy));
         }
     }
-    
-   
 }
