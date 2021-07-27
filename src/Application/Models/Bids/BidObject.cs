@@ -1,10 +1,8 @@
 ﻿using Application.Common.Mappings;
-using Application.Models.Items;
-using Application.Models.Sizes;
 using AutoMapper;
 using Domain.Entities;
 
-namespace Application.Models.Bids
+namespace Application.Models
 {
     public class BidObject : IMapFrom<Bid>
     {

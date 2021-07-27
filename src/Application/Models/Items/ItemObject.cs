@@ -1,8 +1,8 @@
 ﻿using Application.Common.Mappings;
-using Application.Models.Brands;
+using AutoMapper;
 using Domain.Entities;
 
-namespace Application.Models.Items
+namespace Application.Models
 {
     public class ItemObject : IMapFrom<Item>
     {
@@ -16,5 +16,11 @@ namespace Application.Models.Items
         public string SmallImageUrl { get; set; }
         public string ThumbUrl { get; set; }
         public BrandObject Brand { get; set; }
+        
+        public void Mapping(Profile profile)
+        {
+            profile.CreateMap<Item, ItemObject>()
+                .ForMember(d => d.Brand, opt => opt.MapFrom(a => a.Brand));
+        }
     }
 }

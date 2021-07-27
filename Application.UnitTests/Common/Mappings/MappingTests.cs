@@ -1,13 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 using Application.Common.Mappings;
-using Application.Models.Asks;
-using Application.Models.Bids;
-using Application.Models.Brands;
-using Application.Models.Items;
-using Application.Models.Sizes;
-using Application.Models.Transactions;
-using Application.Models.UserSettings;
+using Application.Models;
 using AutoMapper;
 using Domain.Entities;
 using Xunit;

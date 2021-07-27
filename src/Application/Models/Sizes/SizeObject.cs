@@ -1,7 +1,7 @@
 ﻿using Application.Common.Mappings;
 using Domain.Entities;
 
-namespace Application.Models.Sizes
+namespace Application.Models
 {
     public class SizeObject : IMapFrom<Size>
     {

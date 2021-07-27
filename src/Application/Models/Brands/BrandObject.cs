@@ -1,7 +1,7 @@
 ﻿using Application.Common.Mappings;
 using Domain.Entities;
 
-namespace Application.Models.Brands
+namespace Application.Models
 {
     public class BrandObject : IMapFrom<Brand>
     {

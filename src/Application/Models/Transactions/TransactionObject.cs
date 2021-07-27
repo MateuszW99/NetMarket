@@ -1,9 +1,7 @@
 ﻿using Application.Common.Mappings;
-using Application.Models.Asks;
-using Application.Models.Bids;
 using Domain.Entities;
 
-namespace Application.Models.Transactions
+namespace Application.Models
 {
     public class TransactionObject : IMapFrom<Transaction>
     {
