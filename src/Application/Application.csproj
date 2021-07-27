@@ -29,6 +29,7 @@
   </ItemGroup>
 
   <ItemGroup>
+<<<<<<< Updated upstream
     <Folder Include="Models\Asks\Commands" />
     <Folder Include="Models\Asks\Queries" />
     <Folder Include="Models\Asks\Responses" />
@@ -49,6 +50,10 @@
     <Folder Include="Models\UserSettings\Commands" />
     <Folder Include="Models\UserSettings\Queries" />
     <Folder Include="Models\UserSettings\Responses" />
+=======
+    <Folder Include="Models\Entities\Sizes" />
+    <Folder Include="Models\Entities\User" />
+>>>>>>> Stashed changes
   </ItemGroup>
 
 </Project>
