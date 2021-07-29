@@ -42,20 +42,11 @@ namespace Application.Models.ApiModels.Items.Commands
             RuleFor(x => x.RetailPrice)
                 .GreaterThanOrEqualTo((decimal) 0.0);
             
-            RuleFor(x => x.ImageUrl)
-                .NotNull()
-                .NotEmpty()
-                .When(x => Uri.IsWellFormedUriString(x.ImageUrl, UriKind.Absolute));
+            RuleFor(x => x.ImageUrl).MustMatchUrlPattern();
             
-            RuleFor(x => x.SmallImageUrl)
-                .NotNull()
-                .NotEmpty()
-                .When(x => Uri.IsWellFormedUriString(x.SmallImageUrl, UriKind.Absolute));
-            
-            RuleFor(x => x.ThumbUrl)
-                .NotNull()
-                .NotEmpty()
-                .When(x => Uri.IsWellFormedUriString(x.ThumbUrl, UriKind.Absolute));
+            RuleFor(x => x.SmallImageUrl).MustMatchUrlPattern();
+
+            RuleFor(x => x.ThumbUrl).MustMatchUrlPattern();
             
             RuleFor(x => x.Brand)
                 .NotNull()

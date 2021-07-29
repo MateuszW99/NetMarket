@@ -3,7 +3,6 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using FluentValidation;
-using FluentValidation.TestHelper;
 using MediatR;
 using Microsoft.Extensions.Logging;
 

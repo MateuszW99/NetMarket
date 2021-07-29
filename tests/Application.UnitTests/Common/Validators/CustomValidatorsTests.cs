@@ -48,6 +48,7 @@ namespace Application.UnitTests.Common.Validators
         }
         
         [Theory]
+        [InlineData(null)]
         [InlineData("")]
         [InlineData("randomString")]
         [InlineData("18cc36cab7c54d38b11930d78ff3d433")]
