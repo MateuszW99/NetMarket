@@ -19,11 +19,13 @@ namespace Application.Models.ApiModels.Items.Commands
         public string Brand { get; set; }
     }
 
-    internal class UpdateItemCommandValidator : AbstractValidator<UpdateItemCommand>
+    public class UpdateItemCommandValidator : AbstractValidator<UpdateItemCommand>
     {
         public UpdateItemCommandValidator()
         {
-            RuleFor(x => x.Id).IdMustMatchGuidPattern();
+            RuleFor(x => x.Id)
+                .NotNull()
+                .IdMustMatchGuidPattern();
             
             RuleFor(x => x.Make)
                 .NotNull()

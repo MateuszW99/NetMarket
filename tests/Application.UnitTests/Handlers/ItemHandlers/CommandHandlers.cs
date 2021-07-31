@@ -13,8 +13,19 @@ namespace Application.UnitTests.Handlers.ItemHandlers
 {
     public class CommandHandlers
     {
+        public static IEnumerable<object[]> Items => new List<object[]>
+        {
+            new object[] { "", "", "", "", Convert.ToDecimal("0.0"), "", "", "", "" },
+            new object[] { "af1", null, "", "", Convert.ToDecimal("0.0"), "", "wwww.google.com", "", "" },
+            new object[] { "af1", "make", "model", "www.google.com", Convert.ToDecimal("1.20"), "", "", "", "" },
+            new object[] { "", "", "", "", decimal.Zero, "", "", "", "" },
+            new object[] { "af1", "make", "model", "description", Convert.ToDecimal("1.20"), "brand", "www.google.com", "www.google.com", "htpps://google.com" },
+        };
+
+        #region CreateItemCommandHandler
+
         [Fact]
-        public async Task ShouldNotThrowWhenPropertiesAreValid()
+        public async Task CreateItemCommandHandlerShouldNotThrowWhenPropertiesAreValid()
         {
             var createItemCommand = new CreateItemCommand()
             {
@@ -32,7 +43,7 @@ namespace Application.UnitTests.Handlers.ItemHandlers
             var commandHandler = new CreateItemCommandHandler(null, null);
             var validationBehaviour = new ValidationBehaviour<CreateItemCommand, MediatR.Unit>(new List<CreateItemCommandValidator>()
             {
-                new CreateItemCommandValidator()
+                new()
             }, null);
 
             await FluentActions.Invoking(() =>
@@ -45,13 +56,13 @@ namespace Application.UnitTests.Handlers.ItemHandlers
         }
         
         [Fact]
-        public async Task ShouldThrowWhenPropertiesAreNotInitialized()
+        public async Task CreateItemCommandHandlerShouldThrowWhenPropertiesAreNotInitialized()
         {
             var createItemCommand = new CreateItemCommand();
             var commandHandler = new CreateItemCommandHandler(null, null);
             var validationBehaviour = new ValidationBehaviour<CreateItemCommand, MediatR.Unit>(new List<CreateItemCommandValidator>()
             {
-                new CreateItemCommandValidator()
+                new()
             }, null);
 
             await FluentActions.Invoking(() =>
@@ -64,8 +75,9 @@ namespace Application.UnitTests.Handlers.ItemHandlers
         }
 
         [Theory]
-        [MemberData(nameof(Data))]
-        public async Task ShouldThrowWhenOneOrMorePropertiesAreInvalid(string name, string make, string model,
+        [MemberData(nameof(Items))]
+        public async Task CreateItemCommandHandlerShouldThrowWhenOneOrMorePropertiesAreInvalid(
+            string name, string make, string model,
             string description, decimal retailPrice, string brand,
             string imageUrl, string smallImageUrl, string thumbUrl)
         {
@@ -85,7 +97,7 @@ namespace Application.UnitTests.Handlers.ItemHandlers
             var commandHandler = new CreateItemCommandHandler(null, null);
             var validationBehaviour = new ValidationBehaviour<CreateItemCommand, MediatR.Unit>(new List<CreateItemCommandValidator>()
             {
-                new CreateItemCommandValidator()
+                new()
             }, null);
 
             await FluentActions.Invoking(() =>
@@ -96,14 +108,154 @@ namespace Application.UnitTests.Handlers.ItemHandlers
                 .Should()
                 .ThrowAsync<ValidationException>();
         }
+        
+        #endregion
+        
+        #region DeleteItemCommandHandler
 
-        public static IEnumerable<object[]> Data => new List<object[]>
+        [Fact]
+        public async Task DeleteItemCommandHandlerShouldNotThrowWhenPropertiesAreValid()
         {
-            new object[] { "", "", "", "", Convert.ToDecimal("0.0"), "", "", "", "" },
-            new object[] { "af1", null, "", "", Convert.ToDecimal("0.0"), "", "wwww.google.com", "", "" },
-            new object[] { "af1", "make", "model", "www.google.com", Convert.ToDecimal("1.20"), "", "", "", "" },
-            new object[] { "", "", "", "", decimal.Zero, "", "", "", "" },
-            new object[] { "af1", "make", "model", "description", Convert.ToDecimal("1.20"), "brand", "www.google.com", "www.google.com", "htpps://google.com" },
-        };
+            var deleteItemCommand = new DeleteItemCommand()
+            {
+                Id = Guid.NewGuid().ToString()
+            };
+
+            var commandHandler = new DeleteItemCommandHandler(null, null);
+            var validationBehaviour = new ValidationBehaviour<DeleteItemCommand, MediatR.Unit>(new List<DeleteItemCommandValidator>()
+            {
+                new()
+            }, null);
+
+            await FluentActions.Invoking(() =>
+                    validationBehaviour.Handle(
+                        deleteItemCommand,
+                        CancellationToken.None, 
+                        () => commandHandler.Handle(deleteItemCommand, CancellationToken.None)))
+                .Should()
+                .NotThrowAsync<ValidationException>();
+        }
+
+        [Theory]
+        [InlineData(null)]
+        [InlineData("")]
+        [InlineData("xxxx")]
+        [InlineData("{e24439407--14bf}")]
+        [InlineData("{e24439e8-7b0b-4073-ba80-b14f99e314bf}")]
+        [InlineData("(e24439e8-7b0b-4073-ba80-b14f99e314bf)")]
+        [InlineData("e24439e87b0b4073ba80b14f99e314bf")]
+        public async Task DeleteItemCommandHandlerShowThrowWhenPropertiesAreInvalid(string id)
+        {
+            var deleteItemCommand = new DeleteItemCommand()
+            {
+                Id = id
+            };
+
+            var commandHandler = new DeleteItemCommandHandler(null, null);
+            var validationBehaviour = new ValidationBehaviour<DeleteItemCommand, MediatR.Unit>(new List<DeleteItemCommandValidator>()
+            {
+                new()
+            }, null);
+
+            await FluentActions.Invoking(() =>
+                    validationBehaviour.Handle(
+                        deleteItemCommand,
+                        CancellationToken.None, 
+                        () => commandHandler.Handle(deleteItemCommand, CancellationToken.None)))
+                .Should()
+                .ThrowAsync<ValidationException>();
+        }
+
+        #endregion
+
+        #region UpdateItemCommandHandler
+
+        [Fact]
+        public async Task UpdateItemCommandHandlerShouldNotThrowWhenPropertiesAreValid()
+        {
+            var updateItemCommand = new UpdateItemCommand()
+            {
+                Id = Guid.NewGuid().ToString(),
+                Name = "AF1 White",
+                Make = "nike",
+                Model = "air force 1",
+                Description = "a short description",
+                RetailPrice = decimal.One,
+                ImageUrl = "www.google.com",
+                SmallImageUrl = "www.google.com",
+                ThumbUrl = "www.google.com",
+                Brand = "Nike"
+            };
+
+            var commandHandler = new UpdateItemCommandHandler(null, null);
+            var validationBehaviour = new ValidationBehaviour<UpdateItemCommand, MediatR.Unit>(new List<UpdateItemCommandValidator>()
+            {
+                new()
+            }, null);
+
+            await FluentActions.Invoking(() =>
+                    validationBehaviour.Handle(
+                        updateItemCommand,
+                        CancellationToken.None, 
+                        () => commandHandler.Handle(updateItemCommand, CancellationToken.None)))
+                .Should()
+                .NotThrowAsync<ValidationException>();
+        }
+        
+        [Fact]
+        public async Task UpdateItemCommandHandlerShouldThrowWhenPropertiesAreNotInitialized()
+        {
+            var updateItemCommand = new UpdateItemCommand();
+            var commandHandler = new UpdateItemCommandHandler(null, null);
+            var validationBehaviour = new ValidationBehaviour<UpdateItemCommand, MediatR.Unit>(new List<UpdateItemCommandValidator>()
+            {
+                new()
+            }, null);
+
+            await FluentActions.Invoking(() =>
+                validationBehaviour.Handle(
+                    updateItemCommand,
+                    CancellationToken.None, 
+                    () => commandHandler.Handle(updateItemCommand, CancellationToken.None)))
+                .Should()
+                .ThrowAsync<ValidationException>();
+        }
+
+        [Theory]
+        [MemberData(nameof(Items))]
+        public async Task UpdateItemCommandHandlerShouldThrowWhenOneOrMorePropertiesAreInvalid(
+            string name, string make, string model,
+            string description, decimal retailPrice, string brand,
+            string imageUrl, string smallImageUrl, string thumbUrl)
+        {
+            var updateItemCommand = new UpdateItemCommand()
+            {
+                Name = name,
+                Make = make,
+                Model = model,
+                Description = description,
+                RetailPrice = retailPrice,
+                ImageUrl = imageUrl,
+                SmallImageUrl = smallImageUrl,
+                ThumbUrl = thumbUrl,
+                Brand = brand
+            };
+
+            var commandHandler = new UpdateItemCommandHandler(null, null);
+            var validationBehaviour = new ValidationBehaviour<UpdateItemCommand, MediatR.Unit>(new List<UpdateItemCommandValidator>()
+            {
+                new()
+            }, null);
+
+            await FluentActions.Invoking(() =>
+                    validationBehaviour.Handle(
+                        updateItemCommand,
+                        CancellationToken.None, 
+                        () => commandHandler.Handle(updateItemCommand, CancellationToken.None)))
+                .Should()
+                .ThrowAsync<ValidationException>();
+        }
+    
+        #endregion
     }
 }

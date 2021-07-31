@@ -9,11 +9,13 @@ namespace Application.Models.ApiModels.Items.Commands
         public string Id { get; set; }
     }
 
-    internal class DeleteItemCommandValidator : AbstractValidator<DeleteItemCommand>
+    public class DeleteItemCommandValidator : AbstractValidator<DeleteItemCommand>
     {
         public DeleteItemCommandValidator()
         {
-            RuleFor(x => x.Id).IdMustMatchGuidPattern();
+            RuleFor(x => x.Id)
+                .NotNull()
+                .IdMustMatchGuidPattern();
         }
     }
 }
