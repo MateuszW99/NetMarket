@@ -46,7 +46,6 @@
     <Folder Include="Models\ApiModels\UserSettings\Commands" />
     <Folder Include="Models\ApiModels\UserSettings\Queries" />
     <Folder Include="Models\ApiModels\UserSettings\Responses" />
-    <Folder Include="Services" />
   </ItemGroup>
 
   <ItemGroup>

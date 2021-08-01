@@ -1,5 +1,7 @@
 ﻿using System.Reflection;
 using Application.Common.Behaviours;
+using Application.Common.Interfaces;
+using Application.Services;
 using FluentValidation;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -17,6 +19,8 @@ namespace Application
             services.AddAutoMapper(assembly);
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehaviour<,>));
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(UnhandledExceptionBehaviour<,>));
+
+            services.AddTransient<IItemService, ItemService>();
             
             return services;
         }
