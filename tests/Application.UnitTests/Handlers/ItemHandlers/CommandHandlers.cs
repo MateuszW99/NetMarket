@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
 using Application.Common.Behaviours;
@@ -12,16 +13,15 @@ using Xunit;
 
 namespace Application.UnitTests.Handlers.ItemHandlers
 {
-    [UseCulture("en-US")]
     public class CommandHandlers
     {
         public static IEnumerable<object[]> Items => new List<object[]>
         {
-            new object[] { "", "", "", "", Convert.ToDecimal("0.0"), "", "", "", "" },
-            new object[] { "af1", null, "", "", Convert.ToDecimal("0.0"), "", "wwww.google.com", "", "" },
-            new object[] { "af1", "make", "model", "www.google.com", Convert.ToDecimal("1.20"), "", "", "", "" },
+            new object[] { "", "", "", "", Convert.ToDecimal("0.0", new CultureInfo("en-US")), "", "", "", "" },
+            new object[] { "af1", null, "", "", Convert.ToDecimal("0.0", new CultureInfo("en-US")), "", "wwww.google.com", "", "" },
+            new object[] { "af1", "make", "model", "www.google.com", Convert.ToDecimal("1.20", new CultureInfo("en-US")), "", "", "", "" },
             new object[] { "", "", "", "", decimal.Zero, "", "", "", "" },
-            new object[] { "af1", "make", "model", "description", Convert.ToDecimal("1.20"), "brand", "www.google.com", "www.google.com", "htpps://google.com" },
+            new object[] { "af1", "make", "model", "description", Convert.ToDecimal("1.20", new CultureInfo("en-US")), "brand", "www.google.com", "www.google.com", "htpps://google.com" },
         };
 
         #region CreateItemCommandHandler
@@ -77,6 +77,7 @@ namespace Application.UnitTests.Handlers.ItemHandlers
         }
 
         [Theory]
+        
         [MemberData(nameof(Items))]
         public async Task CreateItemCommandHandlerShouldThrowWhenOneOrMorePropertiesAreInvalid(
             string name, string make, string model,
