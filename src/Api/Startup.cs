@@ -1,5 +1,6 @@
 using Api.Common;
 using Application;
+using FluentValidation.AspNetCore;
 using Infrastructure;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -28,7 +29,11 @@ namespace Api
             services.AddInfrastructure(Configuration);
             services.AddJwtAuthentication(Configuration);
             services.AddSwagger();
-            services.AddControllers();
+            services.AddControllers(options =>
+                {
+                    options.Filters.Add<ApiExceptionFilterAttribute>();
+                })
+                .AddFluentValidation();
             services.AddRazorPages();
         }
 

@@ -2,7 +2,7 @@
 using AutoMapper;
 using Domain.Entities;
 
-namespace Application.Models
+namespace Application.Models.DTOs
 {
     public class BidObject : IMapFrom<Bid>
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 using Application.Common.Mappings;
-using Application.Models;
+using Application.Models.DTOs;
 using AutoMapper;
 using Domain.Entities;
 using Xunit;

@@ -1,7 +1,7 @@
 ﻿using Application.Common.Mappings;
 using Domain.Entities;
 
-namespace Application.Models
+namespace Application.Models.DTOs
 {
     public class TransactionObject : IMapFrom<Transaction>
     {
