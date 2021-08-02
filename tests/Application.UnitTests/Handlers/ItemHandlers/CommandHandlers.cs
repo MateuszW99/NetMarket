@@ -5,12 +5,14 @@ using System.Threading.Tasks;
 using Application.Common.Behaviours;
 using Application.Handlers.ItemHandlers;
 using Application.Models.ApiModels.Items.Commands;
+using Application.UnitTests.Helpers;
 using FluentAssertions;
 using FluentValidation;
 using Xunit;
 
 namespace Application.UnitTests.Handlers.ItemHandlers
 {
+    [UseCulture("en-US")]
     public class CommandHandlers
     {
         public static IEnumerable<object[]> Items => new List<object[]>
