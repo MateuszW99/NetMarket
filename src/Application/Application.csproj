@@ -4,4 +4,60 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Reference Include="Microsoft.Extensions.Configuration.Abstractions, Version=5.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60">
+      <HintPath>..\..\..\..\..\..\..\Program Files\dotnet\packs\Microsoft.AspNetCore.App.Ref\5.0.0\ref\net5.0\Microsoft.Extensions.Configuration.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=5.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60">
+      <HintPath>..\..\..\..\..\..\..\Program Files\dotnet\packs\Microsoft.AspNetCore.App.Ref\5.0.0\ref\net5.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="10.2.3" />
+    <PackageReference Include="FluentValidation.AspNetCore" Version="10.2.3" />
+    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="10.2.3" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
+    <PackageReference Include="MediatR" Version="9.0.0" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="9.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.7" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="5.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Domain\Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Models\ApiModels\Asks\Commands" />
+    <Folder Include="Models\ApiModels\Asks\Queries" />
+    <Folder Include="Models\ApiModels\Asks\Responses" />
+    <Folder Include="Models\ApiModels\Bids\Commands" />
+    <Folder Include="Models\ApiModels\Bids\Queries" />
+    <Folder Include="Models\ApiModels\Bids\Responses" />
+    <Folder Include="Models\ApiModels\Brands\Commands" />
+    <Folder Include="Models\ApiModels\Brands\Queries" />
+    <Folder Include="Models\ApiModels\Brands\Responses" />
+    <Folder Include="Models\ApiModels\Items\Responses" />
+    <Folder Include="Models\ApiModels\Transactions\Commands" />
+    <Folder Include="Models\ApiModels\Transactions\Queries" />
+    <Folder Include="Models\ApiModels\Transactions\Responses" />
+    <Folder Include="Models\ApiModels\UserSettings\Commands" />
+    <Folder Include="Models\ApiModels\UserSettings\Queries" />
+    <Folder Include="Models\ApiModels\UserSettings\Responses" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Models\ApiModels\User\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="Models\ApiModels\User\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Models\ApiModels\User\**" />
+  </ItemGroup>
+
 </Project>
