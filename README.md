@@ -30,7 +30,7 @@ JWT token must be provided in the header when accessing sensitive data.
 | Method | Path           | Body       | Params     | Description                                                 | Responses          | Who can access |
 |--------|----------------|------------|------------|-------------------------------------------------------------|--------------------|----------------|
 | GET    | api/user       | *none*     | *none*     | Returns user data.                                          | UserSettingsObject | Signed in users |
-| PUT    | api/user       | *none*     | *none*     | Returns user data.                                          | 200                | Signed in users |
+| PUT    | api/user       | UpdateUserSettingsRequest     | *none*     | Returns user data.                                          | 200                | Signed in users |
 
 ### Asks
 | Method | Path           | Body       | Params     | Description                                                 | Responses          | Who can access |
