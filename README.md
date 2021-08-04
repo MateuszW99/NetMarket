@@ -36,8 +36,8 @@ JWT token must be provided in the header when accessing sensitive data.
 | Method | Path           | Body       | Params     | Description                                                 | Responses          | Who can access |
 |--------|----------------|------------|------------|-------------------------------------------------------------|--------------------|----------------|
 | GET    | api/asks/{id}  | *none*     | id         | Returns ask details or 404 it ask doesn't exist.            | AskObject, 404     | Signed in users |
-| GET    | api/asks/      | *none*     | *none*     | Returns list of asks for a user.  List can be empty if user has no asks | AskObject[] | Signed in users   |
-| POST   | api/asks/      | CreateAskRequest | *none* | Creates a new ask.                                        | 200                | Signed in users |
+| GET    | api/asks       | *none*     | *none*     | Returns list of asks for a user.  List can be empty if user has no asks | AskObject[] | Signed in users   |
+| POST   | api/asks       | CreateAskRequest | *none* | Creates a new ask.                                        | 200                | Signed in users |
 | PUT    | api/asks/{id}  | UpdateAskRequest | id   | Updates an ask if found. Returns 404 otherwise.             | 200, 404           | Ask owner       |
 | DELETE | api/asks/{id}  | DeleteAskRequest | id   | Deletes an ask if found. Returns 404 otherwise.             | 200, 404           | Ask owner       |
 
@@ -45,8 +45,8 @@ JWT token must be provided in the header when accessing sensitive data.
 | Method | Path           | Body       | Parameters | Description                                                 | Responses           | Who can access |
 |--------|----------------|------------|------------|-------------------------------------------------------------|--------------------|----------------|
 | GET    | api/bids/{id}  | *none*     | id         | Returns bid details or 404 it ask doesn't exist.            | BidObject, 404     | Signed in users |
-| GET    | api/bids/      | *none*     | *none*     | Returns list of bids for a useer.  List can be empty if user has no bids | BidObject[] | Signed in users   |
-| POST   | api/bids/      | CreateBidRequest | *none* | Creates a new bid.                                        | 200                | Signed in users |
+| GET    | api/bids       | *none*     | *none*     | Returns list of bids for a useer.  List can be empty if user has no bids | BidObject[] | Signed in users   |
+| POST   | api/bids       | CreateBidRequest | *none* | Creates a new bid.                                        | 200                | Signed in users |
 | PUT    | api/bids/{id}  | UpdateBidRequest | id   | Updates a bid if found. Returns 404 otherwise.              | 200, 404           | Bid owner       |
 | DELETE | api/bids/{id}  | DeleteBidRequest | id   | Deletes a bid if found. Returns 404 otherwise.              | 200, 404           | Bid owner       |
 
@@ -54,7 +54,8 @@ JWT token must be provided in the header when accessing sensitive data.
 | Method | Path           | Body       | Params     | Description                                                 | Responses          | Who can access |
 |--------|----------------|------------|------------|-------------------------------------------------------------|--------------------|----------------|
 | GET    | api/transactions/{id} | *none* | id |    | Returns TransactionObject if transaction with given id exists.  Otherwise, returns 404. Code 403 is returned when user doesn't own the transaction.                                                                                                  | TransactionObject[], 404, 403 | Buyer and seller
-| GET   | api/transactions/ | *none*   | *none*     | Returns list of user transactions.                          | TransactionObject[] | Signed in user |
+| GET   | api/transactions
+| *none*   | *none*     | Returns list of user transactions.                          | TransactionObject[] | Signed in user |
 
 ### Category
 | Method | Path           | Body       | Parameters | Description                                                 | Possible responses | Who can access |
