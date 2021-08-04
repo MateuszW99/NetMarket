@@ -21,7 +21,7 @@ JWT token must be provided in the header when accessing sensitive data.
 | Method | Path           | Body       | Params     | Description                                                 | Responses          | Who can access |
 |--------|----------------|------------|------------|-------------------------------------------------------------|--------------------|----------------|
 | GET    | api/items/{id} | *none*     | id         | Returns an item with given id or 404 if item doesn't exist. | ItemObject, 404    | everyone       |
-| POST   | api/items?     | *none*     | brand, name, category, make, model | Returns a list of items. List can be empty if none is found. | ItemObject[] | everyone |
+| GET    | api/items?      | *none*     | brand, name, category, make, model | Returns a list of items. List can be empty if none is found. | ItemObject[] | everyone |
 | POST   | api/items      | CreateItemRequest | *none* | Creates a new item based on the data in the body.  Returns 404 error code if data is invalid. | 200, 500 | admin |
 | PUT    | api/items/{id} | UpdateItemRequest | id | Updates an item if found.  Returns 404 otherwise. | 200, 404 | admin |
 | DELETE | api/items/{id} | DeleteItemRequest | id | Updates an item if found.  Returns 404 otherwise. | 200, 404 | admin |
