@@ -1,8 +1,7 @@
-[Follow this link to find our way of working with this repo](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow)
-
 ## List of contents
-* [Developing the database](#developing-the-database)
-* [Endpoints (WIP)](#endpoints-wip)
+* ### [Developing the database](#developing-the-database)
+* ### [Endpoints (WIP)](#endpoints-wip)
+* ### [Resources](#resources)
 
 ## Developing the database
 
@@ -76,7 +75,6 @@ JWT token must be provided in the header when accessing sensitive data.
 | GET    | api/supervisorPanel/orders/{id}  | id  |            | Returns TransactionObject with given id. Returns 403 if the transaction isn't assigned to the supervisor.  Returns 404 if transaction doesn't exist.    | TransactionObject[], 403, 404                                                           | supervisor     |
 | PUT    | api/supervisorPanel/orders/{id} | UpdateTransactionRequest[] | id | Updates a transaction if found. Otherwise returns 404. | 200, 404 | supervisor|
 
-TODO: admin panel, supervisor panel
+## Resources
 
-
-
+#### [Follow this link to find our way of working with this repo](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow)
