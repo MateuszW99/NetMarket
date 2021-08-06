@@ -37,11 +37,17 @@ namespace Application.Services
             var userSettings = await _context.UserSettings
                 .FirstOrDefaultAsync(x => x.UserId == userId, cancellationToken: cancellationToken);
 
+            var firstTimeCreated = false;
+            
             if (userSettings == null)
             {
-                throw new NotFoundException($"Entity \"{nameof(UserSettings)}\" for (UserId: {userId}) was not found");
+                firstTimeCreated = true;
+                userSettings = new UserSettings
+                {
+                    UserId = userId
+                };
             }
-
+            
             userSettings.SellerLevel = request.SellerLevel;
             userSettings.SalesCompleted = request.SalesCompleted;
             userSettings.PaypalEmail = request.PaypalEmail;
@@ -58,6 +64,11 @@ namespace Application.Services
             userSettings.ShippingZipCode = request.ShippingZipCode;
             userSettings.ShippingCountry = request.ShippingCountry;
 
+            if (firstTimeCreated)
+            {
+                await _context.UserSettings.AddAsync(userSettings, cancellationToken);
+            }
+            
             await _context.SaveChangesAsync(cancellationToken);
         }
     }
