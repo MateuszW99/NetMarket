@@ -19,7 +19,8 @@ namespace Api.Common
             _logger = logger;
             _exceptionHandlers = new Dictionary<Type, Func<ExceptionContext, ObjectResult>>()
             {
-                {typeof(ValidationException), HandleValidationException},
+                { typeof(ValidationException), HandleValidationException },
+                { typeof(NotFoundException), HandleNotFoundException },
             };
         }
 
@@ -31,9 +32,9 @@ namespace Api.Common
             {
                 message = objectResult
             });
-            
+
             _logger.LogInformation($"{context.Exception.GetType().FullName} was handled.");
-            
+
             await base.OnExceptionAsync(context);
         }
 
@@ -54,7 +55,21 @@ namespace Api.Common
             var details = new ValidationProblemDetails(exception.Errors);
             return new BadRequestObjectResult(details);
         }
-        
+
+        private ObjectResult HandleNotFoundException(ExceptionContext context)
+        {
+            var exception = context.Exception as NotFoundException;
+
+            var details = new ProblemDetails()
+            {
+                Type = "https://tools.ietf.org/html/rfc7231#section-6.5.4",
+                Title = "The specified resource was not found.",
+                Detail = exception?.Message
+            };
+
+            return new NotFoundObjectResult(details);
+        }
+
         private ObjectResult HandleUnknownException(ExceptionContext context)
         {
             var details = new ProblemDetails()
