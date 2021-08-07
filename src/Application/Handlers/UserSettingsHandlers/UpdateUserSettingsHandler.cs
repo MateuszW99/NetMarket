@@ -12,10 +12,10 @@ namespace Application.Handlers.UserSettingsHandlers
     {
         private readonly IUserSettingsService _userSettingsService;
         private readonly IHttpService _httpService;
-        private readonly ILogger<GetUserSettingsHandler> _logger;
+        private readonly ILogger<UpdateUserSettingsHandler> _logger;
 
         public UpdateUserSettingsHandler(IUserSettingsService userSettingsService, IHttpService httpService,
-            ILogger<GetUserSettingsHandler> logger)
+            ILogger<UpdateUserSettingsHandler> logger)
         {
             _userSettingsService = userSettingsService;
             _httpService = httpService;
