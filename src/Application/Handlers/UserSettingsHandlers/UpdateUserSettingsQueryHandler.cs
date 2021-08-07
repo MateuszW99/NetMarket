@@ -8,14 +8,14 @@ using Microsoft.Extensions.Logging;
 
 namespace Application.Handlers.UserSettingsHandlers
 {
-    public class UpdateUserSettingsHandler : IRequestHandler<UpdateUserSettingsCommand>
+    public class UpdateUserSettingsQueryHandler : IRequestHandler<UpdateUserSettingsCommand>
     {
         private readonly IUserSettingsService _userSettingsService;
         private readonly IHttpService _httpService;
-        private readonly ILogger<UpdateUserSettingsHandler> _logger;
+        private readonly ILogger<UpdateUserSettingsQueryHandler> _logger;
 
-        public UpdateUserSettingsHandler(IUserSettingsService userSettingsService, IHttpService httpService,
-            ILogger<UpdateUserSettingsHandler> logger)
+        public UpdateUserSettingsQueryHandler(IUserSettingsService userSettingsService, IHttpService httpService,
+            ILogger<UpdateUserSettingsQueryHandler> logger)
         {
             _userSettingsService = userSettingsService;
             _httpService = httpService;

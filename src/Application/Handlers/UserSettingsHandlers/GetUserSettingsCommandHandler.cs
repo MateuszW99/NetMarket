@@ -10,15 +10,15 @@ using Microsoft.Extensions.Logging;
 
 namespace Application.Handlers.UserSettingsHandlers
 {
-    public class GetUserSettingsHandler : IRequestHandler<GetUserSettingsQuery, UserSettingsObject>
+    public class GetUserSettingsQueryHandler : IRequestHandler<GetUserSettingsQuery, UserSettingsObject>
     {
         private readonly IUserSettingsService _userSettingsService;
         private readonly IHttpService _httpService;
         private readonly IMapper _mapper;
-        private readonly ILogger<GetUserSettingsHandler> _logger;
+        private readonly ILogger<GetUserSettingsQueryHandler> _logger;
 
-        public GetUserSettingsHandler(IUserSettingsService userSettingsService, IHttpService httpService,
-            IMapper mapper, ILogger<GetUserSettingsHandler> logger)
+        public GetUserSettingsQueryHandler(IUserSettingsService userSettingsService, IHttpService httpService,
+            IMapper mapper, ILogger<GetUserSettingsQueryHandler> logger)
         {
             _userSettingsService = userSettingsService;
             _httpService = httpService;
