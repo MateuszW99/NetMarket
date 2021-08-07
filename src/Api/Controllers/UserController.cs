@@ -33,7 +33,7 @@ namespace Api.Controllers
         public async Task<IActionResult> UpdateUserSettings([FromBody] UpdateUserSettingsCommand command)
         {
             await _mediator.Send(command);
-            return NoContent();
+            return Ok();
         }
     }
 }
