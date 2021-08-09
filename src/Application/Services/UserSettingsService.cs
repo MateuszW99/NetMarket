@@ -48,29 +48,27 @@ namespace Application.Services
             var userSettings = await _context.UserSettings
                 .FirstOrDefaultAsync(x => x.UserId == userId, cancellationToken: cancellationToken);
 
-            if (userSettings != null)
-            {
-                userSettings.PaypalEmail = request.PaypalEmail;
-
-                userSettings.BillingStreet = request.BillingStreet;
-                userSettings.BillingAddressLine1 = request.BillingAddressLine1;
-                userSettings.BillingAddressLine2 = request.BillingAddressLine2;
-                userSettings.BillingZipCode = request.BillingZipCode;
-                userSettings.BillingCountry = request.BillingCountry;
-
-                userSettings.ShippingStreet = request.ShippingStreet;
-                userSettings.ShippingAddressLine1 = request.ShippingAddressLine1;
-                userSettings.ShippingAddressLine2 = request.ShippingAddressLine2;
-                userSettings.ShippingZipCode = request.ShippingZipCode;
-                userSettings.ShippingCountry = request.ShippingCountry;
-
-                await _context.SaveChangesAsync(cancellationToken);
-            }
-
-            else
+            if (userSettings == null)
             {
                 await CreateUserSettingsAsync(userId, request, cancellationToken);
+                return;
             }
+
+            userSettings.PaypalEmail = request.PaypalEmail;
+
+            userSettings.BillingStreet = request.BillingStreet;
+            userSettings.BillingAddressLine1 = request.BillingAddressLine1;
+            userSettings.BillingAddressLine2 = request.BillingAddressLine2;
+            userSettings.BillingZipCode = request.BillingZipCode;
+            userSettings.BillingCountry = request.BillingCountry;
+
+            userSettings.ShippingStreet = request.ShippingStreet;
+            userSettings.ShippingAddressLine1 = request.ShippingAddressLine1;
+            userSettings.ShippingAddressLine2 = request.ShippingAddressLine2;
+            userSettings.ShippingZipCode = request.ShippingZipCode;
+            userSettings.ShippingCountry = request.ShippingCountry;
+
+            await _context.SaveChangesAsync(cancellationToken);
         }
 
         public async Task CreateUserSettingsAsync(Guid userId, UpdateUserSettingsCommand request,
