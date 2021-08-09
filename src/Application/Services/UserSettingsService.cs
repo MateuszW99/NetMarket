@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
-using Application.Common.Exceptions;
 using Application.Common.Interfaces;
 using Application.Models.ApiModels.UserSettings.Commands;
 using Domain.Entities;
@@ -21,12 +20,24 @@ namespace Application.Services
         public async Task<UserSettings> GetUserSettingsAsync(Guid userId)
         {
             var userSettings = await _context.UserSettings
-                .FirstOrDefaultAsync(x => x.UserId == userId);
-
-            if (userSettings == null)
+                .FirstOrDefaultAsync(x => x.UserId == userId) ?? new UserSettings()
             {
-                throw new NotFoundException($"Entity \"{nameof(UserSettings)}\" for (UserId: {userId}) was not found");
-            }
+                UserId = userId,
+                PaypalEmail = string.Empty,
+
+                BillingStreet = string.Empty,
+                BillingAddressLine1 = string.Empty,
+                BillingAddressLine2 = string.Empty,
+                BillingZipCode = string.Empty,
+                BillingCountry = string.Empty,
+
+                ShippingStreet = string.Empty,
+                ShippingAddressLine1 = string.Empty,
+                ShippingAddressLine2 = string.Empty,
+                ShippingZipCode = string.Empty,
+                ShippingCountry = string.Empty,
+                    
+            };
 
             return userSettings;
         }
