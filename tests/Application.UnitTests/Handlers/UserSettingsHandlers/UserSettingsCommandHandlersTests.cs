@@ -49,7 +49,7 @@ namespace Application.UnitTests.Handlers.UserSettingsHandlers
             };
 
             var commandHandler =
-                new UpdateUserSettingsQueryHandler(_userSettingsServiceMock.Object, _httpServiceMock.Object);
+                new UpdateUserSettingsCommandHandler(_userSettingsServiceMock.Object, _httpServiceMock.Object);
             var validationBehaviour = new ValidationBehaviour<UpdateUserSettingsCommand, MediatR.Unit>(
                 new List<UpdateUserSettingsCommandValidator>()
                 {
@@ -88,7 +88,7 @@ namespace Application.UnitTests.Handlers.UserSettingsHandlers
             };
 
             var commandHandler =
-                new UpdateUserSettingsQueryHandler(_userSettingsServiceMock.Object, _httpServiceMock.Object);
+                new UpdateUserSettingsCommandHandler(_userSettingsServiceMock.Object, _httpServiceMock.Object);
             var validationBehaviour = new ValidationBehaviour<UpdateUserSettingsCommand, MediatR.Unit>(
                 new List<UpdateUserSettingsCommandValidator>()
                 {

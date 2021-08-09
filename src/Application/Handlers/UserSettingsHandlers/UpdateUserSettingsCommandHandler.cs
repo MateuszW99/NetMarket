@@ -7,12 +7,12 @@ using MediatR;
 
 namespace Application.Handlers.UserSettingsHandlers
 {
-    public class UpdateUserSettingsQueryHandler : IRequestHandler<UpdateUserSettingsCommand>
+    public class UpdateUserSettingsCommandHandler : IRequestHandler<UpdateUserSettingsCommand>
     {
         private readonly IUserSettingsService _userSettingsService;
         private readonly IHttpService _httpService;
 
-        public UpdateUserSettingsQueryHandler(IUserSettingsService userSettingsService, IHttpService httpService)
+        public UpdateUserSettingsCommandHandler(IUserSettingsService userSettingsService, IHttpService httpService)
         {
             _userSettingsService = userSettingsService;
             _httpService = httpService;
