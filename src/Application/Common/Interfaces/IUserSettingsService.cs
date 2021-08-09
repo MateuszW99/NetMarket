@@ -9,6 +9,11 @@ namespace Application.Common.Interfaces
     public interface IUserSettingsService
     {
         Task<UserSettings> GetUserSettingsAsync(Guid userId);
-        Task UpdateUserSettingsAsync(Guid userId, UpdateUserSettingsCommand request, CancellationToken cancellationToken);
+
+        Task UpdateUserSettingsAsync(Guid userId, UpdateUserSettingsCommand request,
+            CancellationToken cancellationToken);
+
+        Task CreateUserSettingsAsync(Guid userId, UpdateUserSettingsCommand request,
+            CancellationToken cancellationToken);
     }
 }

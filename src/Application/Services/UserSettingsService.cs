@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Application.Common.Interfaces;
 using Application.Models.ApiModels.UserSettings.Commands;
 using Domain.Entities;
+using Domain.Enums;
 using Microsoft.EntityFrameworkCore;
 
 namespace Application.Services
@@ -36,7 +37,6 @@ namespace Application.Services
                 ShippingAddressLine2 = string.Empty,
                 ShippingZipCode = string.Empty,
                 ShippingCountry = string.Empty,
-                    
             };
 
             return userSettings;
@@ -48,36 +48,55 @@ namespace Application.Services
             var userSettings = await _context.UserSettings
                 .FirstOrDefaultAsync(x => x.UserId == userId, cancellationToken: cancellationToken);
 
-            var firstTimeCreated = false;
-            
-            if (userSettings == null)
+            if (userSettings != null)
             {
-                firstTimeCreated = true;
-                userSettings = new UserSettings
-                {
-                    UserId = userId
-                };
+                userSettings.PaypalEmail = request.PaypalEmail;
+
+                userSettings.BillingStreet = request.BillingStreet;
+                userSettings.BillingAddressLine1 = request.BillingAddressLine1;
+                userSettings.BillingAddressLine2 = request.BillingAddressLine2;
+                userSettings.BillingZipCode = request.BillingZipCode;
+                userSettings.BillingCountry = request.BillingCountry;
+
+                userSettings.ShippingStreet = request.ShippingStreet;
+                userSettings.ShippingAddressLine1 = request.ShippingAddressLine1;
+                userSettings.ShippingAddressLine2 = request.ShippingAddressLine2;
+                userSettings.ShippingZipCode = request.ShippingZipCode;
+                userSettings.ShippingCountry = request.ShippingCountry;
+
+                await _context.SaveChangesAsync(cancellationToken);
             }
-            
-            userSettings.PaypalEmail = request.PaypalEmail;
 
-            userSettings.BillingStreet = request.BillingStreet;
-            userSettings.BillingAddressLine1 = request.BillingAddressLine1;
-            userSettings.BillingAddressLine2 = request.BillingAddressLine2;
-            userSettings.BillingZipCode = request.BillingZipCode;
-            userSettings.BillingCountry = request.BillingCountry;
-
-            userSettings.ShippingStreet = request.ShippingStreet;
-            userSettings.ShippingAddressLine1 = request.ShippingAddressLine1;
-            userSettings.ShippingAddressLine2 = request.ShippingAddressLine2;
-            userSettings.ShippingZipCode = request.ShippingZipCode;
-            userSettings.ShippingCountry = request.ShippingCountry;
-
-            if (firstTimeCreated)
+            else
             {
-                await _context.UserSettings.AddAsync(userSettings, cancellationToken);
+                await CreateUserSettingsAsync(userId, request, cancellationToken);
             }
-            
+        }
+
+        public async Task CreateUserSettingsAsync(Guid userId, UpdateUserSettingsCommand request,
+            CancellationToken cancellationToken)
+        {
+            var userSettings = new UserSettings()
+            {
+                UserId = userId,
+                SellerLevel = SellerLevel.Beginner,
+                SalesCompleted = 0,
+                PaypalEmail = request.PaypalEmail,
+
+                BillingStreet = request.BillingStreet,
+                BillingAddressLine1 = request.BillingAddressLine1,
+                BillingAddressLine2 = request.BillingAddressLine2,
+                BillingZipCode = request.BillingZipCode,
+                BillingCountry = request.BillingCountry,
+
+                ShippingStreet = request.ShippingStreet,
+                ShippingAddressLine1 = request.ShippingAddressLine1,
+                ShippingAddressLine2 = request.ShippingAddressLine2,
+                ShippingZipCode = request.ShippingZipCode,
+                ShippingCountry = request.ShippingCountry
+            };
+
+            await _context.UserSettings.AddAsync(userSettings, cancellationToken);
             await _context.SaveChangesAsync(cancellationToken);
         }
     }
