@@ -6,7 +6,6 @@ using Application.Models.ApiModels.UserSettings.Queries;
 using Application.Models.DTOs;
 using AutoMapper;
 using MediatR;
-using Microsoft.Extensions.Logging;
 
 namespace Application.Handlers.UserSettingsHandlers
 {
@@ -15,14 +14,12 @@ namespace Application.Handlers.UserSettingsHandlers
         private readonly IUserSettingsService _userSettingsService;
         private readonly IHttpService _httpService;
         private readonly IMapper _mapper;
-        private readonly ILogger<GetUserSettingsQueryHandler> _logger;
 
         public GetUserSettingsQueryHandler(IUserSettingsService userSettingsService, IHttpService httpService,
-            IMapper mapper, ILogger<GetUserSettingsQueryHandler> logger)
+            IMapper mapper)
         {
             _userSettingsService = userSettingsService;
             _httpService = httpService;
-            _logger = logger;
             _mapper = mapper;
         }
 

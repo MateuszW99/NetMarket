@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using Application.Common.Interfaces;
 using Application.Models.ApiModels.UserSettings.Commands;
 using MediatR;
-using Microsoft.Extensions.Logging;
 
 namespace Application.Handlers.UserSettingsHandlers
 {
@@ -12,14 +11,11 @@ namespace Application.Handlers.UserSettingsHandlers
     {
         private readonly IUserSettingsService _userSettingsService;
         private readonly IHttpService _httpService;
-        private readonly ILogger<UpdateUserSettingsQueryHandler> _logger;
 
-        public UpdateUserSettingsQueryHandler(IUserSettingsService userSettingsService, IHttpService httpService,
-            ILogger<UpdateUserSettingsQueryHandler> logger)
+        public UpdateUserSettingsQueryHandler(IUserSettingsService userSettingsService, IHttpService httpService)
         {
             _userSettingsService = userSettingsService;
             _httpService = httpService;
-            _logger = logger;
         }
 
         public async Task<Unit> Handle(UpdateUserSettingsCommand request, CancellationToken cancellationToken)

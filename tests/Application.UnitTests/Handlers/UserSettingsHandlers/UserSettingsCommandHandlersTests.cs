@@ -9,7 +9,6 @@ using Application.Models.ApiModels.UserSettings.Commands;
 using Domain.Enums;
 using FluentAssertions;
 using FluentValidation;
-using Microsoft.Extensions.Logging;
 using Moq;
 using Xunit;
 
@@ -19,13 +18,11 @@ namespace Application.UnitTests.Handlers.UserSettingsHandlers
     {
         private readonly Mock<IHttpService> _httpServiceMock;
         private readonly Mock<IUserSettingsService> _userSettingsServiceMock;
-        private readonly Mock<ILogger<UpdateUserSettingsQueryHandler>> _loggerMock;
 
         public UserSettingsCommandHandlersTests()
         {
             _httpServiceMock = new Mock<IHttpService>();
             _userSettingsServiceMock = new Mock<IUserSettingsService>();
-            _loggerMock = new Mock<ILogger<UpdateUserSettingsQueryHandler>>();
 
             _httpServiceMock.Setup(x => x.GetUserId()).Returns(Guid.NewGuid().ToString());
             _userSettingsServiceMock.Setup(x =>
@@ -54,8 +51,7 @@ namespace Application.UnitTests.Handlers.UserSettingsHandlers
                 ShippingCountry = "test",
             };
 
-            var commandHandler = new UpdateUserSettingsQueryHandler(_userSettingsServiceMock.Object, _httpServiceMock.Object,
-                _loggerMock.Object);
+            var commandHandler = new UpdateUserSettingsQueryHandler(_userSettingsServiceMock.Object, _httpServiceMock.Object);
             var validationBehaviour = new ValidationBehaviour<UpdateUserSettingsCommand, MediatR.Unit>(
                 new List<UpdateUserSettingsCommandValidator>()
                 {
@@ -96,8 +92,7 @@ namespace Application.UnitTests.Handlers.UserSettingsHandlers
                 ShippingCountry = shippingCountry
             };
 
-            var commandHandler = new UpdateUserSettingsQueryHandler(_userSettingsServiceMock.Object, _httpServiceMock.Object,
-                _loggerMock.Object);
+            var commandHandler = new UpdateUserSettingsQueryHandler(_userSettingsServiceMock.Object, _httpServiceMock.Object);
             var validationBehaviour = new ValidationBehaviour<UpdateUserSettingsCommand, MediatR.Unit>(
                 new List<UpdateUserSettingsCommandValidator>()
                 {
