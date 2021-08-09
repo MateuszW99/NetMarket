@@ -48,8 +48,6 @@ namespace Application.Services
                 };
             }
             
-            userSettings.SellerLevel = request.SellerLevel;
-            userSettings.SalesCompleted = request.SalesCompleted;
             userSettings.PaypalEmail = request.PaypalEmail;
 
             userSettings.BillingStreet = request.BillingStreet;

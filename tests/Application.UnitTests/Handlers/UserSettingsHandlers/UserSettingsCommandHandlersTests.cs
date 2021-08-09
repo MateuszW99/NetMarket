@@ -6,7 +6,6 @@ using Application.Common.Behaviours;
 using Application.Common.Interfaces;
 using Application.Handlers.UserSettingsHandlers;
 using Application.Models.ApiModels.UserSettings.Commands;
-using Domain.Enums;
 using FluentAssertions;
 using FluentValidation;
 using Moq;
@@ -36,8 +35,6 @@ namespace Application.UnitTests.Handlers.UserSettingsHandlers
         {
             var updateUserSettingsCommand = new UpdateUserSettingsCommand()
             {
-                SellerLevel = 0,
-                SalesCompleted = 0,
                 PaypalEmail = "user@test.com",
                 BillingStreet = "test",
                 BillingAddressLine1 = "test",
@@ -51,7 +48,8 @@ namespace Application.UnitTests.Handlers.UserSettingsHandlers
                 ShippingCountry = "test",
             };
 
-            var commandHandler = new UpdateUserSettingsQueryHandler(_userSettingsServiceMock.Object, _httpServiceMock.Object);
+            var commandHandler =
+                new UpdateUserSettingsQueryHandler(_userSettingsServiceMock.Object, _httpServiceMock.Object);
             var validationBehaviour = new ValidationBehaviour<UpdateUserSettingsCommand, MediatR.Unit>(
                 new List<UpdateUserSettingsCommandValidator>()
                 {
@@ -70,15 +68,12 @@ namespace Application.UnitTests.Handlers.UserSettingsHandlers
         [Theory]
         [MemberData(nameof(UserSettings))]
         public async Task UpdateUserSettingsCommandHandlerShouldThrowWhenOneOrMorePropertiesAreInvalid(
-            SellerLevel sellerLevel, int salesCompleted, string paypalEmail,
-            string billingStreet, string billingAddressLine1, string billingAddressLine2,
+            string paypalEmail, string billingStreet, string billingAddressLine1, string billingAddressLine2,
             string billingZipCode, string billingCountry, string shippingStreet, string shippingAddressLine1,
             string shippingAddressLine2, string shippingZipCode, string shippingCountry)
         {
             var updateUserSettingsCommand = new UpdateUserSettingsCommand()
             {
-                SellerLevel = sellerLevel,
-                SalesCompleted = salesCompleted,
                 PaypalEmail = paypalEmail,
                 BillingStreet = billingStreet,
                 BillingAddressLine1 = billingAddressLine1,
@@ -92,7 +87,8 @@ namespace Application.UnitTests.Handlers.UserSettingsHandlers
                 ShippingCountry = shippingCountry
             };
 
-            var commandHandler = new UpdateUserSettingsQueryHandler(_userSettingsServiceMock.Object, _httpServiceMock.Object);
+            var commandHandler =
+                new UpdateUserSettingsQueryHandler(_userSettingsServiceMock.Object, _httpServiceMock.Object);
             var validationBehaviour = new ValidationBehaviour<UpdateUserSettingsCommand, MediatR.Unit>(
                 new List<UpdateUserSettingsCommandValidator>()
                 {
@@ -112,24 +108,14 @@ namespace Application.UnitTests.Handlers.UserSettingsHandlers
         {
             new object[]
             {
-                0, 0, "user@test.com", "street", "address line 1", "address line 2", "123-45", "USA", "street",
+                "user@test.com", "street", "address line 1", "address line 2", "123-45", "USA", "street",
                 "address line 1", " address line 2", "1234-5", "USA"
             },
             new object[]
             {
-                0, 2, "usertest.com", "street", "address line 1", "address line 2", "12345", "USA", "street",
+                "usertest.com", "street", "address line 1", "address line 2", "12345", "USA", "street",
                 "address line 1", " address line 2", "12345", "USA"
-            },
-            new object[]
-            {
-                5, 0, "user@test.com", "street", "address line 1", "address line 2", "12345", "USA", "street",
-                "address line 1", " address line 2", "12345", "USA"
-            },
-            new object[]
-            {
-                0, -2, "user@test.com", "street", "address line 1", "address line 2", "12345", "USA", "street",
-                "address line 1", " address line 2", "12345", "USA"
-            },
+            }
         };
     }
 }

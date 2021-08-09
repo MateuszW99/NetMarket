@@ -1,5 +1,4 @@
 ﻿using Application.Common.Validators;
-using Domain.Enums;
 using FluentValidation;
 using MediatR;
 
@@ -7,8 +6,7 @@ namespace Application.Models.ApiModels.UserSettings.Commands
 {
     public class UpdateUserSettingsCommand : IRequest
     {
-        public SellerLevel SellerLevel { get; set; }
-        public int SalesCompleted { get; set; }
+       
         public string PaypalEmail { get; set; }
 
         public string BillingStreet { get; set; }
@@ -27,9 +25,8 @@ namespace Application.Models.ApiModels.UserSettings.Commands
     public class UpdateUserSettingsCommandValidator : AbstractValidator<UpdateUserSettingsCommand>
     {
         public UpdateUserSettingsCommandValidator()
+        
         {
-            RuleFor(x => x.SellerLevel).IsInEnum();
-            RuleFor(x => x.SalesCompleted).GreaterThanOrEqualTo(0).LessThan(int.MaxValue);
             RuleFor(x => x.PaypalEmail).EmailAddress().MaximumLength(40);
 
             RuleFor(x => x.BillingStreet).MaximumLength(50);
