@@ -42,7 +42,7 @@ namespace Infrastructure.EntityConfigurations
                 .HasMaxLength(50);
             
             builder.Property(e => e.BillingZipCode)
-                .HasMaxLength(10);
+                .HasMaxLength(6);
             
             builder.Property(e => e.BillingCountry)
                 .HasMaxLength(50);
@@ -57,7 +57,7 @@ namespace Infrastructure.EntityConfigurations
                 .HasMaxLength(50);
             
             builder.Property(e => e.ShippingZipCode)
-                .HasMaxLength(10);
+                .HasMaxLength(6);
             
             builder.Property(e => e.ShippingCountry)
                 .HasMaxLength(50);

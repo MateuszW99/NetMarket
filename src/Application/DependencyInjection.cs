@@ -1,6 +1,7 @@
 ﻿using System.Reflection;
 using Application.Common.Behaviours;
 using Application.Common.Interfaces;
+using Application.Models.DTOs;
 using Application.Services;
 using FluentValidation;
 using Microsoft.Extensions.Configuration;
@@ -21,7 +22,8 @@ namespace Application
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(UnhandledExceptionBehaviour<,>));
 
             services.AddTransient<IItemService, ItemService>();
-            
+            services.AddTransient<IUserSettingsService, UserSettingsService>();
+
             return services;
         }
     }
