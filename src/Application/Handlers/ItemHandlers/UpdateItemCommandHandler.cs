@@ -21,6 +21,8 @@ namespace Application.Handlers.ItemHandlers
 
         public async Task<Unit> Handle(UpdateItemCommand request, CancellationToken cancellationToken)
         {
+            await _itemService.UpdateItemAsync(request, cancellationToken);
+            _logger.LogInformation($"Item updated: {request.Name}");
             return Unit.Value;
         }
     }

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Application.Common.Behaviours;
 using Application.Handlers.ItemHandlers;
 using Application.Models.ApiModels.Items.Commands;
+using Application.Models.DTOs;
 using FluentAssertions;
 using FluentValidation;
 using Xunit;
@@ -16,11 +17,11 @@ namespace Application.UnitTests.Handlers.ItemHandlers
     {
         public static IEnumerable<object[]> Items => new List<object[]>
         {
-            new object[] { "", "", "", "", Convert.ToDecimal("0.0", new CultureInfo("en-US")), "", "", "", "" },
-            new object[] { "af1", null, "", "", Convert.ToDecimal("0.0", new CultureInfo("en-US")), "", "wwww.google.com", "", "" },
-            new object[] { "af1", "make", "model", "www.google.com", Convert.ToDecimal("1.20", new CultureInfo("en-US")), "", "", "", "" },
-            new object[] { "", "", "", "", decimal.Zero, "", "", "", "" },
-            new object[] { "af1", "make", "model", "description", Convert.ToDecimal("1.20", new CultureInfo("en-US")), "brand", "www.google.com", "www.google.com", "htpps://google.com" },
+            new object[] { "", "", "", "", Convert.ToDecimal("0.0", new CultureInfo("en-US")), new BrandObject() { Name = "Nike" }, "", "", "" },
+            new object[] { "af1", null, "", "", Convert.ToDecimal("0.0", new CultureInfo("en-US")), new BrandObject() { Name = "Nike" }, "wwww.google.com", "", "" },
+            new object[] { "af1", "make", "model", "www.google.com", Convert.ToDecimal("1.20", new CultureInfo("en-US")), new BrandObject() { Name = "Nike" }, "", "", "" },
+            new object[] { "", "", "", "", decimal.Zero, new BrandObject() { Name = "Nike" }, "", "", "" },
+            new object[] { "af1", "make", "model", "description", Convert.ToDecimal("1.20", new CultureInfo("en-US")), new BrandObject() { Name = "Nike" }, "www.google.com", "www.google.com", "htpps://google.com" },
         };
 
         #region CreateItemCommandHandler
@@ -38,7 +39,7 @@ namespace Application.UnitTests.Handlers.ItemHandlers
                 ImageUrl = "www.google.com",
                 SmallImageUrl = "www.google.com",
                 ThumbUrl = "www.google.com",
-                Brand = "Nike"
+                Brand = new BrandObject() { Name = "Nike" }
             };
 
             var commandHandler = new CreateItemCommandHandler(null, null);
@@ -76,11 +77,10 @@ namespace Application.UnitTests.Handlers.ItemHandlers
         }
 
         [Theory]
-        
         [MemberData(nameof(Items))]
         public async Task CreateItemCommandHandlerShouldThrowWhenOneOrMorePropertiesAreInvalid(
             string name, string make, string model,
-            string description, decimal retailPrice, string brand,
+            string description, decimal retailPrice, BrandObject brand,
             string imageUrl, string smallImageUrl, string thumbUrl)
         {
             var createItemCommand = new CreateItemCommand()
@@ -93,7 +93,7 @@ namespace Application.UnitTests.Handlers.ItemHandlers
                 ImageUrl = imageUrl,
                 SmallImageUrl = smallImageUrl,
                 ThumbUrl = thumbUrl,
-                Brand = brand
+                Brand = new BrandObject() { Name = "Nike" }
             };
 
             var commandHandler = new CreateItemCommandHandler(null, null);
@@ -129,7 +129,7 @@ namespace Application.UnitTests.Handlers.ItemHandlers
                 ImageUrl = "www.google.com",
                 SmallImageUrl = "www.google.com",
                 ThumbUrl = "www.google.com",
-                Brand = "Nike"
+                Brand = new BrandObject() { Name = "Nike" }
             };
 
             var commandHandler = new UpdateItemCommandHandler(null, null);
@@ -170,7 +170,7 @@ namespace Application.UnitTests.Handlers.ItemHandlers
         [MemberData(nameof(Items))]
         public async Task UpdateItemCommandHandlerShouldThrowWhenOneOrMorePropertiesAreInvalid(
             string name, string make, string model,
-            string description, decimal retailPrice, string brand,
+            string description, decimal retailPrice, BrandObject brand,
             string imageUrl, string smallImageUrl, string thumbUrl)
         {
             var updateItemCommand = new UpdateItemCommand()

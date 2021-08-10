@@ -22,7 +22,7 @@ namespace Application.Handlers.ItemHandlers
 
         public async Task<ItemObject> Handle(GetItemByIdQuery request, CancellationToken cancellationToken)
         {
-            var item = await _itemService.GetItemById(Guid.Parse(request.Id));
+            var item = await _itemService.GetItemByIdAsync(Guid.Parse(request.Id));
             return _mapper.Map<ItemObject>(item);
         }
     }

@@ -19,7 +19,9 @@ namespace Application.Handlers.ItemHandlers
         }
 
         public async Task<Unit> Handle(CreateItemCommand request, CancellationToken cancellationToken)
-        {
+        { 
+            await _itemService.CreateItemAsync(request, cancellationToken);
+            _logger.LogInformation($"Item created: {request.Name}");
             return Unit.Value;
         }
     }
