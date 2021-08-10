@@ -15,7 +15,7 @@ namespace Application.Models.ApiModels.Items.Queries
         public string Id { get; set; }
     }
 
-    internal class GetItemByIdQueryValidator : AbstractValidator<GetItemByIdQuery>
+    public class GetItemByIdQueryValidator : AbstractValidator<GetItemByIdQuery>
     {
         public GetItemByIdQueryValidator()
         {
