@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using Application.Common.Behaviours;
 using Application.Handlers.ItemHandlers;
 using Application.Models.ApiModels.Items.Commands;
-using Application.UnitTests.Helpers;
 using FluentAssertions;
 using FluentValidation;
 using Xunit;
@@ -112,63 +111,6 @@ namespace Application.UnitTests.Handlers.ItemHandlers
                 .ThrowAsync<ValidationException>();
         }
         
-        #endregion
-        
-        #region DeleteItemCommandHandler
-
-        [Fact]
-        public async Task DeleteItemCommandHandlerShouldNotThrowWhenPropertiesAreValid()
-        {
-            var deleteItemCommand = new DeleteItemCommand()
-            {
-                Id = Guid.NewGuid().ToString()
-            };
-
-            var commandHandler = new DeleteItemCommandHandler(null, null);
-            var validationBehaviour = new ValidationBehaviour<DeleteItemCommand, MediatR.Unit>(new List<DeleteItemCommandValidator>()
-            {
-                new()
-            }, null);
-
-            await FluentActions.Invoking(() =>
-                    validationBehaviour.Handle(
-                        deleteItemCommand,
-                        CancellationToken.None, 
-                        () => commandHandler.Handle(deleteItemCommand, CancellationToken.None)))
-                .Should()
-                .NotThrowAsync<ValidationException>();
-        }
-
-        [Theory]
-        [InlineData(null)]
-        [InlineData("")]
-        [InlineData("xxxx")]
-        [InlineData("{e24439407--14bf}")]
-        [InlineData("{e24439e8-7b0b-4073-ba80-b14f99e314bf}")]
-        [InlineData("(e24439e8-7b0b-4073-ba80-b14f99e314bf)")]
-        [InlineData("e24439e87b0b4073ba80b14f99e314bf")]
-        public async Task DeleteItemCommandHandlerShowThrowWhenPropertiesAreInvalid(string id)
-        {
-            var deleteItemCommand = new DeleteItemCommand()
-            {
-                Id = id
-            };
-
-            var commandHandler = new DeleteItemCommandHandler(null, null);
-            var validationBehaviour = new ValidationBehaviour<DeleteItemCommand, MediatR.Unit>(new List<DeleteItemCommandValidator>()
-            {
-                new()
-            }, null);
-
-            await FluentActions.Invoking(() =>
-                    validationBehaviour.Handle(
-                        deleteItemCommand,
-                        CancellationToken.None, 
-                        () => commandHandler.Handle(deleteItemCommand, CancellationToken.None)))
-                .Should()
-                .ThrowAsync<ValidationException>();
-        }
-
         #endregion
 
         #region UpdateItemCommandHandler
