@@ -71,7 +71,7 @@ namespace Application.UnitTests.Handlers.ItemHandlers
         {
             var query = new GetItemsQuery()
             {
-                PageNumber = 1,
+                PageIndex = 1,
                 PageSize = 1,
                 SearchQuery = new()
             };
@@ -99,7 +99,7 @@ namespace Application.UnitTests.Handlers.ItemHandlers
         {
             var query = new GetItemsQuery()
             {
-                PageNumber = pageNumber,
+                PageIndex = pageNumber,
                 PageSize = pageSize,
                 SearchQuery = searchItemsQuery
             };
