@@ -8,7 +8,7 @@ namespace Application.Models.ApiModels.Items.Queries
     public class GetItemsQuery : IRequest<PaginatedList<ItemObject>>
     {
         public SearchItemsQuery SearchQuery { get; set; }
-        public int PageNumber { get; set; }
+        public int PageIndex { get; set; }
         public int PageSize { get; set; }
     }
 
@@ -16,7 +16,7 @@ namespace Application.Models.ApiModels.Items.Queries
     {
         public GetItemsQueryValidator()
         {
-            RuleFor(x => x.PageNumber).GreaterThanOrEqualTo(0);
+            RuleFor(x => x.PageIndex).GreaterThanOrEqualTo(0);
 
             RuleFor(x => x.PageSize).GreaterThanOrEqualTo(1);
 

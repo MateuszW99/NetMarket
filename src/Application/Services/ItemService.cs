@@ -26,9 +26,11 @@ namespace Application.Services
 
         public async Task CreateItemAsync(CreateItemCommand command, CancellationToken cancellationToken)
         {
+            var brand = _context.Brands.FirstOrDefaultAsync(x => x.Id == Guid.Parse(command.Brand.Id));
+            
             var item = new Item()
             {
-                Brand = _mapper.Map<Brand>(command.Brand),
+                Brand = await brand, 
                 Make = command.Make,
                 Model = command.Model,
                 Description = command.Description,
@@ -45,7 +47,9 @@ namespace Application.Services
 
         public async Task<Item> GetItemByIdAsync(Guid id)
         {
-            var item = await _context.Items.FirstOrDefaultAsync(x => x.Id == id);
+            var item = await _context.Items
+                .Include(x => x.Brand)
+                .FirstOrDefaultAsync(x => x.Id == id);
 
             if (item == null)
             {
