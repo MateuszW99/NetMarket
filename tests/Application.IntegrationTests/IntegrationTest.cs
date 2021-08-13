@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Net.Http;
+using Application.Common.Interfaces;
 using Application.IntegrationTests.Helpers;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
@@ -11,7 +12,8 @@ namespace Application.IntegrationTests
         protected readonly ISender _mediator;
         protected readonly CustomWebApplicationFactory _factory;
         protected readonly HttpClient _client;
-
+        protected readonly IIdentityService _identityService;
+        
         protected static readonly string ApiBaseAddress = "/api";
         protected static readonly string ItemsAddress = "items";
         
@@ -23,8 +25,9 @@ namespace Application.IntegrationTests
             //Creates mediator service
             var scope = _factory.Services.CreateScope();
             _mediator = scope.ServiceProvider.GetRequiredService<ISender>();
+            _identityService = scope.ServiceProvider.GetRequiredService<IIdentityService>();
         }
-        
+
         public void Dispose()
         {
             DbHelper.DeleteDatabase(_factory);

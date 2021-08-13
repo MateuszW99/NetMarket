@@ -26,9 +26,8 @@ namespace Application.IntegrationTests
         }
 
         private readonly string _databaseName;
-
+        
         public string CurrentUserId { get; set; }
-
         protected override void ConfigureWebHost(IWebHostBuilder builder)
         {
             builder.ConfigureServices(services =>
