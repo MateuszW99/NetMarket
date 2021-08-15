@@ -7,7 +7,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Application.Handlers.ItemHandlers
 {
-    public class UpdateItemCommandHandler : IRequest<UpdateItemCommand>
+    public class UpdateItemCommandHandler : IRequestHandler<UpdateItemCommand>
     {
         private readonly IItemService _itemService;
         private readonly ILogger<CreateItemCommandHandler> _logger;
@@ -17,8 +17,7 @@ namespace Application.Handlers.ItemHandlers
             _itemService = itemService;
             _logger = logger;
         }
-
-
+        
         public async Task<Unit> Handle(UpdateItemCommand request, CancellationToken cancellationToken)
         {
             await _itemService.UpdateItemAsync(request, cancellationToken);

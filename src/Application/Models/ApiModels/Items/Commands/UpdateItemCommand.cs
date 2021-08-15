@@ -1,5 +1,4 @@
-﻿using System;
-using Application.Common.Validators;
+﻿using Application.Common.Validators;
 using Application.Models.DTOs;
 using FluentValidation;
 using MediatR;

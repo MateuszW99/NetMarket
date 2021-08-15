@@ -97,7 +97,7 @@ namespace Application.Services
                 var brand = await _context.Brands.FirstOrDefaultAsync(x => x.Id == Guid.Parse(command.Brand.Id), cancellationToken);
                 item.Brand = brand;
             }
-
+            
             await _context.SaveChangesAsync(cancellationToken);
         }
     }

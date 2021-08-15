@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using Application.IntegrationTests.Helpers;
 using Application.Models.ApiModels.Items.Commands;
 using Application.Models.DTOs;
-using Domain.Entities;
 using FluentAssertions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;

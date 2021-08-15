@@ -1,12 +1,10 @@
 ﻿using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Api.Common;
 using Application.Common.Models;
 using Application.Models.ApiModels.Items.Commands;
 using Application.Models.ApiModels.Items.Queries;
 using Application.Models.DTOs;
-using Infrastructure.Data;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -45,8 +43,16 @@ namespace Api.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Policy = "AdminAccess")]
         public async Task<ActionResult> CreateItem([FromBody] CreateItemCommand command)
+        {
+            await _mediator.Send(command);
+            return Ok();
+        }
+        
+        [HttpPut("{id}")]
+        [Authorize(Policy = "AdminAccess")]
+        public async Task<ActionResult> CreateItem(string id, [FromBody] UpdateItemCommand command)
         {
             await _mediator.Send(command);
             return Ok();
