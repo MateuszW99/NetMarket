@@ -16,7 +16,7 @@ namespace Application.Models.ApiModels.Items.Queries
     {
         public GetItemsQueryValidator()
         {
-            RuleFor(x => x.PageIndex).GreaterThanOrEqualTo(0);
+            RuleFor(x => x.PageIndex).GreaterThanOrEqualTo(1);
 
             RuleFor(x => x.PageSize).GreaterThanOrEqualTo(1);
 

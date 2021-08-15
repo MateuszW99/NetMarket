@@ -10,12 +10,13 @@ namespace Application.Common.Mappings
 {
     public static class MappingExtensions
     {
-        public static Task<PaginatedList<TDestination>> PaginatedListAsync<TDestination>(
+        public static async Task<PaginatedList<TDestination>> PaginatedListAsync<TDestination>(
             this IQueryable<TDestination> queryable, int pageNumber, int pageSize) => 
-               PaginatedList<TDestination>.CreateAsync(queryable, pageNumber, pageSize);
+               await PaginatedList<TDestination>.CreateAsync(queryable, pageNumber, pageSize);
 
-        public static Task<List<TDestination>> ProjectToListAsync<TDestination>(
-            this IQueryable queryable, IConfigurationProvider configuration) => 
-                queryable.ProjectTo<TDestination>(configuration).ToListAsync();
+        public static async Task<List<TDestination>> ProjectToListAsync<TDestination>(this IQueryable source, IConfigurationProvider configuration)
+        {
+            return await Task.Run(() => source.ProjectTo<TDestination>(configuration).ToList());
+        }
     }
 }

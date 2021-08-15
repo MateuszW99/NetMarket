@@ -20,7 +20,8 @@ namespace Application.Models.DTOs
         public void Mapping(Profile profile)
         {
             profile.CreateMap<Item, ItemObject>()
-                .ForMember(d => d.Brand, opt => opt.MapFrom(a => a.Brand));
+                .ForMember(x => x.Brand,
+                    opt => opt.MapFrom(a => a.Brand));
         }
     }
 }

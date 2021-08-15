@@ -61,12 +61,13 @@ namespace Application.Services
 
         public async Task<List<Item>> GetItemsAsync(SearchItemsQuery query, int pageSize, int pageIndex)
         {
-            var items = await _context.Items.Where(x =>
-                    (string.IsNullOrEmpty(query.Brand) && x.Brand.Name.Contains(query.Brand)) ||
-                    (string.IsNullOrEmpty(query.Category) && x.Brand.Name.Contains(query.Category)) ||
-                    (string.IsNullOrEmpty(query.Make) && x.Brand.Name.Contains(query.Make)) ||
-                    (string.IsNullOrEmpty(query.Model) && x.Brand.Name.Contains(query.Model)) ||
-                    (string.IsNullOrEmpty(query.Name) && x.Brand.Name.Contains(query.Name)))
+            var items = await _context.Items
+                .Include(x => x.Brand)
+                .Where(x => x.Brand.Name.Contains(query.Brand) ||
+                                x.Make.Contains(query.Make) ||
+                                x.Model.Contains(query.Model) ||
+                                x.Name.Contains(query.Name))
+                .OrderBy(x => x.Name)
                 .Skip((pageIndex - 1) * pageSize)
                 .Take(pageSize)
                 .ToListAsync();

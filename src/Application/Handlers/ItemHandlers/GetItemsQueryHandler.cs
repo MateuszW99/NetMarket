@@ -25,10 +25,8 @@ namespace Application.Handlers.ItemHandlers
         public async Task<PaginatedList<ItemObject>> Handle(GetItemsQuery request, CancellationToken cancellationToken)
         {
             var items = await _itemService.GetItemsAsync(request.SearchQuery, request.PageSize, request.PageIndex);
-            var itemObjects = await items.AsQueryable()
-                .ProjectToListAsync<ItemObject>(_mapper.ConfigurationProvider);
-            
-            return PaginatedList<ItemObject>.Create(itemObjects, request.PageIndex, request.PageSize);
+            var mappedItems = await items.AsQueryable().ProjectToListAsync<ItemObject>(_mapper.ConfigurationProvider);
+            return PaginatedList<ItemObject>.Create(mappedItems, request.PageIndex, request.PageSize);
         }
     }
 }
