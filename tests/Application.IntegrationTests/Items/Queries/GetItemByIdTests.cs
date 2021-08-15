@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Application.Common.Exceptions;
 using Application.IntegrationTests.Helpers;
+using Application.IntegrationTests.Helpers.Deserializers;
 using Application.Models.ApiModels.Items.Queries;
 using Application.Models.DTOs;
 using FluentAssertions;
@@ -34,7 +35,7 @@ namespace Application.IntegrationTests.Items.Queries
                 Description = "Jordan Brand paid homage to MJ’s alma mater with the Air Jordan 4 University Blue. The University Blue colorway draws a close resemblance to the extremely rare Air Jordan 4 UNC PE that was given to Tarheel student-athletes in 2019.\name\name\nThe Air Jordan 4 University Blue features a University Blue suede upper with mesh netting on the quarter panel and tongue. Similar to OG Jordan 4 colorways of the past, the eyelets, heel tab, and sections of the midsole are a speckled Cement Grey. Hits of black appear on the wing eyelets, sole, and Jumpman logo on the heel tab. Two woven labels are stitched to the tongue; one being the classic Jumpman woven label; the other being a Team Jordan jock tag. A black, white, and Tech Grey sole with a clear Air unit completes the design.\name\name\nThe Air Jordan 4 University Blue released in April of 2021 and retailed for $200."
             };
             
-            var response = await _client.GetAsync($"{ApiBaseAddress}/{ItemsAddress}/{sampleItem.Id}");
+            var response = await _client.GetAsync($"{Address.ApiBase}/{Address.Items}/{sampleItem.Id}");
             
             var item = _itemDeserializer.Deserialize(response.Content);
             

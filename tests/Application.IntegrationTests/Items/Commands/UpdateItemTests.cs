@@ -49,7 +49,7 @@ namespace Application.IntegrationTests.Items.Commands
             };
 
             var request = new HttpRequestMessage(HttpMethod.Put,
-                new Uri($"{ApiBaseAddress}/{ItemsAddress}/{itemId}", UriKind.Relative));
+                new Uri($"{Address.ApiBase}/{Address.Items}/{itemId}", UriKind.Relative));
             request.Content = new StringContent(JsonConvert.SerializeObject(command), Encoding.UTF8, "application/json");
             _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", authResult.Result.Token);
             
@@ -91,7 +91,7 @@ namespace Application.IntegrationTests.Items.Commands
             };
 
             var request = new HttpRequestMessage(HttpMethod.Put,
-                new Uri($"{ApiBaseAddress}/{ItemsAddress}/{itemId}", UriKind.Relative));
+                new Uri($"{Address.ApiBase}/{Address.Items}/{itemId}", UriKind.Relative));
             request.Content = new StringContent(JsonConvert.SerializeObject(command), Encoding.UTF8, "application/json");
             _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", authResult.Result.Token);
             
@@ -133,7 +133,7 @@ namespace Application.IntegrationTests.Items.Commands
             };
 
             var request = new HttpRequestMessage(HttpMethod.Put,
-                new Uri($"{ApiBaseAddress}/{ItemsAddress}/{itemId}", UriKind.Relative));
+                new Uri($"{Address.ApiBase}/{Address.Items}/{itemId}", UriKind.Relative));
             request.Content = new StringContent(JsonConvert.SerializeObject(command), Encoding.UTF8, "application/json");
             _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", authResult.Result.Token);
             
@@ -172,7 +172,7 @@ namespace Application.IntegrationTests.Items.Commands
             };
 
             var request = new HttpRequestMessage(HttpMethod.Put,
-                new Uri($"{ApiBaseAddress}/{ItemsAddress}/{itemId}", UriKind.Relative));
+                new Uri($"{Address.ApiBase}/{Address.Items}/{itemId}", UriKind.Relative));
             request.Content = new StringContent(JsonConvert.SerializeObject(command), Encoding.UTF8, "application/json");
 
             var response = await _client.SendAsync(request);

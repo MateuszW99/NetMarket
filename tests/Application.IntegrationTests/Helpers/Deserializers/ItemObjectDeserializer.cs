@@ -3,7 +3,7 @@ using System.Text;
 using Application.Models.DTOs;
 using Newtonsoft.Json.Linq;
 
-namespace Application.IntegrationTests.Helpers
+namespace Application.IntegrationTests.Helpers.Deserializers
 {
     public class ItemObjectDeserializer : IObjectDeserializer<ItemObject>
     {

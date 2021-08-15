@@ -7,6 +7,13 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Application.IntegrationTests
 {
+    public static class Address 
+    {
+        public static readonly string ApiBase = "/api";
+        public static readonly string Items = "items";
+        public static readonly string UserSettings = "user";
+    }
+    
     public abstract class IntegrationTest : IDisposable
     {
         protected readonly ISender _mediator;
@@ -14,8 +21,7 @@ namespace Application.IntegrationTests
         protected readonly HttpClient _client;
         protected readonly IIdentityService _identityService;
         
-        protected static readonly string ApiBaseAddress = "/api";
-        protected static readonly string ItemsAddress = "items";
+
         
         protected IntegrationTest()
         {
