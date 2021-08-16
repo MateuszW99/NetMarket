@@ -30,13 +30,13 @@ namespace Api.Controllers
         }
         
         [HttpGet]
-        public async Task<ActionResult<List<ItemObject>>> GetItems([FromQuery] SearchItemsQuery query, [FromBody] PaginationData paginationData)
+        public async Task<ActionResult<List<ItemObject>>> GetItems([FromQuery] SearchItemsQuery query)
         {
             var result = await _mediator.Send(new GetItemsQuery()
             {
                 SearchQuery =  query,
-                PageIndex = paginationData.PageIndex, 
-                PageSize = paginationData.PageSize
+                PageIndex = query.Page, 
+                PageSize = query.PageSize
             });
             
             return Ok(result);

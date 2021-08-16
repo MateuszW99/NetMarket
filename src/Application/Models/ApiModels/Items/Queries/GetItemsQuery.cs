@@ -18,7 +18,7 @@ namespace Application.Models.ApiModels.Items.Queries
         {
             RuleFor(x => x.PageIndex).GreaterThanOrEqualTo(1);
 
-            RuleFor(x => x.PageSize).GreaterThanOrEqualTo(1);
+            RuleFor(x => x.PageSize).GreaterThanOrEqualTo(10);
 
             RuleFor(x => x.SearchQuery).NotNull();
         }
