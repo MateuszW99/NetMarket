@@ -59,19 +59,16 @@ namespace Application.Services
             return item;
         }
 
-        public async Task<List<Item>> GetItemsAsync(SearchItemsQuery query, int pageSize, int pageIndex)
+        public IQueryable<Item> GetItemsWithQuery(SearchItemsQuery query)
         {
-            var items = await _context.Items
+            var items = _context.Items
                 .Include(x => x.Brand)
                 .Where(x => x.Brand.Name.Contains(query.Brand) ||
-                                x.Make.Contains(query.Make) ||
-                                x.Model.Contains(query.Model) ||
-                                x.Name.Contains(query.Name))
-                .OrderBy(x => x.Name)
-                .Skip((pageIndex - 1) * pageSize)
-                .Take(pageSize)
-                .ToListAsync();
-
+                            x.Make.Contains(query.Make) ||
+                            x.Model.Contains(query.Model) ||
+                            x.Name.Contains(query.Name))
+                .OrderBy(x => x.Name);
+            
             return items;
         }
 

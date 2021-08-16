@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
 using Application.Common.Interfaces;
 using Application.Common.Mappings;
@@ -24,8 +23,8 @@ namespace Application.Handlers.ItemHandlers
 
         public async Task<PaginatedList<ItemObject>> Handle(GetItemsQuery request, CancellationToken cancellationToken)
         {
-            var items = await _itemService.GetItemsAsync(request.SearchQuery, request.PageSize, request.PageIndex);
-            var mappedItems = await items.AsQueryable().ProjectToListAsync<ItemObject>(_mapper.ConfigurationProvider);
+            var queredItems = _itemService.GetItemsWithQuery(request.SearchQuery);
+            var mappedItems = await queredItems.ProjectToListAsync<ItemObject>(_mapper.ConfigurationProvider);
             return PaginatedList<ItemObject>.Create(mappedItems, request.PageIndex, request.PageSize);
         }
     }

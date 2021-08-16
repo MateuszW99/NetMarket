@@ -16,7 +16,7 @@ namespace Application.Common.Mappings
 
         public static async Task<List<TDestination>> ProjectToListAsync<TDestination>(this IQueryable source, IConfigurationProvider configuration)
         {
-            return await Task.Run(() => source.ProjectTo<TDestination>(configuration).ToList());
+            return await source.ProjectTo<TDestination>(configuration).ToListAsync();
         }
     }
 }
