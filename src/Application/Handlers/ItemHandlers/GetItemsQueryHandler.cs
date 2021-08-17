@@ -6,6 +6,7 @@ using Application.Common.Models;
 using Application.Models.ApiModels.Items.Queries;
 using Application.Models.DTOs;
 using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using MediatR;
 
 namespace Application.Handlers.ItemHandlers
@@ -25,7 +26,8 @@ namespace Application.Handlers.ItemHandlers
         {
             var queredItems = _itemService.GetItemsWithQuery(request.SearchQuery);
             var mappedItems = await queredItems.ProjectToListAsync<ItemObject>(_mapper.ConfigurationProvider);
-            return PaginatedList<ItemObject>.Create(mappedItems, request.PageIndex, request.PageSize);
+            return await queredItems.ProjectTo<ItemObject>(_mapper.ConfigurationProvider)
+                .PaginatedListAsync(request.PageIndex, request.PageSize);
         }
     }
 }
