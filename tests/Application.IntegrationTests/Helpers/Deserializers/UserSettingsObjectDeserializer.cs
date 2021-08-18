@@ -1,4 +1,5 @@
-﻿using System.Net.Http;
+﻿using System.Collections.Generic;
+using System.Net.Http;
 using System.Text;
 using Application.Models.DTOs;
 using Domain.Enums;
@@ -34,6 +35,12 @@ namespace Application.IntegrationTests.Helpers.Deserializers
             }
             
             return JObject.Parse(json).ToObject<UserSettingsObject>();
+        }
+        
+        // Case where we deserialize such content into a list doesn't exist
+        public List<UserSettingsObject> DeserializeToList(HttpContent content)
+        {
+            return null;
         }
     }
 }

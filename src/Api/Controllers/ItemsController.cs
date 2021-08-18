@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Api.Common;
 using Application.Common.Models;
 using Application.Models.ApiModels.Items.Commands;
 using Application.Models.ApiModels.Items.Queries;
@@ -30,18 +29,31 @@ namespace Api.Controllers
         }
         
         [HttpGet]
-        public async Task<ActionResult<List<ItemObject>>> GetItems([FromQuery] SearchItemsQuery query)
+        public async Task<ActionResult<PaginatedList<ItemObject>>> GetItems([FromQuery] SearchItemsQuery query)
         {
             var result = await _mediator.Send(new GetItemsQuery()
             {
                 SearchQuery =  query,
-                PageIndex = query.Page, 
+                PageIndex = query.PageIndex, 
                 PageSize = query.PageSize
             });
             
             return Ok(result);
         }
 
+        [HttpGet("category")]
+        public async Task<ActionResult<PaginatedList<ItemObject>>> GetItemsByCategory([FromQuery] ItemsWithCategoryQuery query)
+        {
+            var result = await _mediator.Send(new GetItemsWithCategoryQuery()
+            {
+                Category = query.Category,
+                PageIndex = query.PageIndex,
+                PageSize = query.PageSize
+            });
+
+            return Ok(result);
+        }
+        
         [HttpPost]
         [Authorize(Policy = "AdminAccess")]
         public async Task<ActionResult> CreateItem([FromBody] CreateItemCommand command)

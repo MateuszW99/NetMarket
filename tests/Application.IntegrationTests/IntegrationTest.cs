@@ -11,6 +11,7 @@ namespace Application.IntegrationTests
     {
         public static readonly string ApiBase = "/api";
         public static readonly string Items = "items";
+        public static readonly string Category = "category";
         public static readonly string UserSettings = "user";
     }
     

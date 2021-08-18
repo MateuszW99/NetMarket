@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -70,10 +69,10 @@ namespace Application.Services
             {
                 itemsQuery = itemsQuery.Where(x => x.Name.Contains(query.Name));
             }
-            // TODO: add category
+            
             if (!string.IsNullOrEmpty(query.Category))
             {
-                //itemsQuery = itemsQuery.Where(x => x.Name.Contains(query.Name));
+                itemsQuery = itemsQuery.Where(x => x.Name.Contains(query.Name));
             }
             
             if (!string.IsNullOrEmpty(query.Make))
@@ -91,6 +90,17 @@ namespace Application.Services
                 itemsQuery = itemsQuery.Where(x => x.Brand.Name.Contains(query.Brand));
             }
             
+            return itemsQuery;
+        }
+
+        public IQueryable<Item> GetItemsWithCategory(string category)
+        {
+            var itemsQuery = _context.Items
+                .Include(x => x.Brand)
+                .OrderBy(x => x.Name)
+                .Where(X => X.Category == category)
+                .AsQueryable();
+
             return itemsQuery;
         }
 

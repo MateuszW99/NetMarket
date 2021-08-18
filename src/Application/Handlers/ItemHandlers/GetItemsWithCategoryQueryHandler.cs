@@ -10,20 +10,20 @@ using MediatR;
 
 namespace Application.Handlers.ItemHandlers
 {
-    public class GetItemsQueryHandler : IRequestHandler<GetItemsQuery, PaginatedList<ItemObject>>
+    public class GetItemsWithCategoryQueryHandler : IRequestHandler<GetItemsWithCategoryQuery, PaginatedList<ItemObject>>
     {
         private readonly IItemService _itemService;
         private readonly IMapper _mapper;
 
-        public GetItemsQueryHandler(IItemService itemService, IMapper mapper)
+        public GetItemsWithCategoryQueryHandler(IItemService itemService, IMapper mapper)
         {
             _itemService = itemService;
             _mapper = mapper;
         }
 
-        public async Task<PaginatedList<ItemObject>> Handle(GetItemsQuery request, CancellationToken cancellationToken)
+        public async Task<PaginatedList<ItemObject>> Handle(GetItemsWithCategoryQuery request, CancellationToken cancellationToken)
         {
-            var queredItems = _itemService.GetItemsWithQuery(request.SearchQuery);
+            var queredItems = _itemService.GetItemsWithCategory(request.Category);
             var mappedItems = await queredItems.ProjectToListAsync<ItemObject>(_mapper.ConfigurationProvider);
             return PaginatedList<ItemObject>.Create(mappedItems, request.PageIndex, request.PageSize);
         }
