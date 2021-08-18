@@ -72,7 +72,7 @@ namespace Application.UnitTests.Handlers.ItemHandlers
             var query = new GetItemsQuery()
             {
                 PageIndex = 1,
-                PageSize = 1,
+                PageSize = 10,
                 SearchQuery = new()
             };
 
