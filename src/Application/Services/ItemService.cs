@@ -61,15 +61,37 @@ namespace Application.Services
 
         public IQueryable<Item> GetItemsWithQuery(SearchItemsQuery query)
         {
-            var items = _context.Items
+            var itemsQuery = _context.Items
                 .Include(x => x.Brand)
-                .Where(x => x.Brand.Name.Contains(query.Brand) ||
-                            x.Make.Contains(query.Make) ||
-                            x.Model.Contains(query.Model) ||
-                            x.Name.Contains(query.Name))
-                .OrderBy(x => x.Name);
+                .OrderBy(x => x.Name)
+                .AsQueryable();
+
+            if (!string.IsNullOrEmpty(query.Name))
+            {
+                itemsQuery = itemsQuery.Where(x => x.Name.Contains(query.Name));
+            }
+            // TODO: add category
+            if (!string.IsNullOrEmpty(query.Category))
+            {
+                //itemsQuery = itemsQuery.Where(x => x.Name.Contains(query.Name));
+            }
             
-            return items;
+            if (!string.IsNullOrEmpty(query.Make))
+            {
+                itemsQuery = itemsQuery.Where(x => x.Make.Contains(query.Make));
+            }
+            
+            if (!string.IsNullOrEmpty(query.Model))
+            {
+                itemsQuery = itemsQuery.Where(x => x.Model.Contains(query.Model));
+            }
+            
+            if (!string.IsNullOrEmpty(query.Brand))
+            {
+                itemsQuery = itemsQuery.Where(x => x.Brand.Name.Contains(query.Brand));
+            }
+            
+            return itemsQuery;
         }
 
         public async Task UpdateItemAsync(UpdateItemCommand command, CancellationToken cancellationToken)
