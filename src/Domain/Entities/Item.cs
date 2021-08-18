@@ -8,6 +8,7 @@ namespace Domain.Entities
     {
         public Guid Id { get; init; }
         public string Name { get; set; }
+        public string Category { get; set; }
         public string Make { get; set; }
         public string Model { get; set; }
         public decimal RetailPrice { get; set; }

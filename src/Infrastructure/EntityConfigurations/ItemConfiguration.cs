@@ -13,15 +13,19 @@ namespace Infrastructure.EntityConfigurations
             builder.HasKey(e => e.Id);
 
             builder.Property(e => e.Name)
-                .IsRequired(true)
+                .IsRequired()
                 .HasMaxLength(150);
 
+            builder.Property(e => e.Category)
+                .IsRequired()
+                .HasMaxLength(20);
+            
             builder.Property(e => e.Make)
-                .IsRequired(true)
+                .IsRequired()
                 .HasMaxLength(150);
             
             builder.Property(e => e.Model)
-                .IsRequired(true)
+                .IsRequired()
                 .HasMaxLength(150);
 
             builder.Property(e => e.RetailPrice)
