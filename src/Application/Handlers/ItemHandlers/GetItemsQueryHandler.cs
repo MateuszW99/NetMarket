@@ -26,8 +26,7 @@ namespace Application.Handlers.ItemHandlers
         {
             var queredItems = _itemService.GetItemsWithQuery(request.SearchQuery);
             var mappedItems = await queredItems.ProjectToListAsync<ItemObject>(_mapper.ConfigurationProvider);
-            return await queredItems.ProjectTo<ItemObject>(_mapper.ConfigurationProvider)
-                .PaginatedListAsync(request.PageIndex, request.PageSize);
+            return PaginatedList<ItemObject>.Create(mappedItems, request.PageIndex, request.PageSize);
         }
     }
 }
