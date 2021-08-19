@@ -22,10 +22,10 @@ JWT token must be provided in the header when accessing sensitive data.
 |--------|----------------|------------|------------|-------------------------------------------------------------|--------------------|----------------|
 | GET    | api/items/{id} | *none*     | id         | Returns an item with given id or 404 if item doesn't exist. | ItemObject, 404    | everyone       |
 | GET    | api/items?     | *none*     | brand, name, category, make, model | Returns a list of items. List can be empty if none is found. | ItemObject[] | everyone |
-| GET    | api/items/category/{categoryName}  | *none*     | categoryName   | Returns list of items with given category name | ItemObject[] | everyone  |
+| GET    | api/items/category?  | *none*     | category   | Returns list of items with given category name        | ItemObject[]       | everyone       |
 | POST   | api/items      | CreateItemRequest | *none* | Creates a new item based on the data in the body.  Returns 404 error code if data is invalid. | 200, 500 | admin |
-| PUT    | api/items/{id} | UpdateItemRequest | id | Updates an item if found.  Returns 404 otherwise. | 200, 404 | admin |
-| DELETE | api/items/{id} | DeleteItemRequest | id | Updates an item if found.  Returns 404 otherwise. | 200, 404 | admin |
+| PUT    | api/items/{id} | UpdateItemRequest | id | Updates an item if found.  Returns 404 otherwise.            | 200, 404            | admin         |
+| DELETE | api/items/{id} | DeleteItemRequest | id | Updates an item if found.  Returns 404 otherwise.            | 200, 404            | admin         |
 
 ### UserSettings
 | Method | Path           | Body       | Params     | Description                                                 | Responses          | Who can access |
