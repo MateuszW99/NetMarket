@@ -15,6 +15,7 @@ namespace Application.Models.ApiModels.Items.Commands
         public string ImageUrl { get; set; }
         public string SmallImageUrl { get; set; }
         public string ThumbUrl { get; set; }
+        public string Category { get; set; }
         public BrandObject Brand { get; set; }
     }
 
@@ -50,6 +51,10 @@ namespace Application.Models.ApiModels.Items.Commands
             
             RuleFor(x => x.ThumbUrl).MustMatchUrlPattern();
 
+            RuleFor(x => x.Category).NotNull()
+                .NotEmpty()
+                .MaximumLength(150);
+            
             RuleFor(x => x.Brand).NotNull();
         }
     }

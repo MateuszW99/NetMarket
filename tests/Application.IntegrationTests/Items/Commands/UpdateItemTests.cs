@@ -33,7 +33,8 @@ namespace Application.IntegrationTests.Items.Commands
             var newUrl = "https://images.stockx.com/images/Air-Jordan-4-Retro-University-Blue-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1616520672";
             var newRetailPrice = oldItem.RetailPrice + 1;
             var newBrand = await context.Brands.FirstOrDefaultAsync(x => x.Name != oldItem.Brand.Id.ToString());
-                
+            var category = "Sneakers";
+            
             var command = new UpdateItemCommand()
             {
                 Id = itemId,
@@ -45,7 +46,8 @@ namespace Application.IntegrationTests.Items.Commands
                 SmallImageUrl = newUrl,
                 ThumbUrl = newUrl,
                 RetailPrice = newRetailPrice,
-                Brand = new BrandObject() { Id = newBrand.Id.ToString(), Name = newBrand.Name }
+                Brand = new BrandObject() { Id = newBrand.Id.ToString(), Name = newBrand.Name },
+                Category = category
             };
 
             var request = new HttpRequestMessage(HttpMethod.Put,
@@ -75,7 +77,8 @@ namespace Application.IntegrationTests.Items.Commands
             var newUrl = "https://images.stockx.com/images/Air-Jordan-4-Retro-University-Blue-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1616520672";
             var newRetailPrice = oldItem.RetailPrice + 1;
             var newBrand = await context.Brands.FirstOrDefaultAsync(x => x.Name != oldItem.Brand.Id.ToString());
-                
+            var category = "Sneakers";
+            
             var command = new UpdateItemCommand()
             {
                 Id = itemId,
@@ -87,7 +90,8 @@ namespace Application.IntegrationTests.Items.Commands
                 SmallImageUrl = newUrl,
                 ThumbUrl = newUrl,
                 RetailPrice = newRetailPrice,
-                Brand = new BrandObject() { Id = newBrand.Id.ToString(), Name = newBrand.Name }
+                Brand = new BrandObject() { Id = newBrand.Id.ToString(), Name = newBrand.Name },
+                Category = category
             };
 
             var request = new HttpRequestMessage(HttpMethod.Put,
@@ -117,7 +121,8 @@ namespace Application.IntegrationTests.Items.Commands
             var newUrl = "https://images.stockx.com/images/Air-Jordan-4-Retro-University-Blue-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1616520672";
             var newRetailPrice = oldItem.RetailPrice + 1;
             var newBrand = await context.Brands.FirstOrDefaultAsync(x => x.Name != oldItem.Brand.Id.ToString());
-                
+            var category = "Sneakers";
+            
             var command = new UpdateItemCommand()
             {
                 Id = itemId,
@@ -129,7 +134,8 @@ namespace Application.IntegrationTests.Items.Commands
                 SmallImageUrl = newUrl,
                 ThumbUrl = newUrl,
                 RetailPrice = newRetailPrice,
-                Brand = new BrandObject() { Id = newBrand.Id.ToString(), Name = newBrand.Name }
+                Brand = new BrandObject() { Id = newBrand.Id.ToString(), Name = newBrand.Name },
+                Category = category
             };
 
             var request = new HttpRequestMessage(HttpMethod.Put,
@@ -156,7 +162,8 @@ namespace Application.IntegrationTests.Items.Commands
             var newUrl = "https://images.stockx.com/images/Air-Jordan-4-Retro-University-Blue-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1616520672";
             var newRetailPrice = oldItem.RetailPrice + 1;
             var newBrand = await context.Brands.FirstOrDefaultAsync(x => x.Name != oldItem.Brand.Id.ToString());
-                
+            var category = "Sneakers";
+            
             var command = new UpdateItemCommand()
             {
                 Id = itemId,
@@ -168,7 +175,8 @@ namespace Application.IntegrationTests.Items.Commands
                 SmallImageUrl = newUrl,
                 ThumbUrl = newUrl,
                 RetailPrice = newRetailPrice,
-                Brand = new BrandObject() { Id = newBrand.Id.ToString(), Name = newBrand.Name }
+                Brand = new BrandObject() { Id = newBrand.Id.ToString(), Name = newBrand.Name },
+                Category = category
             };
 
             var request = new HttpRequestMessage(HttpMethod.Put,

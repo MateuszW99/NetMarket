@@ -37,7 +37,8 @@ namespace Application.Services
                 ImageUrl = command.ImageUrl,
                 SmallImageUrl = command.SmallImageUrl,
                 ThumbUrl = command.ThumbUrl,
-                Name = command.Name
+                Name = command.Name,
+                Category = command.Category
             };
 
             await _context.Items.AddAsync(item, cancellationToken);
@@ -121,6 +122,7 @@ namespace Application.Services
             item.SmallImageUrl = command.SmallImageUrl;
             item.ThumbUrl = command.ThumbUrl;
             item.RetailPrice = command.RetailPrice;
+            item.Category = command.Category;
             
             if (item.BrandId != Guid.Parse(command.Brand.Id))
             {
