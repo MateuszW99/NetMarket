@@ -72,7 +72,7 @@ namespace Application.Services
             
             if (!string.IsNullOrEmpty(query.Category))
             {
-                itemsQuery = itemsQuery.Where(x => x.Name.Contains(query.Name));
+                itemsQuery = itemsQuery.Where(x => x.Name.Contains(query.Category));
             }
             
             if (!string.IsNullOrEmpty(query.Make))
