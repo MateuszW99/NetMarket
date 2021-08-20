@@ -1,7 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using Api;
 using Application.Common.Interfaces;
+using Application.IntegrationTests.Helpers;
+using Application.Models.DTOs;
+using Domain.Entities;
 using Infrastructure.Persistence;
 using Infrastructure.Services;
 using Microsoft.AspNetCore.Hosting;
@@ -21,9 +26,8 @@ namespace Application.IntegrationTests
         }
 
         private readonly string _databaseName;
-
+        
         public string CurrentUserId { get; set; }
-
         protected override void ConfigureWebHost(IWebHostBuilder builder)
         {
             builder.ConfigureServices(services =>
@@ -44,7 +48,7 @@ namespace Application.IntegrationTests
 
                 services.Remove(applicationDbContextDescriptor);
                 services.AddDbContext<ApplicationDbContext>(options => { options.UseInMemoryDatabase(_databaseName); });
-                
+
                 var sp = services.BuildServiceProvider();
 
                 using var scope = sp.CreateScope();
@@ -52,23 +56,31 @@ namespace Application.IntegrationTests
                     var scopedServices = scope.ServiceProvider;
                     var context = scopedServices.GetRequiredService<ApplicationDbContext>();
                     var roleSeeder = scopedServices.GetRequiredService<RoleSeeder>();
-
+                    
                     var userSeeder = scopedServices.GetRequiredService<UserSeeder>();
-                    var logger = scopedServices
-                        .GetRequiredService<ILogger<CustomWebApplicationFactory>>();
-
+                    var logger = scopedServices.GetRequiredService<ILogger<CustomWebApplicationFactory>>();
+                    
                     context.Database.EnsureCreatedAsync().Wait();
 
                     try
                     {
                         roleSeeder.SeedAsync().Wait();
                         userSeeder.SeedAsync().Wait();
+                        
+                        if (!context.Items.Any())
+                        {
+                            var itemSeeder = scopedServices.GetRequiredService<ISeeder<List<Item>>>();
+                            var items = itemSeeder.SeedAsync().Result;
+                            context.Items.AddRangeAsync(items).Wait();
+                            context.SaveChangesAsync(CancellationToken.None).Wait();
+                        }
                     }
                     catch (Exception ex)
                     {
                         logger.LogError(ex, "An error occurred seeding the test database" +
                                             "Error: {Message}", ex.Message);
                     }
+                    
                 }
             });
         }

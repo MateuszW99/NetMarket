@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Application.Common.Interfaces;
 using Infrastructure.Data;
 using Infrastructure.Identity;
 using Microsoft.AspNetCore.Identity;
@@ -11,17 +12,17 @@ namespace Application.IntegrationTests.Helpers
     {
         public static async Task<string> RunAsDefaultUserAsync(CustomWebApplicationFactory factory)
         {
-            return await RunAsUserAsync(factory, "user@user.com", "User123_", Roles.User);
+            return await RunAsUserAsync(factory, DefaultUser.Email, DefaultUser.Password, Roles.User);
         }
         
         public static async Task<string> RunAsSupervisorAsync(CustomWebApplicationFactory factory)
         {
-            return await RunAsUserAsync(factory, "supervisor@supervisor.com", "Supervisor123_", Roles.Supervisor);
+            return await RunAsUserAsync(factory, SupervisorUser.Email, SupervisorUser.Password, Roles.Supervisor);
         }
         
         public static async Task<string> RunAsAdministratorAsync(CustomWebApplicationFactory factory)
         {
-            return await RunAsUserAsync(factory, "administrator@admin.com", "Admin123_", Roles.Admin);
+            return await RunAsUserAsync(factory, AdminUser.Email, AdminUser.Password, Roles.Admin);
         }
         
         private static async Task<string> RunAsUserAsync(CustomWebApplicationFactory factory, string userName,
@@ -36,7 +37,7 @@ namespace Application.IntegrationTests.Helpers
                 throw new Exception("Failed to get user or role manager");
             }
 
-            var user = new ApplicationUser {Email = userName, UserName = userName};
+            var user = new ApplicationUser { Email = userName, UserName = userName };
 
             var createdUser = await userManager.CreateAsync(user, password);
 
@@ -52,7 +53,6 @@ namespace Application.IntegrationTests.Helpers
                 }
 
                 await userManager.AddToRoleAsync(user, role);
-
                 factory.CurrentUserId = user.Id.ToString();
 
                 return factory.CurrentUserId;

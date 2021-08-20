@@ -115,6 +115,11 @@ namespace Infrastructure.Migrations
                     b.Property<Guid>("BrandId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("Category")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
                     b.Property<string>("Description")
                         .HasMaxLength(1500)
                         .HasColumnType("nvarchar(1500)");
