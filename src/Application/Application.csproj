@@ -40,9 +40,6 @@
     <Folder Include="Models\ApiModels\Brands\Queries" />
     <Folder Include="Models\ApiModels\Brands\Responses" />
     <Folder Include="Models\ApiModels\Items\Responses" />
-    <Folder Include="Models\ApiModels\Transactions\Commands" />
-    <Folder Include="Models\ApiModels\Transactions\Queries" />
-    <Folder Include="Models\ApiModels\Transactions\Responses" />
     <Folder Include="Models\ApiModels\UserSettings\Responses" />
   </ItemGroup>
 
