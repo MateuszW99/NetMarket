@@ -1,4 +1,5 @@
-﻿using Application.Common.Mappings;
+﻿using System;
+using Application.Common.Mappings;
 using AutoMapper;
 using Domain.Entities;
 
@@ -12,13 +13,18 @@ namespace Application.Models.DTOs
         public decimal Price { get; set; }
         public bool IsCanceled { get; set; }
         public string UserId { get; set; }
-
+        public DateTime Expires { get; set; }
+        
         public void Mapping(Profile profile)
         {
             profile.CreateMap<Bid, BidObject>()
                 .ForMember(d => d.Item, opt => opt.MapFrom(a => a.ItemSize.Item))
                 .ForMember(d => d.Size, opt => opt.MapFrom(a => a.ItemSize.Size))
-                .ForMember(d => d.UserId, opt => opt.MapFrom(b => b.CreatedBy));
+                .ForMember(d => d.UserId, opt => opt.MapFrom(b => b.CreatedBy))
+                .ForMember(d => d.Expires, opt => 
+                    opt.MapFrom(b => b.LastModified.HasValue ? 
+                        b.LastModified.Value.AddDays(30).Date : 
+                        b.Created.AddDays(30)));
         }
     }
 }
