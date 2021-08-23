@@ -5,7 +5,7 @@ using MediatR;
 
 namespace Application.Models.ApiModels.Transactions.Queries
 {
-    public class GetTransactionsQuery : IRequest<TransactionObject>
+    public class GetTransactionsQuery : IRequest<PaginatedList<TransactionObject>>
     {
         public SearchTransactionsQuery SearchTransactionsQuery { get; set; }
     }
