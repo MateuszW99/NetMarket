@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Application.Common.Models;
+using Application.Models.ApiModels.Asks.Commands;
 using Application.Models.DTOs;
 
 namespace Application.Common.Interfaces
@@ -9,8 +10,8 @@ namespace Application.Common.Interfaces
     {
         Task<AskObject> GetAskById(Guid userId, Guid askId);
         Task<PaginatedList<AskObject>> GetUserAsks(Guid userId);
-        Task CreateAsk(Guid userId);
-        Task UpdateAsk(Guid userId);
-        Task DeleteAsk(Guid userId);
+        Task CreateAsk(CreateAskCommand command, Guid userId);
+        Task UpdateAsk(UpdateAskCommand command, Guid userId);
+        Task DeleteAsk(Guid askId, Guid userId);
     }
 }

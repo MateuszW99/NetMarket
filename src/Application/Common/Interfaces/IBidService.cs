@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Application.Common.Models;
+using Application.Models.ApiModels.Bids.Commands;
 using Application.Models.DTOs;
 
 namespace Application.Common.Interfaces
@@ -9,8 +10,8 @@ namespace Application.Common.Interfaces
     {
         Task<BidObject> GetBidById(Guid userId, Guid bidId);
         Task<PaginatedList<BidObject>> GetUserBids(Guid userId);
-        Task CreateBid(Guid userId);
-        Task UpdateBid(Guid userId);
-        Task DeleteBid(Guid userId);
+        Task CreateBid(CreateBidCommand command, Guid userId);
+        Task UpdateBid(UpdateBidCommand command, Guid userId);
+        Task DeleteBid(Guid bidId ,Guid userId);
     }
 }
