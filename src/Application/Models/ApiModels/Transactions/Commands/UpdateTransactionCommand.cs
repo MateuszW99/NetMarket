@@ -1,5 +1,4 @@
 ﻿using Application.Common.Validators;
-using Application.Models.DTOs;
 using FluentValidation;
 using MediatR;
 
@@ -8,8 +7,8 @@ namespace Application.Models.ApiModels.Transactions.Commands
     public class UpdateTransactionCommand : IRequest
     {
         public string Id { get; set; }
-        public AskObject Ask { get; set; }
-        public BidObject Bid { get; set; }
+        public string AskId { get; set; }
+        public string BidId { get; set; }
         public string Status { get; set; }
         public string StartDate { get; set; }
         public string EndDate { get; set; }
@@ -26,6 +25,8 @@ namespace Application.Models.ApiModels.Transactions.Commands
                 .NotNull()
                 .IdMustMatchGuidPattern();
 
+            RuleFor(x => x.AskId).IdMustMatchGuidPattern();
+            RuleFor(x => x.BidId).IdMustMatchGuidPattern();
             RuleFor(x => x.Status).NotEmpty().IsInEnum();
             RuleFor(x => x.StartDate).NotEmpty();
             RuleFor(x => x.EndDate).NotEmpty();
