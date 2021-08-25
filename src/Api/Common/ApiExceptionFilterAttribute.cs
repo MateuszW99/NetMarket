@@ -21,6 +21,7 @@ namespace Api.Common
             {
                 { typeof(ValidationException), HandleValidationException },
                 { typeof(NotFoundException), HandleNotFoundException },
+                { typeof(UnauthorizedAccessException), HandleUnauthorizedAccessException }
             };
         }
 
@@ -70,6 +71,20 @@ namespace Api.Common
             return new NotFoundObjectResult(details);
         }
 
+        private ObjectResult HandleUnauthorizedAccessException(ExceptionContext context)
+        {
+            var exception = context.Exception as UnauthorizedAccessException;
+
+            var details = new ProblemDetails()
+            {
+                Type = "https://datatracker.ietf.org/doc/html/rfc7231#section-6.5.3",
+                Title = "The specified resource cannot be accessed.",
+                Detail = exception?.Message
+            };
+            
+            return new UnauthorizedObjectResult(details);
+        }
+        
         private ObjectResult HandleUnknownException(ExceptionContext context)
         {
             var details = new ProblemDetails()
