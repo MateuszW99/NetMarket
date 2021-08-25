@@ -1,49 +1,81 @@
 ﻿using System;
+using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Application.Common.Interfaces;
-using Application.Common.Models;
-using Application.Models.DTOs;
-using AutoMapper;
-using Microsoft.Extensions.Logging;
+using Application.Models.ApiModels.Asks.Commands;
+using Domain.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace Application.Services
 {
     public class AskService : IAskService
     {
         private readonly IApplicationDbContext _context;
-        private readonly Logger<AskService> _logger;
-        private readonly IMapper _mapper;
 
-        public AskService(IApplicationDbContext context, Logger<AskService> logger, IMapper mapper)
+        public AskService(IApplicationDbContext context)
         {
             _context = context;
-            _logger = logger;
-            _mapper = mapper;
         }
 
-        public Task<AskObject> GetAskById(Guid userId, Guid askId)
+        public async Task<Ask> GetAskByIdAsync(Guid askId)
         {
-            throw new NotImplementedException();
+            var ask = await _context.Asks
+                .Include(x => x.Item)
+                .Include(x => x.Size)
+                .FirstOrDefaultAsync(x => x.Id == askId);
+
+            return ask;
         }
 
-        public Task<PaginatedList<AskObject>> GetUserAsks(Guid userId)
+        public IQueryable<Ask> GetUserAsks(Guid userId)
         {
-            throw new NotImplementedException();
+            var asks = _context.Asks
+                .Include(x => x.Item)
+                .Include(x => x.Size)
+                .Where(x => x.CreatedBy == userId)
+                .AsQueryable();
+
+            return asks;
         }
 
-        public Task CreateAsk(Guid userId)
+        public IQueryable<Ask> GetItemAsks(Guid id)
         {
-            throw new NotImplementedException();
+            var asks = _context.Asks
+                .Include(x => x.Item)
+                .Include(x => x.Size)
+                .OrderBy(x => x.Price)
+                .AsQueryable();
+
+            return asks;
         }
 
-        public Task UpdateAsk(Guid userId)
+        public async Task CreateAskAsync(CreateAskCommand command, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var ask = new Ask()
+            {
+                ItemId = Guid.Parse(command.ItemId),
+                SizeId = Guid.Parse(command.SizeId),
+                Price = command.Price
+            };
+
+            await _context.Asks.AddAsync(ask, cancellationToken);
+            await _context.SaveChangesAsync(cancellationToken);
         }
 
-        public Task DeleteAsk(Guid userId)
+        public async Task UpdateAskAsync(Ask ask, UpdateAskCommand command, Guid userId, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            ask.Price = command.Price;
+            ask.SizeId = Guid.Parse(command.SizeId);
+            ask.ItemId = Guid.Parse(command.ItemId);
+
+            await _context.SaveChangesAsync(cancellationToken);
+        }
+
+        public async Task DeleteAskAsync(Ask ask, CancellationToken cancellationToken)
+        {
+            _context.Asks.Remove(ask);
+            await _context.SaveChangesAsync(cancellationToken);
         }
     }
 }

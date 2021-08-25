@@ -1,17 +1,19 @@
 ﻿using System;
+using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
-using Application.Common.Models;
 using Application.Models.ApiModels.Asks.Commands;
-using Application.Models.DTOs;
+using Domain.Entities;
 
 namespace Application.Common.Interfaces
 {
     public interface IAskService
     {
-        Task<AskObject> GetAskById(Guid userId, Guid askId);
-        Task<PaginatedList<AskObject>> GetUserAsks(Guid userId);
-        Task CreateAsk(CreateAskCommand command, Guid userId);
-        Task UpdateAsk(UpdateAskCommand command, Guid userId);
-        Task DeleteAsk(Guid askId, Guid userId);
+        Task<Ask> GetAskByIdAsync(Guid askId);
+        IQueryable<Ask> GetUserAsks(Guid userId);
+        IQueryable<Ask> GetItemAsks(Guid id);
+        Task CreateAskAsync(CreateAskCommand command, CancellationToken cancellationToken);
+        Task UpdateAskAsync(Ask ask, UpdateAskCommand command, Guid userId, CancellationToken cancellationToken);
+        Task DeleteAskAsync(Ask ask, CancellationToken cancellationToken);
     }
 }

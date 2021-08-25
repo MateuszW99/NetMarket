@@ -1,17 +1,19 @@
 ﻿using System;
+using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
-using Application.Common.Models;
 using Application.Models.ApiModels.Bids.Commands;
-using Application.Models.DTOs;
+using Domain.Entities;
 
 namespace Application.Common.Interfaces
 {
     public interface IBidService
     {
-        Task<BidObject> GetBidById(Guid userId, Guid bidId);
-        Task<PaginatedList<BidObject>> GetUserBids(Guid userId);
-        Task CreateBid(CreateBidCommand command, Guid userId);
-        Task UpdateBid(UpdateBidCommand command, Guid userId);
-        Task DeleteBid(Guid bidId ,Guid userId);
+        Task<Bid> GetBidById(Guid userId, Guid bidId);
+        IQueryable<Bid> GetUserBids(Guid userId);
+        IQueryable<Bid> GetItemBids(Guid id);
+        Task CreateBid(CreateBidCommand command, CancellationToken cancellationToken);
+        Task UpdateBid(Bid bid, UpdateBidCommand command, Guid userId, CancellationToken cancellationToken);
+        Task DeleteBid(Bid bid, CancellationToken cancellationToken);
     }
 }
