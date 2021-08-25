@@ -24,15 +24,15 @@ namespace Application.Services
         public IQueryable<Transaction> GetTransactions(SearchTransactionsQuery query)
         {
             var transactionsQuery = _context.Transactions
-                .Include(x => x.Ask)
-                .Include(x => x.Bid)
+                .Include(x => x.Ask).DefaultIfEmpty()
+                .Include(x => x.Bid).DefaultIfEmpty()
                 .AsQueryable();
-
+            
             if (!string.IsNullOrEmpty(query.Status))
             {
                 transactionsQuery = transactionsQuery.Where(x => x.Status.ToString() == query.Status);
             }
-
+            
             return transactionsQuery.OrderBy(x => x.StartDate);
         }
 
