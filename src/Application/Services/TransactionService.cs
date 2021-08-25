@@ -38,6 +38,16 @@ namespace Application.Services
 
         public async Task UpdateTransactionAsync(UpdateTransactionCommand command, CancellationToken cancellationToken)
         {
+            if (!await _context.Asks.AnyAsync(x => x.Id == Guid.Parse(command.AskId), cancellationToken))
+            {
+                throw new NotFoundException(nameof(Ask), command.AskId);
+            }
+
+            if (!await _context.Bids.AnyAsync(x => x.Id == Guid.Parse(command.BidId), cancellationToken))
+            {
+                throw new NotFoundException(nameof(Bid), command.BidId);
+            }
+
             var transaction =
                 await _context.Transactions.FirstOrDefaultAsync(x => x.Id == Guid.Parse(command.Id), cancellationToken);
 

@@ -1,4 +1,6 @@
-﻿using Application.Common.Validators;
+﻿using System;
+using Application.Common.Validators;
+using Domain.Enums;
 using FluentValidation;
 using MediatR;
 
@@ -27,9 +29,11 @@ namespace Application.Models.ApiModels.Transactions.Commands
 
             RuleFor(x => x.AskId).IdMustMatchGuidPattern();
             RuleFor(x => x.BidId).IdMustMatchGuidPattern();
-            RuleFor(x => x.Status).NotEmpty().IsInEnum();
+            RuleFor(x => x.Status).NotEmpty().IsEnumName(typeof(TransactionStatus));
             RuleFor(x => x.StartDate).NotEmpty();
-            RuleFor(x => x.EndDate).NotEmpty();
+            RuleFor(x => DateTime.ParseExact(x.EndDate, "MM/dd/yyyy", null))
+                .GreaterThan(x => DateTime.ParseExact(x.StartDate, "MM/dd/yyyy", null))
+                .When(x => !string.IsNullOrEmpty(x.EndDate));
             RuleFor(x => x.SellerFee).NotEmpty().GreaterThanOrEqualTo(0);
             RuleFor(x => x.BuyerFee).NotEmpty().GreaterThanOrEqualTo(0);
             RuleFor(x => x.Payout).NotEmpty().GreaterThanOrEqualTo(0);
