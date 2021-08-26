@@ -27,23 +27,25 @@ namespace Application.Services
                 .Include(x => x.Ask).DefaultIfEmpty()
                 .Include(x => x.Bid).DefaultIfEmpty()
                 .AsQueryable();
-            
+
             if (!string.IsNullOrEmpty(query.Status))
             {
                 transactionsQuery = transactionsQuery.Where(x => x.Status.ToString() == query.Status);
             }
-            
+
             return transactionsQuery.OrderBy(x => x.StartDate);
         }
 
         public async Task UpdateTransactionAsync(UpdateTransactionCommand command, CancellationToken cancellationToken)
         {
-            if (!await _context.Asks.AnyAsync(x => x.Id == Guid.Parse(command.AskId), cancellationToken))
+            if (!string.IsNullOrEmpty(command.AskId) &&
+                !await _context.Asks.AnyAsync(x => x.Id == Guid.Parse(command.AskId), cancellationToken))
             {
                 throw new NotFoundException(nameof(Ask), command.AskId);
             }
 
-            if (!await _context.Bids.AnyAsync(x => x.Id == Guid.Parse(command.BidId), cancellationToken))
+            if (!string.IsNullOrEmpty(command.BidId) &&
+                !await _context.Bids.AnyAsync(x => x.Id == Guid.Parse(command.BidId), cancellationToken))
             {
                 throw new NotFoundException(nameof(Bid), command.BidId);
             }
@@ -56,11 +58,19 @@ namespace Application.Services
                 throw new NotFoundException(nameof(Transaction), command.Id);
             }
 
-            transaction.AskId = Guid.Parse(command.AskId);
-            transaction.BidId = Guid.Parse(command.BidId);
+            transaction.AskId = string.IsNullOrEmpty(command.AskId) ? transaction.AskId : Guid.Parse(command.AskId);
+            transaction.BidId = string.IsNullOrEmpty(command.BidId) ? transaction.BidId : Guid.Parse(command.BidId);
+
             transaction.Status = (TransactionStatus)Enum.Parse(typeof(TransactionStatus), command.Status, true);
-            transaction.StartDate = DateTime.Parse(command.StartDate);
-            transaction.EndDate = DateTime.Parse(command.EndDate);
+
+            transaction.StartDate = string.IsNullOrEmpty(command.StartDate)
+                ? transaction.StartDate
+                : DateTime.Parse(command.StartDate);
+
+            transaction.EndDate = string.IsNullOrEmpty(command.EndDate)
+                ? transaction.EndDate
+                : DateTime.Parse(command.EndDate);
+
             transaction.SellerFee = command.SellerFee;
             transaction.BuyerFee = command.BuyerFee;
             transaction.Payout = command.Payout;
