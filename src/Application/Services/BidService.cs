@@ -18,7 +18,7 @@ namespace Application.Services
             _context = context;
         }
 
-        public async Task<Bid> GetBidById(Guid userId, Guid bidId)
+        public async Task<Bid> GetBidByIdAsync(Guid bidId)
         {
             var bid = await _context.Bids
                 .Include(x => x.Item)
@@ -50,7 +50,7 @@ namespace Application.Services
             return bids;
         }
 
-        public async Task CreateBid(CreateBidCommand command, CancellationToken cancellationToken)
+        public async Task CreateBidAsync(CreateBidCommand command, CancellationToken cancellationToken)
         {
             var bid = new Bid()
             {
@@ -63,7 +63,7 @@ namespace Application.Services
             await _context.SaveChangesAsync(cancellationToken);
         }
 
-        public async Task UpdateBid(Bid bid, UpdateBidCommand command, Guid userId, CancellationToken cancellationToken)
+        public async Task UpdateBidAsync(Bid bid, UpdateBidCommand command, Guid userId, CancellationToken cancellationToken)
         {
             bid.Price = Decimal.Parse(command.Price);
             bid.ItemId = Guid.Parse(command.ItemId);
@@ -71,7 +71,7 @@ namespace Application.Services
             await _context.SaveChangesAsync(cancellationToken);
         }
 
-        public async Task DeleteBid(Bid bid, CancellationToken cancellationToken)
+        public async Task DeleteBidAsync(Bid bid, CancellationToken cancellationToken)
         {
             _context.Bids.Remove(bid);
             await _context.SaveChangesAsync(cancellationToken);

@@ -25,7 +25,7 @@ namespace Application.UnitTests.Handlers.AskHandlers
                 Id = Guid.NewGuid().ToString()
             };
 
-            var queryHandler = new GetAskByIdQueryHandler(null);
+            var queryHandler = new GetAskByIdQueryHandler(null, null, null);
             var validationBehaviour = new ValidationBehaviour<GetAskByIdQuery, AskObject>(new List<GetAskByIdQueryValidator>
             {
                 new()
@@ -53,7 +53,7 @@ namespace Application.UnitTests.Handlers.AskHandlers
                 Id = id
             };
 
-            var queryHandler = new GetAskByIdQueryHandler(null);
+            var queryHandler = new GetAskByIdQueryHandler(null, null, null);
             var validationBehaviour = new ValidationBehaviour<GetAskByIdQuery, AskObject>(new List<GetAskByIdQueryValidator>
             {
                 new()
@@ -75,7 +75,7 @@ namespace Application.UnitTests.Handlers.AskHandlers
         {
             var getUserAsksQuery = new GetUserAsksQuery();
 
-            var queryHandler = new GetUserAsksQueryHandler(null);
+            var queryHandler = new GetUserAsksQueryHandler(null, null, null);
             var validationBehaviour = new ValidationBehaviour<GetUserAsksQuery, PaginatedList<AskObject>>(new List<GetUserAsksQueryValidator>
             {
                 new()
@@ -97,7 +97,7 @@ namespace Application.UnitTests.Handlers.AskHandlers
                 PageIndex = 2
             };
 
-            var queryHandler = new GetUserAsksQueryHandler(null);
+            var queryHandler = new GetUserAsksQueryHandler(null, null, null);
             var validationBehaviour = new ValidationBehaviour<GetUserAsksQuery, PaginatedList<AskObject>>(new List<GetUserAsksQueryValidator>
             {
                 new()
@@ -124,7 +124,7 @@ namespace Application.UnitTests.Handlers.AskHandlers
                 PageIndex = pageIndex
             };
 
-            var queryHandler = new GetUserAsksQueryHandler(null);
+            var queryHandler = new GetUserAsksQueryHandler(null, null, null);
             var validationBehaviour = new ValidationBehaviour<GetUserAsksQuery, PaginatedList<AskObject>>(new List<GetUserAsksQueryValidator>
             {
                 new()

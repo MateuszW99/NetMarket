@@ -1,9 +1,12 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 using Application.Common.Interfaces;
+using Application.Common.Mappings;
 using Application.Common.Models;
 using Application.Models.ApiModels.Asks.Queries;
 using Application.Models.DTOs;
+using AutoMapper;
 using MediatR;
 
 namespace Application.Handlers.AskHandlers
@@ -11,15 +14,22 @@ namespace Application.Handlers.AskHandlers
     public class GetUserAsksQueryHandler : IRequestHandler<GetUserAsksQuery, PaginatedList<AskObject>>
     {
         private readonly IAskService _askService;
+        private readonly IMapper _mapper;
+        private readonly IHttpService _httpService;
 
-        public GetUserAsksQueryHandler(IAskService askService)
+        public GetUserAsksQueryHandler(IAskService askService, IMapper mapper, IHttpService httpService)
         {
             _askService = askService;
+            _mapper = mapper;
+            _httpService = httpService;
         }
 
-        public Task<PaginatedList<AskObject>> Handle(GetUserAsksQuery request, CancellationToken cancellationToken)
+        public async Task<PaginatedList<AskObject>> Handle(GetUserAsksQuery request, CancellationToken cancellationToken)
         {
-            throw new System.NotImplementedException();
+            var userId = _httpService.GetUserId();
+            var queredAsks = _askService.GetUserAsks(Guid.Parse(userId));
+            var mappedAsks = await queredAsks.ProjectToListAsync<AskObject>(_mapper.ConfigurationProvider);
+            return PaginatedList<AskObject>.Create(mappedAsks, request.PageIndex, request.PageSize);
         }
     }
 }

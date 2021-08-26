@@ -9,11 +9,11 @@ namespace Application.Common.Interfaces
 {
     public interface IBidService
     {
-        Task<Bid> GetBidById(Guid userId, Guid bidId);
+        Task<Bid> GetBidByIdAsync(Guid bidId);
         IQueryable<Bid> GetUserBids(Guid userId);
         IQueryable<Bid> GetItemBids(Guid id);
-        Task CreateBid(CreateBidCommand command, CancellationToken cancellationToken);
-        Task UpdateBid(Bid bid, UpdateBidCommand command, Guid userId, CancellationToken cancellationToken);
-        Task DeleteBid(Bid bid, CancellationToken cancellationToken);
+        Task CreateBidAsync(CreateBidCommand command, CancellationToken cancellationToken);
+        Task UpdateBidAsync(Bid bid, UpdateBidCommand command, Guid userId, CancellationToken cancellationToken);
+        Task DeleteBidAsync(Bid bid, CancellationToken cancellationToken);
     }
 }

@@ -33,7 +33,7 @@ namespace Application.UnitTests.Handlers.BidHandlers
                 SizeId = Guid.NewGuid().ToString()
             };
 
-            var commandHandler = new CreateBidCommandHandler(null);
+            var commandHandler = new CreateBidCommandHandler(null, null);
             var validationBehaviour = new ValidationBehaviour<CreateBidCommand, Unit>(
                 new List<CreateBidCommandValidator>()
                 {
@@ -58,7 +58,7 @@ namespace Application.UnitTests.Handlers.BidHandlers
                 SizeId = sizeId
             };
 
-            var commandHandler = new CreateBidCommandHandler(null);
+            var commandHandler = new CreateBidCommandHandler(null, null);
             var validationBehaviour = new ValidationBehaviour<CreateBidCommand, Unit>(
                 new List<CreateBidCommandValidator>()
                 {
@@ -87,7 +87,7 @@ namespace Application.UnitTests.Handlers.BidHandlers
                 SizeId = Guid.NewGuid().ToString()
             };
 
-            var commandHandler = new UpdateBidCommandHandler(null);
+            var commandHandler = new UpdateBidCommandHandler(null, null, null);
             var validationBehaviour = new ValidationBehaviour<UpdateBidCommand, Unit>(
                 new List<UpdateBidCommandValidator>()
                 {
@@ -113,7 +113,7 @@ namespace Application.UnitTests.Handlers.BidHandlers
                 SizeId = sizeId
             };
         
-            var commandHandler = new UpdateBidCommandHandler(null);
+            var commandHandler = new UpdateBidCommandHandler(null, null, null);
             var validationBehaviour = new ValidationBehaviour<UpdateBidCommand, Unit>(new List<UpdateBidCommandValidator>()
                 {
                     new()
@@ -138,7 +138,7 @@ namespace Application.UnitTests.Handlers.BidHandlers
                 Id = Guid.NewGuid().ToString()
             };
 
-            var commandHandler = new DeleteBidCommandHandler(null);
+            var commandHandler = new DeleteBidCommandHandler(null, null, null);
             var validationBehaviour = new ValidationBehaviour<DeleteBidCommand, Unit>(
                 new List<DeleteBidCommandValidator>()
                 {
@@ -163,7 +163,7 @@ namespace Application.UnitTests.Handlers.BidHandlers
                 Id = id
             };
         
-            var commandHandler = new DeleteBidCommandHandler(null);
+            var commandHandler = new DeleteBidCommandHandler(null, null, null);
             var validationBehaviour = new ValidationBehaviour<DeleteBidCommand, Unit>(new List<DeleteBidCommandValidator>()
                 {
                     new()

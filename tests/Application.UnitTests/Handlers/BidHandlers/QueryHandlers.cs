@@ -25,7 +25,7 @@ namespace Application.UnitTests.Handlers.BidHandlers
                 Id = Guid.NewGuid().ToString()
             };
 
-            var queryHandler = new GetBidByIdQueryHandler(null);
+            var queryHandler = new GetBidByIdQueryHandler(null, null, null);
             var validationBehaviour = new ValidationBehaviour<GetBidByIdQuery, BidObject>(new List<GetBidByIdQueryValidator>
             {
                 new()
@@ -53,7 +53,7 @@ namespace Application.UnitTests.Handlers.BidHandlers
                 Id = id
             };
 
-            var queryHandler = new GetBidByIdQueryHandler(null);
+            var queryHandler = new GetBidByIdQueryHandler(null, null, null);
             var validationBehaviour = new ValidationBehaviour<GetBidByIdQuery, BidObject>(new List<GetBidByIdQueryValidator>
             {
                 new()
@@ -75,7 +75,7 @@ namespace Application.UnitTests.Handlers.BidHandlers
         {
             var getUserBidsQuery = new GetUserBidsQuery();
 
-            var queryHandler = new GetUserBidsQueryHandler(null);
+            var queryHandler = new GetUserBidsQueryHandler(null, null, null);
             var validationBehaviour = new ValidationBehaviour<GetUserBidsQuery, PaginatedList<BidObject>>(new List<GetUserBidsQueryValidator>
             {
                 new()
@@ -97,7 +97,7 @@ namespace Application.UnitTests.Handlers.BidHandlers
                 PageIndex = 2
             };
 
-            var queryHandler = new GetUserBidsQueryHandler(null);
+            var queryHandler = new GetUserBidsQueryHandler(null, null, null);
             var validationBehaviour = new ValidationBehaviour<GetUserBidsQuery, PaginatedList<BidObject>>(new List<GetUserBidsQueryValidator>
             {
                 new()
@@ -124,7 +124,7 @@ namespace Application.UnitTests.Handlers.BidHandlers
                 PageIndex = pageIndex
             };
 
-            var queryHandler = new GetUserBidsQueryHandler(null);
+            var queryHandler = new GetUserBidsQueryHandler(null, null, null);
             var validationBehaviour = new ValidationBehaviour<GetUserBidsQuery, PaginatedList<BidObject>>(new List<GetUserBidsQueryValidator>
             {
                 new()
