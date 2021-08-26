@@ -29,7 +29,7 @@ namespace Application.UnitTests.Handlers.BidHandlers
             var createBidCommand = new CreateBidCommand()
             {
                 ItemId = Guid.NewGuid().ToString(),
-                Price = Convert.ToDecimal("100.50"),
+                Price = "100.50",
                 SizeId = Guid.NewGuid().ToString()
             };
 
@@ -54,7 +54,7 @@ namespace Application.UnitTests.Handlers.BidHandlers
             var createBidCommand = new CreateBidCommand()
             {
                 ItemId = itemId,
-                Price = Convert.ToDecimal(price),
+                Price = price,
                 SizeId = sizeId
             };
 
@@ -83,7 +83,7 @@ namespace Application.UnitTests.Handlers.BidHandlers
             {
                 Id = Guid.NewGuid().ToString(),
                 ItemId = Guid.NewGuid().ToString(),
-                Price = Convert.ToDecimal("100.50"),
+                Price = "100.50",
                 SizeId = Guid.NewGuid().ToString()
             };
 
@@ -109,7 +109,7 @@ namespace Application.UnitTests.Handlers.BidHandlers
             {
                 Id = id,
                 ItemId = itemId,
-                Price = Convert.ToDecimal(price),
+                Price = price,
                 SizeId = sizeId
             };
         

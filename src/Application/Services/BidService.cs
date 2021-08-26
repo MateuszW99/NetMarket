@@ -56,7 +56,7 @@ namespace Application.Services
             {
                 ItemId = Guid.Parse(command.ItemId),
                 SizeId = Guid.Parse(command.SizeId),
-                Price = command.Price
+                Price = decimal.Parse(command.Price)
             };
 
             await _context.Bids.AddAsync(bid, cancellationToken);
@@ -65,7 +65,7 @@ namespace Application.Services
 
         public async Task UpdateBid(Bid bid, UpdateBidCommand command, Guid userId, CancellationToken cancellationToken)
         {
-            bid.Price = command.Price;
+            bid.Price = Decimal.Parse(command.Price);
             bid.ItemId = Guid.Parse(command.ItemId);
             bid.SizeId = Guid.Parse(command.SizeId);
             await _context.SaveChangesAsync(cancellationToken);

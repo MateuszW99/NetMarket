@@ -30,7 +30,7 @@ namespace Application.UnitTests.Handlers.AskHandlers
             var createAskCommand = new CreateAskCommand()
             {
                 ItemId = Guid.NewGuid().ToString(),
-                Price = Convert.ToDecimal("100.50"),
+                Price = "100.50",
                 SizeId = Guid.NewGuid().ToString()
             };
 
@@ -55,7 +55,7 @@ namespace Application.UnitTests.Handlers.AskHandlers
             var createAskCommand = new CreateAskCommand()
             {
                 ItemId = itemId,
-                Price = Convert.ToDecimal(price),
+                Price = price,
                 SizeId = sizeId
             };
 
@@ -84,11 +84,11 @@ namespace Application.UnitTests.Handlers.AskHandlers
             {
                 Id = Guid.NewGuid().ToString(),
                 ItemId = Guid.NewGuid().ToString(),
-                Price = Convert.ToDecimal("100.50"),
+                Price = "100.50",
                 SizeId = Guid.NewGuid().ToString()
             };
 
-            var commandHandler = new UpdateAskCommandHandler(null);
+            var commandHandler = new UpdateAskCommandHandler(null, null);
             var validationBehaviour = new ValidationBehaviour<UpdateAskCommand, Unit>(
                 new List<UpdateAskCommandValidator>()
                 {
@@ -110,11 +110,11 @@ namespace Application.UnitTests.Handlers.AskHandlers
             {
                 Id = id,
                 ItemId = itemId,
-                Price = Convert.ToDecimal(price),
+                Price = price,
                 SizeId = sizeId
             };
         
-            var commandHandler = new UpdateAskCommandHandler(null);
+            var commandHandler = new UpdateAskCommandHandler(null, null);
             var validationBehaviour = new ValidationBehaviour<UpdateAskCommand, Unit>(new List<UpdateAskCommandValidator>()
                 {
                     new()
@@ -139,7 +139,7 @@ namespace Application.UnitTests.Handlers.AskHandlers
                 Id = Guid.NewGuid().ToString()
             };
 
-            var commandHandler = new DeleteAskCommandHandler(null);
+            var commandHandler = new DeleteAskCommandHandler(null, null);
             var validationBehaviour = new ValidationBehaviour<DeleteAskCommand, Unit>(
                 new List<DeleteAskCommandValidator>()
                 {
@@ -164,7 +164,7 @@ namespace Application.UnitTests.Handlers.AskHandlers
                 Id = id
             };
         
-            var commandHandler = new DeleteAskCommandHandler(null);
+            var commandHandler = new DeleteAskCommandHandler(null, null);
             var validationBehaviour = new ValidationBehaviour<DeleteAskCommand, Unit>(new List<DeleteAskCommandValidator>()
                 {
                     new()

@@ -15,9 +15,10 @@ namespace Application.Handlers.AskHandlers
             _askService = askService;
         }
 
-        public Task<Unit> Handle(CreateAskCommand request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(CreateAskCommand request, CancellationToken cancellationToken)
         {
-            throw new System.NotImplementedException();
+            await _askService.CreateAskAsync(request, cancellationToken);
+            return Unit.Value;
         }
     }
 }

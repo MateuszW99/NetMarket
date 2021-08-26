@@ -56,7 +56,7 @@ namespace Application.Services
             {
                 ItemId = Guid.Parse(command.ItemId),
                 SizeId = Guid.Parse(command.SizeId),
-                Price = command.Price
+                Price = decimal.Parse(command.Price)
             };
 
             await _context.Asks.AddAsync(ask, cancellationToken);
@@ -65,7 +65,7 @@ namespace Application.Services
 
         public async Task UpdateAskAsync(Ask ask, UpdateAskCommand command, Guid userId, CancellationToken cancellationToken)
         {
-            ask.Price = command.Price;
+            ask.Price = Decimal.Parse(command.Price);
             ask.SizeId = Guid.Parse(command.SizeId);
             ask.ItemId = Guid.Parse(command.ItemId);
 
