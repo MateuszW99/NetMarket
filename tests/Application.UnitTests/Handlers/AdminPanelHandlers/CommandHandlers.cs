@@ -23,7 +23,6 @@ namespace Application.UnitTests.Handlers.AdminPanelHandlers
                 BidId = Guid.NewGuid().ToString(),
                 Status = "Arrived",
                 StartDate = "08/20/2021",
-                EndDate = "08/25/2021",
                 SellerFee = 5M,
                 BuyerFee = 135M,
                 Payout = 135M
@@ -57,7 +56,6 @@ namespace Application.UnitTests.Handlers.AdminPanelHandlers
                 BidId = Guid.NewGuid().ToString(),
                 Status = status,
                 StartDate = startDate,
-                EndDate = endDate,
                 SellerFee = sellerFee,
                 BuyerFee = buyerFee,
                 Payout = payout

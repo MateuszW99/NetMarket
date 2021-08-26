@@ -67,9 +67,11 @@ namespace Application.Services
                 ? transaction.StartDate
                 : DateTime.Parse(command.StartDate);
 
-            transaction.EndDate = string.IsNullOrEmpty(command.EndDate)
-                ? transaction.EndDate
-                : DateTime.Parse(command.EndDate);
+            if ((TransactionStatus)Enum.Parse(typeof(TransactionStatus), command.Status, true) ==
+                TransactionStatus.Delivered)
+            {
+                transaction.EndDate = DateTime.Now;
+            }
 
             transaction.SellerFee = command.SellerFee;
             transaction.BuyerFee = command.BuyerFee;

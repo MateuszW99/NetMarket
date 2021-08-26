@@ -81,9 +81,9 @@ namespace Application.IntegrationTests.AdminPanel.Commands
 
             response.StatusCode.Should().Be(StatusCodes.Status403Forbidden);
         }
-        
+
         [Fact]
-        public async Task DefaultUserShouldNotUpdateTransaction() 
+        public async Task DefaultUserShouldNotUpdateTransaction()
         {
             await AuthHelper.RunAsDefaultUserAsync(_factory);
             var authResult = await _identityService.LoginAsync(DefaultUser.Email, DefaultUser.Password);
@@ -100,9 +100,9 @@ namespace Application.IntegrationTests.AdminPanel.Commands
 
             response.StatusCode.Should().Be(StatusCodes.Status403Forbidden);
         }
-        
+
         [Fact]
-        public async Task NotLoggedInUserShouldNotUpdateTransaction() 
+        public async Task NotLoggedInUserShouldNotUpdateTransaction()
         {
             var command = new UpdateTransactionCommand();
 
@@ -114,6 +114,45 @@ namespace Application.IntegrationTests.AdminPanel.Commands
             var response = await _client.SendAsync(request);
 
             response.StatusCode.Should().Be(StatusCodes.Status401Unauthorized);
+        }
+
+        [Fact]
+        public async Task TransactionEndDateShouldBeAutomaticallySetWhenTransactionStatusIsDelivered()
+        {
+            await AuthHelper.RunAsAdministratorAsync(_factory);
+            await TestTransactionsSeeder.SeedTestTransactionsAsync(_factory);
+            var authResult = await _identityService.LoginAsync(AdminUser.Email, AdminUser.Password);
+
+            var context = DbHelper.GetDbContext(_factory);
+            var oldTransaction =
+                await context.Transactions.FirstOrDefaultAsync(x => x.Status != TransactionStatus.Delivered);
+            var transactionId = oldTransaction.Id;
+
+            var command = new UpdateTransactionCommand()
+            {
+                Id = transactionId.ToString(),
+                Status = TransactionStatus.Delivered.ToString(),
+                SellerFee = 15M,
+                BuyerFee = 200M,
+                Payout = 195M
+            };
+
+            var request = new HttpRequestMessage(HttpMethod.Put,
+                new Uri($"{Address.ApiBase}/{Address.AdminPanel}/{Address.Orders}/{transactionId}", UriKind.Relative));
+            request.Content =
+                new StringContent(JsonConvert.SerializeObject(command), Encoding.UTF8, "application/json");
+            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", authResult.Token);
+
+            var response = await _client.SendAsync(request);
+
+            response.StatusCode.Should().Be(StatusCodes.Status200OK);
+
+            var updatedTransaction = await DbHelper.FindAsync<Transaction>(_factory, transactionId);
+
+            updatedTransaction.Status.Should()
+                .Be(TransactionStatus.Delivered);
+
+            updatedTransaction.EndDate.Should().BeCloseTo(DateTime.Now, 1000);
         }
     }
 }
