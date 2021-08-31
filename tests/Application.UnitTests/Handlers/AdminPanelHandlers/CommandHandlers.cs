@@ -19,10 +19,7 @@ namespace Application.UnitTests.Handlers.AdminPanelHandlers
             var updateTransactionCommand = new UpdateTransactionCommand()
             {
                 Id = Guid.NewGuid().ToString(),
-                AskId = Guid.NewGuid().ToString(),
-                BidId = Guid.NewGuid().ToString(),
                 Status = "Arrived",
-                StartDate = "08/20/2021",
                 SellerFee = 5M,
                 BuyerFee = 135M,
                 Payout = 135M
@@ -46,16 +43,11 @@ namespace Application.UnitTests.Handlers.AdminPanelHandlers
         [Theory]
         [MemberData(nameof(Transactions))]
         public async Task UpdateTransactionCommandHandlerShouldThrowWhenOneOrMorePropertiesAreInvalid(
-            string status,
-            string startDate, string endDate, decimal sellerFee,
-            decimal buyerFee, decimal payout)
+            string status, decimal sellerFee, decimal buyerFee, decimal payout)
         {
             var updateTransactionCommand = new UpdateTransactionCommand()
             {
-                AskId = Guid.NewGuid().ToString(),
-                BidId = Guid.NewGuid().ToString(),
                 Status = status,
-                StartDate = startDate,
                 SellerFee = sellerFee,
                 BuyerFee = buyerFee,
                 Payout = payout
@@ -80,25 +72,24 @@ namespace Application.UnitTests.Handlers.AdminPanelHandlers
         {
             new object[]
             {
-                "Delivered", "08/20/2021", "08/15/2021", 8M, 160M, 150M
+                "Delivered", 8M, -160M, 150M
             },
             new object[]
             {
-                "test", "08/20/2021", "08/25/2021", -2M, 160M, 150M
+                "test", -2M, 160M, 150M
             },
             new object[]
             {
-                "Started", "08/20/2021", null, 8M, 160M, 150M
+                "Started", 8M, 160M, -150M
             },
             new object[]
             {
-                "test", "08/20/2021", "08/25/2021", 8M, 160M, 150M
+                "test", 8M, 160M, 150M
             },
             new object[]
             {
-                "Checked", "08/20/2021", "08/25/2021", -8M, -160M, -150M
-            },
-           
+                "Checked", -8M, -160M, -150M
+            }
         };
     }
 }

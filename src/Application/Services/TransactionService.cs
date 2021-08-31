@@ -38,18 +38,6 @@ namespace Application.Services
 
         public async Task UpdateTransactionAsync(UpdateTransactionCommand command, CancellationToken cancellationToken)
         {
-            if (!string.IsNullOrEmpty(command.AskId) &&
-                !await _context.Asks.AnyAsync(x => x.Id == Guid.Parse(command.AskId), cancellationToken))
-            {
-                throw new NotFoundException(nameof(Ask), command.AskId);
-            }
-
-            if (!string.IsNullOrEmpty(command.BidId) &&
-                !await _context.Bids.AnyAsync(x => x.Id == Guid.Parse(command.BidId), cancellationToken))
-            {
-                throw new NotFoundException(nameof(Bid), command.BidId);
-            }
-
             var transaction =
                 await _context.Transactions.FirstOrDefaultAsync(x => x.Id == Guid.Parse(command.Id), cancellationToken);
 
@@ -57,15 +45,8 @@ namespace Application.Services
             {
                 throw new NotFoundException(nameof(Transaction), command.Id);
             }
-
-            transaction.AskId = string.IsNullOrEmpty(command.AskId) ? transaction.AskId : Guid.Parse(command.AskId);
-            transaction.BidId = string.IsNullOrEmpty(command.BidId) ? transaction.BidId : Guid.Parse(command.BidId);
-
+            
             transaction.Status = (TransactionStatus)Enum.Parse(typeof(TransactionStatus), command.Status, true);
-
-            transaction.StartDate = string.IsNullOrEmpty(command.StartDate)
-                ? transaction.StartDate
-                : DateTime.Parse(command.StartDate);
 
             if ((TransactionStatus)Enum.Parse(typeof(TransactionStatus), command.Status, true) ==
                 TransactionStatus.Delivered)
