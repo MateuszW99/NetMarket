@@ -23,6 +23,7 @@ namespace Application
 
             services.AddTransient<IItemService, ItemService>();
             services.AddTransient<IUserSettingsService, UserSettingsService>();
+            services.AddTransient<ITransactionService, TransactionService>();
 
             return services;
         }
