@@ -65,7 +65,7 @@ namespace Api.Controllers
         
         [HttpPut("{id}")]
         [Authorize(Policy = "AdminAccess")]
-        public async Task<ActionResult> CreateItem(string id, [FromBody] UpdateItemCommand command)
+        public async Task<ActionResult> UpdateItem(string id, [FromBody] UpdateItemCommand command)
         {
             await _mediator.Send(command);
             return Ok();
