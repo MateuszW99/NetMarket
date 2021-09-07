@@ -15,7 +15,8 @@ namespace Application.Models.ApiModels.Bids.Commands
     {
         public CreateBidCommandValidator()
         {
-            RuleForEach(x => new[] {x.ItemId, x.SizeId}).NotNull().IdMustMatchGuidPattern();
+            RuleFor(x => x.ItemId).NotNull().IdMustMatchGuidPattern();
+            RuleFor(x => x.SizeId).NotNull().IdMustMatchGuidPattern();
             RuleFor(x => x.Price).NotNull().NotEmpty();
             RuleFor(x => decimal.Parse(x.Price)).GreaterThan((decimal) 0.0);
         }

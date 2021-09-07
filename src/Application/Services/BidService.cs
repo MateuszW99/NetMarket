@@ -66,7 +66,6 @@ namespace Application.Services
         public async Task UpdateBidAsync(Bid bid, UpdateBidCommand command, Guid userId, CancellationToken cancellationToken)
         {
             bid.Price = Decimal.Parse(command.Price);
-            bid.ItemId = Guid.Parse(command.ItemId);
             bid.SizeId = Guid.Parse(command.SizeId);
             await _context.SaveChangesAsync(cancellationToken);
         }

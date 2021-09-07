@@ -67,7 +67,6 @@ namespace Application.Services
         {
             ask.Price = Decimal.Parse(command.Price);
             ask.SizeId = Guid.Parse(command.SizeId);
-            ask.ItemId = Guid.Parse(command.ItemId);
 
             await _context.SaveChangesAsync(cancellationToken);
         }

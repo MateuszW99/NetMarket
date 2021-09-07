@@ -69,7 +69,7 @@ namespace Application.UnitTests.Handlers.BidHandlers
                     CancellationToken.None,
                     () => commandHandler.Handle(createBidCommand, CancellationToken.None)))
                 .Should()
-                .NotThrowAsync<ValidationException>();
+                .ThrowAsync<ValidationException>();
         }
         
         #endregion
@@ -82,7 +82,6 @@ namespace Application.UnitTests.Handlers.BidHandlers
             var updateBidCommand = new UpdateBidCommand()
             {
                 Id = Guid.NewGuid().ToString(),
-                ItemId = Guid.NewGuid().ToString(),
                 Price = "100.50",
                 SizeId = Guid.NewGuid().ToString()
             };
@@ -108,7 +107,6 @@ namespace Application.UnitTests.Handlers.BidHandlers
             var updateBidCommand = new UpdateBidCommand()
             {
                 Id = id,
-                ItemId = itemId,
                 Price = price,
                 SizeId = sizeId
             };
@@ -123,7 +121,7 @@ namespace Application.UnitTests.Handlers.BidHandlers
                     CancellationToken.None,
                     () => commandHandler.Handle(updateBidCommand, CancellationToken.None)))
                 .Should()
-                .NotThrowAsync<ValidationException>();
+                .ThrowAsync<ValidationException>();
         }
 
         #endregion

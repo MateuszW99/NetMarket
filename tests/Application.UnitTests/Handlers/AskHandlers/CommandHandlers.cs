@@ -70,7 +70,7 @@ namespace Application.UnitTests.Handlers.AskHandlers
                     CancellationToken.None,
                     () => commandHandler.Handle(createAskCommand, CancellationToken.None)))
                 .Should()
-                .NotThrowAsync<ValidationException>();
+                .ThrowAsync<ValidationException>();
         }
         
         #endregion
@@ -83,7 +83,6 @@ namespace Application.UnitTests.Handlers.AskHandlers
             var updateAskCommand = new UpdateAskCommand()
             {
                 Id = Guid.NewGuid().ToString(),
-                ItemId = Guid.NewGuid().ToString(),
                 Price = "100.50",
                 SizeId = Guid.NewGuid().ToString()
             };
@@ -109,7 +108,6 @@ namespace Application.UnitTests.Handlers.AskHandlers
             var updateAskCommand = new UpdateAskCommand()
             {
                 Id = id,
-                ItemId = itemId,
                 Price = price,
                 SizeId = sizeId
             };
@@ -124,7 +122,7 @@ namespace Application.UnitTests.Handlers.AskHandlers
                     CancellationToken.None,
                     () => commandHandler.Handle(updateAskCommand, CancellationToken.None)))
                 .Should()
-                .NotThrowAsync<ValidationException>();
+                .ThrowAsync<ValidationException>();
         }
 
         #endregion
