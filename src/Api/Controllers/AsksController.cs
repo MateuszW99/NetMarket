@@ -35,7 +35,7 @@ namespace Api.Controllers
         }
 
         [HttpPost]
-        //[Authorize(Policy = "UserAccess")]
+        [Authorize(Policy = "UserAccess")]
         public async Task<ActionResult> CreateAsk([FromBody] CreateAskCommand command)
         {
             await _mediator.Send(command);
