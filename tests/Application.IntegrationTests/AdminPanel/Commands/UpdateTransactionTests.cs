@@ -85,8 +85,8 @@ namespace Application.IntegrationTests.AdminPanel.Commands
         [Fact]
         public async Task DefaultUserShouldNotUpdateTransaction()
         {
-            await AuthHelper.RunAsDefaultUserAsync(_factory);
-            var authResult = await _identityService.LoginAsync(DefaultUser.Email, DefaultUser.Password);
+            await AuthHelper.RunAsFirstUserAsync(_factory);
+            var authResult = await _identityService.LoginAsync(FirstUser.Email, FirstUser.Password);
 
             var command = new UpdateTransactionCommand();
 
