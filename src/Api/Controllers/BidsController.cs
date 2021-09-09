@@ -11,6 +11,7 @@ namespace Api.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize(Policy = "UserAccess")]
     public class BidsController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -35,7 +36,6 @@ namespace Api.Controllers
         }
 
         [HttpPost]
-        [Authorize(Policy = "UserAccess")]
         public async Task<ActionResult> CreateBid([FromBody] CreateBidCommand command)
         {
             await _mediator.Send(command);
@@ -43,7 +43,6 @@ namespace Api.Controllers
         }
 
         [HttpPut("{id}")]
-        [Authorize(Policy = "UserAccess")]
         public async Task<ActionResult> UpdateBid(string id, [FromBody] UpdateBidCommand command)
         {
             await _mediator.Send(command);
@@ -51,7 +50,6 @@ namespace Api.Controllers
         }
         
         [HttpDelete("{id}")]
-        [Authorize(Policy = "UserAccess")]
         public async Task<ActionResult> DeleteBid(string id)
         {
             await _mediator.Send(new DeleteBidCommand(){ Id = id });

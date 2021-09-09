@@ -11,6 +11,7 @@ namespace Api.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize(Policy = "UserAccess")]
     public class AsksController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -35,7 +36,6 @@ namespace Api.Controllers
         }
 
         [HttpPost]
-        [Authorize(Policy = "UserAccess")]
         public async Task<ActionResult> CreateAsk([FromBody] CreateAskCommand command)
         {
             await _mediator.Send(command);
@@ -43,7 +43,6 @@ namespace Api.Controllers
         }
 
         [HttpPut("{id}")]
-        [Authorize(Policy = "UserAccess")]
         public async Task<ActionResult> UpdateAsk(string id, [FromBody] UpdateAskCommand command)
         {
             await _mediator.Send(command);
@@ -51,7 +50,6 @@ namespace Api.Controllers
         }
         
         [HttpDelete("{id}")]
-        [Authorize(Policy = "UserAccess")]
         public async Task<ActionResult> DeleteAsk(string id)
         {
             await _mediator.Send(new DeleteAskCommand(){ Id = id });
