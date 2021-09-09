@@ -25,8 +25,8 @@ namespace Application.IntegrationTests.Asks.Commands
             var oldAsksCount = await context.Asks.CountAsync();
             decimal price = 200;
             
-            var userId = await AuthHelper.RunAsDefaultUserAsync(_factory);
-            var authResult = _identityService.LoginAsync(DefaultUser.Email, DefaultUser.Password);
+            var userId = await AuthHelper.RunAsFirstUserAsync(_factory);
+            var authResult = _identityService.LoginAsync(FirstUser.Email, FirstUser.Password);
 
             var command = new CreateAskCommand()
             {

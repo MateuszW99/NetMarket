@@ -27,9 +27,4 @@
       <ProjectReference Include="..\..\src\Api\Api.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Asks\Queries" />
-      <Folder Include="Bids\Queries" />
-    </ItemGroup>
-
 </Project>

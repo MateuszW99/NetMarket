@@ -99,8 +99,8 @@ namespace Application.IntegrationTests.Items.Commands
             var context = DbHelper.GetDbContext(_factory);
             var oldItemsCount = context.Items.CountAsync();
             
-            var userId = await AuthHelper.RunAsDefaultUserAsync(_factory);
-            var authResult = _identityService.LoginAsync(DefaultUser.Email, DefaultUser.Password);
+            var userId = await AuthHelper.RunAsFirstUserAsync(_factory);
+            var authResult = _identityService.LoginAsync(FirstUser.Email, FirstUser.Password);
             
             var command = new CreateItemCommand()
             {

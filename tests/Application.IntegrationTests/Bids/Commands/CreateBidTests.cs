@@ -20,14 +20,13 @@ namespace Application.IntegrationTests.Bids.Commands
         public async Task UserShouldAddNewBid()
         {
             var context = DbHelper.GetDbContext(_factory);
-        
             var size = await context.Sizes.FirstOrDefaultAsync();
             var item = await context.Items.FirstOrDefaultAsync();
             var oldBidsCount = await context.Bids.CountAsync();
             decimal price = 200;
             
-            var userId = await AuthHelper.RunAsDefaultUserAsync(_factory);
-            var authResult = _identityService.LoginAsync(DefaultUser.Email, DefaultUser.Password);
+            var userId = await AuthHelper.RunAsFirstUserAsync(_factory);
+            var authResult = _identityService.LoginAsync(FirstUser.Email, FirstUser.Password);
 
             var command = new CreateBidCommand()
             {
@@ -57,7 +56,6 @@ namespace Application.IntegrationTests.Bids.Commands
         public async Task AdministratorShouldNotAddNewBid()
         {
             var context = DbHelper.GetDbContext(_factory);
-        
             var size = await context.Sizes.FirstOrDefaultAsync();
             var item = await context.Items.FirstOrDefaultAsync();
             decimal price = 200;
@@ -89,11 +87,9 @@ namespace Application.IntegrationTests.Bids.Commands
         public async Task SupervisorShouldNotAddNewBid()
         {
             var context = DbHelper.GetDbContext(_factory);
-        
             var size = await context.Sizes.FirstOrDefaultAsync();
             var item = await context.Items.FirstOrDefaultAsync();
             decimal price = 200;
-            
             var oldBidsCount = await context.Bids.CountAsync();
             
             var userId = await AuthHelper.RunAsSupervisorAsync(_factory);
