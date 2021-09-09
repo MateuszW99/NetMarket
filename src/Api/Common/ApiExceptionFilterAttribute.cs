@@ -21,6 +21,7 @@ namespace Api.Common
             {
                 { typeof(ValidationException), HandleValidationException },
                 { typeof(NotFoundException), HandleNotFoundException },
+                {typeof(ForbiddenAccessException), HandleForbiddenAccessException},
             };
         }
 
@@ -68,6 +69,25 @@ namespace Api.Common
             };
 
             return new NotFoundObjectResult(details);
+        }
+        
+        private ObjectResult HandleForbiddenAccessException(ExceptionContext context)
+        {
+            var exception = context.Exception as ForbiddenAccessException;
+            
+            var details = new ProblemDetails()
+            {
+                Status = StatusCodes.Status403Forbidden,
+                Title = "Forbidden",
+                Type = "https://tools.ietf.org/html/rfc7231#section-6.5.3"
+            };
+            
+            context.Result = new ObjectResult(details)
+            {
+                StatusCode = StatusCodes.Status403Forbidden
+            };
+            
+            return new ObjectResult(details);
         }
 
         private ObjectResult HandleUnknownException(ExceptionContext context)
