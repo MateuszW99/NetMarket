@@ -42,7 +42,7 @@ namespace Api.Controllers
             return Ok();
         }
 
-        [HttpPut("id")]
+        [HttpPut("{id}")]
         [Authorize(Policy = "UserAccess")]
         public async Task<ActionResult> UpdateBid(string id, [FromBody] UpdateBidCommand command)
         {
@@ -50,7 +50,7 @@ namespace Api.Controllers
             return Ok();
         }
         
-        [HttpDelete("id")]
+        [HttpDelete("{id}")]
         [Authorize(Policy = "UserAccess")]
         public async Task<ActionResult> DeleteBid(string id)
         {
