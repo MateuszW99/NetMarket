@@ -1,8 +1,13 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
-import {RouterModule} from "@angular/router";
+import {RouterModule, Routes} from "@angular/router";
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+
+const routes: Routes = [
+  { path: '', redirectTo: '', pathMatch: 'full' },
+  { path: '**', pathMatch: 'full', component: PageNotFoundComponent }
+]
 
 @NgModule({
   declarations: [
@@ -11,9 +16,7 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot([
-      { path: '**', component: PageNotFoundComponent }
-    ])
+    RouterModule.forRoot(routes)
   ],
   providers: [],
   bootstrap: [AppComponent]
