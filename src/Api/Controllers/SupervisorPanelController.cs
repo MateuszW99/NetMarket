@@ -25,7 +25,7 @@ namespace Api.Controllers
         public async Task<ActionResult<PaginatedList<TransactionObject>>> GetAssignedOrders(
             [FromQuery] SearchTransactionsQuery query)
         {
-            var result = await _mediator.Send(new GetTransactionsQuery()
+            var result = await _mediator.Send(new GetSupervisorTransactionsQuery()
             {
                 SearchTransactionsQuery = query
             });

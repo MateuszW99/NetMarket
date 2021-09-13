@@ -11,7 +11,7 @@ using MediatR;
 
 namespace Application.Handlers.TransactionHandlers
 {
-    public class GetSupervisorTransactionsQueryHandler : IRequestHandler<GetTransactionsQuery, PaginatedList<TransactionObject>>
+    public class GetSupervisorTransactionsQueryHandler : IRequestHandler<GetSupervisorTransactionsQuery, PaginatedList<TransactionObject>>
     {
         private readonly IMapper _mapper;
         private readonly ITransactionService _transactionService;
@@ -24,7 +24,7 @@ namespace Application.Handlers.TransactionHandlers
             _httpService = httpService;
         }
         
-        public async Task<PaginatedList<TransactionObject>> Handle(GetTransactionsQuery request, CancellationToken cancellationToken)
+        public async Task<PaginatedList<TransactionObject>> Handle(GetSupervisorTransactionsQuery request, CancellationToken cancellationToken)
         {
             var supervisorId = _httpService.GetUserId();
             var queredTransactions = _transactionService.GetSupervisorTransactions(request.SearchTransactionsQuery, supervisorId);
