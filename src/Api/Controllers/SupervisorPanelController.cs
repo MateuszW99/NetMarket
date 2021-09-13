@@ -11,7 +11,7 @@ namespace Api.Controllers
 {
     [ApiController]
     [Authorize(Policy = "SupervisorAccess")]
-    [Route("api/[controller]")]
+    [Route("api/[controller]/orders")]
     public class SupervisorPanelController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -21,7 +21,7 @@ namespace Api.Controllers
             _mediator = mediator;
         }
 
-        [HttpGet("orders")]
+        [HttpGet]
         public async Task<ActionResult<PaginatedList<TransactionObject>>> GetAssignedOrders(
             [FromQuery] SearchTransactionsQuery query)
         {
@@ -33,7 +33,7 @@ namespace Api.Controllers
             return Ok(result);
         }
 
-        [HttpGet("orders/{id}")]
+        [HttpGet("{id}")]
         public async Task<ActionResult<PaginatedList<TransactionObject>>> GetOrder(string id)
         {
             var result = await _mediator.Send(new GetTransactionByIdQuery()
@@ -44,7 +44,7 @@ namespace Api.Controllers
             return Ok(result);
         }
 
-        [HttpPut("orders/{id}")]
+        [HttpPut("{id}")]
         public async Task<IActionResult> UpdateTransaction(string id,
             [FromBody] UpdateTransactionStatusCommand command)
         {
