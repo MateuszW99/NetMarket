@@ -23,7 +23,7 @@ namespace Application.IntegrationTests.Items.Commands
             var oldItem = await context.Items.Include(x => x.Brand).FirstOrDefaultAsync();
             var itemId = oldItem.Id.ToString();
 
-            var userId = await AuthHelper.RunAsAdministratorAsync(_factory);
+            await AuthHelper.RunAsAdministratorAsync(_factory);
             var authResult = _identityService.LoginAsync(AdminUser.Email, AdminUser.Password);
             
             var newName = "new name";
@@ -67,7 +67,7 @@ namespace Application.IntegrationTests.Items.Commands
             var oldItem = await context.Items.Include(x => x.Brand).FirstOrDefaultAsync();
             var itemId = oldItem.Id.ToString();
 
-            var userId = await AuthHelper.RunAsSupervisorAsync(_factory);
+            await AuthHelper.RunAsSupervisorAsync(_factory);
             var authResult = _identityService.LoginAsync(SupervisorUser.Email, SupervisorUser.Password);
             
             var newName = "new name";

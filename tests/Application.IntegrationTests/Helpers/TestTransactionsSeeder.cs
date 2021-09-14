@@ -16,18 +16,19 @@ namespace Application.IntegrationTests.Helpers
 
             if (!await context.Transactions.AnyAsync())
             {
-                await context.Transactions.AddRangeAsync(GetTransactions());
+                await context.Transactions.AddRangeAsync(GetTransactions(factory.CurrentUserId));
                 await context.SaveChangesAsync(CancellationToken.None);
             }
         }
 
-        private static IEnumerable<Transaction> GetTransactions()
+        private static IEnumerable<Transaction> GetTransactions(string supervisorId)
         {
             return new List<Transaction>
             {
                 new()
                 {
                     Id = Guid.NewGuid(),
+                    AssignedSupervisorId = Guid.NewGuid(),
                     AskId = Guid.NewGuid(),
                     BidId = Guid.NewGuid(),
                     Status = TransactionStatus.Delivered,
@@ -40,6 +41,7 @@ namespace Application.IntegrationTests.Helpers
                 new()
                 {
                     Id = Guid.NewGuid(),
+                    AssignedSupervisorId = Guid.NewGuid(),
                     AskId = Guid.NewGuid(),
                     BidId = Guid.NewGuid(),
                     Status = TransactionStatus.Started,
@@ -51,6 +53,7 @@ namespace Application.IntegrationTests.Helpers
                 new()
                 {
                     Id = Guid.NewGuid(),
+                    AssignedSupervisorId = Guid.Parse(supervisorId),
                     AskId = Guid.NewGuid(),
                     BidId = Guid.NewGuid(),
                     Status = TransactionStatus.Started,
@@ -62,6 +65,7 @@ namespace Application.IntegrationTests.Helpers
                 new()
                 {
                     Id = Guid.NewGuid(),
+                    AssignedSupervisorId = Guid.Parse(supervisorId),
                     AskId = Guid.NewGuid(),
                     BidId = Guid.NewGuid(),
                     Status = TransactionStatus.Checked,
@@ -73,6 +77,7 @@ namespace Application.IntegrationTests.Helpers
                 new()
                 {
                     Id = Guid.NewGuid(),
+                    AssignedSupervisorId = Guid.Parse(supervisorId),
                     AskId = Guid.NewGuid(),
                     BidId = Guid.NewGuid(),
                     Status = TransactionStatus.EnRouteFromWarehouse,

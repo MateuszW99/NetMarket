@@ -8,6 +8,7 @@ namespace Domain.Entities
     public class Transaction : BaseEntity, IHasDomainEvent
     {
         public Guid Id { get; init; }
+        public Guid AssignedSupervisorId { get; set; }
         
         public Guid AskId { get; set; }
         public Ask Ask { get; set; }
