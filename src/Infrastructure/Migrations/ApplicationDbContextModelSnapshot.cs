@@ -206,6 +206,9 @@ namespace Infrastructure.Migrations
                     b.Property<Guid>("AskId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid>("AssignedSupervisorId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<Guid>("BidId")
                         .HasColumnType("uniqueidentifier");
 

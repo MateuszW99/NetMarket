@@ -10,6 +10,10 @@ namespace Application.Common.Interfaces
     public interface ITransactionService
     {
         IQueryable<Transaction> GetTransactions(SearchTransactionsQuery query);
+        IQueryable<Transaction> GetSupervisorTransactions(SearchTransactionsQuery query, string supervisorId);
+        Task<Transaction> GetTransactionByIdAsync(string transactionId, string supervisorId);
         Task UpdateTransactionAsync(UpdateTransactionCommand command, CancellationToken cancellationToken);
+        Task UpdateTransactionStatusAsync(UpdateTransactionStatusCommand command, string supervisorId,
+            CancellationToken cancellationToken);
     }
 }

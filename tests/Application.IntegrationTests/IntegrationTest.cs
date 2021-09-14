@@ -14,6 +14,7 @@ namespace Application.IntegrationTests
         public static readonly string Category = "category";
         public static readonly string UserSettings = "user";
         public static readonly string AdminPanel = "adminPanel";
+        public static readonly string SupervisorPanel = "supervisorPanel";
         public static readonly string Orders = "orders";
     }
     
