@@ -4,7 +4,6 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using Application.IntegrationTests.Helpers;
-using Application.Models.ApiModels.Asks.Commands;
 using Application.Models.ApiModels.Bids.Commands;
 using FluentAssertions;
 using Microsoft.AspNetCore.Http;
@@ -46,7 +45,7 @@ namespace Application.IntegrationTests.Bids.Commands
             deletedAsk.Should().BeNull();
         }
 
-        [Fact(Skip = "Wrong endpoint impl")]
+        [Fact]
         public async Task FirstUserShouldNotDeleteOtherUsersBid()
         {
             var context = DbHelper.GetDbContext(_factory);

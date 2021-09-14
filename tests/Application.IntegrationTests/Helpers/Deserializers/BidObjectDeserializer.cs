@@ -17,7 +17,17 @@ namespace Application.IntegrationTests.Helpers.Deserializers
 
         public List<BidObject> DeserializeToList(HttpContent content)
         {
-            throw new System.NotImplementedException();
+            var stream = content.ReadAsByteArrayAsync();
+            var json = Encoding.UTF8.GetString(stream.Result);
+            var array = (JArray)JObject.Parse(json)["items"];
+
+            var list = new List<BidObject>();
+            foreach (var token in array)
+            {
+                list.Add(token.ToObject<BidObject>());
+            }
+
+            return list;
         }
     }
 }

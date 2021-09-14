@@ -47,8 +47,8 @@ namespace Application.IntegrationTests.Asks.Commands
             deletedAsk.Should().BeNull();
         }
 
-        [Fact(Skip = "Wrong endpoint impl")]
-        public async Task FirstUserShouldNotDeleteOtherUsersAsk()
+        [Fact]
+        public async Task OtherUserShouldNotDeleteFirstUsersAsk()
         {
             var context = DbHelper.GetDbContext(_factory);
             var size = await context.Sizes.FirstOrDefaultAsync();
@@ -73,9 +73,9 @@ namespace Application.IntegrationTests.Asks.Commands
             
             // Other user tries to delete someone's ask
             var otherUserId = await AuthHelper.RunAsOtherUserAsync(_factory);
-            var otherUserAuthResult = _identityService.LoginAsync(FirstUser.Email, FirstUser.Password);
-            var deleteAskResponse = await _client.DeleteAsync(new Uri($"{Address.ApiBase}/{Address.Asks}/{ask.Id.ToString()}", UriKind.Relative));
+            var otherUserAuthResult = _identityService.LoginAsync(OtherUser.Email, OtherUser.Password);
             _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", otherUserAuthResult.Result.Token);
+            var deleteAskResponse = await _client.DeleteAsync(new Uri($"{Address.ApiBase}/{Address.Asks}/{ask.Id.ToString()}", UriKind.Relative));
             
             var deletedAsk = await context.Asks.FirstOrDefaultAsync(x => x.Id == ask.Id);
 

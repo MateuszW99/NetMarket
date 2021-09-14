@@ -34,7 +34,7 @@ namespace Application.Handlers.BidHandlers
             
             if (bid.CreatedBy != userId)
             {
-                throw new UnauthorizedAccessException($"Authorization rules violated by user {userId}");
+                throw new ForbiddenAccessException();
             }
             
             await _bidService.DeleteBidAsync(bid, cancellationToken);

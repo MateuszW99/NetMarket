@@ -68,8 +68,8 @@ namespace Application.IntegrationTests.Bids.Queries
             bid.UserId.Should().Be(bidFromDb.CreatedBy.ToString()).And.Be(userId);
         }
 
-        [Fact(Skip = "Wrong endpoint impl")]
-        public async Task UseShouldGet404WhenRequestingForNotExistingBid()
+        [Fact]
+        public async Task UserShouldGetNotFoundWhenRequestingNotExistingBid()
         {
             var userId = await AuthHelper.RunAsFirstUserAsync(_factory);
             var authResult = _identityService.LoginAsync(FirstUser.Email, FirstUser.Password);
@@ -79,6 +79,41 @@ namespace Application.IntegrationTests.Bids.Queries
             var response = await _client.SendAsync(getBidRequest);
             
             response.StatusCode.Should().Be(StatusCodes.Status404NotFound);
+        }
+        
+                [Fact]
+        public async Task OtherUserShouldNotGetFirstUsersBid()
+        {
+            var context = DbHelper.GetDbContext(_factory);
+            var size = await context.Sizes.FirstOrDefaultAsync();
+            var item = await context.Items.FirstOrDefaultAsync();
+            decimal price = 200;
+            
+            var userId = await AuthHelper.RunAsFirstUserAsync(_factory);
+            var authResult = _identityService.LoginAsync(FirstUser.Email, FirstUser.Password);
+            
+            // FirstUser creates bid
+            var createBidCommand = new CreateBidCommand()
+            {
+                ItemId = item.Id.ToString(),
+                SizeId = size.Id.ToString(),
+                Price = price.ToString(CultureInfo.InvariantCulture)
+            };
+            var createBidRequest = new HttpRequestMessage(HttpMethod.Post, new Uri($"{Address.ApiBase}/{Address.Bids}", UriKind.Relative));
+            createBidRequest.Content = new StringContent(JsonConvert.SerializeObject(createBidCommand), Encoding.UTF8, "application/json");
+            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", authResult.Result.Token);
+            await _client.SendAsync(createBidRequest);
+            
+            var bidFromDb = await context.Bids.AsNoTracking().FirstOrDefaultAsync(x => x.CreatedBy == Guid.Parse(userId));
+            
+            // OtherUser tries to get FirstUser's bid
+            var otherUserId = await AuthHelper.RunAsOtherUserAsync(_factory);
+            var otherUserAuthResult = _identityService.LoginAsync(OtherUser.Email, OtherUser.Password);
+            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", otherUserAuthResult.Result.Token);
+            var getBidRequest = new HttpRequestMessage(HttpMethod.Get, new Uri($"{Address.ApiBase}/{Address.Bids}/{bidFromDb.Id.ToString()}", UriKind.Relative));
+            var response = await _client.SendAsync(getBidRequest);
+
+            response.StatusCode.Should().Be(StatusCodes.Status403Forbidden);
         }
     }
 }

@@ -35,7 +35,7 @@ namespace Application.Handlers.BidHandlers
             
             if (bid.CreatedBy != Guid.Parse(userId))
             {
-                throw new UnauthorizedAccessException($"Authorization rules violated by user {userId}");
+                throw new ForbiddenAccessException();
             }
 
             return _mapper.Map<BidObject>(bid);

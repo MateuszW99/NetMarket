@@ -35,7 +35,7 @@ namespace Application.Handlers.AskHandlers
             
             if (ask.CreatedBy != Guid.Parse(userId))
             {
-                throw new UnauthorizedAccessException($"Authorization rules violated by user {userId}");
+                throw new ForbiddenAccessException();
             }
 
             return _mapper.Map<AskObject>(ask);

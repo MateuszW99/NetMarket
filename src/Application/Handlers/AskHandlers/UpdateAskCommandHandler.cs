@@ -34,7 +34,7 @@ namespace Application.Handlers.AskHandlers
             
             if (ask.CreatedBy != userId)
             {
-                throw new UnauthorizedAccessException($"Authorization rules violated by user {userId}");
+                throw new ForbiddenAccessException();
             }
 
             await _askService.UpdateAskAsync(ask, request, userId, cancellationToken);
