@@ -11,7 +11,6 @@ namespace Application.Common.Interfaces
         DbSet<Bid> Bids { get; set; }
         DbSet<Brand> Brands { get; set; }
         DbSet<Item> Items { get; set; }
-        DbSet<ItemSize> ItemSizes { get; set; }
         DbSet<Size> Sizes { get; set; }
         DbSet<Transaction> Transactions { get; set; }
         DbSet<UserSettings> UserSettings { get; set; }

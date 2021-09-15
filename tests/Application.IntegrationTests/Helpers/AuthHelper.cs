@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Application.Common.Interfaces;
 using Infrastructure.Data;
 using Infrastructure.Identity;
 using Microsoft.AspNetCore.Identity;
@@ -10,9 +9,14 @@ namespace Application.IntegrationTests.Helpers
 {
     public static class AuthHelper
     {
-        public static async Task<string> RunAsDefaultUserAsync(CustomWebApplicationFactory factory)
+        public static async Task<string> RunAsFirstUserAsync(CustomWebApplicationFactory factory)
         {
-            return await RunAsUserAsync(factory, DefaultUser.Email, DefaultUser.Password, Roles.User);
+            return await RunAsUserAsync(factory, FirstUser.Email, FirstUser.Password, Roles.User);
+        }
+
+        public static async Task<string> RunAsOtherUserAsync(CustomWebApplicationFactory factory)
+        {
+            return await RunAsUserAsync(factory, OtherUser.Email, OtherUser.Password, Roles.User);
         }
         
         public static async Task<string> RunAsSupervisorAsync(CustomWebApplicationFactory factory)

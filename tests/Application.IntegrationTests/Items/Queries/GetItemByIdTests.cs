@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Application.Common.Exceptions;
 using Application.IntegrationTests.Helpers;
 using Application.IntegrationTests.Helpers.Deserializers;
+using Application.Models.ApiModels.Items;
 using Application.Models.ApiModels.Items.Queries;
 using Application.Models.DTOs;
 using FluentAssertions;
@@ -13,10 +14,12 @@ namespace Application.IntegrationTests.Items.Queries
     public class GetItemByIdTests : IntegrationTest
     {
         private readonly IObjectDeserializer<ItemObject> _itemDeserializer;
+        private readonly IObjectDeserializer<ItemCard> _itemCardDeserializer;
         
         public GetItemByIdTests()
         {
             _itemDeserializer = new ItemObjectDeserializer();
+            _itemCardDeserializer = new ItemCardDeserializer();
         }
         
         [Fact]
@@ -36,19 +39,19 @@ namespace Application.IntegrationTests.Items.Queries
             };
             
             var response = await _client.GetAsync($"{Address.ApiBase}/{Address.Items}/{sampleItem.Id}");
+
+            var itemCard = _itemCardDeserializer.Deserialize(response.Content);
             
-            var item = _itemDeserializer.Deserialize(response.Content);
-            
-            item.Should().NotBeNull();
-            item.Id.Should().BeEquivalentTo(sampleItem.Id);
-            item.Name.Should().BeEquivalentTo(sampleItem.Name);
-            item.ImageUrl.Should().BeEquivalentTo(sampleItem.ImageUrl);
-            item.SmallImageUrl.Should().BeEquivalentTo(sampleItem.SmallImageUrl);
-            item.ThumbUrl.Should().BeEquivalentTo(sampleItem.ThumbUrl);
-            item.Make.Should().BeEquivalentTo(sampleItem.Make);
-            item.Model.Should().BeEquivalentTo(sampleItem.Model);
-            item.RetailPrice.Should().Be(sampleItem.RetailPrice);
-            item.Description.Should().BeEquivalentTo(sampleItem.Description);
+            itemCard.Should().NotBeNull(); 
+            itemCard.Item.Id.Should().BeEquivalentTo(sampleItem.Id);
+            itemCard.Item.Name.Should().BeEquivalentTo(sampleItem.Name);
+            itemCard.Item.ImageUrl.Should().BeEquivalentTo(sampleItem.ImageUrl);
+            itemCard.Item.SmallImageUrl.Should().BeEquivalentTo(sampleItem.SmallImageUrl);
+            itemCard.Item.ThumbUrl.Should().BeEquivalentTo(sampleItem.ThumbUrl);
+            itemCard.Item.Make.Should().BeEquivalentTo(sampleItem.Make);
+            itemCard.Item.Model.Should().BeEquivalentTo(sampleItem.Model);
+            itemCard.Item.RetailPrice.Should().Be(sampleItem.RetailPrice);
+            itemCard.Item.Description.Should().BeEquivalentTo(sampleItem.Description);
         }
 
         [Fact]

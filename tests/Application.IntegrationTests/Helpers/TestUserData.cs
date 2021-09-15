@@ -10,9 +10,15 @@
         public static string Email => "supervisor@supervisor.com";
         public static string Password => "Supervisor123_";
     }  
-    public static class DefaultUser
+    public static class FirstUser
     {
-        public static string Email => "user@user.com";
+        public static string Email => "user1@user.com";
         public static string Password => "User123_";
+    }
+
+    public static class OtherUser
+    {
+        public static string Email => "user2@user.com";
+        public static string Password => "User456_";
     }
 }

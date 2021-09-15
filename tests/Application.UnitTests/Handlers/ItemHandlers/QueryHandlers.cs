@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Application.Common.Behaviours;
 using Application.Common.Models;
 using Application.Handlers.ItemHandlers;
+using Application.Models.ApiModels.Items;
 using Application.Models.ApiModels.Items.Queries;
 using Application.Models.DTOs;
 using FluentAssertions;
@@ -22,8 +23,8 @@ namespace Application.UnitTests.Handlers.ItemHandlers
         {
             var getItemByIdQuery = new GetItemByIdQuery(Guid.NewGuid().ToString());
 
-            var queryHandler = new GetItemByIdQueryHandler(null, null);
-            var validationBehaviour = new ValidationBehaviour<GetItemByIdQuery, ItemObject>(new List<GetItemByIdQueryValidator>
+            var queryHandler = new GetItemByIdQueryHandler(null, null, null, null);
+            var validationBehaviour = new ValidationBehaviour<GetItemByIdQuery, ItemCard>(new List<GetItemByIdQueryValidator>
             {
                 new()
             }, null);
@@ -48,8 +49,8 @@ namespace Application.UnitTests.Handlers.ItemHandlers
         {
             var getItemByIdQuery = new GetItemByIdQuery(id);
 
-            var queryHandler = new GetItemByIdQueryHandler(null, null);
-            var validationBehaviour = new ValidationBehaviour<GetItemByIdQuery, ItemObject>(new List<GetItemByIdQueryValidator>
+            var queryHandler = new GetItemByIdQueryHandler(null, null, null, null);
+            var validationBehaviour = new ValidationBehaviour<GetItemByIdQuery, ItemCard>(new List<GetItemByIdQueryValidator>
             {
                 new()
             }, null);

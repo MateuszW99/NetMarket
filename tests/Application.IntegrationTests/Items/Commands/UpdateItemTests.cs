@@ -111,8 +111,8 @@ namespace Application.IntegrationTests.Items.Commands
             var oldItem = await context.Items.Include(x => x.Brand).FirstOrDefaultAsync();
             var itemId = oldItem.Id.ToString();
 
-            var userId = await AuthHelper.RunAsDefaultUserAsync(_factory);
-            var authResult = _identityService.LoginAsync(DefaultUser.Email, DefaultUser.Password);
+            var userId = await AuthHelper.RunAsFirstUserAsync(_factory);
+            var authResult = _identityService.LoginAsync(FirstUser.Email, FirstUser.Password);
             
             var newName = "new name";
             var newMake = "new make";

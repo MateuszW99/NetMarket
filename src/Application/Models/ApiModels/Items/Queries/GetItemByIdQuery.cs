@@ -1,11 +1,10 @@
 ﻿using Application.Common.Validators;
-using Application.Models.DTOs;
 using FluentValidation;
 using MediatR;
 
 namespace Application.Models.ApiModels.Items.Queries
 {
-    public class GetItemByIdQuery : IRequest<ItemObject>
+    public class GetItemByIdQuery : IRequest<ItemCard>
     {
         public GetItemByIdQuery(string id)
         {
