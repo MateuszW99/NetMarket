@@ -13,6 +13,9 @@ namespace Infrastructure.EntityConfigurations
             
             builder.HasKey(e => e.Id);
 
+            builder.Property(e => e.AssignedSupervisorId)
+                .IsRequired();
+
             builder.HasOne(e => e.Ask)
                 .WithOne()
                 .OnDelete(DeleteBehavior.NoAction);

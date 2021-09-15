@@ -1,5 +1,5 @@
-﻿using System;
-using Application.Common.Validators;
+﻿using Application.Common.Validators;
+using Application.Models.DTOs;
 using FluentValidation;
 using MediatR;
 
@@ -16,7 +16,8 @@ namespace Application.Models.ApiModels.Items.Commands
         public string ImageUrl { get; set; }
         public string SmallImageUrl { get; set; }
         public string ThumbUrl { get; set; }
-        public string Brand { get; set; }
+        public BrandObject Brand { get; set; }
+        public string Category { get; set; }
     }
 
     public class UpdateItemCommandValidator : AbstractValidator<UpdateItemCommand>
@@ -49,10 +50,12 @@ namespace Application.Models.ApiModels.Items.Commands
             RuleFor(x => x.SmallImageUrl).MustMatchUrlPattern();
 
             RuleFor(x => x.ThumbUrl).MustMatchUrlPattern();
+
+            RuleFor(x => x.Brand).NotNull();
             
-            RuleFor(x => x.Brand)
-                .NotNull()
-                .NotEmpty();
+            RuleFor(x => x.Category).NotNull()
+                .NotEmpty()
+                .MaximumLength(150);
         }
     }
 }

@@ -51,10 +51,11 @@ namespace Infrastructure.Services
                 _brands.Add(brand);
             }
 
-            Item item = new Item()
+            var item = new Item()
             {
                 Id = new Guid(obj.SelectToken("id").ToString()),
                 Name = obj.SelectToken("name").ToString(),
+                Category = obj.SelectToken("category").ToString(),
                 RetailPrice = Parse(obj.SelectToken("retailPrice").ToString()),
                 ImageUrl = obj.SelectToken("media").SelectToken("imageUrl").ToString(),
                 SmallImageUrl = obj.SelectToken("media").SelectToken("smallImageUrl").ToString(),
@@ -65,6 +66,7 @@ namespace Infrastructure.Services
                 Make = obj.SelectToken("make").ToString(),
                 Description = obj.SelectToken("description").ToString()
             };
+            
             return item;
         }
 

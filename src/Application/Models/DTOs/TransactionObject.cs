@@ -6,6 +6,7 @@ namespace Application.Models.DTOs
     public class TransactionObject : IMapFrom<Transaction>
     {
         public string Id { get; set; }
+        public string AssignedSupervisorId { get; set; }
         public AskObject Ask { get; set; }
         public BidObject Bid { get; set; }
         public string Status { get; set; }

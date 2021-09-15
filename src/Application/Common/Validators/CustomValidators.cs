@@ -13,5 +13,10 @@ namespace Application.Common.Validators
         {
             return ruleBuilder.Matches(@"^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$");
         }
+        
+        public static IRuleBuilderOptions<T, string> MustMatchZipCodePattern<T>(this IRuleBuilder<T, string> ruleBuilder)
+        {
+            return ruleBuilder.Matches(@"^[0-9]{2}-?[0-9]{3}$");
+        }
     }
 }
