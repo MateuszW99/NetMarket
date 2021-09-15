@@ -12,7 +12,6 @@ services:
       - "1400:1433"
   api:
     container_name: api
-    restart: always
     build:
       context: .
       dockerfile: ./Dockerfile
@@ -20,9 +19,9 @@ services:
       - "5005:5005"
     depends_on:
       - db
+    restart: always
   client:
     container_name: client
-    restart: always
     build:
       context: ./src/Client
       dockerfile: ./Dockerfile
@@ -30,3 +29,4 @@ services:
       - "5006:80"
     depends_on:
       - api
+    restart: always
