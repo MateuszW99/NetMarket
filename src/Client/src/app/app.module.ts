@@ -8,6 +8,7 @@ import { AuthInterceptorService } from './auth/auth-interceptor.service';
 import { AuthComponent } from './auth/auth.component';
 import { LoginComponent } from './auth/login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { RegisterComponent } from './auth/register/register.component';
 
 const routes: Routes = [
   //AUTH GUARD ussage example
@@ -22,8 +23,8 @@ const routes: Routes = [
     component: AuthComponent,
     children: [
       { path: '', redirectTo: 'login', pathMatch: 'full' },
-      { path: 'login', component: LoginComponent }
-      // { path: 'register', component: RegisterComponent }
+      { path: 'login', component: LoginComponent },
+      { path: 'register', component: RegisterComponent }
     ]
   },
   { path: '', redirectTo: '', pathMatch: 'full' },
@@ -35,7 +36,8 @@ const routes: Routes = [
     AppComponent,
     PageNotFoundComponent,
     AuthComponent,
-    LoginComponent
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
