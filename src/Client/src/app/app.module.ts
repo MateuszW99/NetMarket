@@ -7,6 +7,13 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { AuthInterceptorService } from './auth/auth-interceptor.service';
 
 const routes: Routes = [
+  //AUTH GUARD ussage example
+  // {
+  //   path: 'admin',
+  //   component: AdminComponent,
+  //   canActivate: [AuthGuard],
+  //   data: { roles: [Roles.Admin] }
+  // },
   { path: '', redirectTo: '', pathMatch: 'full' },
   { path: '**', pathMatch: 'full', component: PageNotFoundComponent }
 ];
