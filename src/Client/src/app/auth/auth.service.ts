@@ -5,8 +5,8 @@ import jwt_decode from 'jwt-decode';
 import { tap } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { AuthResponse } from './authResponse';
-import { TokenClaims } from './tokenClaims';
+import { AuthResponse } from './auth-response';
+import { TokenClaims } from './token-claims';
 import { environment } from 'src/environments/environment';
 import { ApiPaths } from '../shared/api-paths';
 
