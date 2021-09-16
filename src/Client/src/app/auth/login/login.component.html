@@ -2,49 +2,27 @@
   <div class="row d-flex flex-column align-items-center">
     <div class="my-3 col-6">
       <label class="form-label" for="email">E-mail</label>
-      <input
-        formControlName="email"
-        type="email"
-        id="email"
-        class="form-control"
-      />
+      <input formControlName="email" type="email" id="email" class="form-control" />
       <span *ngIf="form.get('email').invalid && form.get('email').touched" class="form-text text-danger mb-2">
-        <span *ngIf="form.get('email').hasError('required')"
-          >E-mail is required!</span
-        >
-        <span *ngIf="form.get('email').hasError('email')"
-          >E-mail is invalid!</span
-        >
-        <span *ngIf="form.get('email').hasError('maxlength')"
-          >Email must have maximum 256 characters!</span
-        >
-      </span>
-    </div>  
-    <div class="my-3 col-6">
-      <label class="form-label" for="password">Password</label>
-      <input
-        formControlName="password"
-        type="password"
-        id="password"
-        class="form-control"
-      />
-      <span *ngIf="form.get('password').invalid && form.get('password').touched" class="form-text text-danger mb-2">
-        <span *ngIf="form.get('password').hasError('required')"
-          >Password is required!</span
-        >
-        <span *ngIf="form.get('password').hasError('minlength')"
-          >Password must have minimum 8 characters!</span
-        >
-        <span *ngIf="form.get('password').hasError('maxlength')"
-          >Password must have maximum 64 characters!</span
-        >
+        <span *ngIf="form.get('email').hasError('required')">E-mail is required!</span>
+        <span *ngIf="form.get('email').hasError('email')">E-mail is invalid!</span>
+        <span *ngIf="form.get('email').hasError('maxlength')">Email must have maximum 256 characters!</span>
       </span>
     </div>
-      <button class="btn btn-info my-3 w-25" type="submit" [disabled]="!form.valid">
-        Log In
-      </button>
+    <div class="my-3 col-6">
+      <label class="form-label" for="password">Password</label>
+      <input formControlName="password" type="password" id="password" class="form-control" />
+      <span *ngIf="form.get('password').invalid && form.get('password').touched" class="form-text text-danger mb-2">
+        <span *ngIf="form.get('password').hasError('required')">Password is required!</span>
+        <span *ngIf="form.get('password').hasError('minlength')">Password must have minimum 8 characters!</span>
+        <span *ngIf="form.get('password').hasError('maxlength')">Password must have maximum 64 characters!</span>
+      </span>
+    </div>
+    <button class="btn btn-info my-3 w-25" type="submit" [disabled]="!form.valid">
+      Log In
+    </button>
   </div>
- 
+
 </form>
 <div class="alert alert-danger" role="alert" *ngIf="errorMessage">
   {{ errorMessage }}
