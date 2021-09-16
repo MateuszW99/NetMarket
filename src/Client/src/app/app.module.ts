@@ -9,6 +9,7 @@ import { AuthComponent } from './auth/auth.component';
 import { LoginComponent } from './auth/login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from './auth/register/register.component';
+import { LandingPageComponent } from './landing-page/landing-page.component';
 
 const routes: Routes = [
   //AUTH GUARD ussage example
@@ -18,6 +19,7 @@ const routes: Routes = [
   //   canActivate: [AuthGuard],
   //   data: { roles: [Roles.Admin] }
   // },
+  { path: '', component: LandingPageComponent, pathMatch: 'full' },
   {
     path: 'auth',
     component: AuthComponent,
@@ -27,7 +29,6 @@ const routes: Routes = [
       { path: 'register', component: RegisterComponent }
     ]
   },
-  { path: '', redirectTo: '', pathMatch: 'full' },
   { path: '**', pathMatch: 'full', component: PageNotFoundComponent }
 ];
 
@@ -37,7 +38,8 @@ const routes: Routes = [
     PageNotFoundComponent,
     AuthComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    LandingPageComponent
   ],
   imports: [
     BrowserModule,
