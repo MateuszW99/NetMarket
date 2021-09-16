@@ -7,6 +7,8 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { AuthResponse } from './authResponse';
 import { TokenClaims } from './tokenClaims';
+import { environment } from 'src/environments/environment';
+import { ApiPaths } from '../shared/api-paths';
 
 @Injectable({
   providedIn: 'root'
@@ -22,11 +24,14 @@ export class AuthService {
     password: string
   ): Observable<AuthResponse> {
     return this.http
-      .post<AuthResponse>('https://localhost5001/api' + '/identity/register', {
-        username,
-        email,
-        password
-      })
+      .post<AuthResponse>(
+        environment.apiUrl + ApiPaths.Identity + ApiPaths.Register,
+        {
+          username,
+          email,
+          password
+        }
+      )
       .pipe(
         tap((resData) => {
           console.log(resData);
@@ -40,10 +45,13 @@ export class AuthService {
 
   login(email: string, password: string): Observable<AuthResponse> {
     return this.http
-      .post<AuthResponse>('https://localhost:5001/api' + '/identity/login', {
-        email,
-        password
-      })
+      .post<AuthResponse>(
+        environment.apiUrl + ApiPaths.Identity + ApiPaths.Login,
+        {
+          email,
+          password
+        }
+      )
       .pipe(
         tap((resData) => {
           if (resData.token) {
