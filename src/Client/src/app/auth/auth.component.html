@@ -1,14 +1,24 @@
-<div class="row">
-    <div class="offset-md-4 col-md-4 col-12 mt-5 border border-dark">
-      <div class="d-flex justify-content-center my-3">
-        <div role="button" class="border-bottom border-3 border-dark d-flex align-items-end justify-content-center w-100">
-          <span class="h2 ">Sign up</span> 
-        </div>
-        <div role="button" class="border-bottom border-3 border-info d-flex align-items-end justify-content-center w-100">
-          <span class="text-info h2">Log in</span> 
-        </div>
-      </div>
-      <router-outlet></router-outlet>
+<div class="container-fluid">
+
+  <div class="row">
+    <div role="button" class="border-bottom text-center d-flex align-items-center justify-content-center my-3" routerLink="">
+      <h1 class="me-2">NetMarket</h1>
+      <img src="/assets/logo.svg" alt="logo" class="ms-2" height="200px">
     </div>
-</div>
+  </div>
   
+  <div class="row">
+      <div class="offset-md-4 col-md-4 col-12 mt-5 border border-dark">
+        <div class="d-flex justify-content-center my-3">
+          <div role="button" class="border-bottom border-3 border-dark d-flex align-items-end justify-content-center w-100">
+            <span class="h2 ">Sign up</span> 
+          </div>
+          <div role="button" class="border-bottom border-3 border-info d-flex align-items-end justify-content-center w-100">
+            <span class="text-info h2">Log in</span> 
+          </div>
+        </div>
+        <router-outlet></router-outlet>
+      </div>
+  </div>
+  
+</div>
