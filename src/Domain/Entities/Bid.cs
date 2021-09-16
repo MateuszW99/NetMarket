@@ -7,11 +7,12 @@ namespace Domain.Entities
     public class Bid : BaseEntity, IHasDomainEvent
     {        
         public Guid Id { get; init; }
-        public Guid ItemSizeId { get; set; }
-        public ItemSize ItemSize { get; set; }
+        public Guid ItemId { get; set; }
+        public Item Item { get; set; }
+        public Guid SizeId { get; set; }
+        public Size Size { get; set; }
         public decimal Price { get; set; }
-        public bool IsCanceled { get; set; }
-        
+
         public List<DomainEvent> DomainEvents { get; set; }
     }
 }

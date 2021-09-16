@@ -88,10 +88,8 @@ namespace Api.Common
             services.AddAuthorization(options =>
             {
                 options.AddPolicy(Policies.UserAccess, 
-                    policy => policy.RequireAssertion(context =>
-                        context.User.IsInRole(Roles.User) ||
-                        context.User.IsInRole(Roles.Supervisor) ||
-                        context.User.IsInRole(Roles.Admin)));  
+                    policy => policy.RequireAssertion(context => 
+                        context.User.IsInRole(Roles.User)));  
                 
                 options.AddPolicy(Policies.SupervisorAccess, 
                     policy => policy.RequireAssertion(context =>

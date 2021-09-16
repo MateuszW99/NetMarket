@@ -74,6 +74,14 @@ namespace Application.IntegrationTests
                             context.Items.AddRangeAsync(items).Wait();
                             context.SaveChangesAsync(CancellationToken.None).Wait();
                         }
+
+                        if (!context.Sizes.Any())
+                        {
+                            var sizeSeeder = scopedServices.GetRequiredService<ISeeder<List<Size>>>();
+                            var sizes = sizeSeeder.SeedAsync().Result;
+                            context.Sizes.AddRange(sizes);
+                            context.SaveChangesAsync(CancellationToken.None).Wait();
+                        }
                     }
                     catch (Exception ex)
                     {

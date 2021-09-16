@@ -31,7 +31,6 @@ namespace Infrastructure.Persistence
         public DbSet<Bid> Bids { get; set; }
         public DbSet<Brand> Brands { get; set; }
         public DbSet<Item> Items { get; set; }
-        public DbSet<ItemSize> ItemSizes { get; set; }
         public DbSet<Size> Sizes { get; set; }
         public DbSet<Transaction> Transactions { get; set; }
         public DbSet<UserSettings> UserSettings { get; set; }

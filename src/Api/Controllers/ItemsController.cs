@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Application.Common.Models;
+using Application.Models.ApiModels.Items;
 using Application.Models.ApiModels.Items.Commands;
 using Application.Models.ApiModels.Items.Queries;
 using Application.Models.DTOs;
@@ -22,7 +23,7 @@ namespace Api.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<ItemObject>> GetItemById(string id)
+        public async Task<ActionResult<ItemCard>> GetItemById(string id)
         {
             var result = await _mediator.Send(new GetItemByIdQuery(id));
             return Ok(result);
@@ -64,7 +65,7 @@ namespace Api.Controllers
         
         [HttpPut("{id}")]
         [Authorize(Policy = "AdminAccess")]
-        public async Task<ActionResult> CreateItem(string id, [FromBody] UpdateItemCommand command)
+        public async Task<ActionResult> UpdateItem(string id, [FromBody] UpdateItemCommand command)
         {
             await _mediator.Send(command);
             return Ok();

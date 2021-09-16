@@ -39,7 +39,8 @@ namespace Application.UnitTests.Handlers.ItemHandlers
                 ImageUrl = "www.google.com",
                 SmallImageUrl = "www.google.com",
                 ThumbUrl = "www.google.com",
-                Brand = new BrandObject() { Name = "Nike" }
+                Brand = new BrandObject() { Name = "Nike" },
+                Category = "Sneakers"
             };
 
             var commandHandler = new CreateItemCommandHandler(null, null);
@@ -129,7 +130,8 @@ namespace Application.UnitTests.Handlers.ItemHandlers
                 ImageUrl = "www.google.com",
                 SmallImageUrl = "www.google.com",
                 ThumbUrl = "www.google.com",
-                Brand = new BrandObject() { Name = "Nike" }
+                Brand = new BrandObject() { Name = "Nike" },
+                Category = "Sneakers"
             };
 
             var commandHandler = new UpdateItemCommandHandler(null, null);

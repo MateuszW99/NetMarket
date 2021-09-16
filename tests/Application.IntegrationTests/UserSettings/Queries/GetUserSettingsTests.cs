@@ -27,8 +27,8 @@ namespace Application.IntegrationTests.UserSettings.Queries
         [Fact]
         public async Task ShouldReturnEmptyUserSettingsObjectWhenUserHasNotCreatedTheSettings()
         {
-            var userId = await AuthHelper.RunAsDefaultUserAsync(_factory);
-            var authResult = _identityService.LoginAsync(DefaultUser.Email, DefaultUser.Password);
+            var userId = await AuthHelper.RunAsFirstUserAsync(_factory);
+            var authResult = _identityService.LoginAsync(FirstUser.Email, FirstUser.Password);
 
             var request = new HttpRequestMessage(HttpMethod.Get, new Uri($"{Address.ApiBase}/{Address.UserSettings}", UriKind.Relative));
             request.Content = new StringContent(JsonConvert.SerializeObject(new GetUserSettingsQuery()), Encoding.UTF8, "application/json");
@@ -55,8 +55,8 @@ namespace Application.IntegrationTests.UserSettings.Queries
         [Fact]
         public async Task ShouldReturnNonEmptyUserSettingsObjectWhenUserHasCreatedTheSettings()
         {
-            var userId = await AuthHelper.RunAsDefaultUserAsync(_factory);
-            var authResult = _identityService.LoginAsync(DefaultUser.Email, DefaultUser.Password);
+            var userId = await AuthHelper.RunAsFirstUserAsync(_factory);
+            var authResult = _identityService.LoginAsync(FirstUser.Email, FirstUser.Password);
             
             // First, create user settings
             var command = new UpdateUserSettingsCommand()

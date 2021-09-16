@@ -128,8 +128,8 @@ namespace Application.IntegrationTests.AdminPanel.Queries
         [Fact]
         public async Task DefaultUserShouldNotGetAllTransactions()
         {
-            await AuthHelper.RunAsDefaultUserAsync(_factory);
-            var authResult = await _identityService.LoginAsync(DefaultUser.Email, DefaultUser.Password);
+            await AuthHelper.RunAsFirstUserAsync(_factory);
+            var authResult = await _identityService.LoginAsync(FirstUser.Email, FirstUser.Password);
 
             var query = new GetTransactionsQuery()
             {
