@@ -66,7 +66,10 @@ export class RegisterComponent implements OnInit {
         (error) => {
           this.isLoading = false;
           console.log(error);
-          if (error.error.errorMessages.length > 0) {
+          if (
+            typeof error.error !== 'object' &&
+            error.error.errorMessages.length > 0
+          ) {
             this.errorMessage = error.error.errorMessages[0];
           } else if (typeof error.error === 'object') {
             this.errorMessage = 'Something went wrong';
