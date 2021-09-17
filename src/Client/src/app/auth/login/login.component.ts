@@ -25,13 +25,18 @@ export class LoginComponent implements OnInit {
         Validators.minLength(8),
         Validators.maxLength(64),
         Validators.required
-      ])
+      ]),
+      rememberMe: new FormControl(true)
     });
   }
 
   onLogin(): void {
     this.authService
-      .login(this.form.value.email, this.form.value.password)
+      .login(
+        this.form.value.email,
+        this.form.value.password,
+        this.form.value.rememberMe
+      )
       .subscribe(
         () => {
           this.errorMessage = '';

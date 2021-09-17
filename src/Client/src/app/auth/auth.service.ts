@@ -37,13 +37,17 @@ export class AuthService {
           console.log(resData);
 
           if (resData.token) {
-            this.handleAuthentication(resData.token);
+            this.handleAuthentication(resData.token, true);
           }
         })
       );
   }
 
-  login(email: string, password: string): Observable<AuthResponse> {
+  login(
+    email: string,
+    password: string,
+    rememberMe: boolean
+  ): Observable<AuthResponse> {
     return this.http
       .post<AuthResponse>(
         environment.apiUrl + ApiPaths.Identity + ApiPaths.Login,
@@ -55,7 +59,7 @@ export class AuthService {
       .pipe(
         tap((resData) => {
           if (resData.token) {
-            this.handleAuthentication(resData.token);
+            this.handleAuthentication(resData.token, rememberMe);
           }
         })
       );
@@ -65,29 +69,32 @@ export class AuthService {
     this.user.next(null);
     this.router.navigate(['/auth']);
     localStorage.removeItem('userData');
+    localStorage.removeItem('rememberMe');
   }
 
   autoLogin(): void {
-    // get user from local storage
-    const userData = JSON.parse(localStorage.getItem('userData'));
-    if (!userData) {
-      return;
-    }
+    if (JSON.parse(localStorage.getItem('RememberMe')) !== null) {
+      // get user from local storage
+      const userData = JSON.parse(localStorage.getItem('userData'));
+      if (!userData) {
+        return;
+      }
 
-    const loadedUser = new User(
-      userData.id,
-      userData.email,
-      userData.role,
-      userData._token,
-      userData._tokenExpirationDate
-    );
+      const loadedUser = new User(
+        userData.id,
+        userData.email,
+        userData.role,
+        userData._token,
+        userData._tokenExpirationDate
+      );
 
-    if (loadedUser.token) {
-      this.user.next(loadedUser);
+      if (loadedUser.token) {
+        this.user.next(loadedUser);
+      }
     }
   }
 
-  private handleAuthentication(token: string): void {
+  private handleAuthentication(token: string, rememberMe: boolean): void {
     const decodedToken: TokenClaims = jwt_decode(token);
 
     console.log(decodedToken.id);
@@ -107,5 +114,9 @@ export class AuthService {
     this.user.next(user);
 
     localStorage.setItem('userData', JSON.stringify(user));
+
+    if (rememberMe) {
+      localStorage.setItem('rememberMe', JSON.stringify(rememberMe));
+    }
   }
 }
