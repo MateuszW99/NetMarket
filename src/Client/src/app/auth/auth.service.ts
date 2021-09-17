@@ -27,8 +27,8 @@ export class AuthService {
       .post<AuthResponse>(
         environment.apiUrl + ApiPaths.Identity + ApiPaths.Register,
         {
-          username,
           email,
+          username,
           password
         }
       )

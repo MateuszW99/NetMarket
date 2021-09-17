@@ -50,8 +50,8 @@ export class RegisterComponent implements OnInit {
     this.isLoading = true;
     this.authService
       .register(
-        this.form.value.username,
         this.form.value.email,
+        this.form.value.username,
         this.form.value.passwords.password
       )
       .subscribe(
@@ -66,8 +66,13 @@ export class RegisterComponent implements OnInit {
         (error) => {
           this.isLoading = false;
           console.log(error);
-
-          this.errorMessage = error.error;
+          if (error.error.errorMessages.length > 0) {
+            this.errorMessage = error.error.errorMessages[0];
+          } else if (typeof error.error === 'object') {
+            this.errorMessage = 'Something went wrong';
+          } else {
+            this.errorMessage = error.error;
+          }
         }
       );
   }
