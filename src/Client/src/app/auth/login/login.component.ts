@@ -11,6 +11,7 @@ import { AuthService } from '../auth.service';
 export class LoginComponent implements OnInit {
   form: FormGroup;
   errorMessage = '';
+  isLoading = false;
 
   constructor(private authService: AuthService, private router: Router) {}
 
@@ -31,6 +32,8 @@ export class LoginComponent implements OnInit {
   }
 
   onLogin(): void {
+    this.isLoading = true;
+
     this.authService
       .login(
         this.form.value.email,
@@ -41,9 +44,11 @@ export class LoginComponent implements OnInit {
         () => {
           this.errorMessage = '';
           this.form.reset();
+          this.isLoading = false;
           this.router.navigate(['/']);
         },
         (error) => {
+          this.isLoading = false;
           console.log(error);
 
           this.errorMessage = error.error;

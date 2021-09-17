@@ -26,9 +26,12 @@
         </label>
       </div>
     </div>
-    <button class="btn btn-info my-3 w-25" type="submit" [disabled]="!form.valid">
+    <button class="btn btn-info my-3 w-25" type="submit" [disabled]="!form.valid || isLoading">
       Log In
     </button>
+    <div class="d-flex justify-content-center mt-2" *ngIf="isLoading">
+      <app-loading-spinner ></app-loading-spinner>
+    </div>
   </div>
 
 </form>

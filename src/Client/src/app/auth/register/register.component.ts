@@ -12,6 +12,7 @@ import { AuthService } from '../auth.service';
 export class RegisterComponent implements OnInit {
   form: FormGroup;
   errorMessage = '';
+  isLoading = false;
 
   constructor(private authService: AuthService, private router: Router) {}
 
@@ -46,6 +47,7 @@ export class RegisterComponent implements OnInit {
   }
 
   onRegister(): void {
+    this.isLoading = true;
     this.authService
       .register(
         this.form.value.username,
@@ -58,9 +60,11 @@ export class RegisterComponent implements OnInit {
 
           this.errorMessage = '';
           this.form.reset();
+          this.isLoading = false;
           this.router.navigate(['/']);
         },
         (error) => {
+          this.isLoading = false;
           console.log(error);
 
           this.errorMessage = error.error;
