@@ -7,6 +7,8 @@ RUN apt-get install -y nodejs
 COPY ./*.sln ./
 COPY src/*/*.csproj ./
 RUN for file in $(ls *.csproj); do mkdir -p src/${file%.*}/ && mv $file src/${file%.*}/; done
+COPY tests/*/*.csproj ./
+RUN for file in $(ls *.csproj); do mkdir -p tests/${file%.*}/ && mv $file tests/${file%.*}/; done
 # Restore project with layers
 RUN dotnet restore
 

@@ -1,6 +1,7 @@
 [
     {
         "id": "f3f899b0-6571-4f75-9207-f61190e17794",
+        "category": "Sneakers",
         "name": "Jordan 4 Retro University Blue",
         "brand": "Jordan",
         "media": {
@@ -22,6 +23,7 @@
     {
         "id": "26e58c99-ab90-4f5b-9c2f-9d8d6f42628d",
         "name": "Dior x Jordan Wings Card Holder (4 Card Slot) Navy",
+        "category": "Accessories",
         "brand": "Dior",
         "media": {
             "imageUrl": "https://images.stockx.com/images/Dior-x-Jordan-Wings-Card-Holder-4-Card-Slot-Navy.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&trimcolor=ffffff&q=90&dpr=2&updated_at=1606319174",
@@ -41,6 +43,7 @@
     },
     {
         "id": "ad15c037-6376-48d5-899c-6fce32131933",
+        "category": "Accessories",
         "name": "Dior x Jordan Wings Zip Wallet (4 Card Slot) Navy",
         "brand": "Dior",
         "media": {
@@ -61,6 +64,7 @@
     },
     {
         "id": "89d683ae-6801-4168-89bc-c153e0da3b3e",
+        "category": "Accessories",
         "name": "Dior x Jordan Wings Card Holder (4 Card Slot) Grey",
         "brand": "Dior",
         "media": {
@@ -81,6 +85,7 @@
     },
     {
         "id": "504a09f9-cf30-47b3-b388-e5791f6e3599",
+        "category": "Accessories",
         "name": "Dior x Jordan Wings Zip Wallet (4 Card Slot) Grey",
         "brand": "Dior",
         "media": {
@@ -101,6 +106,7 @@
     },
     {
         "id": "62fbae69-e7c9-4bad-940f-e420c7be4bdd",
+        "category": "Sneakers",
         "name": "Jordan 4 Retro University Blue (GS)",
         "brand": "Jordan",
         "media": {
@@ -121,6 +127,7 @@
     },
     {
         "id": "da08a7c1-4809-4963-90c2-572b57b73f97",
+        "category": "Sneakers",
         "name": "Jordan 4 Retro University Blue (TD)",
         "brand": "Jordan",
         "media": {
@@ -141,6 +148,7 @@
     },
     {
         "id": "d514a683-46e2-4bc7-9027-fbcdaaaa9005",
+        "category": "Sneakers",
         "name": "Jordan 4 Retro Fire Red (2020)",
         "brand": "Jordan",
         "media": {
@@ -162,6 +170,7 @@
     {
         "id": "e83e3ce3-5cfe-473a-b562-d151545f6e22",
         "name": "Jordan 4 Retro University Blue (PS)",
+        "category": "Sneakers",
         "brand": "Jordan",
         "media": {
             "imageUrl": "https://images.stockx.com/images/Air-Jordan-4-Retro-University-Blue-PS.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1619642634",
@@ -182,6 +191,7 @@
     {
         "id": "935723d7-6fdd-4ea5-aa6b-4e19db4e7bd1",
         "name": "Jordan 4 Retro Taupe Haze",
+        "category": "Sneakers",
         "brand": "Jordan",
         "media": {
             "imageUrl": "https://images.stockx.com/images/Air-Jordan-4-Retro-Taupe-Haze-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1611952467",
@@ -202,6 +212,7 @@
     {
         "id": "691eb2dd-73d7-437f-9b45-692f69530b37",
         "name": "Jordan 4 Retro Taupe Haze (GS)",
+        "category": "Sneakers",
         "brand": "Jordan",
         "media": {
             "imageUrl": "https://images.stockx.com/images/Air-Jordan-4-Retro-Taupe-Haze-GS-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1615908028",
@@ -222,6 +233,7 @@
     {
         "id": "08243ccb-3e4c-4aa3-9b27-245d77cbd8e6",
         "name": "Jordan 4 Retro PSG Paris Saint-Germain",
+        "category": "Sneakers",
         "brand": "Jordan",
         "media": {
             "imageUrl": "https://images.stockx.com/images/Air-Jordan-4-Retro-PSG-Paris-Saint-Germain-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1607050018",
@@ -242,6 +254,7 @@
     {
         "id": "eba08f43-3e74-4eac-8e5c-fab805056654",
         "name": "Jordan 4 Retro Fire Red 2020 (GS)",
+        "category": "Sneakers",
         "brand": "Jordan",
         "media": {
             "imageUrl": "https://images.stockx.com/images/Air-Jordan-4-Retro-Fire-Red-2020-GS.png?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1605647348",
@@ -262,6 +275,7 @@
     {
         "id": "1501dffb-d504-4b7d-b0f7-ad01260bae4f",
         "name": "Jordan 4 Retro Starfish (W)",
+        "category": "Sneakers",
         "brand": "Jordan",
         "media": {
             "imageUrl": "https://images.stockx.com/images/Air-Jordan-4-Retro-Starfish-W-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1611766779",
@@ -282,6 +296,7 @@
     {
         "id": "7bd3982c-f1f4-41f8-a884-8e14eacacba8",
         "name": "Jordan 4 Retro SE 95 Neon",
+        "category": "Sneakers",
         "brand": "Jordan",
         "media": {
             "imageUrl": "https://images.stockx.com/images/Air-Jordan-4-Retro-SE-Neon-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1606315690",
@@ -302,6 +317,7 @@
     {
         "id": "253f8ae0-e498-4613-bb87-de479e4e9c63",
         "name": "Jordan 4 Retro Off-White Sail (W)",
+        "category": "Sneakers",
         "brand": "Jordan",
         "media": {
             "imageUrl": "https://images.stockx.com/images/Air-Jordan-4-Retro-Off-White-Sail-W-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1607655526",
@@ -322,6 +338,7 @@
     {
         "id": "e158a310-414c-40fd-b267-6e45536ed9b2",
         "name": "Jordan 4 Retro Black Cat (2020)",
+        "category": "Sneakers",
         "brand": "Jordan",
         "media": {
             "imageUrl": "https://images.stockx.com/images/Air-Jordan-4-Retro-Black-Cat-2020-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1606315877",
@@ -342,6 +359,7 @@
     {
         "id": "60daaf70-b945-40c2-a13f-f4cd71af16eb",
         "name": "Jordan 4 Retro Metallic Purple",
+        "category": "Sneakers",
         "brand": "Jordan",
         "media": {
             "imageUrl": "https://images.stockx.com/images/Air-Jordan-4-Retro-White-Court-Purple-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1606315846",
@@ -362,6 +380,7 @@
     {
         "id": "d69d3680-600f-4853-a0fc-bb511565cf31",
         "name": "Jordan Why Not Zer0.4 Marathon",
+        "category": "Sneakers",
         "brand": "Jordan",
         "media": {
             "imageUrl": "https://images.stockx.com/images/Air-Jordan-Why-Not-Zer04-Marathon.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1618438256",
@@ -382,6 +401,7 @@
     {
         "id": "f5712f8a-a2e2-497c-8ab7-299365c2a754",
         "name": "Jordan 4 Retro Bred (2019)",
+        "category": "Sneakers",
         "brand": "Jordan",
         "media": {
             "imageUrl": "https://images.stockx.com/images/Air-Jordan-4-Retro-Black-Cement-2019-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1606316608",
@@ -402,6 +422,7 @@
     {
         "id": "c35a19e9-cc96-42a3-b489-02acd5321690",
         "name": "Nike Air Max 90 Infrared (2020)",
+        "category": "Sneakers",
         "brand": "Nike",
         "media": {
             "imageUrl": "https://images.stockx.com/images/Nike-Air-Max-90-Infrared-2020-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1609366208",
@@ -422,6 +443,7 @@
     {
         "id": "b2330041-6173-41e6-a681-a72a8ac674e4",
         "name": "Nike Air Max 90 NRG Bacon (2021)",
+        "category": "Sneakers",
         "brand": "Nike",
         "media": {
             "imageUrl": "https://images.stockx.com/images/Nike-Air-Max-90-NRG-Bacon-2021-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1616604639",
@@ -442,6 +464,7 @@
     {
         "id": "e2d7ec6e-4658-4a80-ab53-bc7695ef064d",
         "name": "Nike Air Max 90 Surplus Desert Camo",
+        "category": "Sneakers",
         "brand": "Nike",
         "media": {
             "imageUrl": "https://images.stockx.com/images/Nike-Air-Max-90-Surplus-Desert-Camo.png?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1608515571",
@@ -462,6 +485,7 @@
     {
         "id": "4550dc51-f3bc-4b00-b68a-6d6c763c1aeb",
         "name": "Nike Air Max 90 Recraft Wolf Grey",
+        "category": "Sneakers",
         "brand": "Nike",
         "media": {
             "imageUrl": "https://images.stockx.com/images/Nike-Air-Max-90-Recraft-Wolf-Grey-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1608515425",
@@ -482,6 +506,7 @@
     {
         "id": "305fd68d-66bf-43fa-9b88-9e2cfef7597c",
         "name": "Nike Air Max 90 Michigan Navy",
+        "category": "Sneakers",
         "brand": "Nike",
         "media": {
             "imageUrl": "https://images.stockx.com/images/Nike-Air-Max-90-Michigan-Navy.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1615049607",
@@ -502,6 +527,7 @@
     {
         "id": "78173731-9387-4d2e-9424-03ac368bd170",
         "name": "Nike Air Max 90 OG Volt (2020)",
+        "category": "Sneakers",
         "brand": "Nike",
         "media": {
             "imageUrl": "https://images.stockx.com/images/Nike-Air-Max-90-30th-Anniversary-White-Particle-Grey-Volt-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1606323250",
@@ -522,6 +548,7 @@
     {
         "id": "7c5474f7-5318-4b7c-96ba-786951a4d095",
         "name": "Nike Air Max 90 Valentines Day (2021) (W)",
+        "category": "Sneakers",
         "brand": "Nike",
         "media": {
             "imageUrl": "https://images.stockx.com/images/Nike-Air-Max-90-Valentines-Day-2021-W.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1612007922",
@@ -542,6 +569,7 @@
     {
         "id": "c9d17721-84ce-4d82-bacd-676a41d56366",
         "name": "Nike Air Max 90 Surplus Cargo Khaki",
+        "category": "Sneakers",
         "brand": "Nike",
         "media": {
             "imageUrl": "https://images.stockx.com/images/Nike-Air-Max-90-Surplus-Cargo-Khaki-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1609443273",
@@ -562,6 +590,7 @@
     {
         "id": "8535c679-938d-4d36-8b52-45a775cb166a",
         "name": "Nike Air Max 90 Recraft Triple White",
+        "category": "Sneakers",
         "brand": "Nike",
         "media": {
             "imageUrl": "https://images.stockx.com/images/Nike-Air-Max-90-Recraft-Triple-White.png?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1608514572",
@@ -582,6 +611,7 @@
     {
         "id": "f45458fe-3adb-4add-8071-b3e9fc326c27",
         "name": "Nike Air Max 90 LX 90s Dancefloor Green (W)",
+        "category": "Sneakers",
         "brand": "Nike",
         "media": {
             "imageUrl": "https://images.stockx.com/images/Nike-Air-Max-90-LX-90s-Dancefloor-Green-W.png?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1608516114",
@@ -602,6 +632,7 @@
     {
         "id": "a16b167b-b542-4b47-ad7b-b3d225a6ea85",
         "name": "Nike Air Max 90 Recraft Royal",
+        "category": "Sneakers",
         "brand": "Nike",
         "media": {
             "imageUrl": "https://images.stockx.com/images/Nike-Air-Max-90-Recraft-Royal.png?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1608515076",
@@ -622,6 +653,7 @@
     {
         "id": "89b73f9d-2ad7-493c-a810-8da781a31b80",
         "name": "Nike Air Max 90 Halloween (2020)",
+        "category": "Sneakers",
         "brand": "Nike",
         "media": {
             "imageUrl": "https://images.stockx.com/images/Nike-Air-Max-90-Halloween-2020-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1609366017",
@@ -642,6 +674,7 @@
     {
         "id": "87536cb7-848e-41e7-8a12-4d7ec114adfb",
         "name": "Nike Air Max 90 PRM Light Smoke Grey",
+        "category": "Sneakers",
         "brand": "Nike",
         "media": {
             "imageUrl": "https://images.stockx.com/images/Nike-Air-Max-90-PRM-Light-Smoke-Grey.png?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1608161695",
@@ -662,6 +695,7 @@
     {
         "id": "f68bfe7f-ca2f-45b8-b9c5-fe64fcbc7dac",
         "name": "Nike Air Max 90 Recraft Iron Grey",
+        "category": "Sneakers",
         "brand": "Nike",
         "media": {
             "imageUrl": "https://images.stockx.com/images/Nike-Air-Max-90-Recraft-Iron-Grey.png?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1608513736",
@@ -682,6 +716,7 @@
     {
         "id": "ef6d55ad-1f8b-4db6-ab51-269c68c9ea0e",
         "name": "Nike Air Max 90 St Patricks Day (2021)",
+        "category": "Sneakers",
         "brand": "Nike",
         "media": {
             "imageUrl": "https://images.stockx.com/images/Nike-Air-Max-90-St-Patricks-Day-2021.png?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1611008700",
@@ -702,6 +737,7 @@
     {
         "id": "94b1e7d0-144f-4264-8f30-e9b7d8f1b6f6",
         "name": "Nike Air Max 90 Metallic Silver 2020 (W)",
+        "category": "Sneakers",
         "brand": "Nike",
         "media": {
             "imageUrl": "https://images.stockx.com/images/Nike-Air-Max-90-Metallic-Silver-2020-W.png?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1608521050",
@@ -722,6 +758,7 @@
     {
         "id": "ef3ec874-9073-4a6e-84b1-ddca8be6fb31",
         "name": "Nike Air Max 90 Fried Chicken",
+        "category": "Sneakers",
         "brand": "Nike",
         "media": {
             "imageUrl": "https://images.stockx.com/images/Nike-Air-Max-90-Fried-Chicken.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1614290857",
@@ -742,6 +779,7 @@
     {
         "id": "397781a0-bed8-4871-8885-b268cfcf83ef",
         "name": "Nike Air Max 90 Recraft Hyper Grape",
+        "category": "Sneakers",
         "brand": "Nike",
         "media": {
             "imageUrl": "https://images.stockx.com/images/Nike-Air-Max-90-Recraft-Hyper-Grape.png?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1607668822",
@@ -762,6 +800,7 @@
     {
         "id": "ee92167b-b780-45d9-800a-c52749ee0ccb",
         "name": "Nike Air Max 90 Reverse Duck Camo (2020)",
+        "category": "Sneakers",
         "brand": "Nike",
         "media": {
             "imageUrl": "https://images.stockx.com/images/Nike-Air-Max-90-Reverse-Duck-Camo-2020.png?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1606324400",
@@ -782,6 +821,7 @@
     {
         "id": "eeeca2c5-bb82-4f94-8d91-91347608578c",
         "name": "Nike Air Max 90 Recraft Total Orange",
+        "category": "Sneakers",
         "brand": "Nike",
         "media": {
             "imageUrl": "https://images.stockx.com/images/Nike-Air-Max-90-Recraft-Total-Orange-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1608515399",
@@ -802,6 +842,7 @@
     {
         "id": "f27be8fd-2e05-4caa-a70e-fe787aa6283e",
         "name": "adidas Yeezy Boost 700 Bright Blue",
+        "category": "Sneakers",
         "brand": "adidas",
         "media": {
             "imageUrl": "https://images.stockx.com/images/adidas-Yeezy-Boost-700-Bright-Blue-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1618932100",
@@ -822,6 +863,7 @@
     {
         "id": "185ecb6f-2402-467c-8db4-c846bf8cdb7a",
         "name": "adidas Yeezy Boost 350 V2 Black Red (2017/2020)",
+        "category": "Sneakers",
         "brand": "adidas",
         "media": {
             "imageUrl": "https://images.stockx.com/images/Adidas-Yeezy-Boost-350-V2-Core-Black-Red-2017-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1606320792",
@@ -842,6 +884,7 @@
     {
         "id": "715fc618-f9a3-4bc2-90c2-bbfb9f24e9dd",
         "name": "adidas Yeezy Boost 350 V2 Carbon",
+        "category": "Sneakers",
         "brand": "adidas",
         "media": {
             "imageUrl": "https://images.stockx.com/images/adidas-Yeezy-Boost-350-V2-Carbon-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1609432836",
@@ -862,6 +905,7 @@
     {
         "id": "2331dbb6-81d0-409c-840c-3d813cc94194",
         "name": "adidas Yeezy 500 Utility Black",
+        "category": "Sneakers",
         "brand": "adidas",
         "media": {
             "imageUrl": "https://images.stockx.com/images/Adidas-Yeezy-500-Utility-Black-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1606319127",
@@ -882,6 +926,7 @@
     {
         "id": "1a5a329c-43ea-4a41-8bfb-a3798ce4138b",
         "name": "adidas Yeezy 500 Enflame",
+        "category": "Sneakers",
         "brand": "adidas",
         "media": {
             "imageUrl": "https://images.stockx.com/images/adidas-Yeezy-500-Enflame-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1619806749",
@@ -902,6 +947,7 @@
     {
         "id": "2ed1d9de-22c4-4801-b078-9d9a0217f030",
         "name": "adidas Yeezy 700 V3 Arzareth",
+        "category": "Sneakers",
         "brand": "adidas",
         "media": {
             "imageUrl": "https://images.stockx.com/images/adidas-Yeezy-700-V3-Arzareth-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1606323306",
@@ -922,6 +968,7 @@
     {
         "id": "c24cd262-21b0-447a-bbd6-6f1ce15be54c",
         "name": "adidas Yeezy 700 V3 Alvah",
+        "category": "Sneakers",
         "brand": "adidas",
         "media": {
             "imageUrl": "https://images.stockx.com/images/adidas-Yeezy-Boost-700-V3-Alvah-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1606322175",
@@ -942,6 +989,7 @@
     {
         "id": "73913591-0306-4c48-950f-382eda6c0775",
         "name": "adidas Yeezy Boost 350 V2 Fade",
+        "category": "Sneakers",
         "brand": "adidas",
         "media": {
             "imageUrl": "https://images.stockx.com/images/adidas-Yeezy-Boost-350-V2-Yecher-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1609349759",
@@ -962,6 +1010,7 @@
     {
         "id": "4acf929d-cb2c-458b-bfd5-1d4260232a48",
         "name": "adidas Yeezy Boost 350 V2 Sulfur",
+        "category": "Sneakers",
         "brand": "adidas",
         "media": {
             "imageUrl": "https://images.stockx.com/images/adidas-Yeezy-Boost-350-V2-Sulfur.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1606318341",
@@ -982,6 +1031,7 @@
     {
         "id": "8b762a44-93e8-41e7-8383-9080c5476dbc",
         "name": "adidas Yeezy Calabasas Track Pant Umber/Core",
+        "category": "Clothes",
         "brand": "adidas",
         "media": {
             "imageUrl": "https://images.stockx.com/images/adidas-Yeezy-Calabasas-Track-Pant-Umber-Core.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1606322902",
@@ -1002,6 +1052,7 @@
     {
         "id": "f3681691-33e5-44b9-bca8-13acca5615b0",
         "name": "adidas Yeezy Calabasas Track Pant Core/Mink",
+        "category": "Clothes",
         "brand": "adidas",
         "media": {
             "imageUrl": "https://images.stockx.com/images/adidas-Yeezy-Calabasas-Track-Pant-Core-Mink.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1606324380",
@@ -1022,6 +1073,7 @@
     {
         "id": "176409b2-977e-4272-b02b-8fab93796e8d",
         "name": "adidas Yeezy 700 V3 Azael",
+        "category": "Sneakers",
         "brand": "adidas",
         "media": {
             "imageUrl": "https://images.stockx.com/images/adidas-Yeezy-700-V3-Azael-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1606319725",
@@ -1042,6 +1094,7 @@
     {
         "id": "b17f014f-e6e6-441c-a6e4-d5d5a3a8916d",
         "name": "adidas Yeezy Boost 700 V2 Static",
+        "category": "Sneakers",
         "brand": "adidas",
         "media": {
             "imageUrl": "https://images.stockx.com/images/adidas-Yeezy-700-V2-Static-Product-1.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1606322985",
@@ -1062,6 +1115,7 @@
     {
         "id": "cfa4ef16-7dec-4ef5-9318-3793c2c8546d",
         "name": "Louis Vuitton Don Kanye Red",
+        "category": "Sneakers",
         "brand": "Louis Vuitton",
         "media": {
             "imageUrl": "https://images.stockx.com/images/Louis-Vuitton-Kanye-West-Don-Red-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1606317308",
@@ -1082,6 +1136,7 @@
     {
         "id": "bd225b2f-362f-4475-bd4a-375a23986dee",
         "name": "Yeezy Slide Resin",
+        "category": "Sneakers",
         "brand": "Yeezy",
         "media": {
             "imageUrl": "https://images.stockx.com/images/Yeezy-Slide-Resin.png?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1608522250",
@@ -1102,6 +1157,7 @@
     {
         "id": "a4041681-83a3-412d-973b-71c315a09f4f",
         "name": "adidas Yeezy Slide Pure",
+        "category": "Sneakers",
         "brand": "adidas",
         "media": {
             "imageUrl": "https://images.stockx.com/images/adidas-Yeezy-Slide-Pure-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1619634941",
@@ -1122,6 +1178,7 @@
     {
         "id": "a5d54b52-13e4-42fc-8821-71729bfb8b72",
         "name": "Yeezy Slide Core",
+        "category": "Sneakers",
         "brand": "Yeezy",
         "media": {
             "imageUrl": "https://images.stockx.com/images/Yeezy-Slide-Core-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1607669210",
@@ -1142,6 +1199,7 @@
     {
         "id": "8c14c656-a1f7-43af-9a87-d35c4561ffb5",
         "name": "adidas Yeezy Boost 350 V2 Ash Pearl",
+        "category": "Sneakers",
         "brand": "adidas",
         "media": {
             "imageUrl": "https://images.stockx.com/images/adidas-Yeezy-Boost-350-V2-Ash-Pearl-2021.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1615819888",
@@ -1162,6 +1220,7 @@
     {
         "id": "9bf78ba5-4918-4432-b869-d451fb66e7db",
         "name": "adidas Yeezy 700 V3 Kyanite",
+        "category": "Sneakers",
         "brand": "adidas",
         "media": {
             "imageUrl": "https://images.stockx.com/images/adidas-Yeezy-700-V3-Kyanite-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1617895639",
@@ -1182,6 +1241,7 @@
     {
         "id": "771e7335-ac9b-4f3d-8f5a-366bed5417ed",
         "name": "adidas Yeezy Boost 350 V2 Zyon",
+        "category": "Sneakers",
         "brand": "adidas",
         "media": {
             "imageUrl": "https://images.stockx.com/images/adidas-Yeezy-Boost-350-V2-Zyon-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1606325931",
@@ -1202,6 +1262,7 @@
     {
         "id": "50c22357-e40b-4339-ac88-360ae147bcbb",
         "name": "Nike SB Dunk High Hawaii",
+        "category": "Sneakers",
         "brand": "Nike",
         "media": {
             "imageUrl": "https://images.stockx.com/images/Nike-SB-Dunk-High-Hawaii-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1619204997",
@@ -1222,6 +1283,7 @@
     {
         "id": "8707af69-9d2b-47f4-bd53-b98501db1592",
         "name": "Nike SB Dunk Low Travis Scott (Regular Box)",
+        "category": "Sneakers",
         "brand": "Nike",
         "media": {
             "imageUrl": "https://images.stockx.com/images/Nike-SB-Dunk-Low-Travis-Scott-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1606325738",
@@ -1242,6 +1304,7 @@
     {
         "id": "03e93eb9-8aca-47a8-bd6a-d3af5e7c177a",
         "name": "Nike SB Dunk Low Wasted Youth",
+        "category": "Sneakers",
         "brand": "Nike",
         "media": {
             "imageUrl": "https://images.stockx.com/images/Nike-SB-Dunk-Low-Wasted-Youth-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1616521006",
@@ -1262,6 +1325,7 @@
     {
         "id": "ab22c2fc-dfe6-4704-8736-b967d010ea50",
         "name": "Nike SB Dunk Low Club 58 Gulf",
+        "category": "Sneakers",
         "brand": "Nike",
         "media": {
             "imageUrl": "https://images.stockx.com/images/Nike-SB-Dunk-Low-Club-58-Gulf-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1612295293",
@@ -1282,6 +1346,7 @@
     {
         "id": "3c833417-cfa1-46ec-bbe8-da25bd06320b",
         "name": "Nike SB Dunk Low Pink Pig",
+        "category": "Sneakers",
         "brand": "Nike",
         "media": {
             "imageUrl": "https://images.stockx.com/images/Nike-SB-Dunk-Low-Pink-Pig-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1613671378",
@@ -1302,6 +1367,7 @@
     {
         "id": "f5084b32-3336-4150-b5a8-32737685847e",
         "name": "Nike SB Dunk Low Street Hawker (2021)",
+        "category": "Sneakers",
         "brand": "Nike",
         "media": {
             "imageUrl": "https://images.stockx.com/images/Nike-SB-Dunk-Low-CNY-Chinese-New-Year-2021-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1611767778",
@@ -1322,6 +1388,7 @@
     {
         "id": "f20b3fcb-4ac4-45ec-9dba-0fe2c589137d",
         "name": "Nike Dunk Low SB Celadon",
+        "category": "Sneakers",
         "brand": "Nike",
         "media": {
             "imageUrl": "https://images.stockx.com/images/Nike-Dunk-Low-SB-Celadon.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1616520118",
@@ -1342,6 +1409,7 @@
     {
         "id": "2647c9d0-6e0c-4e95-84f7-bb85fc5c71e9",
         "name": "Nike SB Dunk High TV Signal",
+        "category": "Sneakers",
         "brand": "Nike",
         "media": {
             "imageUrl": "https://images.stockx.com/images/Nike-SB-Dunk-High-TV-Signal.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1619127303",
@@ -1362,6 +1430,7 @@
     {
         "id": "ed47c4d3-6e9f-47ee-8775-b5e9b743265a",
         "name": "Nike SB Dunk Low Court Purple",
+        "category": "Sneakers",
         "brand": "Nike",
         "media": {
             "imageUrl": "https://images.stockx.com/images/Nike-SB-Dunk-Low-Court-Purple-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1612295457",
@@ -1382,6 +1451,7 @@
     {
         "id": "b97c7b3b-4575-475a-9ef1-67786da5d923",
         "name": "Nike SB Dunk High Pro Orange Label Smoke Grey",
+        "category": "Sneakers",
         "brand": "Nike",
         "media": {
             "imageUrl": "https://images.stockx.com/images/Nike-SB-Dunk-High-Pro-Orange-Label-Smoke-Grey-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1617910295",
@@ -1402,6 +1472,7 @@
     {
         "id": "4085cf95-8d7b-4931-a8e7-02e14ad139b1",
         "name": "Nike Dunk SB Low Stingwater Magic Mushroom",
+        "category": "Sneakers",
         "brand": "Nike",
         "media": {
             "imageUrl": "https://images.stockx.com/images/Nike-Dunk-SB-Low-Stingwater-Magic-Mushroom.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1619563636",
@@ -1422,6 +1493,7 @@
     {
         "id": "ea335530-4f47-4155-b504-8ba6c2f783a2",
         "name": "Nike SB Dunk Low Wheat (2020)",
+        "category": "Sneakers",
         "brand": "Nike",
         "media": {
             "imageUrl": "https://images.stockx.com/images/Nike-SB-Dunk-Low-Wheat-2020-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1609446382",
@@ -1442,6 +1514,7 @@
     {
         "id": "163ed0f9-cdb1-46ad-8d7b-ba791cdf1fba",
         "name": "Nike SB Dunk Low atmos Elephant",
+        "category": "Sneakers",
         "brand": "Nike",
         "media": {
             "imageUrl": "https://images.stockx.com/images/Nike-SB-Dunk-Low-atmos-Elephant-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1607016522",
@@ -1462,6 +1535,7 @@
     {
         "id": "bdfbbf53-43c7-4f53-b99c-4ed54fe119b7",
         "name": "Nike SB Dunk Low J-Pack Chicago",
+        "category": "Sneakers",
         "brand": "Nike",
         "media": {
             "imageUrl": "https://images.stockx.com/images/Nike-SB-Dunk-Low-J-Pack-Chicago.png?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1607045802",
@@ -1482,6 +1556,7 @@
     {
         "id": "8f02763a-27e8-49e4-98d5-5c18a385d542",
         "name": "Nike SB Dunk Low Grateful Dead Bears Opti Yellow",
+        "category": "Sneakers",
         "brand": "Nike",
         "media": {
             "imageUrl": "https://images.stockx.com/images/Nike-SB-Dunk-Low-Grateful-Dead-Bears-Yellow-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1607046202",
@@ -1502,6 +1577,7 @@
     {
         "id": "934b8531-3ec9-4237-af1b-ebcaa37db60a",
         "name": "Nike SB Dunk Low Sean Cliver",
+        "category": "Sneakers",
         "brand": "Nike",
         "media": {
             "imageUrl": "https://images.stockx.com/images/Nike-SB-Dunk-Low-Sean-Cliver-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1609770968",
@@ -1522,6 +1598,7 @@
     {
         "id": "7c0884b3-0e60-46f0-9488-a5692f6dc645",
         "name": "Nike SB Dunk High Carpet Company",
+        "category": "Sneakers",
         "brand": "Nike",
         "media": {
             "imageUrl": "https://images.stockx.com/images/Nike-SB-Dunk-High-Carpet-Company-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1615578910",
@@ -1542,6 +1619,7 @@
     {
         "id": "69e3de43-43bc-47f3-a49c-1dbe98f244c9",
         "name": "Nike SB Dunk Low Wasted Youth (Special Box)",
+        "category": "Sneakers",
         "brand": "Nike",
         "media": {
             "imageUrl": "https://images.stockx.com/images/Nike-SB-Dunk-Low-Wasted-Youth-Special-Box-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1619205059",
@@ -1562,6 +1640,7 @@
     {
         "id": "3a2a7d1d-7c22-419e-a367-5fe434c8b112",
         "name": "Nike SB Dunk Low Laser Orange",
+        "category": "Sneakers",
         "brand": "Nike",
         "media": {
             "imageUrl": "https://images.stockx.com/images/Nike-SB-Dunk-Low-Laser-Orange-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1607048895",
@@ -1582,6 +1661,7 @@
     {
         "id": "01355490-e182-42e0-9189-34db19e5f834",
         "name": "Nike SB Dunk Low ACG Terra",
+        "category": "Sneakers",
         "brand": "Nike",
         "media": {
             "imageUrl": "https://images.stockx.com/images/Nike-SB-Dunk-Low-ACG-Terra-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1607049673",
@@ -1602,6 +1682,7 @@
     {
         "id": "a391f827-2e9c-4fd5-ac67-8a4c835a9796",
         "name": "Jordan 13 Retro Gym Red Flint Grey",
+        "category": "Sneakers",
         "brand": "Jordan",
         "media": {
             "imageUrl": "https://images.stockx.com/images/Air-Jordan-13-Retro-Gym-Red-Flint-Grey-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1619202000",
@@ -1622,6 +1703,7 @@
     {
         "id": "28aff902-d9a8-4dfa-b6b8-12d2971eefcb",
         "name": "Jordan 1 Retro High Hyper Royal Smoke Grey",
+        "category": "Sneakers",
         "brand": "Jordan",
         "media": {
             "imageUrl": "https://images.stockx.com/images/Air-Jordan-1-Retro-High-Hyper-Royal-Smoke-Grey-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1618238995",
@@ -1642,6 +1724,7 @@
     {
         "id": "dd830775-6cb7-40f4-8ef3-4d944c897fce",
         "name": "Jordan 1 Retro High White University Blue Black",
+        "category": "Sneakers",
         "brand": "Jordan",
         "media": {
             "imageUrl": "https://images.stockx.com/images/Air-Jordan-1-Retro-High-White-University-Blue-Black-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1611777406",
@@ -1662,6 +1745,7 @@
     {
         "id": "f9602d3e-2ebc-41c9-881d-af50d0a1897f",
         "name": "Jordan 1 Mid Banned (2020)",
+        "category": "Sneakers",
         "brand": "Jordan",
         "media": {
             "imageUrl": "https://images.stockx.com/images/Air-Jordan-1-Mid-Banned-2020-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1606326136",
@@ -1682,6 +1766,7 @@
     {
         "id": "97abd082-288d-47e1-9cad-13110774933d",
         "name": "Jordan 11 Retro Playoffs Bred (2019)",
+        "category": "Sneakers",
         "brand": "Jordan",
         "media": {
             "imageUrl": "https://images.stockx.com/images/Air-Jordan-11-Retro-Playoffs-2019-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1606320266",
@@ -1702,6 +1787,7 @@
     {
         "id": "a1a900e1-74f7-4039-848b-8e8eed7dbead",
         "name": "Jordan 1 Retro High Pine Green Black",
+        "category": "Sneakers",
         "brand": "Jordan",
         "media": {
             "imageUrl": "https://images.stockx.com/images/Air-Jordan-1-Retro-High-Pine-Green-Black-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1606323349",
@@ -1722,6 +1808,7 @@
     {
         "id": "90d7808c-36cc-4dec-8ee5-3b548b918467",
         "name": "Jordan 1 Retro High Tokyo Bio Hack",
+        "category": "Sneakers",
         "brand": "Jordan",
         "media": {
             "imageUrl": "https://images.stockx.com/images/Air-Jordan-1-Retro-High-Bio-Hack-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1606318464",
@@ -1742,6 +1829,7 @@
     {
         "id": "24c7f083-8368-4918-a746-242145a2d8c3",
         "name": "Jordan 12 Retro Black Dark Concord",
+        "category": "Sneakers",
         "brand": "Jordan",
         "media": {
             "imageUrl": "https://images.stockx.com/images/Air-Jordan-12-Retro-Black-Dark-Concord-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1606763684",
@@ -1762,6 +1850,7 @@
     {
         "id": "6486f442-0250-45c8-8d18-0dd2ff6eea5f",
         "name": "Jordan 1 Retro High Travis Scott",
+        "category": "Sneakers",
         "brand": "Jordan",
         "media": {
             "imageUrl": "https://images.stockx.com/images/Air-Jordan-1-Retro-High-Travis-Scott-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1608736403",
@@ -1782,6 +1871,7 @@
     {
         "id": "69da432c-9b85-4beb-8443-700976f972d3",
         "name": "Jordan 1 Retro High Tie Dye (W)",
+        "category": "Sneakers",
         "brand": "Jordan",
         "media": {
             "imageUrl": "https://images.stockx.com/images/Air-Jordan-1-Retro-High-Tie-Dye-W-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1606319746",
@@ -1802,6 +1892,7 @@
     {
         "id": "5ee9da0d-d10a-4d5f-9b2c-6e170ac87aaf",
         "name": "Jordan 11 Retro Space Jam (2016)",
+        "category": "Sneakers",
         "brand": "Jordan",
         "media": {
             "imageUrl": "https://images.stockx.com/images/Jordan-11-Retro-Space-Jams-2016-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1606319512",
@@ -1822,6 +1913,7 @@
     {
         "id": "0765b874-fa67-4315-9f73-60b5b53850d4",
         "name": "Jordan 1 Retro Low OG SP Travis Scott",
+        "category": "Sneakers",
         "brand": "Jordan",
         "media": {
             "imageUrl": "https://images.stockx.com/images/Air-Jordan-1-Retro-Low-Travis-Scott-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1606317345",
@@ -1842,6 +1934,7 @@
     {
         "id": "d4850672-2ab7-4fe5-9185-aaee302c2111",
         "name": "Jordan 1 Retro High Shadow (2018)",
+        "category": "Sneakers",
         "brand": "Jordan",
         "media": {
             "imageUrl": "https://images.stockx.com/images/Air-Jordan-1-Retro-High-Shadow-2018-1.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1606318490",
@@ -1862,6 +1955,7 @@
     {
         "id": "a51561a1-ec03-47b2-9cdc-82b5b12f6771",
         "name": "Jordan 1 Retro Royal (2017)",
+        "category": "Sneakers",
         "brand": "Jordan",
         "media": {
             "imageUrl": "https://images.stockx.com/images/Air-Jordan-1-Retro-Black-Blue-2017-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1606319918",
@@ -1882,6 +1976,7 @@
     {
         "id": "17d54a8f-7360-4688-bd56-10e20ae83cf5",
         "name": "Jordan 1 Retro Bred \"Banned\" (2016)",
+        "category": "Sneakers",
         "brand": "Jordan",
         "media": {
             "imageUrl": "https://images.stockx.com/images/Air-Jordan-1-Retro-Bred-2016-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1606318705",
@@ -1902,6 +1997,7 @@
     {
         "id": "2d499296-2671-4e39-a240-1cb6e78912c4",
         "name": "Jordan 1 Low Black Toe",
+        "category": "Sneakers",
         "brand": "Jordan",
         "media": {
             "imageUrl": "https://images.stockx.com/images/Air-Jordan-1-Low-Black-Toe-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1606320100",
@@ -1922,6 +2018,7 @@
     {
         "id": "4b639012-a5e0-48c9-ae70-811f8413beb9",
         "name": "Jordan 1 Retro High NRG Patent Gold Toe",
+        "category": "Sneakers",
         "brand": "Jordan",
         "media": {
             "imageUrl": "https://images.stockx.com/images/Air-Jordan-1-Retro-High-Patent-Gold-Toe-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1606321591",
@@ -1942,6 +2039,7 @@
     {
         "id": "7c79530c-fa82-463c-931c-f99d033102a7",
         "name": "Jordan 1 Low Sail University Gold Black",
+        "category": "Sneakers",
         "brand": "Jordan",
         "media": {
             "imageUrl": "https://images.stockx.com/images/Air-Jordan-1-Low-Sail-University-Gold-Black-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1606316708",
@@ -1962,6 +2060,7 @@
     {
         "id": "8ef645e4-8f40-4d7c-8e57-fb4840b8e309",
         "name": "Jordan 1 Retro High 85 Varsity Red",
+        "category": "Sneakers",
         "brand": "Jordan",
         "media": {
             "imageUrl": "https://images.stockx.com/images/Air-Jordan-1-Retro-High-85-Varsity-Red-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1606322936",
@@ -1982,6 +2081,7 @@
     {
         "id": "96301f42-1196-476a-bd45-60fa73bce61c",
         "name": "Jordan 1 Mid SE Lakers",
+        "category": "Sneakers",
         "brand": "Jordan",
         "media": {
             "imageUrl": "https://images.stockx.com/images/Air-Jordan-1-Mid-SE-Lakers-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1606321130",
@@ -2002,6 +2102,7 @@
     {
         "id": "5cba54f6-630d-4029-bf49-004205f2a3dd",
         "name": "adidas Ultra Boost 4.0 DNA White",
+        "category": "Sneakers",
         "brand": "adidas",
         "media": {
             "imageUrl": "https://images.stockx.com/images/adidas-Ultra-Boost-40-DNA-White.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1616028702",
@@ -2022,6 +2123,7 @@
     {
         "id": "cc2235c9-a9c4-4f02-b050-2d0e54db468a",
         "name": "adidas Ultra Boost 4.0 DNA Triple Black",
+        "category": "Sneakers",
         "brand": "adidas",
         "media": {
             "imageUrl": "https://images.stockx.com/images/adidas-Ultra-Boost-40-DNA-Triple-Black.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1616028698",
@@ -2042,6 +2144,7 @@
     {
         "id": "f995fc3b-c4b7-4f46-9795-a3d4d7ac2325",
         "name": "NVIDIA EVGA GeForce RTX 3080 ULTRA GAMING Graphics Card (10G-P5-3897-KR) ",
+        "category": "Electronics",
         "brand": "NVIDIA",
         "media": {
             "imageUrl": "https://images.stockx.com/images/NVIDIA-EVGA-GeForce-RTX-3080-Ultra-Gaming-Graphics-Card-10G-P5-3897-KR.png?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1610392794",
@@ -2062,6 +2165,7 @@
     {
         "id": "bb1b6202-c439-4712-807c-79040d6622a7",
         "name": "adidas Ultra Boost 2021 Triple White",
+        "category": "Sneakers",
         "brand": "adidas",
         "media": {
             "imageUrl": "https://images.stockx.com/images/adidas-Ultra-Boost-2021-Triple-White.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1612007371",
@@ -2082,6 +2186,7 @@
     {
         "id": "a7b7d3e6-8a07-411a-a13e-8c03a2a51829",
         "name": "adidas Ultra Boost 1.0 Core White",
+        "category": "Sneakers",
         "brand": "adidas",
         "media": {
             "imageUrl": "https://images.stockx.com/images/Adidas-Ultra-Boost-All-White-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1611846651",
@@ -2102,6 +2207,7 @@
     {
         "id": "7c0a2f50-47e8-4b4e-9117-121dc623950e",
         "name": "adidas Ultra Boost 1.0 DNA Cookies and Cream",
+        "category": "Sneakers",
         "brand": "adidas",
         "media": {
             "imageUrl": "https://images.stockx.com/images/adidas-Ultra-Boost-10-DNA-Cookies-and-Cream-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1614262699",
@@ -2122,6 +2228,7 @@
     {
         "id": "61958d88-abef-4039-8332-d94665ee62c9",
         "name": "adidas Ultra Boost 20 Triple Black",
+        "category": "Sneakers",
         "brand": "adidas",
         "media": {
             "imageUrl": "https://images.stockx.com/images/adidas-Ultra-Boost-20-Triple-Black-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1611846844",
@@ -2142,6 +2249,7 @@
     {
         "id": "864189fb-2b34-4f5d-bbdc-1e3bf5de49b6",
         "name": "adidas Ultra Boost 2021 Triple Black",
+        "category": "Sneakers",
         "brand": "adidas",
         "media": {
             "imageUrl": "https://images.stockx.com/images/adidas-Ultra-Boost-2021-Triple-Black.png?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1610190474",
@@ -2162,6 +2270,7 @@
     {
         "id": "59f45036-1488-4f2e-a1d5-e6b0e10c44cb",
         "name": "adidas Ultra Boost DNA Lego",
+        "category": "Sneakers",
         "brand": "adidas",
         "media": {
             "imageUrl": "https://images.stockx.com/images/adidas-Ultra-Boost-DNA-Lego-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1619194876",
@@ -2182,6 +2291,7 @@
     {
         "id": "76deb7a0-4dc7-4a67-a10e-e292356f9961",
         "name": "NVIDIA EVGA GeForce RTX 3070 XC3 Ultra Gaming Graphics Card (08G-P5-3755-KB) Black",
+        "category": "Electronics",
         "brand": "NVIDIA",
         "media": {
             "imageUrl": "https://images.stockx.com/images/NVIDIA-EVGA-GeForce-RTX-3070-XC3-Ultra-Gaming-Graphics-Card-08G-P5-3755-KB-Black.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1613603418",
@@ -2202,6 +2312,7 @@
     {
         "id": "b5c9acc8-0697-43d3-9939-76c07a5c8759",
         "name": "adidas Ultra Boost 4.0 DNA Grey Three",
+        "category": "Sneakers",
         "brand": "adidas",
         "media": {
             "imageUrl": "https://images.stockx.com/images/adidas-Ultra-Boost-40-DNA-Grey-Three-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1617132122",
@@ -2222,6 +2333,7 @@
     {
         "id": "2012b20d-1c7c-413d-b38e-794e7f1b6d90",
         "name": "NVIDIA EVGA GeForce RTX 3090 FTW3 ULTRA GAMING 24GB GDDR6X Backplate Graphics Card (24G-P5-3987-KR) ",
+        "category": "Electronics",
         "brand": "NVIDIA",
         "media": {
             "imageUrl": "https://images.stockx.com/images/NVIDIA-EVGA-GeForce-RTX-3090-FTW9-ULTRA-GAMING-24GB-GDDR6X-Backplate-Graphics-Card-24G-P5-3987-KR.png?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1619208092",
@@ -2242,6 +2354,7 @@
     {
         "id": "f0de65a0-132a-4aa7-b1b1-3f4c9291b7dd",
         "name": "adidas Ultra Boost 2021 Core Black",
+        "category": "Sneakers",
         "brand": "adidas",
         "media": {
             "imageUrl": "https://images.stockx.com/images/adidas-Ultra-Boost-2021-Core-Black.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1611915625",
@@ -2262,6 +2375,7 @@
     {
         "id": "6963143c-a53a-4235-ae3d-aa20231a43c1",
         "name": "adidas Ultra Boost 4.0 Running White",
+        "category": "Sneakers",
         "brand": "adidas",
         "media": {
             "imageUrl": "https://images.stockx.com/images/adidas-Ultra-Boost-4-0-Running-White-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1612900601",
@@ -2282,6 +2396,7 @@
     {
         "id": "fdc9dfa1-87e6-46cd-93ac-b229e5f024ac",
         "name": "adidas Ultra Boost 4.0 Triple White (W)",
+        "category": "Sneakers",
         "brand": "adidas",
         "media": {
             "imageUrl": "https://images.stockx.com/images/adidas-Ultra-Boost-4-0-Triple-White-W-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1612901004",
@@ -2302,6 +2417,7 @@
     {
         "id": "2ef5149c-b3a2-4a7c-a4b0-8819ac267a26",
         "name": "adidas Ultra Boost 2.0 Triple White",
+        "category": "Sneakers",
         "brand": "adidas",
         "media": {
             "imageUrl": "https://images.stockx.com/images/Adidas-Ultra-Boost-Triple-White-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1610083960",
@@ -2322,6 +2438,7 @@
     {
         "id": "9a455daf-555a-4e7c-b266-c87c332f22d5",
         "name": "adidas Ultra 4D Triple Black",
+        "category": "Sneakers",
         "brand": "adidas",
         "media": {
             "imageUrl": "https://images.stockx.com/images/adidas-Ultra-4D-Triple-Black-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1606165969",
@@ -2342,6 +2459,7 @@
     {
         "id": "f27193c8-e50a-4737-a399-9f761d558853",
         "name": "Pokemon TCG Zacian & Zamazenta 2020 Pokemon TCG Sword & Shield Ultra-Premium Collection ",
+        "category": "Accessories",
         "brand": "Pokemon TCG",
         "media": {
             "imageUrl": "https://images.stockx.com/images/2020-Pokemon-TCG-Sword-Shield-Ultra-Premium-Collection-Zacian-Zamazenta.png?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1607639837",
@@ -2362,6 +2480,7 @@
     {
         "id": "4c3a8461-1e23-4a8e-aca2-140a019d4a7b",
         "name": "adidas Ultra Boost 1.0 Burgundy",
+        "category": "Sneakers",
         "brand": "adidas",
         "media": {
             "imageUrl": "https://images.stockx.com/images/Adidas-Ultra-Boost-Burgundy-Maroon-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1610679933",
@@ -2382,6 +2501,7 @@
     {
         "id": "d7d8390e-af02-4dad-a7f8-b9bd35326ff3",
         "name": "adidas Ultra Boost 4.0 Core Black",
+        "category": "Sneakers",
         "brand": "adidas",
         "media": {
             "imageUrl": "https://images.stockx.com/images/adidas-Ultra-Boost-4pt0-Core-Black-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1612285184",

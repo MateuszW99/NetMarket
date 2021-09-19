@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Application.Common.Behaviours;
 using Application.Handlers.ItemHandlers;
 using Application.Models.ApiModels.Items.Commands;
-using Application.UnitTests.Helpers;
+using Application.Models.DTOs;
 using FluentAssertions;
 using FluentValidation;
 using Xunit;
@@ -17,11 +17,11 @@ namespace Application.UnitTests.Handlers.ItemHandlers
     {
         public static IEnumerable<object[]> Items => new List<object[]>
         {
-            new object[] { "", "", "", "", Convert.ToDecimal("0.0", new CultureInfo("en-US")), "", "", "", "" },
-            new object[] { "af1", null, "", "", Convert.ToDecimal("0.0", new CultureInfo("en-US")), "", "wwww.google.com", "", "" },
-            new object[] { "af1", "make", "model", "www.google.com", Convert.ToDecimal("1.20", new CultureInfo("en-US")), "", "", "", "" },
-            new object[] { "", "", "", "", decimal.Zero, "", "", "", "" },
-            new object[] { "af1", "make", "model", "description", Convert.ToDecimal("1.20", new CultureInfo("en-US")), "brand", "www.google.com", "www.google.com", "htpps://google.com" },
+            new object[] { "", "", "", "", Convert.ToDecimal("0.0", new CultureInfo("en-US")), new BrandObject() { Name = "Nike" }, "", "", "" },
+            new object[] { "af1", null, "", "", Convert.ToDecimal("0.0", new CultureInfo("en-US")), new BrandObject() { Name = "Nike" }, "wwww.google.com", "", "" },
+            new object[] { "af1", "make", "model", "www.google.com", Convert.ToDecimal("1.20", new CultureInfo("en-US")), new BrandObject() { Name = "Nike" }, "", "", "" },
+            new object[] { "", "", "", "", decimal.Zero, new BrandObject() { Name = "Nike" }, "", "", "" },
+            new object[] { "af1", "make", "model", "description", Convert.ToDecimal("1.20", new CultureInfo("en-US")), new BrandObject() { Name = "Nike" }, "www.google.com", "www.google.com", "htpps://google.com" },
         };
 
         #region CreateItemCommandHandler
@@ -39,7 +39,8 @@ namespace Application.UnitTests.Handlers.ItemHandlers
                 ImageUrl = "www.google.com",
                 SmallImageUrl = "www.google.com",
                 ThumbUrl = "www.google.com",
-                Brand = "Nike"
+                Brand = new BrandObject() { Name = "Nike" },
+                Category = "Sneakers"
             };
 
             var commandHandler = new CreateItemCommandHandler(null, null);
@@ -77,11 +78,10 @@ namespace Application.UnitTests.Handlers.ItemHandlers
         }
 
         [Theory]
-        
         [MemberData(nameof(Items))]
         public async Task CreateItemCommandHandlerShouldThrowWhenOneOrMorePropertiesAreInvalid(
             string name, string make, string model,
-            string description, decimal retailPrice, string brand,
+            string description, decimal retailPrice, BrandObject brand,
             string imageUrl, string smallImageUrl, string thumbUrl)
         {
             var createItemCommand = new CreateItemCommand()
@@ -94,7 +94,7 @@ namespace Application.UnitTests.Handlers.ItemHandlers
                 ImageUrl = imageUrl,
                 SmallImageUrl = smallImageUrl,
                 ThumbUrl = thumbUrl,
-                Brand = brand
+                Brand = new BrandObject() { Name = "Nike" }
             };
 
             var commandHandler = new CreateItemCommandHandler(null, null);
@@ -113,63 +113,6 @@ namespace Application.UnitTests.Handlers.ItemHandlers
         }
         
         #endregion
-        
-        #region DeleteItemCommandHandler
-
-        [Fact]
-        public async Task DeleteItemCommandHandlerShouldNotThrowWhenPropertiesAreValid()
-        {
-            var deleteItemCommand = new DeleteItemCommand()
-            {
-                Id = Guid.NewGuid().ToString()
-            };
-
-            var commandHandler = new DeleteItemCommandHandler(null, null);
-            var validationBehaviour = new ValidationBehaviour<DeleteItemCommand, MediatR.Unit>(new List<DeleteItemCommandValidator>()
-            {
-                new()
-            }, null);
-
-            await FluentActions.Invoking(() =>
-                    validationBehaviour.Handle(
-                        deleteItemCommand,
-                        CancellationToken.None, 
-                        () => commandHandler.Handle(deleteItemCommand, CancellationToken.None)))
-                .Should()
-                .NotThrowAsync<ValidationException>();
-        }
-
-        [Theory]
-        [InlineData(null)]
-        [InlineData("")]
-        [InlineData("xxxx")]
-        [InlineData("{e24439407--14bf}")]
-        [InlineData("{e24439e8-7b0b-4073-ba80-b14f99e314bf}")]
-        [InlineData("(e24439e8-7b0b-4073-ba80-b14f99e314bf)")]
-        [InlineData("e24439e87b0b4073ba80b14f99e314bf")]
-        public async Task DeleteItemCommandHandlerShowThrowWhenPropertiesAreInvalid(string id)
-        {
-            var deleteItemCommand = new DeleteItemCommand()
-            {
-                Id = id
-            };
-
-            var commandHandler = new DeleteItemCommandHandler(null, null);
-            var validationBehaviour = new ValidationBehaviour<DeleteItemCommand, MediatR.Unit>(new List<DeleteItemCommandValidator>()
-            {
-                new()
-            }, null);
-
-            await FluentActions.Invoking(() =>
-                    validationBehaviour.Handle(
-                        deleteItemCommand,
-                        CancellationToken.None, 
-                        () => commandHandler.Handle(deleteItemCommand, CancellationToken.None)))
-                .Should()
-                .ThrowAsync<ValidationException>();
-        }
-
-        #endregion
 
         #region UpdateItemCommandHandler
 
@@ -187,7 +130,8 @@ namespace Application.UnitTests.Handlers.ItemHandlers
                 ImageUrl = "www.google.com",
                 SmallImageUrl = "www.google.com",
                 ThumbUrl = "www.google.com",
-                Brand = "Nike"
+                Brand = new BrandObject() { Name = "Nike" },
+                Category = "Sneakers"
             };
 
             var commandHandler = new UpdateItemCommandHandler(null, null);
@@ -228,7 +172,7 @@ namespace Application.UnitTests.Handlers.ItemHandlers
         [MemberData(nameof(Items))]
         public async Task UpdateItemCommandHandlerShouldThrowWhenOneOrMorePropertiesAreInvalid(
             string name, string make, string model,
-            string description, decimal retailPrice, string brand,
+            string description, decimal retailPrice, BrandObject brand,
             string imageUrl, string smallImageUrl, string thumbUrl)
         {
             var updateItemCommand = new UpdateItemCommand()

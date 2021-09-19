@@ -31,12 +31,7 @@ namespace Infrastructure.Migrations
                     b.Property<Guid>("CreatedBy")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<bool>("IsCanceled")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(false);
-
-                    b.Property<Guid>("ItemSizeId")
+                    b.Property<Guid>("ItemId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("LastModified")
@@ -48,9 +43,14 @@ namespace Infrastructure.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("money");
 
+                    b.Property<Guid>("SizeId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("ItemSizeId");
+                    b.HasIndex("ItemId");
+
+                    b.HasIndex("SizeId");
 
                     b.ToTable("Asks");
                 });
@@ -67,12 +67,7 @@ namespace Infrastructure.Migrations
                     b.Property<Guid>("CreatedBy")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<bool>("IsCanceled")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(false);
-
-                    b.Property<Guid>("ItemSizeId")
+                    b.Property<Guid>("ItemId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("LastModified")
@@ -84,9 +79,14 @@ namespace Infrastructure.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("money");
 
+                    b.Property<Guid>("SizeId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("ItemSizeId");
+                    b.HasIndex("ItemId");
+
+                    b.HasIndex("SizeId");
 
                     b.ToTable("Bids");
                 });
@@ -114,6 +114,11 @@ namespace Infrastructure.Migrations
 
                     b.Property<Guid>("BrandId")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Category")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
 
                     b.Property<string>("Description")
                         .HasMaxLength(1500)
@@ -155,27 +160,6 @@ namespace Infrastructure.Migrations
                     b.ToTable("Items");
                 });
 
-            modelBuilder.Entity("Domain.Entities.ItemSize", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("ItemId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("SizeId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ItemId");
-
-                    b.HasIndex("SizeId");
-
-                    b.ToTable("ItemSizes");
-                });
-
             modelBuilder.Entity("Domain.Entities.Size", b =>
                 {
                     b.Property<Guid>("Id")
@@ -199,6 +183,9 @@ namespace Infrastructure.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("AskId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("AssignedSupervisorId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("BidId")
@@ -269,8 +256,8 @@ namespace Infrastructure.Migrations
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("BillingZipCode")
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
+                        .HasMaxLength(6)
+                        .HasColumnType("nvarchar(6)");
 
                     b.Property<DateTime>("Created")
                         .HasColumnType("datetime2");
@@ -317,8 +304,8 @@ namespace Infrastructure.Migrations
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("ShippingZipCode")
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
+                        .HasMaxLength(6)
+                        .HasColumnType("nvarchar(6)");
 
                     b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier");
@@ -528,24 +515,40 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("Domain.Entities.Ask", b =>
                 {
-                    b.HasOne("Domain.Entities.ItemSize", "ItemSize")
+                    b.HasOne("Domain.Entities.Item", "Item")
                         .WithMany()
-                        .HasForeignKey("ItemSizeId")
+                        .HasForeignKey("ItemId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("ItemSize");
+                    b.HasOne("Domain.Entities.Size", "Size")
+                        .WithMany()
+                        .HasForeignKey("SizeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Item");
+
+                    b.Navigation("Size");
                 });
 
             modelBuilder.Entity("Domain.Entities.Bid", b =>
                 {
-                    b.HasOne("Domain.Entities.ItemSize", "ItemSize")
+                    b.HasOne("Domain.Entities.Item", "Item")
                         .WithMany()
-                        .HasForeignKey("ItemSizeId")
+                        .HasForeignKey("ItemId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("ItemSize");
+                    b.HasOne("Domain.Entities.Size", "Size")
+                        .WithMany()
+                        .HasForeignKey("SizeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Item");
+
+                    b.Navigation("Size");
                 });
 
             modelBuilder.Entity("Domain.Entities.Item", b =>
@@ -557,23 +560,6 @@ namespace Infrastructure.Migrations
                         .IsRequired();
 
                     b.Navigation("Brand");
-                });
-
-            modelBuilder.Entity("Domain.Entities.ItemSize", b =>
-                {
-                    b.HasOne("Domain.Entities.Item", "Item")
-                        .WithMany()
-                        .HasForeignKey("ItemId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Domain.Entities.Size", "Size")
-                        .WithMany()
-                        .HasForeignKey("SizeId");
-
-                    b.Navigation("Item");
-
-                    b.Navigation("Size");
                 });
 
             modelBuilder.Entity("Domain.Entities.Transaction", b =>

@@ -8,6 +8,7 @@ namespace Application.Models.DTOs
     {
         public string Id { get; init; }
         public string Name { get; set; }
+        public string Category { get; set; }
         public string Make { get; set; }
         public string Model { get; set; }
         public decimal RetailPrice { get; set; }
@@ -20,7 +21,8 @@ namespace Application.Models.DTOs
         public void Mapping(Profile profile)
         {
             profile.CreateMap<Item, ItemObject>()
-                .ForMember(d => d.Brand, opt => opt.MapFrom(a => a.Brand));
+                .ForMember(x => x.Brand,
+                    opt => opt.MapFrom(a => a.Brand));
         }
     }
 }

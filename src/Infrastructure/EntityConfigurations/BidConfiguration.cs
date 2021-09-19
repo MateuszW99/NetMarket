@@ -12,13 +12,12 @@ namespace Infrastructure.EntityConfigurations
             
             builder.HasKey(e => e.Id);
             
-            builder.HasOne(e => e.ItemSize);
+            builder.HasOne(e => e.Item);
+            
+            builder.HasOne(e => e.Size);
             
             builder.Property(e => e.Price)
                 .HasColumnType("money");
-            
-            builder.Property(e => e.IsCanceled)
-                .HasDefaultValue(false);
         }
     }
 }
