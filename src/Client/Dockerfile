@@ -1,12 +1,14 @@
-﻿FROM node:16-buster AS build
-WORKDIR /app
-COPY *.json ./
-RUN npm install -g @angular/cli@12.0.2
+﻿FROM node:latest as build
+
+WORKDIR /usr/local/app
+
+COPY ./ /usr/local/app/
+
 RUN npm install
-COPY . .
-RUN ng build --prod
+RUN npm run build
 
-FROM nginx:alpine AS deploy
-WORKDIR /app
-COPY --from=build /app/dist/Client/*.* /usr/share/nginx/html/
+FROM nginx:latest
+COPY nginx.conf /etc/nginx/nginx.conf
+COPY --from=build /usr/local/app/dist/Client /usr/share/nginx/html
 
+EXPOSE 80
