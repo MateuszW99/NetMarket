@@ -5,19 +5,30 @@
             <input formControlName="username" type="text" id="username" class="form-control" />
             <span *ngIf="form.get('username').invalid && form.get('username').touched"
                 class="form-text text-danger mb-2">
-                <span *ngIf="form.get('username').hasError('required')">Username is required!</span>
-                <span *ngIf="form.get('username').hasError('minlength')">Username must have minimum 1 character!</span>
-                <span *ngIf="form.get('username').hasError('maxlength')">Username must have maximum 30
-                    characters!</span>
+                <span *ngIf="form.get('username').hasError('required')">
+                    Username is required!
+                </span>
+                <span *ngIf="form.get('username').hasError('minlength')">
+                    Username must have minimum 1 character!
+                </span>
+                <span *ngIf="form.get('username').hasError('maxlength')">
+                    Username must have maximum 30 characters!
+                </span>
             </span>
         </div>
         <div class="my-3 col-6">
             <label class="form-label" for="email">E-mail</label>
             <input formControlName="email" type="email" id="email" class="form-control" />
             <span *ngIf="form.get('email').invalid && form.get('email').touched" class="form-text text-danger mb-2">
-                <span *ngIf="form.get('email').hasError('required')">E-mail is required!</span>
-                <span *ngIf="form.get('email').hasError('email')">E-mail is invalid!</span>
-                <span *ngIf="form.get('email').hasError('maxlength')">Email must have maximum 256 characters!</span>
+                <span *ngIf="form.get('email').hasError('required')">
+                    E-mail is required!
+                </span>
+                <span *ngIf="form.get('email').hasError('email')">
+                    E-mail is invalid!
+                </span>
+                <span *ngIf="form.get('email').hasError('maxlength')">
+                    Email must have maximum 256 characters!
+                </span>
             </span>
         </div>
         <div formGroupName="passwords" class="d-flex flex-column align-items-center col-6">
@@ -28,28 +39,37 @@
             form.get('passwords.password').invalid &&
             form.get('passwords.password').touched
           " class="form-text text-danger mb-2">
-                    <span *ngIf="form.get('passwords.password').hasError('required')">Password is required!</span>
-                    <span *ngIf="form.get('passwords.password').hasError('minlength')">Password must have minimum 8
-                        characters!</span>
-                    <span *ngIf="form.get('passwords.password').hasError('maxlength')">Password must have maximum 64
-                        characters!</span>
+                    <span *ngIf="form.get('passwords.password').hasError('required')">
+                        Password is required!
+                    </span>
+                    <span *ngIf="form.get('passwords.password').hasError('minlength')">
+                        Password must have minimum 8 characters!
+                    </span>
+                    <span *ngIf="form.get('passwords.password').hasError('maxlength')">
+                        Password must have maximum 64 characters!
+                    </span>
                 </span>
             </div>
             <div class="my-3 col-12">
-                <label mdbLabel class="form-label" for="confirmPassword">Confirm password</label>
+                <label mdbLabel class="form-label" for="confirmPassword">
+                    Confirm password
+                </label>
                 <input formControlName="confirmPassword" type="password" id="confirmPassword" class="form-control" />
-
                 <span *ngIf="
-            form.get('passwords.confirmPassword').invalid &&
-            form.get('passwords.confirmPassword').touched
-          " class="form-text text-danger mb-2">
-                    <span *ngIf="form.get('passwords.confirmPassword').hasError('required')">Password confirmation is
-                        required!</span>
-                    <span *ngIf="form.get('passwords.confirmPassword').hasError('minlength')">Password confirmation must
-                        have minimum 8 characters!</span>
-                    <span *ngIf="form.get('passwords.confirmPassword').hasError('maxlength')">Password confirmation must
-                        have maximum 64 characters!</span>
-                    <span *ngIf="form.get('passwords').hasError('notSame')">Passwords doesn't match!</span>
+                        form.get('passwords.confirmPassword').invalid &&
+                        form.get('passwords.confirmPassword').touched"
+                        class="form-text text-danger mb-2">
+                    <span *ngIf="form.get('passwords.confirmPassword').hasError('required')">
+                        Password confirmation is required!</span>
+                    <span *ngIf="form.get('passwords.confirmPassword').hasError('minlength')">
+                        Password confirmation must have minimum 8 characters!
+                    </span>
+                    <span *ngIf="form.get('passwords.confirmPassword').hasError('maxlength')">
+                        Password confirmation must have maximum 64 characters!
+                    </span>
+                    <span *ngIf="form.get('passwords').hasError('notSame')">
+                        Passwords doesn't match!
+                    </span>
                 </span>
 
             </div>

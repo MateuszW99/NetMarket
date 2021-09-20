@@ -67,14 +67,12 @@ export class RegisterComponent implements OnInit {
           this.isLoading = false;
           console.log(error);
           if (
-            typeof error.error !== 'object' &&
-            error.error.errorMessages.length > 0
+            !error.error.errorMessages ||
+            error.error.errorMessages.length === 0
           ) {
-            this.errorMessage = error.error.errorMessages[0];
-          } else if (typeof error.error === 'object') {
             this.errorMessage = 'Something went wrong';
           } else {
-            this.errorMessage = error.error;
+            this.errorMessage = error.error.errorMessages[0];
           }
         }
       );
