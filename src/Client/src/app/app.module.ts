@@ -11,6 +11,7 @@ import { RegisterComponent } from './auth/register/register.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { AppRoutingModule } from './app-routing.module';
 import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
+import { SearchBarComponent } from './components/search-bar/search-bar.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinne
     LoginComponent,
     RegisterComponent,
     LandingPageComponent,
-    LoadingSpinnerComponent
+    LoadingSpinnerComponent,
+    SearchBarComponent
   ],
   imports: [
     BrowserModule,
