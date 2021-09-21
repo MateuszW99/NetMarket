@@ -13,6 +13,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
 import { SneakersComponent } from './sneakers/sneakers.component';
 import { BannerComponent } from './shared/banner/banner.component';
+import { SearchComponent } from './sneakers/search/search.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { BannerComponent } from './shared/banner/banner.component';
     LandingPageComponent,
     LoadingSpinnerComponent,
     SneakersComponent,
-    BannerComponent
+    BannerComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,

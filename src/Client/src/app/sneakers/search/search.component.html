@@ -1,0 +1,15 @@
+<form [formGroup]="searchForm" (ngSubmit)="onSearch()">
+    <div class="row">
+        <div class="col-4">
+            <input type="search" class="form-control" placeholder="Name" aria-label="Name" formControlName="name" id="name" />
+        </div>
+        <div class="col">
+            <button class="btn btn-info me-2" type="submit">
+                Apply filters
+            </button>
+            <button class="btn btn-danger ms-2" type="button" (click)="onRemoveFilters()">
+                Remove filters
+            </button>
+        </div>
+    </div>
+</form>
