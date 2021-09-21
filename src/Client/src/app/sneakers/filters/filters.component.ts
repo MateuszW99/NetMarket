@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Filters } from './filters';
+import { ItemsParams } from './items-params';
 
 @Component({
   selector: 'app-filters',
@@ -8,12 +8,10 @@ import { Filters } from './filters';
   styleUrls: ['./filters.component.css']
 })
 export class FiltersComponent implements OnInit {
+  @Input() category = 'Sneakers';
   form: FormGroup;
-  filters: Filters = new Filters();
 
   ngOnInit(): void {
-    this.filters.category = 'Sneakers';
-
     this.form = new FormGroup({
       name: new FormControl('', Validators.maxLength(100)),
       brand: new FormControl(''),
@@ -24,9 +22,11 @@ export class FiltersComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.getFormValues();
-    console.log(this.filters);
+    const filters: ItemsParams = this.getFilters();
+
+    console.log(filters);
     //TODO get items with applied filters
+    //this.itemsService.getItems(filters);
   }
 
   onRemoveFilters(): void {
@@ -34,48 +34,54 @@ export class FiltersComponent implements OnInit {
     //TODO reload items
   }
 
-  private getFormValues(): void {
-    this.filters.name = this.form.value.name;
-
-    if (this.form.value.brand === 'other') {
-      this.filters.brand = this.form.value.otherBrand;
-    } else {
-      this.filters.brand = this.form.value.brand;
-    }
-
-    this.filters.model = this.form.value.model;
+  private getFilters(): ItemsParams {
+    let minPrice: number = null;
+    let maxPrice: number = null;
 
     switch (this.form.value.price) {
       case '100': {
-        this.filters.minPrice = null;
-        this.filters.maxPrice = 100;
+        minPrice = null;
+        maxPrice = 100;
         break;
       }
       case '100-200': {
-        this.filters.minPrice = 100;
-        this.filters.maxPrice = 200;
+        minPrice = 100;
+        maxPrice = 200;
         break;
       }
       case '200-300': {
-        this.filters.minPrice = 200;
-        this.filters.maxPrice = 300;
+        minPrice = 200;
+        maxPrice = 300;
         break;
       }
       case '300-400': {
-        this.filters.minPrice = 300;
-        this.filters.maxPrice = 400;
+        minPrice = 300;
+        maxPrice = 400;
         break;
       }
       case '400-500': {
-        this.filters.minPrice = 400;
-        this.filters.maxPrice = 500;
+        minPrice = 400;
+        maxPrice = 500;
         break;
       }
       case '500+': {
-        this.filters.minPrice = 500;
-        this.filters.maxPrice = null;
+        minPrice = 500;
+        maxPrice = null;
         break;
       }
     }
+
+    return new ItemsParams(
+      15,
+      1,
+      this.category,
+      this.form.value.name,
+      this.form.value.brand === 'other'
+        ? this.form.value.otherBrand
+        : this.form.value.brand,
+      this.form.value.model,
+      minPrice,
+      maxPrice
+    );
   }
 }

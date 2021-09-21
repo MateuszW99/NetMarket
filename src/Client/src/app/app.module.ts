@@ -14,6 +14,7 @@ import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinne
 import { SneakersComponent } from './sneakers/sneakers.component';
 import { BannerComponent } from './shared/banner/banner.component';
 import { FiltersComponent } from './sneakers/filters/filters.component';
+import { ItemsComponent } from './sneakers/items/items.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { FiltersComponent } from './sneakers/filters/filters.component';
     LoadingSpinnerComponent,
     SneakersComponent,
     BannerComponent,
-    FiltersComponent
+    FiltersComponent,
+    ItemsComponent
   ],
   imports: [
     BrowserModule,
