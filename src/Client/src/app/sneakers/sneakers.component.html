@@ -1,6 +1,13 @@
 <div class="container-fluid mt-3">
     <app-banner [title]="bannerTitle" [description]="bannerDescription" [imgUrl]="bannerImg"></app-banner>
-    <div class="col-6 offset-4 mt-4">
-        <app-search></app-search>
+    <div class="row  mt-4">
+        <div class="col-3">
+            <app-filters></app-filters>
+        </div>
+        <div class="col-9">
+            <p>Todo: Add items component</p>
+            <!-- <app-items></app-items> -->
+        </div>
     </div>
+    
 </div>  
