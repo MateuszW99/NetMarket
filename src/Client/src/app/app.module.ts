@@ -11,6 +11,8 @@ import { RegisterComponent } from './auth/register/register.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { AppRoutingModule } from './app-routing.module';
 import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
+import { SneakersComponent } from './sneakers/sneakers.component';
+import { BannerComponent } from './shared/banner/banner.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinne
     LoginComponent,
     RegisterComponent,
     LandingPageComponent,
-    LoadingSpinnerComponent
+    LoadingSpinnerComponent,
+    SneakersComponent,
+    BannerComponent
   ],
   imports: [
     BrowserModule,
