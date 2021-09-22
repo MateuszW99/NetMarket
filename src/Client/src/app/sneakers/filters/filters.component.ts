@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ItemsService } from '../items.service';
 import { ItemsParams } from './items-params';
 
 @Component({
@@ -8,7 +9,9 @@ import { ItemsParams } from './items-params';
   styleUrls: ['./filters.component.css']
 })
 export class FiltersComponent implements OnInit {
-  @Input() category = 'Sneakers';
+  constructor(private itemsService: ItemsService) {}
+
+  @Input() category = 'sneakers';
   form: FormGroup;
 
   ngOnInit(): void {
@@ -25,13 +28,12 @@ export class FiltersComponent implements OnInit {
     const filters: ItemsParams = this.getFilters();
 
     console.log(filters);
-    //TODO get items with applied filters
-    //this.itemsService.getItems(filters);
+    this.itemsService.getItems(filters);
   }
 
   onRemoveFilters(): void {
     this.form.reset();
-    //TODO reload items
+    this.itemsService.getItems(new ItemsParams(15, 1, this.category));
   }
 
   private getFilters(): ItemsParams {
