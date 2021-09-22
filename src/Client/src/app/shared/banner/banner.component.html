@@ -1,17 +1,14 @@
-<div class="row">
-    <div class="col-8 offset-2 bg-secondary">
-        <div class="row">
-            <div class="col-xl-8 text-center">
-                <h1>
-                    {{ category | titlecase }}
-                </h1>
-                <p class="h3">
-                    {{ description }}
-                <p>
-            </div>
-            <div class="col-xl-4 d-flex align-items-center" style="padding:0">
-                <img [src]="imgUrl" alt="sneakers" class="w-100" style="max-height: 150px;"> 
-            </div>
-        </div>
+<div class="row ">
+    <div class="col-sm-6 offset-sm-2 bg-secondary rounded-start">
+       <h1>
+            {{ category | titlecase }}
+        </h1>
+        <p class="h4">
+            {{ description }}
+        <p>
+    </div>
+     
+    <div class="col-sm-3 bg-secondary" style="padding:0">
+        <img [src]="imgUrl" alt="sneakers"> 
     </div>
 </div>
