@@ -15,6 +15,7 @@ import { SneakersComponent } from './sneakers/sneakers.component';
 import { BannerComponent } from './shared/banner/banner.component';
 import { FiltersComponent } from './shared/filters/filters.component';
 import { ItemsComponent } from './shared/items/items.component';
+import { ItemCardComponent } from './shared/items/item-card/item-card.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { ItemsComponent } from './shared/items/items.component';
     SneakersComponent,
     BannerComponent,
     FiltersComponent,
-    ItemsComponent
+    ItemsComponent,
+    ItemCardComponent
   ],
   imports: [
     BrowserModule,
