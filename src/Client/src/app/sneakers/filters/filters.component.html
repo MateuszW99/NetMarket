@@ -11,6 +11,14 @@
       </div>
 
       <div class="mb-3">
+        <h3>Make</h3>
+        <input type="text" class="form-control " aria-label="Make" formControlName="make" id="make" />
+        <span *ngIf="form.get('make').invalid && form.get('make').touched" class="form-text text-danger mb-2">
+          Make must have maximum 100 characters!
+        </span>
+      </div>
+
+      <div class="mb-3">
         <h3>Brands</h3>
         <div class="form-check" *ngFor="let brand of brands">
           <input class="form-check-input" type="radio" name="brand" id={{brand}} value={{brand}}

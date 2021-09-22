@@ -7,6 +7,7 @@ export class ItemsParams implements Params {
     public pageNumber: number = 1,
     public category: string,
     public name?: string,
+    public make?: string,
     public brand?: string,
     public model?: string,
     public minPrice?: number,
@@ -21,6 +22,9 @@ export class ItemsParams implements Params {
 
     if (this.name && this.name.trim() !== '') {
       params = params.append('name', this.name);
+    }
+    if (this.make && this.make.trim() !== '') {
+      params = params.append('make', this.make);
     }
     if (this.brand && this.brand.trim() !== '') {
       params = params.append('brand', this.brand);

@@ -26,6 +26,7 @@ export class FiltersComponent implements OnInit {
   ngOnInit(): void {
     this.form = new FormGroup({
       name: new FormControl('', Validators.maxLength(100)),
+      make: new FormControl('', Validators.maxLength(100)),
       brand: new FormControl(''),
       model: new FormControl('', Validators.maxLength(100)),
       otherBrand: new FormControl('', Validators.maxLength(30)),
@@ -87,6 +88,7 @@ export class FiltersComponent implements OnInit {
       1,
       this.category,
       this.form.value.name,
+      this.form.value.make,
       this.form.value.brand === 'Other'
         ? this.form.value.otherBrand
         : this.form.value.brand,
