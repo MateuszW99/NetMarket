@@ -6,8 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./sneakers.component.css']
 })
 export class SneakersComponent {
-  bannerTitle = 'Sneakers';
+  category = 'sneakers';
   bannerDescription =
     'Buy and sell new sneakers & shoes from Air Jordan, adidas, Nike and more!';
   bannerImg = '/assets/banners/sneakers.svg';
+  brands: string[] = ['Adidas', 'Jordan', 'Nike', 'Other'];
 }

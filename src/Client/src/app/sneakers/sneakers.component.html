@@ -1,8 +1,8 @@
 <div class="container-fluid mt-3">
-    <app-banner [title]="bannerTitle" [description]="bannerDescription" [imgUrl]="bannerImg"></app-banner>
+    <app-banner [category]="category" [description]="bannerDescription" [imgUrl]="bannerImg"></app-banner>
     <div class="row mt-4">
         <div class="col-sm-3 border-end border-dark border-2">
-            <app-filters></app-filters>
+            <app-filters [category]="category" [brands]="brands"></app-filters>
         </div>
         <div class="col-sm-9">
             <app-items></app-items>

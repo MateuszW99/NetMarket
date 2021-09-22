@@ -11,8 +11,8 @@ import { ItemsService } from '../items/items.service';
 export class FiltersComponent implements OnInit {
   constructor(private itemsService: ItemsService) {}
 
-  @Input() category = 'sneakers';
-  @Input() brands: string[] = ['Adidas', 'Jordan', 'Nike', 'Other'];
+  @Input() category = '';
+  @Input() brands: string[];
   priceRanges: string[] = [
     'Under $100',
     '$100 - $200',
