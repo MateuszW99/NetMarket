@@ -36,8 +36,6 @@ export class FiltersComponent implements OnInit {
 
   onSubmit(): void {
     const filters: ItemsParams = this.getFilters();
-
-    console.log(filters);
     this.itemsService.getItems(filters);
   }
 

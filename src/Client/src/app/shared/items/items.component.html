@@ -7,12 +7,12 @@
 </div>
 <div *ngIf="!loading && !empty && !error">
     <div class="row">
-        <div class="col-md-4 d-flex justify-content-center mb-4" *ngFor="let item of items.items">
+        <div class="col-xl-4 col-md-6 d-flex justify-content-center mb-4" *ngFor="let item of items.items">
             <app-item-card [item]="item"></app-item-card>
         </div>
     </div>
     <div class="row">
-        <div class="col-md-6 offset-md-3 d-flex justify-content-center my-4">
+        <div class="col-xl-6 offset-xl-3 d-flex justify-content-center my-4">
             <app-pagination [paginationData]="getPaginationData()" [params]="itemsParams"></app-pagination>
         </div>
     </div>

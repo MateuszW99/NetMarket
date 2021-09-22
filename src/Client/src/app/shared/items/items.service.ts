@@ -34,8 +34,6 @@ export class ItemsService {
           response.body.hasNextPage
         );
 
-        console.log(response);
-        console.log(response.body);
         console.log(items);
 
         this.itemsChanged.next(items);
