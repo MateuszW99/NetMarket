@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -89,6 +90,16 @@ namespace Application.Services
             if (!string.IsNullOrEmpty(query.Brand))
             {
                 itemsQuery = itemsQuery.Where(x => x.Brand.Name.Contains(query.Brand));
+            }
+            
+            if (!string.IsNullOrEmpty(query.MinPrice))
+            {
+                itemsQuery = itemsQuery.Where(x => x.RetailPrice >= Convert.ToDecimal(query.MinPrice, new CultureInfo("en-US")));
+            }
+            
+            if (!string.IsNullOrEmpty(query.MaxPrice))
+            {
+                itemsQuery = itemsQuery.Where(x => x.RetailPrice <= Convert.ToDecimal(query.MaxPrice, new CultureInfo("en-US")));
             }
             
             return itemsQuery;

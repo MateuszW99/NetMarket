@@ -7,5 +7,7 @@
         public string Make { get; init; }
         public string Name { get; init; }
         public string Model { get; init; }
+        public string MinPrice { get; set; }
+        public string MaxPrice { get; set; }
     }
 }
