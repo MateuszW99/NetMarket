@@ -13,8 +13,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
 import { SneakersComponent } from './sneakers/sneakers.component';
 import { BannerComponent } from './shared/banner/banner.component';
-import { FiltersComponent } from './sneakers/filters/filters.component';
-import { ItemsComponent } from './sneakers/items/items.component';
+import { FiltersComponent } from './shared/filters/filters.component';
+import { ItemsComponent } from './shared/items/items.component';
 
 @NgModule({
   declarations: [

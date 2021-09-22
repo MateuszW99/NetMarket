@@ -2,10 +2,10 @@ import { HttpClient, HttpParams, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { ApiPaths } from '../shared/api-paths';
-import { PagedList } from '../shared/paged-list';
-import { ItemsParams } from './filters/items-params';
-import { Item } from './items/item.model';
+import { ApiPaths } from '../api-paths';
+import { PagedList } from '../paged-list';
+import { Item } from './item.model';
+import { ItemsParams } from './items-params';
 
 @Injectable({
   providedIn: 'root'

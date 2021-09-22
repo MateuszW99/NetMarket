@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ItemsService } from '../items.service';
-import { ItemsParams } from './items-params';
+import { ItemsParams } from '../items/items-params';
+import { ItemsService } from '../items/items.service';
 
 @Component({
   selector: 'app-filters',
