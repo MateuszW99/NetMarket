@@ -12,6 +12,15 @@ export class FiltersComponent implements OnInit {
   constructor(private itemsService: ItemsService) {}
 
   @Input() category = 'sneakers';
+  @Input() brands: string[] = ['Adidas', 'Jordan', 'Nike', 'Other'];
+  priceRanges: string[] = [
+    'Under $100',
+    '$100 - $200',
+    '$200 - $300',
+    '$300 - $400',
+    '$400 - $500',
+    '$500 +'
+  ];
   form: FormGroup;
 
   ngOnInit(): void {
@@ -41,32 +50,32 @@ export class FiltersComponent implements OnInit {
     let maxPrice: number = null;
 
     switch (this.form.value.price) {
-      case '100': {
+      case 'Under $100': {
         minPrice = null;
         maxPrice = 100;
         break;
       }
-      case '100-200': {
+      case '$100 - $200': {
         minPrice = 100;
         maxPrice = 200;
         break;
       }
-      case '200-300': {
+      case '$200 - $300': {
         minPrice = 200;
         maxPrice = 300;
         break;
       }
-      case '300-400': {
+      case '$300 - $400': {
         minPrice = 300;
         maxPrice = 400;
         break;
       }
-      case '400-500': {
+      case '$400 - $500': {
         minPrice = 400;
         maxPrice = 500;
         break;
       }
-      case '500+': {
+      case '$500 +': {
         minPrice = 500;
         maxPrice = null;
         break;
@@ -78,7 +87,7 @@ export class FiltersComponent implements OnInit {
       1,
       this.category,
       this.form.value.name,
-      this.form.value.brand === 'other'
+      this.form.value.brand === 'Other'
         ? this.form.value.otherBrand
         : this.form.value.brand,
       this.form.value.model,
