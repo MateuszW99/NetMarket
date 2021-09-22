@@ -16,9 +16,11 @@ export class ItemsService {
   itemsChanged = new Subject<PagedList<Item>>();
   errorCatched = new Subject<string>();
   loading = new Subject<boolean>();
+  paramsChanged = new Subject<ItemsParams>();
 
   getItems(params: ItemsParams): void {
     this.loading.next(true);
+    this.paramsChanged.next(params);
     const httpParams: HttpParams = params.getHttpParams();
 
     this.fetchItems(httpParams).subscribe(

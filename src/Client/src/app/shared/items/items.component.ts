@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { PagedList } from '../paged-list';
+import { Pagination } from '../pagination';
 import { Item } from './item.model';
 import { ItemsParams } from './items-params';
 import { ItemsService } from './items.service';
@@ -15,9 +16,11 @@ export class ItemsComponent implements OnInit, OnDestroy {
   error = '';
   loading = false;
   empty = true;
+  itemsParams: ItemsParams;
   itemsSubscription: Subscription;
   errorSubscription: Subscription;
   loadingSubscription: Subscription;
+  itemsParamsSubscription: Subscription;
 
   constructor(private itemsService: ItemsService) {}
 
@@ -28,11 +31,18 @@ export class ItemsComponent implements OnInit, OnDestroy {
       }
     );
 
+    this.itemsParamsSubscription = this.itemsService.paramsChanged.subscribe(
+      (params: ItemsParams) => {
+        this.itemsParams = params;
+      }
+    );
+
     this.itemsService.getItems(new ItemsParams(15, 1, 'sneakers'));
 
     this.itemsSubscription = this.itemsService.itemsChanged.subscribe(
       (items) => {
         this.empty = items.totalCount === 0;
+        this.error = '';
         this.items = items;
       }
     );
@@ -44,9 +54,20 @@ export class ItemsComponent implements OnInit, OnDestroy {
     );
   }
 
+  getPaginationData(): Pagination {
+    return {
+      pageIndex: this.items.pageIndex,
+      hasNextPage: this.items.hasNextPage,
+      hasPreviousPage: this.items.hasPreviousPage,
+      totalPages: this.items.totalPages,
+      totalCount: this.items.totalCount
+    };
+  }
+
   ngOnDestroy(): void {
     this.itemsSubscription.unsubscribe();
     this.errorSubscription.unsubscribe();
     this.loadingSubscription.unsubscribe();
+    this.itemsParamsSubscription.unsubscribe();
   }
 }

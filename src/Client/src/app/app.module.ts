@@ -16,6 +16,7 @@ import { BannerComponent } from './shared/banner/banner.component';
 import { FiltersComponent } from './shared/filters/filters.component';
 import { ItemsComponent } from './shared/items/items.component';
 import { ItemCardComponent } from './shared/items/item-card/item-card.component';
+import { PaginationComponent } from './shared/pagination/pagination.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { ItemCardComponent } from './shared/items/item-card/item-card.component'
     BannerComponent,
     FiltersComponent,
     ItemsComponent,
-    ItemCardComponent
+    ItemCardComponent,
+    PaginationComponent
   ],
   imports: [
     BrowserModule,

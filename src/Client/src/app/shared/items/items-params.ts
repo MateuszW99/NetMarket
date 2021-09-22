@@ -4,7 +4,7 @@ import { Params } from 'src/app/shared/params';
 export class ItemsParams implements Params {
   constructor(
     public pageSize: number = 15,
-    public pageNumber: number = 1,
+    public pageIndex: number = 1,
     public category: string,
     public name?: string,
     public make?: string,
@@ -16,7 +16,7 @@ export class ItemsParams implements Params {
 
   getHttpParams(): HttpParams {
     let params = new HttpParams();
-    params = params.append('pageNumber', this.pageNumber);
+    params = params.append('pageIndex', this.pageIndex);
     params = params.append('pageSize', this.pageSize);
     params = params.append('category', this.category);
 
