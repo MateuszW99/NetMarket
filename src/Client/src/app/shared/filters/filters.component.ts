@@ -13,6 +13,7 @@ export class FiltersComponent implements OnInit {
 
   @Input() category = '';
   @Input() brands: string[];
+
   priceRanges: string[] = [
     'Under $100',
     '$100 - $200',

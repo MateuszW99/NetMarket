@@ -10,5 +10,7 @@ export class SneakersComponent {
   bannerDescription =
     'Buy and sell new sneakers & shoes from Air Jordan, adidas, Nike and more!';
   bannerImg = '/assets/banners/sneakers.svg';
+
+  //These brands will be displayed in the filters
   brands: string[] = ['Adidas', 'Jordan', 'Nike', 'Other'];
 }
