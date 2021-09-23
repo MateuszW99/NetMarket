@@ -8,6 +8,7 @@ export class ItemsParams implements Params {
     public category: string,
     public name?: string,
     public make?: string,
+    public gender?: string,
     public brand?: string,
     public model?: string,
     public minPrice?: number,
@@ -31,6 +32,9 @@ export class ItemsParams implements Params {
     }
     if (this.model && this.model.trim() !== '') {
       params = params.append('model', this.model);
+    }
+    if (this.gender && this.gender.trim() !== '') {
+      params = params.append('gender', this.gender);
     }
     if (this.minPrice) {
       params = params.append('minPrice', this.minPrice);

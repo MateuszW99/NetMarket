@@ -13,6 +13,7 @@ export class FiltersComponent implements OnInit {
 
   @Input() category = '';
   @Input() brands: string[];
+  @Input() genders: string[]; //sneakers and streetwear only
 
   priceRanges: string[] = [
     'Under $100',
@@ -30,6 +31,7 @@ export class FiltersComponent implements OnInit {
       make: new FormControl('', Validators.maxLength(100)),
       brand: new FormControl(''),
       model: new FormControl('', Validators.maxLength(100)),
+      gender: new FormControl('', Validators.maxLength(10)),
       otherBrand: new FormControl('', Validators.maxLength(30)),
       price: new FormControl('')
     });
@@ -88,6 +90,7 @@ export class FiltersComponent implements OnInit {
       this.category,
       this.form.value.name,
       this.form.value.make,
+      this.form.value.gender,
       this.form.value.brand === 'Other'
         ? this.form.value.otherBrand
         : this.form.value.brand,

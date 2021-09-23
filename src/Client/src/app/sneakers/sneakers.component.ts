@@ -13,4 +13,14 @@ export class SneakersComponent {
 
   //These brands will be displayed in the filters
   brands: string[] = ['Adidas', 'Jordan', 'Nike', 'Other'];
+
+  //These genders will be displayed in the filters
+  genders: string[] = [
+    'Men',
+    'Women',
+    'Child',
+    'Preschool',
+    'Infant',
+    'Toddler'
+  ];
 }
