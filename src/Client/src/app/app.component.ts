@@ -1,4 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  DoCheck,
+  OnChanges,
+  OnInit,
+  SimpleChanges
+} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { AuthService } from './auth/auth.service';
@@ -9,7 +15,7 @@ import { Location } from '@angular/common';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, DoCheck {
   title = 'Client';
   public isAuthPage: boolean;
   constructor(private authService: AuthService, private location: Location) {}
@@ -17,6 +23,10 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.authService.autoLogin();
     console.log(this.location.path());
+    this.isAuthPage = this.location.path().includes('auth');
+  }
+
+  ngDoCheck(): void {
     this.isAuthPage = this.location.path().includes('auth');
   }
 }
