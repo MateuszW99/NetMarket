@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AppRoutingModule } from './app-routing.module';
 import { AuthService } from './auth/auth.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-root',
@@ -8,9 +11,12 @@ import { AuthService } from './auth/auth.service';
 })
 export class AppComponent implements OnInit {
   title = 'Client';
-  constructor(private authService: AuthService) {}
+  public isAuthPage: boolean;
+  constructor(private authService: AuthService, private location: Location) {}
 
   ngOnInit(): void {
     this.authService.autoLogin();
+    console.log(this.location.path());
+    this.isAuthPage = this.location.path().includes('auth');
   }
 }
