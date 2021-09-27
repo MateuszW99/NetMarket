@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Application.Common.Models;
 using Application.Models.ApiModels.Items;
 using Application.Models.ApiModels.Items.Commands;

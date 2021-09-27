@@ -24,8 +24,7 @@ namespace Application.Handlers.ItemHandlers
             _mapper = mapper;
             _askService = askService;
         }
-
-
+        
         public async Task<List<ItemCard>> Handle(GetTrendingItemsQuery request, CancellationToken cancellationToken)
         {
             var trendingItems = new List<ItemCard>();
