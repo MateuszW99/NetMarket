@@ -43,6 +43,9 @@ namespace Infrastructure.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("money");
 
+                    b.Property<decimal>("SellerFee")
+                        .HasColumnType("money");
+
                     b.Property<Guid>("SizeId")
                         .HasColumnType("uniqueidentifier");
 
@@ -60,6 +63,9 @@ namespace Infrastructure.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<decimal>("BuyerFee")
+                        .HasColumnType("money");
 
                     b.Property<DateTime>("Created")
                         .HasColumnType("datetime2");
@@ -560,6 +566,23 @@ namespace Infrastructure.Migrations
                         .IsRequired();
 
                     b.Navigation("Brand");
+                });
+
+            modelBuilder.Entity("Domain.Entities.ItemSize", b =>
+                {
+                    b.HasOne("Domain.Entities.Item", "Item")
+                        .WithMany()
+                        .HasForeignKey("ItemId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Entities.Size", "Size")
+                        .WithMany()
+                        .HasForeignKey("SizeId");
+
+                    b.Navigation("Item");
+
+                    b.Navigation("Size");
                 });
 
             modelBuilder.Entity("Domain.Entities.Transaction", b =>

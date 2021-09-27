@@ -12,7 +12,7 @@ namespace Domain.Entities
         public Guid SizeId { get; set; }
         public Size Size { get; set; }
         public decimal Price { get; set; }
-
+        public decimal SellerFee { get; set; }
         public List<DomainEvent> DomainEvents { get; set; }
     }
 }
