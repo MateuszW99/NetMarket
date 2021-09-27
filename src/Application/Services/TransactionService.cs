@@ -124,5 +124,15 @@ namespace Application.Services
 
             await _context.SaveChangesAsync(cancellationToken);
         }
+
+        public async Task BuyNow()
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task SellNow()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
