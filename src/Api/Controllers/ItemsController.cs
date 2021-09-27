@@ -54,6 +54,13 @@ namespace Api.Controllers
 
             return Ok(result);
         }
+
+        [HttpGet("trending")]
+        public async Task<ActionResult> GetTrendingItems([FromQuery] GetTrendingItemsQuery query)
+        {
+            var result = await _mediator.Send(query);
+            return Ok(result);
+        }
         
         [HttpPost]
         [Authorize(Policy = "AdminAccess")]
