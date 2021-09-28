@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Application.Common.Models;
 using Application.Models.ApiModels.Items;
 using Application.Models.ApiModels.Items.Commands;
@@ -52,6 +51,13 @@ namespace Api.Controllers
                 PageSize = query.PageSize
             });
 
+            return Ok(result);
+        }
+
+        [HttpGet("trending")]
+        public async Task<ActionResult> GetTrendingItems([FromQuery] GetTrendingItemsQuery query)
+        {
+            var result = await _mediator.Send(query);
             return Ok(result);
         }
         
