@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, HostListener, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ItemsParams } from '../items/items-params';
 import { ItemsService } from '../items/items.service';
@@ -10,6 +10,16 @@ import { ItemsService } from '../items/items.service';
 })
 export class FiltersComponent implements OnInit {
   constructor(private itemsService: ItemsService) {}
+
+  @HostListener('window:resize', ['$event']) onResize(event: {
+    target: { innerWidth: number };
+  }): void {
+    if (event.target.innerWidth > 767) {
+      this.mobile = false;
+    } else {
+      this.mobile = true;
+    }
+  }
 
   @Input() category = '';
   @Input() brands: string[];
@@ -24,6 +34,7 @@ export class FiltersComponent implements OnInit {
     '$500 +'
   ];
   form: FormGroup;
+  mobile = false;
 
   ngOnInit(): void {
     this.form = new FormGroup({
