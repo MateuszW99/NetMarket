@@ -7,7 +7,6 @@ using Application.Common.Exceptions;
 using Application.Common.Interfaces;
 using Application.Common.Models;
 using Application.Models.ApiModels.Items.Commands;
-using AutoMapper;
 using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
@@ -16,12 +15,10 @@ namespace Application.Services
     public class ItemService : IItemService
     {
         private readonly IApplicationDbContext _context;
-        private readonly IMapper _mapper;
-        
-        public ItemService(IApplicationDbContext context, IMapper mapper)
+
+        public ItemService(IApplicationDbContext context)
         {
             _context = context;
-            _mapper = mapper;
         }
 
         public async Task CreateItemAsync(CreateItemCommand command, CancellationToken cancellationToken)
@@ -116,6 +113,17 @@ namespace Application.Services
                 .Include(x => x.Brand)
                 .OrderBy(x => x.Name)
                 .Where(X => X.Category == category)
+                .AsQueryable();
+
+            return itemsQuery;
+        }
+
+        public IQueryable<Item> GetTrendingItems(string category, int count)
+        {
+            var itemsQuery = _context.Items
+                .Where(X => X.Category == category)
+                .OrderBy(x => Guid.NewGuid())
+                .Take(count)
                 .AsQueryable();
 
             return itemsQuery;
