@@ -12,8 +12,8 @@ namespace Application.Common.Interfaces
         Task<Ask> GetAskByIdAsync(Guid askId);
         IQueryable<Ask> GetUserAsks(Guid userId);
         IQueryable<Ask> GetItemAsks(Guid id);
-        Task CreateAskAsync(CreateAskCommand command, CancellationToken cancellationToken);
-        Task UpdateAskAsync(Ask ask, UpdateAskCommand command, Guid userId, CancellationToken cancellationToken);
+        Task CreateAskAsync(CreateAskCommand command, decimal fee, CancellationToken cancellationToken);
+        Task UpdateAskAsync(Ask ask, UpdateAskCommand command, decimal fee, CancellationToken cancellationToken);
         Task DeleteAskAsync(Ask ask, CancellationToken cancellationToken);
     }
 }

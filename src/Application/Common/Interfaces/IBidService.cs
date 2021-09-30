@@ -12,8 +12,8 @@ namespace Application.Common.Interfaces
         Task<Bid> GetBidByIdAsync(Guid bidId);
         IQueryable<Bid> GetUserBids(Guid userId);
         IQueryable<Bid> GetItemBids(Guid id);
-        Task CreateBidAsync(CreateBidCommand command, CancellationToken cancellationToken);
-        Task UpdateBidAsync(Bid bid, UpdateBidCommand command, Guid userId, CancellationToken cancellationToken);
+        Task CreateBidAsync(CreateBidCommand command, decimal fee, CancellationToken cancellationToken);
+        Task UpdateBidAsync(Bid bid, UpdateBidCommand command, decimal fee, CancellationToken cancellationToken);
         Task DeleteBidAsync(Bid bid, CancellationToken cancellationToken);
     }
 }

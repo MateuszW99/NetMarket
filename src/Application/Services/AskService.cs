@@ -45,32 +45,35 @@ namespace Application.Services
                 .Include(x => x.Item)
                 .Include(x => x.Size)
                 .OrderBy(x => x.Price)
+                .Where(x => x.ItemId == id)
                 .AsQueryable();
 
             return asks;
         }
 
-        public async Task CreateAskAsync(CreateAskCommand command, CancellationToken cancellationToken)
+        public async Task CreateAskAsync(CreateAskCommand command, decimal fee, CancellationToken cancellationToken)
         {
             var ask = new Ask()
             {
                 ItemId = Guid.Parse(command.ItemId),
                 SizeId = Guid.Parse(command.SizeId),
-                Price = decimal.Parse(command.Price)
+                Price = decimal.Parse(command.Price),
+                SellerFee = fee
             };
 
             await _context.Asks.AddAsync(ask, cancellationToken);
             await _context.SaveChangesAsync(cancellationToken);
         }
 
-        public async Task UpdateAskAsync(Ask ask, UpdateAskCommand command, Guid userId, CancellationToken cancellationToken)
+        public async Task UpdateAskAsync(Ask ask, UpdateAskCommand command, decimal fee, CancellationToken cancellationToken)
         {
             ask.Price = Decimal.Parse(command.Price);
             ask.SizeId = Guid.Parse(command.SizeId);
-
+            ask.SellerFee = fee;
+            
             await _context.SaveChangesAsync(cancellationToken);
         }
-
+        
         public async Task DeleteAskAsync(Ask ask, CancellationToken cancellationToken)
         {
             _context.Asks.Remove(ask);
