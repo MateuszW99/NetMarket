@@ -33,7 +33,7 @@ namespace Application.UnitTests.Handlers.BidHandlers
                 SizeId = Guid.NewGuid().ToString()
             };
 
-            var commandHandler = new CreateBidCommandHandler(null, null);
+            var commandHandler = new CreateBidCommandHandler(null, null, null, null, null);
             var validationBehaviour = new ValidationBehaviour<CreateBidCommand, Unit>(
                 new List<CreateBidCommandValidator>()
                 {
@@ -58,7 +58,7 @@ namespace Application.UnitTests.Handlers.BidHandlers
                 SizeId = sizeId
             };
 
-            var commandHandler = new CreateBidCommandHandler(null, null);
+            var commandHandler = new CreateBidCommandHandler(null, null, null, null, null);
             var validationBehaviour = new ValidationBehaviour<CreateBidCommand, Unit>(
                 new List<CreateBidCommandValidator>()
                 {
@@ -86,7 +86,7 @@ namespace Application.UnitTests.Handlers.BidHandlers
                 SizeId = Guid.NewGuid().ToString()
             };
 
-            var commandHandler = new UpdateBidCommandHandler(null, null, null);
+            var commandHandler = new UpdateBidCommandHandler(null, null, null, null, null);
             var validationBehaviour = new ValidationBehaviour<UpdateBidCommand, Unit>(
                 new List<UpdateBidCommandValidator>()
                 {
@@ -111,7 +111,7 @@ namespace Application.UnitTests.Handlers.BidHandlers
                 SizeId = sizeId
             };
         
-            var commandHandler = new UpdateBidCommandHandler(null, null, null);
+            var commandHandler = new UpdateBidCommandHandler(null, null, null, null, null);
             var validationBehaviour = new ValidationBehaviour<UpdateBidCommand, Unit>(new List<UpdateBidCommandValidator>()
                 {
                     new()
