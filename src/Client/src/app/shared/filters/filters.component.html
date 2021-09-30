@@ -43,14 +43,10 @@
 
           <div class="mb-3">
             <h5>Brands</h5>
-            <div class="form-check" *ngFor="let brand of brands">
-              <input class="form-check-input" type="radio" name="brand" id={{brand}} value={{brand}}
-                formControlName="brand">
-              <label class="form-check-label" for={{brand}}>
-                {{brand}}
-              </label>
-            </div>
-            <div class="col">
+            <select class="form-select mb-2" formControlName="brand">
+              <option *ngFor="let brand of brands" [value]="brand">{{brand}}</option>
+            </select>
+            <div class="col" *ngIf="otherBrandSelected">
               <input type="text" class="form-control" formControlName="otherBrand" placeholder="Other brand">
               <span *ngIf="form.get('otherBrand').invalid && form.get('otherBrand').touched"
                 class="form-text text-danger mb-2">
@@ -69,13 +65,9 @@
 
           <div class="mb-3" *ngIf="genders">
             <h5>Genders</h5>
-            <div class="form-check" *ngFor="let gender of genders">
-              <input class="form-check-input" type="radio" name="gender" id={{gender}} value={{gender}}
-                formControlName="gender">
-              <label class="form-check-label" for={{gender}}>
-                {{gender}}
-              </label>
-            </div>
+            <select class="form-select" formControlName="gender">
+              <option *ngFor="let gender of genders" [value]="gender">{{gender}}</option>
+            </select>
           </div>
 
           <div class="mb-3">

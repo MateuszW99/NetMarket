@@ -26,6 +26,7 @@ export class FiltersComponent implements OnInit {
   @Input() genders: string[]; //sneakers and streetwear only
 
   priceRanges: string[] = [
+    'All prices',
     'Under $100',
     '$100 - $200',
     '$200 - $300',
@@ -35,16 +36,22 @@ export class FiltersComponent implements OnInit {
   ];
   form: FormGroup;
   mobile = false;
+  otherBrandSelected = false;
 
   ngOnInit(): void {
     this.form = new FormGroup({
       name: new FormControl('', Validators.maxLength(100)),
       make: new FormControl('', Validators.maxLength(100)),
-      brand: new FormControl(''),
-      model: new FormControl('', Validators.maxLength(100)),
-      gender: new FormControl('', Validators.maxLength(10)),
+      brand: new FormControl(this.brands[0]),
       otherBrand: new FormControl('', Validators.maxLength(30)),
-      price: new FormControl('')
+      model: new FormControl('', Validators.maxLength(100)),
+      gender: new FormControl(this.genders[0]),
+      price: new FormControl(this.priceRanges[0])
+    });
+
+    this.form.get('brand').valueChanges.subscribe((selectedBrand) => {
+      this.form.controls.otherBrand.reset();
+      this.otherBrandSelected = selectedBrand === 'Other';
     });
   }
 
@@ -54,7 +61,11 @@ export class FiltersComponent implements OnInit {
   }
 
   onRemoveFilters(): void {
-    this.form.reset();
+    this.form.reset({
+      brand: this.brands[0],
+      gender: this.genders[0],
+      price: this.priceRanges[0]
+    });
     this.itemsService.getItems(new ItemsParams(15, 1, this.category));
   }
 
@@ -63,6 +74,11 @@ export class FiltersComponent implements OnInit {
     let maxPrice: number = null;
 
     switch (this.form.value.price) {
+      case 'All prices': {
+        minPrice = null;
+        maxPrice = null;
+        break;
+      }
       case 'Under $100': {
         minPrice = null;
         maxPrice = 100;
@@ -95,16 +111,20 @@ export class FiltersComponent implements OnInit {
       }
     }
 
+    const selectedBrand = this.form.value.brand;
+    const brand = selectedBrand === 'All' ? null : selectedBrand;
+
+    const selectedGender = this.form.value.gender;
+    const gender = selectedGender === 'All' ? null : selectedGender;
+
     return new ItemsParams(
       15,
       1,
       this.category,
       this.form.value.name,
       this.form.value.make,
-      this.form.value.gender,
-      this.form.value.brand === 'Other'
-        ? this.form.value.otherBrand
-        : this.form.value.brand,
+      gender,
+      brand === 'Other' ? this.form.value.otherBrand : brand,
       this.form.value.model,
       minPrice,
       maxPrice

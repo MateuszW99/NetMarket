@@ -12,10 +12,11 @@ export class SneakersComponent {
   bannerImg = '/assets/banners/sneakers.svg';
 
   //These brands will be displayed in the filters
-  brands: string[] = ['Adidas', 'Jordan', 'Nike', 'Yeezy', 'Other'];
+  brands: string[] = ['All', 'Adidas', 'Jordan', 'Nike', 'Yeezy', 'Other'];
 
   //These genders will be displayed in the filters
   genders: string[] = [
+    'All',
     'Men',
     'Women',
     'Child',
