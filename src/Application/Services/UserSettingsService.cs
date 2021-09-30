@@ -42,6 +42,12 @@ namespace Application.Services
             return userSettings;
         }
 
+        public async Task<SellerLevel> GetUserSellerLevel(Guid userId)
+        {
+            var userSettings = await _context.UserSettings.FirstOrDefaultAsync(x => x.Id == userId);
+            return userSettings.SellerLevel;
+        }
+
         public async Task UpdateUserSettingsAsync(Guid userId, UpdateUserSettingsCommand request,
             CancellationToken cancellationToken)
         {
