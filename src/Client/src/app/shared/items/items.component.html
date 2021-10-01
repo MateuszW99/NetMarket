@@ -1,19 +1,16 @@
-<app-loading-spinner *ngIf="loading"></app-loading-spinner>
-<div class="alert alert-danger col-6 offset-3 text-center" role="alert" *ngIf="error && !loading">
-    {{ error }}
-</div>
-<div class="alert alert-info col-6 offset-3 text-center" role="alert" *ngIf="empty && !loading && !error">
-    No items for given filters
-</div>
-<div *ngIf="!loading && !empty && !error">
-    <div class="row">
-        <div class="col-xl-4 col-md-6 d-flex justify-content-center mb-4" *ngFor="let item of items.items">
-            <app-item-card [item]="item"></app-item-card>
+<div class="container-fluid mt-3">
+    <div class="mb-3 d-block d-md-none">
+        <app-banner [category]="category" [description]="bannerDescription" [imgUrl]="bannerImg"></app-banner>
+    </div>
+    <div class="row mt-4 mb-3">
+        <div class="col-md-3 border-end border-dark border-2">
+            <app-filters [category]="category" [brands]="brands" [genders]="genders"></app-filters>
+        </div>
+        <div class="col-md-9">
+            <div class="mb-5 d-none d-md-block">
+                <app-banner [category]="category" [description]="bannerDescription" [imgUrl]="bannerImg"></app-banner>
+            </div>
+            <app-items-list [category]="category"></app-items-list>
         </div>
     </div>
-    <div class="row">
-        <div class="col-xl-6 offset-xl-3 d-flex justify-content-center my-4">
-            <app-pagination [paginationData]="getPaginationData()" [params]="itemsParams"></app-pagination>
-        </div>
-    </div>
-</div>
+</div>  
