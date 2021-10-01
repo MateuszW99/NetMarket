@@ -1,17 +1,17 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid d-flex">
 
-    <a class="navbar-brand" href="#"> <img src="../../../assets/logo.svg" class="logo"></a>
+    <a class="navbar-brand" href="#"> <img src="{{ logoPath }}" alt="Logo" class="logo"></a>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <form class="input-group search-bar">
-      <input class="form-control" type="search" placeholder="Search">
+    <form [formGroup]="form" (ngSubmit)="onSearch()" class="input-group search-bar">
+      <input class="form-control" type="search" placeholder="Search" id="searchText" formControlName="searchText">
       <div class="input-group-append">
-        <button class="btn default" type="submit">
-          <img src="../../../assets/search.svg" class="search-icon">
+        <button class="btn default" type="submit" routerLink='/sneakers'>
+          <img src="{{ searchIconPath }}" alt="Search" class="search-icon">
         </button>
       </div>
     </form>
@@ -20,9 +20,8 @@
       <ul class="navbar-nav">
         <li class="nav-item dropdown">
           <a class="nav-link" id="navbarDropdownMenuLink"
-             role="button" data-bs-toggle="dropdown"
-             (click)="showDropdown()" on-focusout="hideDropdown()">
-            <img src="{{ dropdownIconPath }}" class="menu-icon">
+             role="button" data-bs-toggle="dropdown">
+            <img src="{{ dropdownIconPath }}" alt="Dropdown" class="menu-icon">
           </a>
           <ul class="dropdown-menu">
             <ng-container *ngIf="!isUserLoggedIn">
@@ -42,11 +41,13 @@
         </li>
         <li class="nav-item">
           <!-- TODO: add path to user settings -->
-          <a class="nav-link active" routerLink="{{ isUserLoggedIn ? '/path-to-userSettings' : '/auth/login' }}"><img src="../../../assets/account.svg" class="menu-icon"></a>
+          <a class="nav-link active" routerLink="{{ isUserLoggedIn ? '/path-to-userSettings' : '/auth/login' }}">
+            <img src="{{ accountIconPath }}" alt="Account" class="menu-icon">
+          </a>
         </li>
         <li class="nav-item">
           <!-- TODO: add path to faq -->
-          <a class="nav-link" routerLink="/faq"><img src="../../../assets/help.svg" class="menu-icon"></a>
+          <a class="nav-link" routerLink="/faq"><img src="{{ helpIconPath }}" alt="Help" class="menu-icon"></a>
         </li>
       </ul>
     </div>

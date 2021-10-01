@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import {Component, OnInit} from '@angular/core';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 import { AuthService } from 'src/app/auth/auth.service';
+import { ItemsService } from "../../shared/items/items.service";
+import {ItemsParams} from "../../shared/items/items-params";
 
 @Component({
   selector: 'app-search-bar',
@@ -9,30 +11,31 @@ import { AuthService } from 'src/app/auth/auth.service';
 })
 export class SearchBarComponent implements OnInit {
   form: FormGroup;
+  logoPath: string;
+  searchIconPath: string;
   dropdownIconPath: string;
-  isDropdownExpanded: boolean;
+  accountIconPath: string;
+  helpIconPath: string;
   isUserLoggedIn: boolean;
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private itemsService: ItemsService) {}
 
   ngOnInit(): void {
-    this.form = new FormGroup({});
+    this.form = new FormGroup({
+      searchText: new FormControl('', Validators.maxLength(100))
+    });
 
-    this.isDropdownExpanded = false;
+    this.logoPath = '../../../assets/logo.svg';
+    this.searchIconPath = '../../../assets/search.svg';
     this.dropdownIconPath = '../../../assets/expand_more.svg';
+    this.accountIconPath = '../../../assets/account.svg';
+    this.helpIconPath  = '../../../assets/help.svg';
     this.isUserLoggedIn = this.authService.isUserLoggedIn();
   }
 
-  onSearch(): void {}
+  onSearch(): void {
 
-  hideDropdown(): void {
-    this.isDropdownExpanded = false;
-    this.dropdownIconPath = '../../../assets/expand_more.svg';
-  }
-
-  showDropdown(): void {
-    this.isDropdownExpanded = true;
-    this.dropdownIconPath = '../../../assets/expand_less.svg';
+    this.itemsService.getItems(new ItemsParams(15, 1, 'sneakers', this.form.value.searchText));
   }
 
   logout(): void {
