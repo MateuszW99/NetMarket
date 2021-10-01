@@ -63,7 +63,7 @@
             </span>
           </div>
 
-          <div class="mb-3" *ngIf="genders">
+          <div class="mb-3" *ngIf="genders && genders.length > 0">
             <h5>Genders</h5>
             <select class="form-select" formControlName="gender">
               <option *ngFor="let gender of genders" [value]="gender">{{gender}}</option>

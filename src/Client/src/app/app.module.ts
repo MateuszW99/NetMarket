@@ -19,6 +19,7 @@ import { PaginationComponent } from './shared/pagination/pagination.component';
 import { StreetwearComponent } from './streetwear/streetwear.component';
 import { ItemsListComponent } from './shared/items/items-list/items-list.component';
 import { ItemsComponent } from './shared/items/items.component';
+import { ElectronicsComponent } from './electronics/electronics.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { ItemsComponent } from './shared/items/items.component';
     ItemCardComponent,
     PaginationComponent,
     StreetwearComponent,
-    ItemsComponent
+    ItemsComponent,
+    ElectronicsComponent
   ],
   imports: [
     BrowserModule,

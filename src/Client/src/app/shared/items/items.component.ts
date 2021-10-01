@@ -10,5 +10,5 @@ export class ItemsComponent {
   @Input() bannerDescription = '';
   @Input() bannerImg = '';
   @Input() brands: string[];
-  @Input() genders: string[];
+  @Input() genders: string[] = [];
 }
