@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AuthComponent } from './auth/auth.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
+import { CollectiblesComponent } from './collectibles/collectibles.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { ElectronicsComponent } from './electronics/electronics.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
@@ -38,6 +39,10 @@ const routes: Routes = [
   {
     path: 'electronics',
     component: ElectronicsComponent
+  },
+  {
+    path: 'collectibles',
+    component: CollectiblesComponent
   },
   { path: '**', pathMatch: 'full', component: PageNotFoundComponent }
 ];

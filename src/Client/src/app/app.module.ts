@@ -20,6 +20,7 @@ import { StreetwearComponent } from './streetwear/streetwear.component';
 import { ItemsListComponent } from './shared/items/items-list/items-list.component';
 import { ItemsComponent } from './shared/items/items.component';
 import { ElectronicsComponent } from './electronics/electronics.component';
+import { CollectiblesComponent } from './collectibles/collectibles.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { ElectronicsComponent } from './electronics/electronics.component';
     PaginationComponent,
     StreetwearComponent,
     ItemsComponent,
-    ElectronicsComponent
+    ElectronicsComponent,
+    CollectiblesComponent
   ],
   imports: [
     BrowserModule,

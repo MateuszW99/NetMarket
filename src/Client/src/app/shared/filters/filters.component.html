@@ -41,13 +41,13 @@
             </span>
           </div>
 
-          <div class="mb-3">
-            <h5>Brands</h5>
-            <select class="form-select mb-2" formControlName="brand">
+          <div class="mb-3" >
+            <h5>Brand</h5>
+            <select class="form-select mb-2" formControlName="brand" *ngIf="brands && brands.length > 0">
               <option *ngFor="let brand of brands" [value]="brand">{{brand}}</option>
             </select>
-            <div class="col" *ngIf="otherBrandSelected">
-              <input type="text" class="form-control" formControlName="otherBrand" placeholder="Other brand">
+            <div class="col" *ngIf="otherBrandSelected || !brands || brands.length === 0">
+              <input type="text" class="form-control" formControlName="otherBrand">
               <span *ngIf="form.get('otherBrand').invalid && form.get('otherBrand').touched"
                 class="form-text text-danger mb-2">
                 Brand must have maximum 30 characters!
@@ -64,7 +64,7 @@
           </div>
 
           <div class="mb-3" *ngIf="genders && genders.length > 0">
-            <h5>Genders</h5>
+            <h5>Gender</h5>
             <select class="form-select" formControlName="gender">
               <option *ngFor="let gender of genders" [value]="gender">{{gender}}</option>
             </select>

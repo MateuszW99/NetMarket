@@ -9,6 +9,6 @@ export class ItemsComponent {
   @Input() category = '';
   @Input() bannerDescription = '';
   @Input() bannerImg = '';
-  @Input() brands: string[];
+  @Input() brands: string[] = [];
   @Input() genders: string[] = [];
 }
