@@ -1,0 +1,33 @@
+<nav>
+    <ul class="pagination pagination-lg">
+        <li class="page-item" [ngClass]="{ disabled: paginationData.pageIndex === 1 }">
+            <a class="page-link text-dark" tabindex="-1" type="button" (click)="onChangePage(1)">First</a>
+        </li>
+        <li class="page-item" [ngClass]="{ 'mx-1': paginationData.pageIndex !== 1 }">
+            <a class="page-link text-dark" type="button" (click)="onPreviousPage()" *ngIf="paginationData.hasPreviousPage">
+                {{ paginationData.pageIndex - 1 }}</a>
+        </li>
+        <li class="page-item active mx-2">
+            <a class="page-link text-dark">
+                {{ paginationData.pageIndex }}
+                <span class="visually-hidden">
+                    (current)
+                </span>
+            </a>
+        </li>
+        <li class="page-item" [ngClass]="{ 'mx-1': paginationData.pageIndex !== paginationData.totalPages }">
+            <a class="page-link text-dark" type="button" (click)="onNextPage()" *ngIf="paginationData.hasNextPage">
+                {{ paginationData.pageIndex + 1 }}
+            </a>
+        </li>
+        <li class="page-item" [ngClass]="{
+          disabled:
+            paginationData.pageIndex === paginationData.totalPages ||
+            paginationData.totalPages === 0
+            }">
+            <a class="page-link text-dark" type="button" (click)="onChangePage(paginationData.totalPages)">
+                Last ({{ paginationData.totalPages }})
+            </a>
+        </li>
+    </ul>
+</nav>
