@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -62,49 +63,11 @@ namespace Application.Services
         {
             var itemsQuery = _context.Items
                 .Include(x => x.Brand)
+                .Include(x => x.Asks)
                 .OrderBy(x => x.Name)
                 .AsQueryable();
 
-            if (!string.IsNullOrEmpty(query.Name))
-            {
-                itemsQuery = itemsQuery.Where(x => x.Name.ToLower().Contains(query.Name.ToLower()));
-            }
-            
-            if (!string.IsNullOrEmpty(query.Category))
-            {
-                itemsQuery = itemsQuery.Where(x => x.Category.ToLower().Contains(query.Category.ToLower()));
-            }
-            
-            if (!string.IsNullOrEmpty(query.Make))
-            {
-                itemsQuery = itemsQuery.Where(x => x.Make.ToLower().Contains(query.Make.ToLower()));
-            }
-            
-            if (!string.IsNullOrEmpty(query.Model))
-            {
-                itemsQuery = itemsQuery.Where(x => x.Model.ToLower().Contains(query.Model.ToLower()));
-            }
-            if (!string.IsNullOrEmpty(query.Gender))
-            {
-                itemsQuery = itemsQuery.Where(x => x.Gender.ToLower().Contains(query.Gender.ToLower()));
-            }
-            
-            if (!string.IsNullOrEmpty(query.Brand))
-            {
-                itemsQuery = itemsQuery.Where(x => x.Brand.Name.ToLower().Contains(query.Brand.ToLower()));
-            }
-            
-            if (!string.IsNullOrEmpty(query.MinPrice))
-            {
-                itemsQuery = itemsQuery.Where(x => x.RetailPrice >= Convert.ToDecimal(query.MinPrice, new CultureInfo("en-US")));
-            }
-            
-            if (!string.IsNullOrEmpty(query.MaxPrice))
-            {
-                itemsQuery = itemsQuery.Where(x => x.RetailPrice <= Convert.ToDecimal(query.MaxPrice, new CultureInfo("en-US")));
-            }
-            
-            return itemsQuery;
+            return FilterItems(itemsQuery, query);
         }
 
         public IQueryable<Item> GetItemsWithCategory(string category)
@@ -156,6 +119,95 @@ namespace Application.Services
             }
             
             await _context.SaveChangesAsync(cancellationToken);
+        }
+
+        private static IQueryable<Item> FilterItems(IQueryable<Item> itemsQuery, SearchItemsQuery query)
+        {
+            if (!string.IsNullOrEmpty(query.Name))
+            {
+                itemsQuery = itemsQuery.Where(x => x.Name.ToLower().Contains(query.Name.ToLower()));
+            }
+            
+            if (!string.IsNullOrEmpty(query.Category))
+            {
+                itemsQuery = itemsQuery.Where(x => x.Category.ToLower().Contains(query.Category.ToLower()));
+            }
+            
+            if (!string.IsNullOrEmpty(query.Make))
+            {
+                itemsQuery = itemsQuery.Where(x => x.Make.ToLower().Contains(query.Make.ToLower()));
+            }
+            
+            if (!string.IsNullOrEmpty(query.Model))
+            {
+                itemsQuery = itemsQuery.Where(x => x.Model.ToLower().Contains(query.Model.ToLower()));
+            }
+            if (!string.IsNullOrEmpty(query.Gender))
+            {
+                itemsQuery = itemsQuery.Where(x => x.Gender.ToLower().Contains(query.Gender.ToLower()));
+            }
+            
+            if (!string.IsNullOrEmpty(query.Brand))
+            {
+                itemsQuery = itemsQuery.Where(x => x.Brand.Name.ToLower().Contains(query.Brand.ToLower()));
+            }
+            
+            if (!string.IsNullOrEmpty(query.MinPrice))
+            {
+                var itemsWithMinPrice = new List<Item>();
+                
+                foreach (var item in itemsQuery)
+                {
+                    var itemAsks = item.Asks;
+                    
+                    if (itemAsks.Any())
+                    {
+                        if(itemAsks.Any(x => x.Price >= Convert.ToDecimal(query.MinPrice, new CultureInfo("en-US"))))
+                        {
+                            itemsWithMinPrice.Add(item);
+                        }
+                    }
+                    else
+                    {
+                        if(item.RetailPrice >= Convert.ToDecimal(query.MinPrice, new CultureInfo("en-US")))
+                        {
+                            itemsWithMinPrice.Add(item);
+                        }
+                    }
+                }
+
+                itemsQuery = itemsQuery.Where(x => itemsWithMinPrice.Contains(x));
+            }
+            
+            if (!string.IsNullOrEmpty(query.MaxPrice))
+            {
+                var itemsWithMaxPrice = new List<Item>();
+                
+                foreach (var item in itemsQuery)
+                {
+                    var itemAsks = item.Asks;
+                    
+                    if (itemAsks.Any())
+                    {
+                        if(itemAsks.Any(x => x.Price <= Convert.ToDecimal(query.MaxPrice, new CultureInfo("en-US"))))
+                        {
+                            itemsWithMaxPrice.Add(item);
+                        }
+                    }
+                    else
+                    {
+                        if(item.RetailPrice <= Convert.ToDecimal(query.MaxPrice, new CultureInfo("en-US")))
+                        {
+                            itemsWithMaxPrice.Add(item);
+                        }
+                    }
+                }
+
+                itemsQuery = itemsQuery.Where(x => itemsWithMaxPrice.Contains(x));
+                
+            }
+            
+            return itemsQuery;
         }
     }
 }

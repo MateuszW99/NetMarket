@@ -20,7 +20,7 @@ namespace Domain.Entities
         
         public Guid BrandId { get; set; }
         public Brand Brand { get; set; }
-        
+        public ICollection<Ask> Asks { get; set; }
         public List<DomainEvent> DomainEvents { get; set; }
     }
 }

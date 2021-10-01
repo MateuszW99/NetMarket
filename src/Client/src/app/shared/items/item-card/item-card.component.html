@@ -5,8 +5,11 @@
         <h6 class="card-title">
             {{item.name | titlecase}} 
         </h6>
-        <p class="card-text">
-            Retail price: ${{item.retailPrice}}
+        <p class="card-text" *ngIf="item.lowestAsk !== null && item.lowestAsk !== 0">
+            Lowest ask: {{item.lowestAsk | currency}}
+        </p>
+        <p class="card-text" *ngIf="item.lowestAsk === null || item.lowestAsk === 0">
+            Retail price: {{item.retailPrice | currency}}
         </p>
     </div>
 </div>

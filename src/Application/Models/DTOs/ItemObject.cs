@@ -1,4 +1,6 @@
-﻿using Application.Common.Mappings;
+﻿using System.Globalization;
+using System.Linq;
+using Application.Common.Mappings;
 using AutoMapper;
 using Domain.Entities;
 
@@ -18,12 +20,16 @@ namespace Application.Models.DTOs
         public string SmallImageUrl { get; set; }
         public string ThumbUrl { get; set; }
         public BrandObject Brand { get; set; }
+        public string LowestAsk { get; set; }
         
         public void Mapping(Profile profile)
         {
             profile.CreateMap<Item, ItemObject>()
                 .ForMember(x => x.Brand,
-                    opt => opt.MapFrom(a => a.Brand));
+                    opt => opt.MapFrom(a => a.Brand))
+                .ForMember(x => x.LowestAsk,
+                    opt => opt.MapFrom(a =>
+                        a.Asks.OrderBy(x => x.Price).FirstOrDefault().Price.ToString(CultureInfo.InvariantCulture)));
         }
     }
 }
