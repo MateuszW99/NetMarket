@@ -1,5 +1,6 @@
 export enum ApiPaths {
   Identity = '/identity',
   Login = '/login',
-  Register = '/register'
+  Register = '/register',
+  Items = '/items'
 }

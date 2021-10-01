@@ -130,6 +130,11 @@ namespace Infrastructure.Migrations
                         .HasMaxLength(1500)
                         .HasColumnType("nvarchar(1500)");
 
+                    b.Property<string>("Gender")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
                     b.Property<string>("ImageUrl")
                         .HasColumnType("nvarchar(max)");
 
@@ -164,6 +169,27 @@ namespace Infrastructure.Migrations
                     b.HasIndex("BrandId");
 
                     b.ToTable("Items");
+                });
+
+            modelBuilder.Entity("Domain.Entities.ItemSize", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("ItemId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("SizeId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ItemId");
+
+                    b.HasIndex("SizeId");
+
+                    b.ToTable("ItemSize");
                 });
 
             modelBuilder.Entity("Domain.Entities.Size", b =>
