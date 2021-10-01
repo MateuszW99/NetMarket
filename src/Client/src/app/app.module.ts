@@ -12,6 +12,12 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
 import { AppRoutingModule } from './app-routing.module';
 import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
+import { SneakersComponent } from './sneakers/sneakers.component';
+import { BannerComponent } from './shared/banner/banner.component';
+import { FiltersComponent } from './shared/filters/filters.component';
+import { ItemsComponent } from './shared/items/items.component';
+import { ItemCardComponent } from './shared/items/item-card/item-card.component';
+import { PaginationComponent } from './shared/pagination/pagination.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +28,12 @@ import { SearchBarComponent } from './components/search-bar/search-bar.component
     RegisterComponent,
     LandingPageComponent,
     LoadingSpinnerComponent,
+    SneakersComponent,
+    BannerComponent,
+    FiltersComponent,
+    ItemsComponent,
+    ItemCardComponent,
+    PaginationComponent,
     SearchBarComponent
   ],
   imports: [

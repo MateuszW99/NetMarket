@@ -34,6 +34,7 @@ namespace Application.IntegrationTests.Items.Queries
                 ThumbUrl = "https://images.stockx.com/images/Air-Jordan-4-Retro-University-Blue-Product.jpg?fit=fill&bg=FFFFFF&w=140&h=100&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1616520672",
                 Make =  "Jordan 4 Retro",
                 Model =  "University Blue",
+                Gender = "Men",
                 RetailPrice = 200,
                 Description = "Jordan Brand paid homage to MJ’s alma mater with the Air Jordan 4 University Blue. The University Blue colorway draws a close resemblance to the extremely rare Air Jordan 4 UNC PE that was given to Tarheel student-athletes in 2019.\name\name\nThe Air Jordan 4 University Blue features a University Blue suede upper with mesh netting on the quarter panel and tongue. Similar to OG Jordan 4 colorways of the past, the eyelets, heel tab, and sections of the midsole are a speckled Cement Grey. Hits of black appear on the wing eyelets, sole, and Jumpman logo on the heel tab. Two woven labels are stitched to the tongue; one being the classic Jumpman woven label; the other being a Team Jordan jock tag. A black, white, and Tech Grey sole with a clear Air unit completes the design.\name\name\nThe Air Jordan 4 University Blue released in April of 2021 and retailed for $200."
             };
@@ -50,6 +51,7 @@ namespace Application.IntegrationTests.Items.Queries
             itemCard.Item.ThumbUrl.Should().BeEquivalentTo(sampleItem.ThumbUrl);
             itemCard.Item.Make.Should().BeEquivalentTo(sampleItem.Make);
             itemCard.Item.Model.Should().BeEquivalentTo(sampleItem.Model);
+            itemCard.Item.Gender.Should().BeEquivalentTo(sampleItem.Gender);
             itemCard.Item.RetailPrice.Should().Be(sampleItem.RetailPrice);
             itemCard.Item.Description.Should().BeEquivalentTo(sampleItem.Description);
         }
