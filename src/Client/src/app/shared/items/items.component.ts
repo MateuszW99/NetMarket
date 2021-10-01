@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { PagedList } from '../paged-list';
 import { Pagination } from '../pagination';
@@ -12,6 +12,7 @@ import { ItemsService } from './items.service';
   styleUrls: ['./items.component.css']
 })
 export class ItemsComponent implements OnInit, OnDestroy {
+  @Input() category = '';
   items: PagedList<Item>;
   error = '';
   loading = false;
@@ -37,7 +38,7 @@ export class ItemsComponent implements OnInit, OnDestroy {
       }
     );
 
-    this.itemsService.getItems(new ItemsParams(15, 1, 'sneakers'));
+    this.itemsService.getItems(new ItemsParams(15, 1, this.category));
 
     this.itemsSubscription = this.itemsService.itemsChanged.subscribe(
       (items) => {

@@ -17,6 +17,7 @@ import { FiltersComponent } from './shared/filters/filters.component';
 import { ItemsComponent } from './shared/items/items.component';
 import { ItemCardComponent } from './shared/items/item-card/item-card.component';
 import { PaginationComponent } from './shared/pagination/pagination.component';
+import { StreetwearComponent } from './streetwear/streetwear.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { PaginationComponent } from './shared/pagination/pagination.component';
     FiltersComponent,
     ItemsComponent,
     ItemCardComponent,
-    PaginationComponent
+    PaginationComponent,
+    StreetwearComponent
   ],
   imports: [
     BrowserModule,

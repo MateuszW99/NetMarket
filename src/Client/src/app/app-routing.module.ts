@@ -6,6 +6,7 @@ import { RegisterComponent } from './auth/register/register.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { SneakersComponent } from './sneakers/sneakers.component';
+import { StreetwearComponent } from './streetwear/streetwear.component';
 
 const routes: Routes = [
   //AUTH GUARD ussage example
@@ -28,6 +29,10 @@ const routes: Routes = [
   {
     path: 'sneakers',
     component: SneakersComponent
+  },
+  {
+    path: 'streetwear',
+    component: StreetwearComponent
   },
   { path: '**', pathMatch: 'full', component: PageNotFoundComponent }
 ];
