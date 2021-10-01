@@ -18,7 +18,8 @@ export class StreetwearComponent {
     'Kith',
     'Palace',
     'Fear Of God',
-    'Of White'
+    'Of White',
+    'Other'
   ];
 
   //These genders will be displayed in the filters

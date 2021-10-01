@@ -14,10 +14,11 @@ import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinne
 import { SneakersComponent } from './sneakers/sneakers.component';
 import { BannerComponent } from './shared/banner/banner.component';
 import { FiltersComponent } from './shared/filters/filters.component';
-import { ItemsComponent } from './shared/items/items.component';
 import { ItemCardComponent } from './shared/items/item-card/item-card.component';
 import { PaginationComponent } from './shared/pagination/pagination.component';
 import { StreetwearComponent } from './streetwear/streetwear.component';
+import { ItemsListComponent } from './shared/items/items-list/items-list.component';
+import { ItemsComponent } from './shared/items/items.component';
 
 @NgModule({
   declarations: [
@@ -28,13 +29,14 @@ import { StreetwearComponent } from './streetwear/streetwear.component';
     RegisterComponent,
     LandingPageComponent,
     LoadingSpinnerComponent,
+    ItemsListComponent,
     SneakersComponent,
     BannerComponent,
     FiltersComponent,
-    ItemsComponent,
     ItemCardComponent,
     PaginationComponent,
-    StreetwearComponent
+    StreetwearComponent,
+    ItemsComponent
   ],
   imports: [
     BrowserModule,
