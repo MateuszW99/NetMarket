@@ -21,6 +21,7 @@ import { ItemsListComponent } from './shared/items/items-list/items-list.compone
 import { ItemsComponent } from './shared/items/items.component';
 import { ElectronicsComponent } from './electronics/electronics.component';
 import { CollectiblesComponent } from './collectibles/collectibles.component';
+import { ItemDetailsComponent } from './shared/items/item-details/item-details.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { CollectiblesComponent } from './collectibles/collectibles.component';
     StreetwearComponent,
     ItemsComponent,
     ElectronicsComponent,
-    CollectiblesComponent
+    CollectiblesComponent,
+    ItemDetailsComponent
   ],
   imports: [
     BrowserModule,
