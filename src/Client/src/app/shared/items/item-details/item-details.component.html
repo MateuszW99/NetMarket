@@ -1,1 +1,45 @@
-<p>item-details works!</p>
+<!--Test-->
+<h2>Item Details</h2>
+<div *ngIf="item">
+    <div class="bg-success">
+        <h3>Item:</h3>
+        <p>ID: {{ item.item.id }}</p>
+        <p>Name: {{ item.item.name }}</p>
+        <p>Category: {{ item.item.category }}</p>
+        <p>Make: {{ item.item.make }}</p>
+        <p>Model: {{ item.item.model }}</p>
+        <p>RetailPrice: {{ item.item.retailPrice }}</p>
+        <p>Description: {{ item.item.description }}</p>
+        <p>ImageURL: {{ item.item.imageUrl }}</p>
+        <p>ThumnURL: {{ item.item.thumbUrl }}</p>
+        <p>Brand ID: {{ item.item.brand.id }}</p>
+        <p>Brand Name: {{ item.item.brand.name }}</p>
+        <p>LowestAsk: {{ item.item.lowestAsk}}</p> 
+    </div>
+    <div class="bg-warning">
+        <h3>Asks/Bids:</h3>
+        <p>LowestAsk: {{ item.lowestAsk }}</p>
+        <p>HighestBid: {{ item.highestBid }}</p>
+        <h5>Asks list:</h5>
+        <div *ngFor="let ask of item.asks">
+            <p>ID: {{ ask.id }}</p>
+            <p>SizeId: {{ ask.size.id }}</p>
+            <p>Size: {{ ask.size.value }}</p>
+            <p>Price: {{ ask.price }}</p>
+            <p>UserId: {{ ask.userId }}</p>
+            <p>Expires: {{ ask.expires | date }}</p>
+        </div>
+        <hr>
+        <h5>Bids list:</h5>
+        <div *ngFor="let bid of item.bids">
+            <p>ID: {{ bid.id }}</p>
+            <p>SizeId: {{ bid.size.id }}</p>
+            <p>Size: {{ bid.size.value }}</p>
+            <p>Price: {{ bid.price }}</p>
+            <p>UserId: {{ bid.userId }}</p>
+            <p>Expires: {{ bid.expires | date }}</p>
+        </div>
+    </div>
+</div>
+
+
