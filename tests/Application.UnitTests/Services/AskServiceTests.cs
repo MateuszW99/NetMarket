@@ -228,7 +228,85 @@ namespace Application.UnitTests.Services
             newAsk.SellerFee.Should().Be(fee);
         }
         
-        // TODO: add update-ask tests
+        [Fact]
+        public async Task UpdateAskAsync_Should_UpdateAsk()
+        {
+            var askId = Guid.NewGuid();
+            var userId = Guid.NewGuid();
+            var itemId = Guid.NewGuid();
+            var sizeId = Guid.NewGuid();
+            var oldPrice = 2.0m;
+            var oldBuyerFee = 2.0m;
+            var oldAsk = new Ask()
+            {
+                Id = askId,
+                SellerFee = oldBuyerFee,
+                Created = DateTime.UtcNow,
+                CreatedBy = userId,
+                ItemId = itemId,
+                Price = oldPrice,
+                LastModifiedBy = null,
+                SizeId = sizeId
+            };
+            
+            var asksBefore = new List<Ask>()
+            {
+                oldAsk,
+                new() { Id = Guid.NewGuid() },
+                new() { Id = Guid.NewGuid() },
+                new() { Id = Guid.NewGuid() }
+            };
+            var mockedAsksBefore = asksBefore.AsQueryable().BuildMockDbSet();
+
+            var newPrice = oldPrice + 1m;
+            var newFee = oldBuyerFee + 1m;
+            var updatedAsk = new Ask()
+            {
+                Id = askId,
+                SellerFee = newFee,
+                CreatedBy = userId,
+                ItemId = itemId,
+                Price = newPrice,
+                SizeId = sizeId,
+                LastModifiedBy = userId
+            };
+            
+            var asksAfter = new List<Ask>()
+            {
+                updatedAsk,
+                new() { Id = Guid.NewGuid() },
+                new() { Id = Guid.NewGuid() },
+                new() { Id = Guid.NewGuid() }
+            };
+            var mockedAsksAfter = asksAfter.AsQueryable().BuildMockDbSet();
+
+            _context.Setup(x => x.Asks).Returns(mockedAsksBefore.Object);
+            _context.Setup(x => x.Asks.Update(It.IsAny<Ask>()))
+                .Callback(() => _context.Setup(x => x.Asks).Returns(mockedAsksAfter.Object));
+
+            var command = new UpdateAskCommand()
+            {
+                Id = askId.ToString(),
+                Price = newPrice.ToString(CultureInfo.InvariantCulture),
+                SizeId = sizeId.ToString()
+            };
+            
+            await sut.UpdateAskAsync(oldAsk, command, newFee, CancellationToken.None);
+            
+            var oldCount = await mockedAsksBefore.Object.CountAsync();
+            var count = await mockedAsksAfter.Object.CountAsync();
+            var updatedAskFromDb = await mockedAsksAfter.Object.FirstOrDefaultAsync(x => x.Id == askId);
+            
+            count.Should().Be(oldCount);
+
+            updatedAskFromDb.Should().NotBeNull();
+            updatedAskFromDb.SizeId.Should().Be(sizeId);
+            updatedAskFromDb.ItemId.Should().Be(itemId);
+            updatedAskFromDb.Price.Should().Be(newPrice);
+            updatedAskFromDb.SellerFee.Should().Be(newFee);
+            updatedAskFromDb.CreatedBy.Should().Be(userId);
+            updatedAskFromDb.LastModifiedBy.Should().Be(userId);
+        }
 
         [Fact]
         public async Task DeleteAskAsync_Should_RemoveAsk()

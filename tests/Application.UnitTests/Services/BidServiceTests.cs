@@ -9,6 +9,7 @@ using Application.Models.ApiModels.Bids.Commands;
 using Application.Services;
 using Domain.Entities;
 using FluentAssertions;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.EntityFrameworkCore;
 using MockQueryable.Moq;
 using Moq;
@@ -227,9 +228,87 @@ namespace Application.UnitTests.Services
             newBid.Price.Should().Be(price);
             newBid.BuyerFee.Should().Be(fee);
         }
-        
-        // TODO: add update-Bid tests
 
+        [Fact]
+        public async Task UpdateBidAsync_Should_UpdateBid()
+        {
+            var bidId = Guid.NewGuid();
+            var userId = Guid.NewGuid();
+            var itemId = Guid.NewGuid();
+            var sizeId = Guid.NewGuid();
+            var oldPrice = 2.0m;
+            var oldBuyerFee = 2.0m;
+            var oldBid = new Bid()
+            {
+                Id = bidId,
+                BuyerFee = oldBuyerFee,
+                Created = DateTime.UtcNow,
+                CreatedBy = userId,
+                ItemId = itemId,
+                Price = oldPrice,
+                LastModifiedBy = null,
+                SizeId = sizeId
+            };
+            
+            var bidsBefore = new List<Bid>()
+            {
+                oldBid,
+                new() { Id = Guid.NewGuid() },
+                new() { Id = Guid.NewGuid() },
+                new() { Id = Guid.NewGuid() }
+            };
+            var mockedBidsBefore = bidsBefore.AsQueryable().BuildMockDbSet();
+
+            var newPrice = oldPrice + 1m;
+            var newFee = oldBuyerFee + 1m;
+            var updatedBid = new Bid()
+            {
+                Id = bidId,
+                BuyerFee = newFee,
+                CreatedBy = userId,
+                ItemId = itemId,
+                Price = newPrice,
+                SizeId = sizeId,
+                LastModifiedBy = userId
+            };
+            
+            var bidsAfter = new List<Bid>()
+            {
+                updatedBid,
+                new() { Id = Guid.NewGuid() },
+                new() { Id = Guid.NewGuid() },
+                new() { Id = Guid.NewGuid() }
+            };
+            var mockedBidsAfter = bidsAfter.AsQueryable().BuildMockDbSet();
+
+            _context.Setup(x => x.Bids).Returns(mockedBidsBefore.Object);
+            _context.Setup(x => x.Bids.Update(It.IsAny<Bid>()))
+                .Callback(() => _context.Setup(x => x.Bids).Returns(mockedBidsAfter.Object));
+
+            var command = new UpdateBidCommand()
+            {
+                Id = bidId.ToString(),
+                Price = newPrice.ToString(CultureInfo.InvariantCulture),
+                SizeId = sizeId.ToString()
+            };
+            
+            await sut.UpdateBidAsync(oldBid, command, newFee, CancellationToken.None);
+            
+            var oldCount = await mockedBidsBefore.Object.CountAsync();
+            var count = await mockedBidsAfter.Object.CountAsync();
+            var updatedBidFromDb = await mockedBidsAfter.Object.FirstOrDefaultAsync(x => x.Id == bidId);
+            
+            count.Should().Be(oldCount);
+
+            updatedBidFromDb.Should().NotBeNull();
+            updatedBidFromDb.SizeId.Should().Be(sizeId);
+            updatedBidFromDb.ItemId.Should().Be(itemId);
+            updatedBidFromDb.Price.Should().Be(newPrice);
+            updatedBidFromDb.BuyerFee.Should().Be(newFee);
+            updatedBidFromDb.CreatedBy.Should().Be(userId);
+            updatedBidFromDb.LastModifiedBy.Should().Be(userId);
+        }
+        
         [Fact]
         public async Task DeleteBidAsync_Should_RemoveBid()
         {
