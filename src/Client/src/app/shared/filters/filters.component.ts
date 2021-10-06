@@ -124,7 +124,9 @@ export class FiltersComponent implements OnInit {
       this.form.value.name,
       this.form.value.make,
       gender,
-      brand === 'Other' ? this.form.value.otherBrand : brand,
+      brand === 'Other' || this.brands.length === 0
+        ? this.form.value.otherBrand
+        : brand,
       this.form.value.model,
       minPrice,
       maxPrice

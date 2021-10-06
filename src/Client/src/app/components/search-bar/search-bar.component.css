@@ -1,0 +1,17 @@
+.logo {
+    width: 90px;
+    height: 90px;
+}
+
+.menu-icon {
+    width: 50px;
+    height: 40px;
+}
+
+.input-group {
+  flex: 1 1 70%;
+}
+
+.input-group>select {
+  flex: 0 1 30%;
+}

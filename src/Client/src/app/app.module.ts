@@ -6,17 +6,22 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { AuthInterceptorService } from './auth/auth-interceptor.service';
 import { AuthComponent } from './auth/auth.component';
 import { LoginComponent } from './auth/login/login.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { RegisterComponent } from './auth/register/register.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { AppRoutingModule } from './app-routing.module';
 import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
+import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { SneakersComponent } from './sneakers/sneakers.component';
 import { BannerComponent } from './shared/banner/banner.component';
 import { FiltersComponent } from './shared/filters/filters.component';
-import { ItemsComponent } from './shared/items/items.component';
 import { ItemCardComponent } from './shared/items/item-card/item-card.component';
 import { PaginationComponent } from './shared/pagination/pagination.component';
+import { StreetwearComponent } from './streetwear/streetwear.component';
+import { ItemsListComponent } from './shared/items/items-list/items-list.component';
+import { ItemsComponent } from './shared/items/items.component';
+import { ElectronicsComponent } from './electronics/electronics.component';
+import { CollectiblesComponent } from './collectibles/collectibles.component';
 
 @NgModule({
   declarations: [
@@ -27,18 +32,25 @@ import { PaginationComponent } from './shared/pagination/pagination.component';
     RegisterComponent,
     LandingPageComponent,
     LoadingSpinnerComponent,
+    ItemsListComponent,
     SneakersComponent,
     BannerComponent,
     FiltersComponent,
-    ItemsComponent,
     ItemCardComponent,
-    PaginationComponent
+    PaginationComponent,
+    StreetwearComponent,
+    ItemsComponent,
+    ElectronicsComponent,
+    CollectiblesComponent,
+    PaginationComponent,
+    SearchBarComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [
     {
