@@ -1,18 +1,27 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid d-flex">
-
-    <a class="navbar-brand" href="#"> <img src="{{ logoPath }}" alt="Logo" class="logo"></a>
-
+    <a class="navbar-brand" href="#"><img src="{{ logoPath }}" alt="Logo" class="logo"></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <form [formGroup]="form" (ngSubmit)="onSearch()" class="input-group search-bar">
-      <input class="form-control" type="search" placeholder="Search" id="searchText" formControlName="searchText">
-      <div class="input-group-append">
-        <button class="btn default" type="submit" routerLink='/sneakers'>
-          <img src="{{ searchIconPath }}" alt="Search" class="search-icon">
-        </button>
+    <form [formGroup]="form" (ngSubmit)="onSearch()" class="form-group row gx-0 search-bar border-0">
+      <div class="col-2">
+      <select class="form-control form-select input-group-text input-group-sm fw-bolder" formControlName="category">
+        <option *ngFor="let category of categories" ngValue="{{ category }}" class="input-group-text">
+          {{ category.charAt(0).toLocaleUpperCase() + category.slice(1) }}
+        </option>
+      </select>
+      </div>
+      <div class="col-9">
+        <input class="form-control" type="search" placeholder="Search" id="searchText" formControlName="searchText">
+      </div>
+      <div class="col-1 ms-0 ps-0">
+        <div class="input-group-append">
+          <button class="btn border border-dark" type="submit" routerLink="/{{ this.form.value.category }}">
+            <img src="{{ searchIconPath }}" alt="Search">
+          </button>
+        </div>
       </div>
     </form>
 
