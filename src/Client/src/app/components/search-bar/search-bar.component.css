@@ -8,12 +8,10 @@
     height: 40px;
 }
 
-.search-icon {
+.input-group {
+  flex: 1 1 70%;
 }
 
-.search-bar {
-    width: 100%;
-    font-size: large;
-    border: lightgray solid 1px;
-    border-radius: 5px;
+.input-group>select {
+  flex: 0 1 30%;
 }

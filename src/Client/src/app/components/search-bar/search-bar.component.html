@@ -1,30 +1,24 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container-fluid d-flex">
+  <div class="container d-flex">
     <a class="navbar-brand" href="#"><img src="{{ logoPath }}" alt="Logo" class="logo"></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown">
       <span class="navbar-toggler-icon"></span>
     </button>
-
-    <form [formGroup]="form" (ngSubmit)="onSearch()" class="form-group row gx-0 search-bar border-0">
-      <div class="col-2">
-      <select class="form-control form-select input-group-text input-group-sm fw-bolder" formControlName="category">
+    <form [formGroup]="form" (ngSubmit)="onSearch()" class="form-group input-group row gx-0 border-0">
+    <div class="input-group">
+      <select class="form-control form-select input-group-text fw-bolder input-group-sm " formControlName="category">
         <option *ngFor="let category of categories" ngValue="{{ category }}" class="input-group-text">
           {{ category | titlecase }}
         </option>
       </select>
+      <input class="form-control" type="search" placeholder="Search" id="searchText" formControlName="searchText">
+      <div class="input-group-append">
+        <button class="btn border search-icon" type="submit" routerLink="/{{ this.form.value.category }}">
+          <img src="{{ searchIconPath }}" alt="Search">
+        </button>
       </div>
-      <div class="col-9">
-        <input class="form-control" type="search" placeholder="Search" id="searchText" formControlName="searchText">
-      </div>
-      <div class="col-1 ms-0 ps-0">
-        <div class="input-group-append">
-          <button class="btn border border-dark" type="submit" routerLink="/{{ this.form.value.category }}">
-            <img src="{{ searchIconPath }}" alt="Search">
-          </button>
-        </div>
-      </div>
+    </div>
     </form>
-
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav">
         <li class="nav-item dropdown">
@@ -60,6 +54,5 @@
         </li>
       </ul>
     </div>
-
   </div>
 </nav>
