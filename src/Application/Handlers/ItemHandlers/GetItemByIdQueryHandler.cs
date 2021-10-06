@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
+using Application.Common.Exceptions;
 using Application.Common.Interfaces;
 using Application.Common.Mappings;
 using Application.Models.ApiModels.Items;
 using Application.Models.ApiModels.Items.Queries;
 using Application.Models.DTOs;
 using AutoMapper;
+using Domain.Entities;
 using MediatR;
 
 namespace Application.Handlers.ItemHandlers
@@ -30,6 +32,11 @@ namespace Application.Handlers.ItemHandlers
         {
             var itemId = Guid.Parse(request.Id);
             var item = await _itemService.GetItemByIdAsync(itemId);
+
+            if (item == null)
+            {
+                throw new NotFoundException(nameof(Item), itemId);
+            }
             
             var asks = _askService.GetItemAsks(itemId);
             var bids = _bidService.GetItemBids(itemId);

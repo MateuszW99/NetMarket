@@ -51,11 +51,6 @@ namespace Application.Services
                 .Include(x => x.Brand)
                 .FirstOrDefaultAsync(x => x.Id == id);
 
-            if (item == null)
-            {
-                throw new NotFoundException(nameof(Item), id);
-            }
-            
             return item;
         }
 
