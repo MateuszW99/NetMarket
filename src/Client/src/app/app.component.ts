@@ -1,14 +1,10 @@
 import {
   Component,
   DoCheck,
-  OnChanges,
-  OnInit,
-  SimpleChanges
+  OnInit
 } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { AppRoutingModule } from './app-routing.module';
 import { AuthService } from './auth/auth.service';
-import { Location } from '@angular/common';
+import { RoutingService } from "./shared/services/routing/routing.service";
 
 @Component({
   selector: 'app-root',
@@ -18,15 +14,13 @@ import { Location } from '@angular/common';
 export class AppComponent implements OnInit, DoCheck {
   title = 'Client';
   public isAuthPage: boolean;
-  constructor(private authService: AuthService, private location: Location) {}
+  constructor(private authService: AuthService, private routingService: RoutingService) {}
 
   ngOnInit(): void {
     this.authService.autoLogin();
-    console.log(this.location.path());
-    this.isAuthPage = this.location.path().includes('auth');
   }
 
   ngDoCheck(): void {
-    this.isAuthPage = this.location.path().includes('auth');
+    this.isAuthPage = this.routingService.getCurrentRoute().includes('auth');
   }
 }
