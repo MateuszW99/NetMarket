@@ -1,0 +1,58 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container d-flex">
+    <a class="navbar-brand" href="#"><img src="{{ logoPath }}" alt="Logo" class="logo"></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <form [formGroup]="form" (ngSubmit)="onSearch()" class="form-group input-group row gx-0 border-0">
+    <div class="input-group">
+      <select class="form-control form-select input-group-text fw-bolder input-group-sm " formControlName="category">
+        <option *ngFor="let category of categories" ngValue="{{ category }}" class="input-group-text">
+          {{ category | titlecase }}
+        </option>
+      </select>
+      <input class="form-control" type="search" placeholder="Search" id="searchText" formControlName="searchText">
+      <div class="input-group-append">
+        <button class="btn border search-icon" type="submit" routerLink="/{{ this.form.value.category }}">
+          <img src="{{ searchIconPath }}" alt="Search">
+        </button>
+      </div>
+    </div>
+    </form>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item dropdown">
+          <a class="nav-link" id="navbarDropdownMenuLink"
+             role="button" data-bs-toggle="dropdown">
+            <img src="{{ dropdownIconPath }}" alt="Dropdown" class="menu-icon">
+          </a>
+          <ul class="dropdown-menu">
+            <ng-container *ngIf="!isUserLoggedIn">
+              <li *ngIf="!isUserLoggedIn">
+                <a class="dropdown-item" routerLink='/auth/login'>Log In</a>
+              </li>
+              <li *ngIf="!isUserLoggedIn">
+                <a class="dropdown-item" routerLink='/auth/register'>Sign Up</a>
+              </li>
+            </ng-container>
+            <ng-container *ngIf="isUserLoggedIn">
+              <li *ngIf="isUserLoggedIn">
+                <a class="dropdown-item" (click)="logout()">Log Out</a>
+              </li>
+            </ng-container>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <!-- TODO: add path to user settings -->
+          <a class="nav-link active" routerLink="{{ isUserLoggedIn ? '/path-to-userSettings' : '/auth/login' }}">
+            <img src="{{ accountIconPath }}" alt="Account" class="menu-icon">
+          </a>
+        </li>
+        <li class="nav-item">
+          <!-- TODO: add path to faq -->
+          <a class="nav-link" routerLink="/faq"><img src="{{ helpIconPath }}" alt="Help" class="menu-icon"></a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
