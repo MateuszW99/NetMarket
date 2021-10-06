@@ -9,7 +9,6 @@ using Application.Models.ApiModels.Bids.Commands;
 using Application.Services;
 using Domain.Entities;
 using FluentAssertions;
-using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.EntityFrameworkCore;
 using MockQueryable.Moq;
 using Moq;
@@ -53,9 +52,9 @@ namespace Application.UnitTests.Services
             var bids = new List<Bid>()
             {
                 new() { Id = id },
-                new() {Id = Guid.NewGuid() },
-                new() {Id = Guid.NewGuid() },
-                new() {Id = Guid.NewGuid() }
+                new() { Id = Guid.NewGuid() },
+                new() { Id = Guid.NewGuid() },
+                new() { Id = Guid.NewGuid() }
             };
             
             var mockedBids = bids.AsQueryable().BuildMockDbSet();
@@ -86,9 +85,9 @@ namespace Application.UnitTests.Services
             var id = Guid.NewGuid();
             var bids = new List<Bid>()
             {
-                new() {Id = Guid.NewGuid() },
-                new() {Id = Guid.NewGuid() },
-                new() {Id = Guid.NewGuid() }
+                new() { Id = Guid.NewGuid() },
+                new() { Id = Guid.NewGuid() },
+                new() { Id = Guid.NewGuid() }
             };
             
             var mockedBids = bids.AsQueryable().BuildMockDbSet();
@@ -106,9 +105,9 @@ namespace Application.UnitTests.Services
             var bids = new List<Bid>()
             {
                 new() { Id = Guid.NewGuid(), CreatedBy = userId },
-                new() {Id = Guid.NewGuid(), CreatedBy = userId },
-                new() {Id = Guid.NewGuid() },
-                new() {Id = Guid.NewGuid() }
+                new() { Id = Guid.NewGuid(), CreatedBy = userId },
+                new() { Id = Guid.NewGuid() },
+                new() { Id = Guid.NewGuid() }
             };
             
             var mockedBids = bids.AsQueryable().BuildMockDbSet();
@@ -128,9 +127,9 @@ namespace Application.UnitTests.Services
             var bids = new List<Bid>()
             {
                 new() { Id = Guid.NewGuid() },
-                new() {Id = Guid.NewGuid() },
-                new() {Id = Guid.NewGuid() },
-                new() {Id = Guid.NewGuid() }
+                new() { Id = Guid.NewGuid() },
+                new() { Id = Guid.NewGuid() },
+                new() { Id = Guid.NewGuid() }
             };
             
             var mockedBids = bids.AsQueryable().BuildMockDbSet();
@@ -151,7 +150,7 @@ namespace Application.UnitTests.Services
                 new() { Id = Guid.NewGuid(), ItemId = itemId },
                 new() { Id = Guid.NewGuid(), ItemId = itemId },
                 new() { Id = Guid.NewGuid(), ItemId = Guid.NewGuid() },
-                new() {Id = Guid.NewGuid(), ItemId = Guid.Empty }
+                new() { Id = Guid.NewGuid(), ItemId = Guid.Empty }
             };
             
             var mockedBids = bids.AsQueryable().BuildMockDbSet();
@@ -171,7 +170,7 @@ namespace Application.UnitTests.Services
             {
                 new() { Id = Guid.NewGuid(), ItemId = Guid.NewGuid() },
                 new() { Id = Guid.NewGuid(), ItemId = Guid.NewGuid() },
-                new() {Id = Guid.NewGuid(), ItemId = Guid.Empty },
+                new() { Id = Guid.NewGuid(), ItemId = Guid.Empty },
                 new() { Id = Guid.NewGuid() }
             };
             

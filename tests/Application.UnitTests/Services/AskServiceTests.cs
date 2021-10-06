@@ -52,9 +52,9 @@ namespace Application.UnitTests.Services
             var asks = new List<Ask>()
             {
                 new() { Id = id },
-                new() {Id = Guid.NewGuid() },
-                new() {Id = Guid.NewGuid() },
-                new() {Id = Guid.NewGuid() }
+                new() { Id = Guid.NewGuid() },
+                new() { Id = Guid.NewGuid() },
+                new() { Id = Guid.NewGuid() }
             };
             
             var mockedAsks = asks.AsQueryable().BuildMockDbSet();
@@ -85,9 +85,9 @@ namespace Application.UnitTests.Services
             var id = Guid.NewGuid();
             var asks = new List<Ask>()
             {
-                new() {Id = Guid.NewGuid() },
-                new() {Id = Guid.NewGuid() },
-                new() {Id = Guid.NewGuid() }
+                new() { Id = Guid.NewGuid() },
+                new() { Id = Guid.NewGuid() },
+                new() { Id = Guid.NewGuid() }
             };
             
             var mockedAsks = asks.AsQueryable().BuildMockDbSet();
@@ -105,9 +105,9 @@ namespace Application.UnitTests.Services
             var asks = new List<Ask>()
             {
                 new() { Id = Guid.NewGuid(), CreatedBy = userId },
-                new() {Id = Guid.NewGuid(), CreatedBy = userId },
-                new() {Id = Guid.NewGuid() },
-                new() {Id = Guid.NewGuid() }
+                new() { Id = Guid.NewGuid(), CreatedBy = userId },
+                new() { Id = Guid.NewGuid() },
+                new() { Id = Guid.NewGuid() }
             };
             
             var mockedAsks = asks.AsQueryable().BuildMockDbSet();
@@ -127,9 +127,9 @@ namespace Application.UnitTests.Services
             var asks = new List<Ask>()
             {
                 new() { Id = Guid.NewGuid() },
-                new() {Id = Guid.NewGuid() },
-                new() {Id = Guid.NewGuid() },
-                new() {Id = Guid.NewGuid() }
+                new() { Id = Guid.NewGuid() },
+                new() { Id = Guid.NewGuid() },
+                new() { Id = Guid.NewGuid() }
             };
             
             var mockedAsks = asks.AsQueryable().BuildMockDbSet();
@@ -150,7 +150,7 @@ namespace Application.UnitTests.Services
                 new() { Id = Guid.NewGuid(), ItemId = itemId },
                 new() { Id = Guid.NewGuid(), ItemId = itemId },
                 new() { Id = Guid.NewGuid(), ItemId = Guid.NewGuid() },
-                new() {Id = Guid.NewGuid(), ItemId = Guid.Empty }
+                new() { Id = Guid.NewGuid(), ItemId = Guid.Empty }
             };
             
             var mockedAsks = asks.AsQueryable().BuildMockDbSet();
@@ -170,7 +170,7 @@ namespace Application.UnitTests.Services
             {
                 new() { Id = Guid.NewGuid(), ItemId = Guid.NewGuid() },
                 new() { Id = Guid.NewGuid(), ItemId = Guid.NewGuid() },
-                new() {Id = Guid.NewGuid(), ItemId = Guid.Empty },
+                new() { Id = Guid.NewGuid(), ItemId = Guid.Empty },
                 new() { Id = Guid.NewGuid() }
             };
             
