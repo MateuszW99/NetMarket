@@ -30,7 +30,6 @@ namespace Application.IntegrationTests.Items.Commands
             var newMake = "new make";
             var newDescription = "new description";
             var newModel = "new model";
-            var newGender = "new gender";
             var newUrl = "https://images.stockx.com/images/Air-Jordan-4-Retro-University-Blue-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1616520672";
             var newRetailPrice = oldItem.RetailPrice + 1;
             var newBrand = await context.Brands.FirstOrDefaultAsync(x => x.Name != oldItem.Brand.Id.ToString());
@@ -43,7 +42,6 @@ namespace Application.IntegrationTests.Items.Commands
                 Description = newDescription,
                 Make = newMake,
                 Model = newModel,
-                Gender = newGender,
                 ImageUrl = newUrl,
                 SmallImageUrl = newUrl,
                 ThumbUrl = newUrl,

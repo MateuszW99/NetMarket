@@ -17,11 +17,11 @@ namespace Application.UnitTests.Handlers.ItemHandlers
     {
         public static IEnumerable<object[]> Items => new List<object[]>
         {
-            new object[] { "", "", "", "", "", Convert.ToDecimal("0.0", new CultureInfo("en-US")), new BrandObject() { Name = "Nike" }, "", "", "" },
-            new object[] { "af1", null, "", "", "", Convert.ToDecimal("0.0", new CultureInfo("en-US")), new BrandObject() { Name = "Nike" }, "wwww.google.com", "", "" },
-            new object[] { "af1", "make", "model", "www.google.com", "gender", Convert.ToDecimal("1.20", new CultureInfo("en-US")), new BrandObject() { Name = "Nike" }, "", "", "" },
-            new object[] { "", "", "", "", "", decimal.Zero, new BrandObject() { Name = "Nike" }, "", "", "" },
-            new object[] { "af1", "make", "model", "description", "gender", Convert.ToDecimal("1.20", new CultureInfo("en-US")), new BrandObject() { Name = "Nike" }, "www.google.com", "www.google.com", "htpps://google.com" },
+            new object[] { "", "", "", "", Convert.ToDecimal("0.0", new CultureInfo("en-US")), new BrandObject() { Name = "Nike" }, "", "", "" },
+            new object[] { "af1", null, "", "", Convert.ToDecimal("0.0", new CultureInfo("en-US")), new BrandObject() { Name = "Nike" }, "wwww.google.com", "", "" },
+            new object[] { "af1", "make", "model", "www.google.com", Convert.ToDecimal("1.20", new CultureInfo("en-US")), new BrandObject() { Name = "Nike" }, "", "", "" },
+            new object[] { "", "", "", "", decimal.Zero, new BrandObject() { Name = "Nike" }, "", "", "" },
+            new object[] { "af1", "make", "model", "description", Convert.ToDecimal("1.20", new CultureInfo("en-US")), new BrandObject() { Name = "Nike" }, "www.google.com", "www.google.com", "htpps://google.com" },
         };
 
         #region CreateItemCommandHandler
@@ -34,7 +34,6 @@ namespace Application.UnitTests.Handlers.ItemHandlers
                 Name = "AF1 White",
                 Make = "nike",
                 Model = "air force 1",
-                Gender = "Men",
                 Description = "a short description",
                 RetailPrice = decimal.One,
                 ImageUrl = "www.google.com",
@@ -82,7 +81,7 @@ namespace Application.UnitTests.Handlers.ItemHandlers
         [MemberData(nameof(Items))]
         public async Task CreateItemCommandHandlerShouldThrowWhenOneOrMorePropertiesAreInvalid(
             string name, string make, string model,
-            string description, string gender, decimal retailPrice, BrandObject brand,
+            string description, decimal retailPrice, BrandObject brand,
             string imageUrl, string smallImageUrl, string thumbUrl)
         {
             var createItemCommand = new CreateItemCommand()
@@ -91,7 +90,6 @@ namespace Application.UnitTests.Handlers.ItemHandlers
                 Make = make,
                 Model = model,
                 Description = description,
-                Gender = gender,
                 RetailPrice = retailPrice,
                 ImageUrl = imageUrl,
                 SmallImageUrl = smallImageUrl,
@@ -127,7 +125,6 @@ namespace Application.UnitTests.Handlers.ItemHandlers
                 Name = "AF1 White",
                 Make = "nike",
                 Model = "air force 1",
-                Gender = "women",
                 Description = "a short description",
                 RetailPrice = decimal.One,
                 ImageUrl = "www.google.com",
@@ -175,7 +172,7 @@ namespace Application.UnitTests.Handlers.ItemHandlers
         [MemberData(nameof(Items))]
         public async Task UpdateItemCommandHandlerShouldThrowWhenOneOrMorePropertiesAreInvalid(
             string name, string make, string model,
-            string description, string gender, decimal retailPrice, BrandObject brand,
+            string description, decimal retailPrice, BrandObject brand,
             string imageUrl, string smallImageUrl, string thumbUrl)
         {
             var updateItemCommand = new UpdateItemCommand()
@@ -183,7 +180,6 @@ namespace Application.UnitTests.Handlers.ItemHandlers
                 Name = name,
                 Make = make,
                 Model = model,
-                Gender = gender,
                 Description = description,
                 RetailPrice = retailPrice,
                 ImageUrl = imageUrl,
