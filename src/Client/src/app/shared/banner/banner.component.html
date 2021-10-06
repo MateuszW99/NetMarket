@@ -1,0 +1,13 @@
+<div class="row offset-2 offset-lg-2">
+    <div class="col-lg-6 col-10  bg-secondary">
+       <h1>
+            {{ category | titlecase }}
+        </h1>
+        <p class="h4">
+            {{ description }}
+        <p>
+    </div>
+    <div class="col-lg-3 bg-secondary d-none d-lg-block" style="padding:0">
+        <img [src]="imgUrl" alt="sneakers"> 
+    </div>
+</div>

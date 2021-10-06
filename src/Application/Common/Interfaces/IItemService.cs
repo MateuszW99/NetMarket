@@ -14,6 +14,7 @@ namespace Application.Common.Interfaces
         Task<Item> GetItemByIdAsync(Guid id);
         IQueryable<Item> GetItemsWithQuery(SearchItemsQuery query);
         IQueryable<Item> GetItemsWithCategory(string category);
+        IQueryable<Item> GetTrendingItems(string category, int count);
         Task UpdateItemAsync(UpdateItemCommand command, CancellationToken cancellationToken);
     }
 }

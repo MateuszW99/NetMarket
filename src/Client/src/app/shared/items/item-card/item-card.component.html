@@ -1,0 +1,16 @@
+<a [routerLink]="['/items', item.id]" class="text-reset text-decoration-none">
+    <div class="card" style="width: 18rem;">
+        <img [src]="item.thumbUrl" class="card-img-top" alt="item image" >
+        <div class="card-body bg-light">
+            <h6 class="card-title">
+                {{item.name | titlecase}} 
+            </h6>
+            <p class="card-text" *ngIf="item.lowestAsk !== null && item.lowestAsk !== 0">
+                Lowest ask: {{item.lowestAsk | currency}}
+            </p>
+            <p class="card-text" *ngIf="item.lowestAsk === null || item.lowestAsk === 0">
+                Retail price: {{item.retailPrice | currency}}
+            </p>
+        </div>
+    </div>
+</a>

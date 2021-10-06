@@ -64,6 +64,7 @@ namespace Infrastructure.Services
                 Brand = brand,
                 Model = obj.SelectToken("model").ToString(),
                 Make = obj.SelectToken("make").ToString(),
+                Gender = obj.SelectToken("gender").ToString(),
                 Description = obj.SelectToken("description").ToString()
             };
             

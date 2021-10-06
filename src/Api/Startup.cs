@@ -29,6 +29,16 @@ namespace Api
             services.AddInfrastructure(Configuration);
             services.AddJwtAuthentication(Configuration);
             services.AddSwagger();
+            
+            services.AddCors(options =>
+            {
+                options.AddPolicy("FrontendApp", builder =>
+                {
+                    builder.AllowAnyOrigin().AllowAnyHeader()
+                        .AllowAnyMethod();
+                });
+            });
+            
             services.AddControllers(options =>
                 {
                     options.Filters.Add<ApiExceptionFilterAttribute>();
@@ -64,6 +74,8 @@ namespace Api
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseRouting();
+            
+            app.UseCors("FrontendApp");
 
             app.UseAuthentication();
             app.UseAuthorization();

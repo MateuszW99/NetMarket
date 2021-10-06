@@ -1,0 +1,16 @@
+<div class="container-fluid mt-3">
+    <div class="mb-3 d-block d-md-none">
+        <app-banner [category]="category" [description]="bannerDescription" [imgUrl]="bannerImg"></app-banner>
+    </div>
+    <div class="row mt-4 mb-3">
+        <div class="col-md-3 border-end border-dark border-2">
+            <app-filters [category]="category" [brands]="brands" [genders]="genders"></app-filters>
+        </div>
+        <div class="col-md-9">
+            <div class="mb-5 d-none d-md-block">
+                <app-banner [category]="category" [description]="bannerDescription" [imgUrl]="bannerImg"></app-banner>
+            </div>
+            <app-items-list [category]="category"></app-items-list>
+        </div>
+    </div>
+</div>  

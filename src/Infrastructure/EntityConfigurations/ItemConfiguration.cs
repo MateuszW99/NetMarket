@@ -27,6 +27,10 @@ namespace Infrastructure.EntityConfigurations
             builder.Property(e => e.Model)
                 .IsRequired()
                 .HasMaxLength(150);
+            
+            builder.Property(e => e.Gender)
+                .IsRequired()
+                .HasMaxLength(10);
 
             builder.Property(e => e.RetailPrice)
                 .HasDefaultValue(0.0)
