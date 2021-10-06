@@ -9,7 +9,7 @@
       <div class="col-2">
       <select class="form-control form-select input-group-text input-group-sm fw-bolder" formControlName="category">
         <option *ngFor="let category of categories" ngValue="{{ category }}" class="input-group-text">
-          {{ category.charAt(0).toLocaleUpperCase() + category.slice(1) }}
+          {{ category | titlecase }}
         </option>
       </select>
       </div>
