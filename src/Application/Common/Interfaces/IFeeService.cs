@@ -4,7 +4,7 @@ namespace Application.Common.Interfaces
 {
     public interface IFeeService
     {
-        decimal GetFee(SellerLevel sellerLevel);
+        decimal GetFeeRate(SellerLevel sellerLevel);
         decimal CalculateFee(SellerLevel sellerLevel, decimal price);
     }
 }
