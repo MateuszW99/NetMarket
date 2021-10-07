@@ -6,11 +6,12 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { AuthInterceptorService } from './auth/auth-interceptor.service';
 import { AuthComponent } from './auth/auth.component';
 import { LoginComponent } from './auth/login/login.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from './auth/register/register.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { AppRoutingModule } from './app-routing.module';
 import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
+import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { SneakersComponent } from './sneakers/sneakers.component';
 import { BannerComponent } from './shared/banner/banner.component';
 import { FiltersComponent } from './shared/filters/filters.component';
@@ -37,18 +38,20 @@ import { ItemDetailsComponent } from './shared/items/item-details/item-details.c
     BannerComponent,
     FiltersComponent,
     ItemCardComponent,
-    PaginationComponent,
     StreetwearComponent,
     ItemsComponent,
     ElectronicsComponent,
     CollectiblesComponent,
-    ItemDetailsComponent
+    ItemDetailsComponent,
+    PaginationComponent,
+    SearchBarComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [
     {

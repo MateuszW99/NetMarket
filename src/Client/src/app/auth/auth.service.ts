@@ -94,6 +94,10 @@ export class AuthService {
     }
   }
 
+  isUserLoggedIn(): boolean {
+    return this.user.value !== null;
+  }
+
   private handleAuthentication(token: string, rememberMe: boolean): void {
     const decodedToken: TokenClaims = jwt_decode(token);
 
