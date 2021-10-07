@@ -4,7 +4,6 @@ using System.Globalization;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Application.Common.Exceptions;
 using Application.Common.Interfaces;
 using Application.Common.Models;
 using Application.Models.ApiModels.Items.Commands;
@@ -87,15 +86,8 @@ namespace Application.Services
             return itemsQuery;
         }
 
-        public async Task UpdateItemAsync(UpdateItemCommand command, CancellationToken cancellationToken)
+        public async Task UpdateItemAsync(Item item, UpdateItemCommand command, CancellationToken cancellationToken)
         {
-            var item = await _context.Items.FirstOrDefaultAsync(x => x.Id == Guid.Parse(command.Id));
-            
-            if (item == null)
-            {
-                throw new NotFoundException(nameof(Item), command.Id);
-            }
-            
             item.Name = command.Name;
             item.Description = command.Description;
             item.Make = command.Make;

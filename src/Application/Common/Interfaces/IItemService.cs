@@ -15,6 +15,6 @@ namespace Application.Common.Interfaces
         IQueryable<Item> GetItemsWithQuery(SearchItemsQuery query);
         IQueryable<Item> GetItemsWithCategory(string category);
         IQueryable<Item> GetTrendingItems(string category, int count);
-        Task UpdateItemAsync(UpdateItemCommand command, CancellationToken cancellationToken);
+        Task UpdateItemAsync(Item item, UpdateItemCommand command, CancellationToken cancellationToken);
     }
 }

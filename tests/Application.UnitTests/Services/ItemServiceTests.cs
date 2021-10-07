@@ -197,5 +197,94 @@ namespace Application.UnitTests.Services
             newItem.Should().BeEquivalentTo(item);
             (await newCount).Should().Be(await oldCount + 1);
         }
+
+        [Fact]
+        public async Task UpdateItemAsync_Should_UpdateItem()
+        {
+            var brandId = Guid.NewGuid();
+            var brand = new Brand()
+            {
+                Id = brandId, Name = "Nike"
+            };
+            var price = 200m;
+            var category = "Sneakers";
+            var oldDescription = "Abcd";
+            var newDescriptions = "Abcdef";
+            var name = "another nike sneaker";
+            var id = Guid.NewGuid();
+            var oldUrl = "https://stockx.com/something";
+            var newUrl = "https://stockx.com/nothing";
+            var gender = "Male";
+            var make = "Nike";
+            var oldModel = "af1";
+            var newModel = "af1";
+            var itemToUpdate = new Item()
+            {
+                Id = id,
+                Brand = brand,
+                BrandId = brandId,
+                Category = category,
+                Description = oldDescription,
+                Name = name,
+                RetailPrice = price,
+                ImageUrl = oldUrl,
+                SmallImageUrl = oldUrl,
+                ThumbUrl = oldUrl,
+                Gender = gender,
+                Model = oldModel,
+                Make = make
+            };
+
+            var updatedItem = new Item()
+            {
+                Id = id,
+                BrandId = brandId,
+                Brand = brand,
+                Description = newDescriptions,
+                Make = make,
+                Model = newModel,
+                Gender = gender,
+                ImageUrl = newUrl,
+                SmallImageUrl = newUrl,
+                ThumbUrl = newUrl,
+                Category = category,
+                RetailPrice = price,
+                Name = name
+            };
+            
+            var command = new UpdateItemCommand()
+            {
+                Id = id.ToString(),
+                Brand = new BrandObject() { Id = brandId.ToString(), Name = "Nike" },
+                Description = newDescriptions,
+                Make = make,
+                Model = newModel,
+                Gender = gender,
+                ImageUrl = newUrl,
+                SmallImageUrl = newUrl,
+                ThumbUrl = newUrl,
+                Category = category,
+                RetailPrice = price,
+                Name = name
+            };
+            
+            var itemsBefore = new List<Item>() { itemToUpdate };
+            var mockedItemsBefore = itemsBefore.AsQueryable().BuildMockDbSet();
+            var brands = new List<Brand>() { brand };
+            var mockedBrands = brands.AsQueryable().BuildMockDbSet();
+            var itemsAfter = new List<Item>() { updatedItem };
+            var mockedItemsAfter = itemsAfter.AsQueryable().BuildMockDbSet();
+
+            _context.Setup(x => x.Brands).Returns(mockedBrands.Object);
+            _context.Setup(x => x.Items).Returns(mockedItemsBefore.Object);
+            _context.Setup(x => x.Items.Update(It.IsAny<Item>()))
+                .Callback(() => _context.Setup(x => x.Items).Returns(mockedItemsAfter.Object));
+
+            await sut.UpdateItemAsync(itemToUpdate, command, CancellationToken.None);
+            var result = await _context.Object.Items.FirstOrDefaultAsync(x => x.Id == id);
+
+            result.Should().NotBeNull();
+            result.Should().BeEquivalentTo(updatedItem);
+        }
     }
 }
