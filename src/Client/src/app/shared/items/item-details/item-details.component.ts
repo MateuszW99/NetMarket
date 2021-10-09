@@ -1,5 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ClipboardService } from 'ngx-clipboard';
+import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
 import { Item } from '../item.model';
 import { ItemsService } from '../items.service';
@@ -18,7 +20,9 @@ export class ItemDetailsComponent implements OnInit, OnDestroy {
 
   constructor(
     private route: ActivatedRoute,
-    private itemsService: ItemsService
+    private itemsService: ItemsService,
+    private clipboardService: ClipboardService,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -33,6 +37,13 @@ export class ItemDetailsComponent implements OnInit, OnDestroy {
           console.log(this.itemCard);
         });
     });
+  }
+
+  onShare(): void {
+    this.clipboardService.copyFromContent(
+      window.location.origin + window.location.pathname
+    );
+    this.toastr.success('Link copied to clipboard');
   }
 
   ngOnDestroy(): void {

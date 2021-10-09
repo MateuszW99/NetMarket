@@ -23,6 +23,9 @@ import { ItemsComponent } from './shared/items/items.component';
 import { ElectronicsComponent } from './electronics/electronics.component';
 import { CollectiblesComponent } from './collectibles/collectibles.component';
 import { ItemDetailsComponent } from './shared/items/item-details/item-details.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ClipboardModule } from 'ngx-clipboard';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -51,7 +54,10 @@ import { ItemDetailsComponent } from './shared/items/item-details/item-details.c
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    ClipboardModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot()
   ],
   providers: [
     {
