@@ -44,6 +44,7 @@ namespace Application.Services
             var asks = _context.Asks
                 .Include(x => x.Item)
                 .Include(x => x.Size)
+                .Where(x => x.ItemId == id)
                 .OrderBy(x => x.Price)
                 .AsQueryable();
 

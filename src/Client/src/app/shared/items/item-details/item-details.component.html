@@ -1,5 +1,9 @@
-<app-size-modal (sizeChanged)="changeSize($event)" [category]="itemCard.item.category | lowercase"></app-size-modal>
-<div class="container-fluid">
+<div class="alert alert-danger text-center" role="alert" *ngIf="error">
+    Something went wrong
+</div>
+<app-loading-spinner *ngIf="loading && !error"></app-loading-spinner>
+<div class="container-fluid" *ngIf="!loading && !error">
+    <app-size-modal (sizeChanged)="changeSize($event)" [category]="itemCard.item.category | lowercase"></app-size-modal>
     <div class="row mb-2">
         <div class="col-6 offset-3 text-center mt-3 mb-2">
             <h1>{{ itemCard.item.name | titlecase}}</h1>
@@ -16,9 +20,16 @@
             <button class="btn btn-success w-100 mx-1" routerLink="bid">
                 <div class="row">
                     <div class="col-7 border-end border-1 border-dark d-flex justify-content-center align-items-center">
-                        {{ itemCard.lowestAsk.price | currency}}
-                        <br>
-                        Lowest Ask
+                        <div *ngIf="itemCard.lowestAsk !== null">
+                            {{ itemCard.lowestAsk.price | currency}}
+                            <br>
+                            Lowest Ask
+                        </div>
+                        <div *ngIf="itemCard.lowestAsk === null">
+                            {{ itemCard.item.retailPrice | currency}}
+                            <br>
+                            Retail price
+                        </div>
                     </div>
                     <div class="col-5 d-flex justify-content-center align-items-center">
                         Buy or <br> Bid
@@ -28,9 +39,17 @@
             <button class="btn btn-danger w-100 mx-1" routerLink="ask">
                 <div class="row">
                     <div class="col-7 border-end border-1 border-dark d-flex justify-content-center align-items-center">
-                        {{ itemCard.highestBid.price | currency}}
-                        <br>
-                        Highest Bid
+                        <div *ngIf="itemCard.highestBid !== null">
+                            {{ itemCard.highestBid.price | currency}}
+                            <br>
+                            Highest Bid
+                        </div>
+                        <div *ngIf="itemCard.highestBid === null">
+                            {{ itemCard.item.retailPrice | currency}}
+                            <br>
+                            Retail price
+                        </div>
+
                     </div>
                     <div class="col-5 d-flex justify-content-center align-items-center">
                         Sell or <br> Ask
@@ -40,7 +59,8 @@
         </div>
         <div class="col-sm col-md-3 d-flex justify-content-center mb-2">
             <button class="btn btn-info w-100 mx-1">Follow <img src="assets/add.svg" alt="follow"></button>
-            <button class="btn btn-info w-100 mx-1" (click)="onShare()">Share <img src="assets/share.svg" alt="share"></button>
+            <button class="btn btn-info w-100 mx-1" (click)="onShare()">Share <img src="assets/share.svg"
+                    alt="share"></button>
         </div>
     </div>
     <div class="row mb-2">
@@ -49,7 +69,7 @@
         </div>
     </div>
     <div class="row mb-2">
-        <div class="col-sm-4 border-end border-3 mb-2 d-flex align-items-center">
+        <div class="col-sm-4 border-end border-1 border-dark mb-2 d-flex align-items-center">
             <div>
                 <p class="ms-3"><strong>Model: </strong>{{ itemCard.item.model | titlecase}}</p>
                 <p class="ms-3"><strong>Make: </strong>{{ itemCard.item.make | titlecase}}</p>

@@ -17,6 +17,8 @@ export class ItemDetailsComponent implements OnInit, OnDestroy {
   itemCard: ItemDetails;
   itemSubscription: Subscription;
   size: string;
+  loading = true;
+  error = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -31,11 +33,19 @@ export class ItemDetailsComponent implements OnInit, OnDestroy {
     this.route.params.subscribe((params) => {
       this.itemSubscription = this.itemsService
         .getItemById(params['id'])
-        .subscribe((itemCard: ItemDetails) => {
-          this.itemCard = itemCard;
-          this.setDefaultSize();
-          console.log(this.itemCard);
-        });
+        .subscribe(
+          (itemCard: ItemDetails) => {
+            this.itemCard = itemCard;
+            console.log(this.itemCard);
+
+            this.loading = false;
+            this.setDefaultSize();
+            this.error = false;
+          },
+          () => {
+            this.error = true;
+          }
+        );
     });
   }
 

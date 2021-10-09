@@ -53,6 +53,10 @@ export class FiltersComponent implements OnInit {
       this.form.controls.otherBrand.reset();
       this.otherBrandSelected = selectedBrand === 'Other';
     });
+
+    this.itemsService.paramsChanged.subscribe((params) => {
+      this.form.reset(params);
+    });
   }
 
   onSubmit(): void {

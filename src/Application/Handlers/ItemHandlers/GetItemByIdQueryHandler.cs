@@ -39,17 +39,20 @@ namespace Application.Handlers.ItemHandlers
 
             var lowestAsk = await asks.OrderBy(x => x.Price).FirstOrDefaultAsync(cancellationToken: cancellationToken);
             var highestBid = await bids.OrderByDescending(x => x.Price).FirstOrDefaultAsync(cancellationToken: cancellationToken);
-
+            
             var mappedItem = _mapper.Map<ItemObject>(item);
-            mappedItem.LowestAsk = lowestAsk.Price.ToString(CultureInfo.InvariantCulture);
+            if (lowestAsk != null)
+            {
+                mappedItem.LowestAsk = lowestAsk.Price.ToString(CultureInfo.InvariantCulture);
+            }
             
             return new ItemCard()
             {
                 Item = mappedItem,
                 Asks = await asks.ProjectToListAsync<AskObject>(_mapper.ConfigurationProvider),
                 Bids = await bids.ProjectToListAsync<BidObject>(_mapper.ConfigurationProvider),
-                LowestAsk = _mapper.Map<AskObject>(lowestAsk),
-                HighestBid = _mapper.Map<BidObject>(highestBid)
+                LowestAsk = lowestAsk == null ? null : _mapper.Map<AskObject>(lowestAsk),
+                HighestBid = highestBid == null ? null : _mapper.Map<BidObject>(highestBid)
             };
         }
     }
