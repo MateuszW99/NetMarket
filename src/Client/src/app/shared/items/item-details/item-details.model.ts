@@ -5,9 +5,9 @@ import { Item } from '../item.model';
 export class ItemDetails {
   constructor(
     public item: Item,
-    public lowestAsk: Ask,
     public asks: Ask[],
-    public highestBid: Bid,
-    public bids: Bid[]
+    public bids: Bid[],
+    public lowestAsk: Ask,
+    public highestBid: Bid
   ) {}
 }

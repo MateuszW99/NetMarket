@@ -12,8 +12,9 @@ import { ItemDetails } from './item-details.model';
 })
 export class ItemDetailsComponent implements OnInit, OnDestroy {
   itemId = '';
-  item: ItemDetails;
+  itemCard: ItemDetails;
   itemSubscription: Subscription;
+  size = 14;
 
   constructor(
     private route: ActivatedRoute,
@@ -27,10 +28,9 @@ export class ItemDetailsComponent implements OnInit, OnDestroy {
     this.route.params.subscribe((params) => {
       this.itemSubscription = this.itemsService
         .getItemById(params['id'])
-        .subscribe((item: ItemDetails) => {
-          console.log(item);
-          this.item = item;
-          console.log(this.item);
+        .subscribe((itemCard: ItemDetails) => {
+          this.itemCard = itemCard;
+          console.log(this.itemCard);
         });
     });
   }
