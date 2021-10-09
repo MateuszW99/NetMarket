@@ -26,6 +26,7 @@ import { ItemDetailsComponent } from './shared/items/item-details/item-details.c
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ClipboardModule } from 'ngx-clipboard';
 import { ToastrModule } from 'ngx-toastr';
+import { SizeModalComponent } from './shared/size-modal/size-modal.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { ToastrModule } from 'ngx-toastr';
     CollectiblesComponent,
     ItemDetailsComponent,
     PaginationComponent,
-    SearchBarComponent
+    SearchBarComponent,
+    SizeModalComponent
   ],
   imports: [
     BrowserModule,

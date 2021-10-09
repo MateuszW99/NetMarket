@@ -1,11 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { ClipboardService } from 'ngx-clipboard';
 import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
-import { Item } from '../item.model';
 import { ItemsService } from '../items.service';
 import { ItemDetails } from './item-details.model';
+import { Modal } from 'bootstrap';
 
 @Component({
   selector: 'app-item-details',
@@ -16,7 +16,7 @@ export class ItemDetailsComponent implements OnInit, OnDestroy {
   itemId = '';
   itemCard: ItemDetails;
   itemSubscription: Subscription;
-  size = 14;
+  size: string;
 
   constructor(
     private route: ActivatedRoute,
@@ -27,13 +27,13 @@ export class ItemDetailsComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.itemId = this.route.snapshot.params['id'];
-    console.log(this.itemId);
 
     this.route.params.subscribe((params) => {
       this.itemSubscription = this.itemsService
         .getItemById(params['id'])
         .subscribe((itemCard: ItemDetails) => {
           this.itemCard = itemCard;
+          this.setDefaultSize();
           console.log(this.itemCard);
         });
     });
@@ -44,6 +44,26 @@ export class ItemDetailsComponent implements OnInit, OnDestroy {
       window.location.origin + window.location.pathname
     );
     this.toastr.success('Link copied to clipboard');
+  }
+
+  onSelectSize(): void {
+    const element = document.getElementById('sizeModal') as HTMLElement;
+    const sizeModal = new Modal(element);
+    sizeModal.show();
+  }
+
+  changeSize(size: string): void {
+    this.size = size;
+  }
+
+  setDefaultSize(): void {
+    if (this.itemCard.item.category === 'Sneakers') {
+      this.size = '14';
+    } else if (this.itemCard.item.category === 'Streetwear') {
+      this.size = 'M';
+    } else {
+      this.size = 'noSize';
+    }
   }
 
   ngOnDestroy(): void {
