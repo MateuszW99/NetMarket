@@ -1,5 +1,6 @@
-import { Component, HostListener, Input, OnInit } from '@angular/core';
+import { Component, HostListener, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Subscription } from 'rxjs';
 import { ItemsParams } from '../items/items-params';
 import { ItemsService } from '../items/items.service';
 
@@ -8,7 +9,7 @@ import { ItemsService } from '../items/items.service';
   templateUrl: './filters.component.html',
   styleUrls: ['./filters.component.css']
 })
-export class FiltersComponent implements OnInit {
+export class FiltersComponent implements OnInit, OnDestroy {
   constructor(private itemsService: ItemsService) {}
 
   @HostListener('window:resize', ['$event']) onResize(event: {
@@ -37,6 +38,7 @@ export class FiltersComponent implements OnInit {
   form: FormGroup;
   mobile = false;
   otherBrandSelected = false;
+  paramsSubscription: Subscription;
 
   ngOnInit(): void {
     this.form = new FormGroup({
@@ -54,7 +56,7 @@ export class FiltersComponent implements OnInit {
       this.otherBrandSelected = selectedBrand === 'Other';
     });
 
-    this.itemsService.paramsChanged.subscribe((params) => {
+    this.paramsSubscription = this.itemsService.paramsChanged.subscribe((params) => {
       this.form.reset(params);
     });
   }
@@ -135,5 +137,9 @@ export class FiltersComponent implements OnInit {
       minPrice,
       maxPrice
     );
+  }
+
+  ngOnDestroy(): void{
+    this.paramsSubscription.unsubscribe();
   }
 }

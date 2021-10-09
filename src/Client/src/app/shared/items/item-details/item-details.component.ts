@@ -36,8 +36,6 @@ export class ItemDetailsComponent implements OnInit, OnDestroy {
         .subscribe(
           (itemCard: ItemDetails) => {
             this.itemCard = itemCard;
-            console.log(this.itemCard);
-
             this.loading = false;
             this.setDefaultSize();
             this.error = false;
