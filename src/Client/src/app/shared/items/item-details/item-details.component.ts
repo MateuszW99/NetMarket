@@ -5,7 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
 import { ItemsService } from '../items.service';
 import { ItemDetails } from './item-details.model';
-import { Modal } from 'bootstrap';
+import Modal from 'bootstrap/js/dist/modal';
 
 @Component({
   selector: 'app-item-details',
