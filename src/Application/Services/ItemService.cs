@@ -191,7 +191,6 @@ namespace Application.Services
                 }
 
                 itemsQuery = itemsQuery.Where(x => itemsWithMaxPrice.Contains(x));
-                
             }
             
             return itemsQuery;
