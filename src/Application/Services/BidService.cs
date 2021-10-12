@@ -44,6 +44,7 @@ namespace Application.Services
             var bids = _context.Bids
                 .Include(x => x.Item)
                 .Include(x => x.Size)
+                .Where(x => x.ItemId == id)
                 .OrderByDescending(x => x.Price)
                 .Where(x => x.ItemId == id)
                 .AsQueryable();

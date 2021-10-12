@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Globalization;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Application.Common.Exceptions;
@@ -10,6 +12,7 @@ using Application.Models.DTOs;
 using AutoMapper;
 using Domain.Entities;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 
 namespace Application.Handlers.ItemHandlers
 {
@@ -40,12 +43,23 @@ namespace Application.Handlers.ItemHandlers
             
             var asks = _askService.GetItemAsks(itemId);
             var bids = _bidService.GetItemBids(itemId);
+
+            var lowestAsk = await asks.OrderBy(x => x.Price).FirstOrDefaultAsync(cancellationToken: cancellationToken);
+            var highestBid = await bids.OrderByDescending(x => x.Price).FirstOrDefaultAsync(cancellationToken: cancellationToken);
+            
+            var mappedItem = _mapper.Map<ItemObject>(item);
+            if (lowestAsk != null)
+            {
+                mappedItem.LowestAsk = lowestAsk.Price.ToString(CultureInfo.InvariantCulture);
+            }
             
             return new ItemCard()
             {
-                Item = _mapper.Map<ItemObject>(item),
+                Item = mappedItem,
                 Asks = await asks.ProjectToListAsync<AskObject>(_mapper.ConfigurationProvider),
-                Bids = await bids.ProjectToListAsync<BidObject>(_mapper.ConfigurationProvider)
+                Bids = await bids.ProjectToListAsync<BidObject>(_mapper.ConfigurationProvider),
+                LowestAsk = lowestAsk == null ? null : _mapper.Map<AskObject>(lowestAsk),
+                HighestBid = highestBid == null ? null : _mapper.Map<BidObject>(highestBid)
             };
         }
     }

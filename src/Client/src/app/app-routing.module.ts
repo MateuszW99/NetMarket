@@ -7,6 +7,7 @@ import { CollectiblesComponent } from './collectibles/collectibles.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { ElectronicsComponent } from './electronics/electronics.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
+import { ItemDetailsComponent } from './shared/items/item-details/item-details.component';
 import { SneakersComponent } from './sneakers/sneakers.component';
 import { StreetwearComponent } from './streetwear/streetwear.component';
 
@@ -27,6 +28,10 @@ const routes: Routes = [
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent }
     ]
+  },
+  {
+    path: 'items/:id',
+    component: ItemDetailsComponent
   },
   {
     path: 'sneakers',
