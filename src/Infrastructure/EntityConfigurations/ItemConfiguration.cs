@@ -9,6 +9,10 @@ namespace Infrastructure.EntityConfigurations
         public void Configure(EntityTypeBuilder<Item> builder)
         {
             builder.Ignore(e => e.DomainEvents);
+
+            builder.Ignore(e => e.Asks);
+
+            builder.Ignore(e => e.Bids);
             
             builder.HasKey(e => e.Id);
 

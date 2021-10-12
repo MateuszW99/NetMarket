@@ -21,6 +21,7 @@ namespace Domain.Entities
         public Guid BrandId { get; set; }
         public Brand Brand { get; set; }
         public ICollection<Ask> Asks { get; set; }
+        public ICollection<Bid> Bids { get; set; }
         public List<DomainEvent> DomainEvents { get; set; }
     }
 }
