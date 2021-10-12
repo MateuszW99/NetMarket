@@ -29,7 +29,7 @@ namespace Application.Services
         {
             if (_feesMap.TryGetValue(sellerLevel, out var feeRate))
             {
-                var calculatedFee = price * (1 + feeRate);
+                var calculatedFee = price * feeRate;
                 return calculatedFee;    
             }
             throw new Exception($"Seller level: {sellerLevel.ToString()} doesn't exist.");

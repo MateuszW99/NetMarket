@@ -15,10 +15,10 @@ namespace Application.UnitTests.Services
         public static IEnumerable<object[]> Data =>
             new List<object[]>()
             {
-                new object[] { SellerLevel.Beginner, 100m, 110m },
-                new object[] { SellerLevel.Intermediate, 100m, 108.5m },
-                new object[] { SellerLevel.Advanced, 100m, 106m },
-                new object[] { SellerLevel.Business, 100m, 104m },
+                new object[] { SellerLevel.Beginner, 100m, 10m },
+                new object[] { SellerLevel.Intermediate, 100m, 8.5m },
+                new object[] { SellerLevel.Advanced, 100m, 6m },
+                new object[] { SellerLevel.Business, 100m, 4m },
             };
 
         private readonly IFeeService sut;
@@ -54,7 +54,7 @@ namespace Application.UnitTests.Services
         {
             var price = 100m;
             var sellerLevel = SellerLevel.Beginner;
-            var expected = 110m;
+            var expected = 10m;
 
             var result = sut.CalculateFee(sellerLevel, price);
 
