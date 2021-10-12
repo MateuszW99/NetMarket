@@ -4,6 +4,7 @@ import { Observable, Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { ApiPaths } from '../api-paths';
 import { PagedList } from '../paged-list';
+import { ItemDetails } from './item-details/item-details.model';
 import { Item } from './item.model';
 import { ItemsParams } from './items-params';
 
@@ -51,5 +52,11 @@ export class ItemsService {
       observe: 'response',
       params: params
     });
+  }
+
+  getItemById(id: string): Observable<ItemDetails> {
+    return this.http.get<ItemDetails>(
+      environment.apiUrl + ApiPaths.Items + `/${id}`
+    );
   }
 }
