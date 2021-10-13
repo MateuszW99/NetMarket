@@ -30,7 +30,7 @@ namespace Application.Handlers.BidHandlers
         {
             var userId = Guid.Parse(_httpService.GetUserId());
             var userSellerLevel = await _userSettingsService.GetUserSellerLevel(userId);
-            var fee = _feeService.CalculateFee(userSellerLevel, Convert.ToDecimal(request.Price));
+            var fee = await _feeService.CalculateFee(userSellerLevel, Convert.ToDecimal(request.Price));
             
             await _bidService.CreateBidAsync(request, fee, cancellationToken);
             _logger.LogInformation("Bid created");

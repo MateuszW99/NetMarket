@@ -32,7 +32,7 @@ namespace Application.Handlers.AskHandlers
             var userSellerLevel = await _userSettingsService.GetUserSellerLevel(userId);
             var fee = _feeService.CalculateFee(userSellerLevel, Convert.ToDecimal(request.Price));
             
-            await _askService.CreateAskAsync(request, fee, cancellationToken);
+            await _askService.CreateAskAsync(request, await fee, cancellationToken);
             _logger.LogInformation("Ask created");
             return Unit.Value;
         }

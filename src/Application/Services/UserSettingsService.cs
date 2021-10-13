@@ -25,7 +25,9 @@ namespace Application.Services
             {
                 UserId = userId,
                 PaypalEmail = string.Empty,
-
+                SellerLevel = SellerLevel.Beginner,
+                SalesCompleted = 0,
+                
                 BillingStreet = string.Empty,
                 BillingAddressLine1 = string.Empty,
                 BillingAddressLine2 = string.Empty,
@@ -37,6 +39,7 @@ namespace Application.Services
                 ShippingAddressLine2 = string.Empty,
                 ShippingZipCode = string.Empty,
                 ShippingCountry = string.Empty,
+                
             };
 
             return userSettings;
@@ -44,7 +47,7 @@ namespace Application.Services
 
         public async Task<SellerLevel> GetUserSellerLevel(Guid userId)
         {
-            var userSettings = await _context.UserSettings.FirstOrDefaultAsync(x => x.Id == userId);
+            var userSettings = await _context.UserSettings.FirstOrDefaultAsync(x => x.CreatedBy == userId);
             return userSettings.SellerLevel;
         }
 

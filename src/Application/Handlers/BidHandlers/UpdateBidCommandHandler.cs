@@ -46,7 +46,7 @@ namespace Application.Handlers.BidHandlers
             var userSellerLevel = await _userSettingsService.GetUserSellerLevel(userId);
             var fee = _feeService.CalculateFee(userSellerLevel, Convert.ToDecimal(request.Price));
             
-            await _bidService.UpdateBidAsync(bid, request, fee, cancellationToken);
+            await _bidService.UpdateBidAsync(bid, request, await fee, cancellationToken);
             _logger.LogInformation($"Updated bid {bid.Id} by {bid.CreatedBy}");
             return Unit.Value;
         }

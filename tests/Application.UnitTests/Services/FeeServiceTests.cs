@@ -33,39 +33,39 @@ namespace Application.UnitTests.Services
         [InlineData(SellerLevel.Intermediate, 0.085)]
         [InlineData(SellerLevel.Advanced, 0.06)]
         [InlineData(SellerLevel.Business, 0.04)]
-        public void GetFeeRate_Returns_ExistingFeeRate_ForEach_SellerLevel(SellerLevel sellerLevel, decimal expectedRate)
+        public async Task GetFeeRate_Returns_ExistingFeeRate_ForEach_SellerLevel(SellerLevel sellerLevel, decimal expectedRate)
         {
-            var result = sut.GetFeeRate(sellerLevel);
+            var result = await sut.GetFeeRate(sellerLevel);
             result.Should().Be(expectedRate);
         }
 
         [Fact]
-        public void CalculateFee_Throws_ForNotExistingSellerLevel()
+        public async Task CalculateFee_Throws_ForNotExistingSellerLevel()
         {
             var notExistingSellerLevel = (SellerLevel)((int)Enum.GetValues<SellerLevel>().Max() + 1);
             var price = 100m;
-            FluentActions.Invoking(() => sut.CalculateFee(notExistingSellerLevel, price))
+            FluentActions.Awaiting(() => sut.CalculateFee(notExistingSellerLevel, price))
                 .Should()
                 .Throw<Exception>();
         }
 
         [Fact]
-        public void CalculateFee_Should_ReturnAppropriateFee()
+        public async Task CalculateFee_Should_ReturnAppropriateFee()
         {
             var price = 100m;
             var sellerLevel = SellerLevel.Beginner;
             var expected = 10m;
 
-            var result = sut.CalculateFee(sellerLevel, price);
+            var result = await sut.CalculateFee(sellerLevel, price);
 
             result.Should().Be(expected);
         }
 
         [Theory]
         [MemberData(nameof(Data))]
-        public void CalculateFee_Should_ReturnAppropriateFee_ForEachSellerLevel(SellerLevel sellerLevel, decimal price, decimal expected)
+        public async Task CalculateFee_Should_ReturnAppropriateFee_ForEachSellerLevel(SellerLevel sellerLevel, decimal price, decimal expected)
         {
-            var result = sut.CalculateFee(sellerLevel, price);
+            var result = await sut.CalculateFee(sellerLevel, price);
 
             result.Should().Be(expected);
         }

@@ -44,7 +44,7 @@ namespace Application.Handlers.AskHandlers
             }
 
             var userSellerLevel = await _userSettingsService.GetUserSellerLevel(userId);
-            var fee = _feeService.CalculateFee(userSellerLevel, Convert.ToDecimal(request.Price));
+            var fee = await _feeService.CalculateFee(userSellerLevel, Convert.ToDecimal(request.Price));
             
             await _askService.UpdateAskAsync(ask, request, fee, cancellationToken);
             _logger.LogInformation($"Updated ask {ask.Id} by {ask.CreatedBy}");

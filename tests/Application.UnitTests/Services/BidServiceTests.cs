@@ -156,7 +156,7 @@ namespace Application.UnitTests.Services
             var mockedBids = bids.AsQueryable().BuildMockDbSet();
             _context.Setup(x => x.Bids).Returns(mockedBids.Object);
 
-            var result = await sut.GetItemBids(itemId).ToListAsync();
+            var result = await sut.GetItemBids(itemId);
 
             result.Should().NotBeNull();
             result.Should().HaveCount(2);
@@ -177,7 +177,7 @@ namespace Application.UnitTests.Services
             var mockedBids = bids.AsQueryable().BuildMockDbSet();
             _context.Setup(x => x.Bids).Returns(mockedBids.Object);
 
-            var result = await sut.GetItemBids(itemId).ToListAsync();
+            var result = await sut.GetItemBids(itemId);
 
             result.Should().NotBeNull();
             result.Should().HaveCount(0);

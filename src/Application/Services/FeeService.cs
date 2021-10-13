@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Application.Common.Interfaces;
 using Domain.Enums;
 
@@ -20,17 +21,17 @@ namespace Application.Services
             };
         }
         
-        public decimal GetFeeRate(SellerLevel sellerLevel)
+        public Task<decimal> GetFeeRate(SellerLevel sellerLevel)
         {
-            return _feesMap[sellerLevel];
+            return Task.FromResult(_feesMap[sellerLevel]);
         }
 
-        public decimal CalculateFee(SellerLevel sellerLevel, decimal price)
+        public Task<decimal> CalculateFee(SellerLevel sellerLevel, decimal price)
         {
             if (_feesMap.TryGetValue(sellerLevel, out var feeRate))
             {
                 var calculatedFee = price * feeRate;
-                return calculatedFee;    
+                return Task.FromResult(calculatedFee);    
             }
             throw new Exception($"Seller level: {sellerLevel.ToString()} doesn't exist.");
         }
