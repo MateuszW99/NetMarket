@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Application.Common.Models;
@@ -14,7 +15,6 @@ namespace Application.Common.Interfaces
         Task<Transaction> GetTransactionByIdAsync(string transactionId, string supervisorId);
         Task UpdateTransactionAsync(UpdateTransactionCommand command, CancellationToken cancellationToken);
         Task UpdateTransactionStatusAsync(UpdateTransactionStatusCommand command, string supervisorId, CancellationToken cancellationToken);
-        Task BuyNow();
-        Task SellNow();
+        Task BeginTransaction(Ask ask, Bid bid, DateTime startDate, Guid supervisorId, CancellationToken cancellationToken);
     }
 }
