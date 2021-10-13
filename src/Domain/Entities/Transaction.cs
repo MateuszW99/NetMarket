@@ -9,20 +9,21 @@ namespace Domain.Entities
     {
         public Guid Id { get; init; }
         public Guid AssignedSupervisorId { get; set; }
+        public decimal CompanyProfit { get; set; }
         
         public Guid AskId { get; set; }
         public Ask Ask { get; set; }
+        public decimal SellerFee { get; set; }
+        public decimal SellerPayout { get; set; }
         
         public Guid BidId { get; set; }
         public Bid Bid { get; set; }
+        public decimal BuyerFee { get; set; }
+        public decimal TotalBuyerCost { get; set; }
         
         public TransactionStatus Status { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
-        public decimal SellerFee { get; set; }
-        public decimal BuyerFee { get; set; }
-        public decimal Payout { get; set; }
-
         public List<DomainEvent> DomainEvents { get; set; }
     }
 }
