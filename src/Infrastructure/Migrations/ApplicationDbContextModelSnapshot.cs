@@ -130,6 +130,11 @@ namespace Infrastructure.Migrations
                         .HasMaxLength(1500)
                         .HasColumnType("nvarchar(1500)");
 
+                    b.Property<string>("Gender")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
                     b.Property<string>("ImageUrl")
                         .HasColumnType("nvarchar(max)");
 
@@ -200,6 +205,9 @@ namespace Infrastructure.Migrations
                     b.Property<decimal>("BuyerFee")
                         .HasColumnType("money");
 
+                    b.Property<decimal>("CompanyProfit")
+                        .HasColumnType("money");
+
                     b.Property<DateTime>("Created")
                         .HasColumnType("datetime2");
 
@@ -215,10 +223,10 @@ namespace Infrastructure.Migrations
                     b.Property<Guid?>("LastModifiedBy")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<decimal>("Payout")
+                    b.Property<decimal>("SellerFee")
                         .HasColumnType("money");
 
-                    b.Property<decimal>("SellerFee")
+                    b.Property<decimal>("SellerPayout")
                         .HasColumnType("money");
 
                     b.Property<DateTime>("StartDate")
@@ -227,6 +235,9 @@ namespace Infrastructure.Migrations
                     b.Property<string>("Status")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("TotalBuyerCost")
+                        .HasColumnType("money");
 
                     b.HasKey("Id");
 
