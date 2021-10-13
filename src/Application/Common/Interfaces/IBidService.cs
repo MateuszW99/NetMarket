@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -11,7 +12,7 @@ namespace Application.Common.Interfaces
     {
         Task<Bid> GetBidByIdAsync(Guid bidId);
         IQueryable<Bid> GetUserBids(Guid userId);
-        IQueryable<Bid> GetItemBids(Guid id);
+        Task<List<Bid>> GetItemBids(Guid itemId);
         Task CreateBidAsync(CreateBidCommand command, decimal fee, CancellationToken cancellationToken);
         Task UpdateBidAsync(Bid bid, UpdateBidCommand command, decimal fee, CancellationToken cancellationToken);
         Task DeleteBidAsync(Bid bid, CancellationToken cancellationToken);

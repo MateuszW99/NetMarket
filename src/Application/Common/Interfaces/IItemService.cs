@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -12,7 +13,7 @@ namespace Application.Common.Interfaces
     {
         Task CreateItemAsync(CreateItemCommand command, CancellationToken cancellationToken);
         Task<Item> GetItemByIdAsync(Guid id);
-        IQueryable<Item> GetItemsWithQuery(SearchItemsQuery query);
+        Task<List<Item>> GetItemsWithQuery(SearchItemsQuery query);
         IQueryable<Item> GetItemsWithCategory(string category);
         IQueryable<Item> GetTrendingItems(string category, int count);
         Task UpdateItemAsync(Item item, UpdateItemCommand command, CancellationToken cancellationToken);

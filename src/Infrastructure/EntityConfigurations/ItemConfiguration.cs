@@ -12,8 +12,6 @@ namespace Infrastructure.EntityConfigurations
 
             builder.Ignore(e => e.Asks);
 
-            builder.Ignore(e => e.Bids);
-            
             builder.HasKey(e => e.Id);
 
             builder.Property(e => e.Name)

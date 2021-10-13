@@ -17,11 +17,9 @@ namespace Domain.Entities
         public string ImageUrl { get; set; }
         public string SmallImageUrl { get; set; }
         public string ThumbUrl { get; set; }
-        
         public Guid BrandId { get; set; }
         public Brand Brand { get; set; }
-        public ICollection<Ask> Asks { get; set; }
-        public ICollection<Bid> Bids { get; set; }
+        public List<Ask> Asks { get; set; }
         public List<DomainEvent> DomainEvents { get; set; }
     }
 }

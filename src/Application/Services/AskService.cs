@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -39,15 +40,13 @@ namespace Application.Services
             return asks;
         }
 
-        public IQueryable<Ask> GetItemAsks(Guid id)
+        public async Task<List<Ask>> GetItemAsks(Guid itemId)
         {
-            var asks = _context.Asks
+            var asks = await _context.Asks
                 .Include(x => x.Item)
                 .Include(x => x.Size)
-                .Where(x => x.ItemId == id)
-                .OrderBy(x => x.Price)
-                .Where(x => x.ItemId == id)
-                .AsQueryable();
+                .Where(x => x.ItemId == itemId)
+                .ToListAsync();
 
             return asks;
         }
