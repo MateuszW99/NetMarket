@@ -1,3 +1,15 @@
-<p>landing-page works!</p>
-<p>TODO: implement the page</p>
-
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-6 offset-3 my-4">
+            <a type="button" class="btn btn-light w-100 border border-2 rounded-pill" routerLink="/">
+                <h1 class="text-center fw-bold">NetMarket</h1>
+                <h2 class="text-center text-info"> Buy & Sell </h2>
+            </a>
+        </div>
+    </div>
+    <div class="row mx-5">
+        <div class=" col-sm-6 col-lg-3 mb-2" *ngFor="let category of categories">
+           <app-category-card [category]="category"></app-category-card>
+        </div>
+    </div>
+</div>

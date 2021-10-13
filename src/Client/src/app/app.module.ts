@@ -27,6 +27,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ClipboardModule } from 'ngx-clipboard';
 import { ToastrModule } from 'ngx-toastr';
 import { SizeModalComponent } from './shared/size-modal/size-modal.component';
+import { CategoryCardComponent } from './landing-page/category-card/category-card.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { SizeModalComponent } from './shared/size-modal/size-modal.component';
     ItemDetailsComponent,
     PaginationComponent,
     SearchBarComponent,
-    SizeModalComponent
+    SizeModalComponent,
+    CategoryCardComponent
   ],
   imports: [
     BrowserModule,
