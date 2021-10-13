@@ -53,7 +53,7 @@ namespace Application.IntegrationTests.SupervisorPanel.Queries
             transaction.StartDate.Should().Be(seededTransaction.StartDate.ToString());
             transaction.SellerFee.Should().Be(seededTransaction.SellerFee);
             transaction.BuyerFee.Should().Be(seededTransaction.BuyerFee);
-            transaction.Payout.Should().Be(seededTransaction.Payout);
+            transaction.SellerPayout.Should().Be(seededTransaction.SellerPayout);
         }
         
         [Fact]

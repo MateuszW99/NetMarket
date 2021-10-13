@@ -36,7 +36,7 @@ namespace Application.IntegrationTests.Helpers
                     EndDate =  DateTime.ParseExact("08/25/2021", "MM/dd/yyyy", null),
                     SellerFee = 8M,
                     BuyerFee = 150M,
-                    Payout = 140M
+                    SellerPayout = 140M
                 },
                 new()
                 {
@@ -48,7 +48,7 @@ namespace Application.IntegrationTests.Helpers
                     StartDate =  DateTime.ParseExact("08/24/2021", "MM/dd/yyyy", null),
                     SellerFee = 7M,
                     BuyerFee = 160M,
-                    Payout = 150M
+                    SellerPayout = 150M
                 },
                 new()
                 {
@@ -60,7 +60,7 @@ namespace Application.IntegrationTests.Helpers
                     StartDate =  DateTime.ParseExact("08/25/2021", "MM/dd/yyyy", null),
                     SellerFee = 10M,
                     BuyerFee = 180M,
-                    Payout = 165M
+                    SellerPayout = 165M
                 },
                 new()
                 {
@@ -72,7 +72,7 @@ namespace Application.IntegrationTests.Helpers
                     StartDate =  DateTime.ParseExact("08/22/2021", "MM/dd/yyyy", null),
                     SellerFee = 8M,
                     BuyerFee = 150M,
-                    Payout = 140M
+                    SellerPayout = 140M
                 },
                 new()
                 {
@@ -84,7 +84,7 @@ namespace Application.IntegrationTests.Helpers
                     StartDate =  DateTime.ParseExact("08/18/2021", "MM/dd/yyyy", null),
                     SellerFee = 8M,
                     BuyerFee = 150M,
-                    Payout = 140M
+                    SellerPayout = 140M
                 },
             };
         }
