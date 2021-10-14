@@ -14,13 +14,7 @@
     </div>
     <div class="row">
         <div class="col-12 mb-3" *ngFor="let category of categories">
-            <app-trending-items *ngIf="trendingItems.get(category).length === 9" [items]="trendingItems.get(category)" [category]="category"></app-trending-items>
+            <app-trending-items *ngIf="trendingItems.get(category).length === 12" [items]="trendingItems.get(category)" [category]="category"></app-trending-items>
         </div>
-        <!-- <div class="col-12 mb-3">
-            <app-trending-items *ngIf="trendingItems.get('sneakers').length === 9" [items]="trendingItems.get('sneakers')" [category]="'sneakers'"></app-trending-items>
-        </div>
-        <div class="col-12 mb-3">
-            <app-trending-items *ngIf="trendingItems.get('streetwear').length === 9" [items]="trendingItems.get('sneakers')" [category]="'sneakers'"></app-trending-items>
-        </div> -->
     </div>
 </div>

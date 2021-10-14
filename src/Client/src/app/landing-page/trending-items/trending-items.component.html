@@ -3,60 +3,99 @@
         <div class="col-6">
             <h3 class="mb-3">Trending {{ category }}:</h3>
         </div>
-        <div class="col-6 text-end">
-            <a class="btn btn-info mb-3 me-1" role="button" [attr.data-bs-target]="'#' + category" data-bs-slide="prev">
+        <div class="col-6 text-end d-none d-lg-block">
+            <a class="btn btn-info mb-3 me-1" role="button" [attr.data-bs-target]="'#' + category + 'Lg'"
+                data-bs-slide="prev">
                 <fa-icon [icon]="faArrowLeft"></fa-icon>
             </a>
-            <a class="btn btn-info mb-3 ms-1" role="button" [attr.data-bs-target]="'#' + category" data-bs-slide="next">
+            <a class="btn btn-info mb-3 ms-1" role="button" [attr.data-bs-target]="'#' + category + 'Lg'"
+                data-bs-slide="next">
                 <fa-icon [icon]="faArrowRight"></fa-icon>
             </a>
         </div>
-        <div class="col-12 ">
-            <div [id]="category" class="carousel carousel-dark slide " data-bs-ride="carousel">
-               
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <div class="row">
-                            <div class="col-md-4 mb-3">
-                                <app-item-card [item]="items[0].item"></app-item-card>
+        <div class="col-6 text-end d-none d-md-block d-lg-none">
+            <a class="btn btn-info mb-3 me-1" role="button" [attr.data-bs-target]="'#' + category + 'Md'"
+                data-bs-slide="prev">
+                <fa-icon [icon]="faArrowLeft"></fa-icon>
+            </a>
+            <a class="btn btn-info mb-3 ms-1" role="button" [attr.data-bs-target]="'#' + category +'Md'"
+                data-bs-slide="next">
+                <fa-icon [icon]="faArrowRight"></fa-icon>
+            </a>
+        </div>
+        <div class="col-6 text-end d-md-none">
+            <a class="btn btn-info mb-3 me-1" role="button" [attr.data-bs-target]="'#' + category + 'Sm'"
+                data-bs-slide="prev">
+                <fa-icon [icon]="faArrowLeft"></fa-icon>
+            </a>
+            <a class="btn btn-info mb-3 ms-1" role="button" [attr.data-bs-target]="'#' + category +'Sm'"
+                data-bs-slide="next">
+                <fa-icon [icon]="faArrowRight"></fa-icon>
+            </a>
+        </div>
+        
+        <div class="col-12">
+
+            <!-- Carousel for screen with width >= lg -->
+            <div class="d-none d-lg-block">
+                <div [id]="category + 'Lg'" class="carousel slide " data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <ng-container *ngFor="let item of items; let i = index">
+                            <div class="carousel-item" [ngClass]="{'active': i === 0}" *ngIf="i % 3 === 0">
+                                <div class="row">
+                                    <div class="col-lg-4 mb-3 d-flex justify-content-center">
+                                        <app-item-card [item]="items[i].item"></app-item-card>
+                                    </div>
+                                    <div class="col-lg-4 mb-3 d-flex justify-content-center">
+                                        <app-item-card [item]="items[i+1].item"></app-item-card>
+                                    </div>
+                                    <div class="col-lg-4 mb-3 d-flex justify-content-center">
+                                        <app-item-card [item]="items[i+2].item"></app-item-card>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="col-md-4 mb-3 ">
-                                <app-item-card [item]="items[1].item"></app-item-card>
-                            </div>
-                            <div class="col-md-4 mb-3">
-                                <app-item-card [item]="items[2].item"></app-item-card>
-                            </div>
-                        </div>
+                        </ng-container>
                     </div>
-                    <div class="carousel-item">
-                        <div class="row">
-                            <div class="col-md-4 mb-3">
-                                <app-item-card [item]="items[3].item"></app-item-card>
+                </div>
+            </div>
+
+            <!-- Carousel for screen with width == md -->
+            <div class="d-none d-md-block d-lg-none">
+                <div [id]="category + 'Md'" class="carousel slide " data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <ng-container *ngFor="let item of items; let i = index">
+                            <div class="carousel-item" [ngClass]="{'active': i === 0}" *ngIf="i % 2 === 0">
+                                <div class="row">
+                                    <div class="col-md-6 mb-3 d-flex justify-content-center">
+                                        <app-item-card [item]="items[i].item"></app-item-card>
+                                    </div>
+                                    <div class="col-md-6 mb-3 d-flex justify-content-center">
+                                        <app-item-card [item]="items[i+1].item"></app-item-card>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="col-md-4 mb-3 ">
-                                <app-item-card [item]="items[4].item"></app-item-card>
-                            </div>
-                            <div class="col-md-4 mb-3">
-                                <app-item-card [item]="items[5].item"></app-item-card>
-                            </div>
-                        </div>
+                        </ng-container>
+
                     </div>
-                    <div class="carousel-item">
-                        <div class="row">
-                            <div class="col-md-4 mb-3">
-                                <app-item-card [item]="items[6].item"></app-item-card>
-                            </div>
-                            <div class="col-md-4 mb-3 ">
-                                <app-item-card [item]="items[7].item"></app-item-card>
-                            </div>
-                            <div class="col-md-4 mb-3">
-                                <app-item-card [item]="items[8].item"></app-item-card>
+                </div>
+            </div>
+
+            <!-- Carousel for screen with width < md -->
+            <div class="d-md-none">
+                <div [id]="category + 'Sm'" class="carousel slide " data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item" *ngFor="let item of items; let i = index"
+                            [ngClass]="{'active': i === 0}">
+                            <div class="row">
+                                <div class=" col-12 mb-3 d-flex justify-content-center">
+                                    <app-item-card [item]="item.item"></app-item-card>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+
         </div>
-        
     </div>
 </div>
