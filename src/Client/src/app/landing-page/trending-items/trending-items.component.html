@@ -1,1 +1,62 @@
-<p>items works</p>
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            <h3 class="mb-3">Trending {{ category }}:</h3>
+        </div>
+        <div class="col-6 text-end">
+            <a class="btn btn-info mb-3 me-1" role="button" [attr.data-bs-target]="'#' + category" data-bs-slide="prev">
+                <fa-icon [icon]="faArrowLeft"></fa-icon>
+            </a>
+            <a class="btn btn-info mb-3 ms-1" role="button" [attr.data-bs-target]="'#' + category" data-bs-slide="next">
+                <fa-icon [icon]="faArrowRight"></fa-icon>
+            </a>
+        </div>
+        <div class="col-12 ">
+            <div [id]="category" class="carousel carousel-dark slide " data-bs-ride="carousel">
+               
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="row">
+                            <div class="col-md-4 mb-3">
+                                <app-item-card [item]="items[0].item"></app-item-card>
+                            </div>
+                            <div class="col-md-4 mb-3 ">
+                                <app-item-card [item]="items[1].item"></app-item-card>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <app-item-card [item]="items[2].item"></app-item-card>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="row">
+                            <div class="col-md-4 mb-3">
+                                <app-item-card [item]="items[3].item"></app-item-card>
+                            </div>
+                            <div class="col-md-4 mb-3 ">
+                                <app-item-card [item]="items[4].item"></app-item-card>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <app-item-card [item]="items[5].item"></app-item-card>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="row">
+                            <div class="col-md-4 mb-3">
+                                <app-item-card [item]="items[6].item"></app-item-card>
+                            </div>
+                            <div class="col-md-4 mb-3 ">
+                                <app-item-card [item]="items[7].item"></app-item-card>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <app-item-card [item]="items[8].item"></app-item-card>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>

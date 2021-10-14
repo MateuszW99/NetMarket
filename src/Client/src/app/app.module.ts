@@ -29,6 +29,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { SizeModalComponent } from './shared/size-modal/size-modal.component';
 import { CategoryCardComponent } from './landing-page/category-card/category-card.component';
 import { TrendingItemsComponent } from './landing-page/trending-items/trending-items.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -63,7 +64,8 @@ import { TrendingItemsComponent } from './landing-page/trending-items/trending-i
     FormsModule,
     ClipboardModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    FontAwesomeModule
   ],
   providers: [
     {

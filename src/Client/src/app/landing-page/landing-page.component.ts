@@ -23,7 +23,7 @@ export class LandingPageComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.categories.forEach((category: string) => {
       this.trendingItemsSubscription = this.itemsService
-        .getTrendingItems(category, 15)
+        .getTrendingItems(category, 9)
         .subscribe((items: ItemDetails[]) => {
           this.trendingItems.set(category, items);
         });
