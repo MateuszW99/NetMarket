@@ -12,4 +12,9 @@
            <app-category-card [category]="category"></app-category-card>
         </div>
     </div>
+    <div class="row">
+        <div class="col-6 offset-3" *ngFor="let category of categories">
+            <app-trending-items *ngIf="trendingItems.get(category).length > 0" [items]="trendingItems.get(category)" [category]="category"></app-trending-items>
+        </div>
+    </div>
 </div>

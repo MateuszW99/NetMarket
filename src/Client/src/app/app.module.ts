@@ -28,6 +28,7 @@ import { ClipboardModule } from 'ngx-clipboard';
 import { ToastrModule } from 'ngx-toastr';
 import { SizeModalComponent } from './shared/size-modal/size-modal.component';
 import { CategoryCardComponent } from './landing-page/category-card/category-card.component';
+import { TrendingItemsComponent } from './landing-page/trending-items/trending-items.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { CategoryCardComponent } from './landing-page/category-card/category-car
     PaginationComponent,
     SearchBarComponent,
     SizeModalComponent,
-    CategoryCardComponent
+    CategoryCardComponent,
+    TrendingItemsComponent
   ],
   imports: [
     BrowserModule,
