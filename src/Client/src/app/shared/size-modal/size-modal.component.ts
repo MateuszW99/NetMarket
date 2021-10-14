@@ -9,7 +9,6 @@ export class SizeModalComponent implements OnInit {
   @Input() category = '';
   @Output() sizeChanged = new EventEmitter<string>();
   selectedSize = '14';
-  clickedButton = null;
   sneakersSizes = [
     '4',
     '4.5',
@@ -36,7 +35,7 @@ export class SizeModalComponent implements OnInit {
     '16',
     '17'
   ];
-  streetwearSizes = ['noSize', 'oneSize', 'S', 'M', 'L', 'XL'];
+  streetwearSizes = ['oneSize', 'S', 'M', 'L', 'XL'];
   sizes = this.sneakersSizes;
 
   ngOnInit(): void {
