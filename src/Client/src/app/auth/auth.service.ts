@@ -73,7 +73,7 @@ export class AuthService {
   }
 
   autoLogin(): void {
-    if (JSON.parse(localStorage.getItem('RememberMe')) !== null) {
+    if (JSON.parse(localStorage.getItem('rememberMe')) !== null) {
       // get user from local storage
       const userData = JSON.parse(localStorage.getItem('userData'));
       if (!userData) {
