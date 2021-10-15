@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -10,11 +11,11 @@ namespace Application.Common.Interfaces
 {
     public interface ITransactionService
     {
-        IQueryable<Transaction> GetTransactions(SearchTransactionsQuery query);
-        IQueryable<Transaction> GetSupervisorTransactions(SearchTransactionsQuery query, string supervisorId);
+        Task<List<Transaction>> GetTransactionsByStatus(SearchTransactionsQuery query);
+        Task<List<Transaction>> GetSupervisorTransactions(SearchTransactionsQuery query, string supervisorId);
         Task<Transaction> GetTransactionByIdAsync(string transactionId, string supervisorId);
         Task UpdateTransactionAsync(UpdateTransactionCommand command, CancellationToken cancellationToken);
         Task UpdateTransactionStatusAsync(UpdateTransactionStatusCommand command, string supervisorId, CancellationToken cancellationToken);
-        Task BeginTransaction(Ask ask, Bid bid, DateTime startDate, Guid supervisorId, CancellationToken cancellationToken);
+        Task InitializeTransaction(Ask ask, Bid bid, DateTime startDate, Guid supervisorId, CancellationToken cancellationToken);
     }
 }

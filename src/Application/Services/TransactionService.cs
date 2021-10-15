@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -21,7 +22,7 @@ namespace Application.Services
             _context = context;
         }
 
-        public IQueryable<Transaction> GetTransactions(SearchTransactionsQuery query)
+        public async Task<List<Transaction>> GetTransactionsByStatus(SearchTransactionsQuery query)
         {
             var transactionsQuery = _context.Transactions
                 .Include(x => x.Ask).DefaultIfEmpty()
@@ -33,10 +34,10 @@ namespace Application.Services
                 transactionsQuery = transactionsQuery.Where(x => x.Status.ToString() == query.Status);
             }
 
-            return transactionsQuery.OrderBy(x => x.StartDate);
+            return await transactionsQuery.OrderBy(x => x.StartDate).ToListAsync();
         }
 
-        public IQueryable<Transaction> GetSupervisorTransactions(SearchTransactionsQuery query, string supervisorId)
+        public async Task<List<Transaction>> GetSupervisorTransactions(SearchTransactionsQuery query, string supervisorId)
         {
             var transactionsQuery = _context.Transactions
                 .Include(x => x.Ask).DefaultIfEmpty()
@@ -49,7 +50,7 @@ namespace Application.Services
                 transactionsQuery = transactionsQuery.Where(x => x.Status.ToString() == query.Status);
             }
 
-            return transactionsQuery.OrderBy(x => x.StartDate);
+            return await transactionsQuery.OrderBy(x => x.StartDate).ToListAsync();
         }
 
         public async Task<Transaction> GetTransactionByIdAsync(string transactionId, string supervisorId)
@@ -126,7 +127,7 @@ namespace Application.Services
             await _context.SaveChangesAsync(cancellationToken);
         }
 
-        public async Task BeginTransaction(Ask ask, Bid bid, DateTime startDate, Guid supervisorId, CancellationToken cancellationToken)
+        public async Task InitializeTransaction(Ask ask, Bid bid, DateTime startDate, Guid supervisorId, CancellationToken cancellationToken)
         {
             var transaction = new Transaction()
             {
