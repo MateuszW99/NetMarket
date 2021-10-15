@@ -3,6 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Application.Common.Interfaces;
 using Application.Models.ApiModels.Transactions.Commands;
+using Domain;
 using MediatR;
 using Microsoft.Extensions.Logging;
 
@@ -33,7 +34,7 @@ namespace Application.Handlers.TransactionHandlers
         {
             var ask = await _askService.GetAskByIdAsync(Guid.Parse(request.AskId));
             var bid = await _bidService.GetBidByIdAsync(Guid.Parse(request.BidId));
-            var supervisorId = await _supervisorService.GetLeastLoadedSupervisorId();
+            var supervisorId = await _supervisorService.GetLeastLoadedSupervisorId(Roles.Supervisor);
             await _transactionService.InitializeTransaction(ask, bid, DateTime.Now, supervisorId, cancellationToken);
             _logger.LogInformation($"New transaction created for Ask {ask.Id} and Bid {bid.Id}");
             return Unit.Value;

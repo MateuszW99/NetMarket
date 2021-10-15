@@ -1,4 +1,4 @@
-﻿namespace Infrastructure.Data
+﻿namespace Domain
 {
     public static class Roles
     {

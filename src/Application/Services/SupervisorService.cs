@@ -2,32 +2,27 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Application.Common.Interfaces;
-using Infrastructure.Data;
-using Infrastructure.Identity;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace Application.Services
 {
     public class SupervisorService : ISupervisorService
     {
-        private readonly UserManager<ApplicationUser> _userManager;
         private readonly IApplicationDbContext _context;
+        private readonly IHttpService _httpService;
 
-        public SupervisorService(UserManager<ApplicationUser> userManager, IApplicationDbContext context)
+        public SupervisorService(IApplicationDbContext context, IHttpService httpService)
         {
-            _userManager = userManager;
             _context = context;
+            _httpService = httpService;
         }
-
-
-        public async Task<Guid> GetLeastLoadedSupervisorId()
+        
+        public async Task<Guid> GetLeastLoadedSupervisorId(string role)
         {
-            var supervisors = await _userManager.GetUsersInRoleAsync(Roles.Supervisor);
+            var supervisorIds = await _httpService.GetUserIdsInRole(role);
             var transactions = await _context.Transactions
                 .Where(x => 
-                    supervisors.Select(y => y.Id)
-                        .Contains(x.AssignedSupervisorId))
+                    supervisorIds.Contains(x.AssignedSupervisorId))
                 .GroupBy(x => (x.AssignedSupervisorId))
                 .Select(x => new
                     {
@@ -37,11 +32,11 @@ namespace Application.Services
                 .OrderBy(x => x.Count)
                 .ToListAsync();
 
-            var supervisorsWithoutTasks = supervisors.Where(x => 
-                    !transactions.Select(y => y.Id).Contains(x.Id))
+            var supervisorsWithoutTasks = supervisorIds.Where(x => 
+                    !transactions.Select(y => y.Id).Contains(x))
                 .ToList();
             
-            return supervisorsWithoutTasks.Any() ? supervisorsWithoutTasks.First().Id : transactions.First().Id;
+            return supervisorsWithoutTasks.Any() ? supervisorsWithoutTasks.First() : transactions.First().Id;
         }
     }
 }

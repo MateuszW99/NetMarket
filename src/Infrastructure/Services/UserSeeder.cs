@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Application.Common.Interfaces;
-using Infrastructure.Data;
+using Domain;
 using Infrastructure.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;

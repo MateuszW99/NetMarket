@@ -5,6 +5,6 @@ namespace Application.Common.Interfaces
 {
     public interface ISupervisorService
     {
-        Task<Guid> GetLeastLoadedSupervisorId();
+        Task<Guid> GetLeastLoadedSupervisorId(string role);
     }
 }
