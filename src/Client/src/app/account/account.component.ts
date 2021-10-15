@@ -1,20 +1,40 @@
-import { ChangeDetectorRef, Component, ViewChild } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  OnDestroy,
+  OnInit,
+  ViewChild
+} from '@angular/core';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { MatSidenav } from '@angular/material/sidenav';
+import { AuthService } from '../auth/auth.service';
+import { User } from '../auth/user.model';
+import { Subscription } from 'rxjs';
+import { Roles } from '../auth/roles';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-account',
   templateUrl: './account.component.html',
   styleUrls: ['./account.component.css']
 })
-export class AccountComponent {
+export class AccountComponent implements OnInit, OnDestroy {
   @ViewChild(MatSidenav)
   sidenav!: MatSidenav;
+  user: User;
+  userSubscription: Subscription;
 
   constructor(
     private observer: BreakpointObserver,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private authService: AuthService
   ) {}
+
+  ngOnInit(): void {
+    this.userSubscription = this.authService.user.subscribe((user: User) => {
+      this.user = user;
+    });
+  }
 
   ngAfterViewInit(): void {
     this.observer.observe(['(max-width: 768px)']).subscribe((res) => {
@@ -27,5 +47,9 @@ export class AccountComponent {
       }
     });
     this.cdr.detectChanges();
+  }
+
+  ngOnDestroy(): void {
+    this.userSubscription.unsubscribe();
   }
 }

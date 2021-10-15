@@ -101,11 +101,6 @@ export class AuthService {
   private handleAuthentication(token: string, rememberMe: boolean): void {
     const decodedToken: TokenClaims = jwt_decode(token);
 
-    console.log(decodedToken.id);
-    console.log(decodedToken.email);
-    console.log(decodedToken.role);
-    console.log(decodedToken.exp);
-
     const expirationDate = new Date(+decodedToken.exp * 1000);
 
     const user = new User(
