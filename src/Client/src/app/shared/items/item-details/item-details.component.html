@@ -12,7 +12,7 @@
     <div class="row mb-2 d-flex justify-content-center">
         <div class="col-sm col-md-3 border-end border-1 border-dark mb-2" *ngIf="size !== 'noSize'">
             <button class="btn btn-outline-secondary w-100 me-1" (click)="onSelectSize()">
-                Size: {{ size }}<br />
+                Size: {{ size | uppercase}}<br />
                 <img src="assets/expand_more.svg" alt="Dropdown">
             </button>
         </div>
@@ -64,7 +64,7 @@
         </div>
     </div>
     <div class="row mb-2">
-        <div class="col-6 offset-3 mb-2">
+        <div class="col-6 offset-3 mb-2 d-flex justify-content-center">
             <img [src]="itemCard.item.imageUrl" alt="item image" class="img-fluid">
         </div>
     </div>

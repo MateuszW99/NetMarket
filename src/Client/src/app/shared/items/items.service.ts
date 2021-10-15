@@ -59,4 +59,17 @@ export class ItemsService {
       environment.apiUrl + ApiPaths.Items + `/${id}`
     );
   }
+
+  getTrendingItems(category: string, count: number): Observable<ItemDetails[]> {
+    let params = new HttpParams();
+    params = params.append('category', category);
+    params = params.append('count', count);
+
+    return this.http.get<ItemDetails[]>(
+      environment.apiUrl + ApiPaths.Items + ApiPaths.Trending,
+      {
+        params: params
+      }
+    );
+  }
 }
