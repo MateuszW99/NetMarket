@@ -26,6 +26,7 @@ namespace Application
             services.AddTransient<IAskService, AskService>();
             services.AddTransient<IBidService, BidService>();
             services.AddTransient<IFeeService, FeeService>();
+            services.AddTransient<ISupervisorService, SupervisorService>();
             
             return services;
         }
