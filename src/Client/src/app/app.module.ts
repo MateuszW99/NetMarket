@@ -30,6 +30,7 @@ import { SizeModalComponent } from './shared/size-modal/size-modal.component';
 import { CategoryCardComponent } from './landing-page/category-card/category-card.component';
 import { TrendingItemsComponent } from './landing-page/trending-items/trending-items.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { AccountComponent } from './account/account.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     SearchBarComponent,
     SizeModalComponent,
     CategoryCardComponent,
-    TrendingItemsComponent
+    TrendingItemsComponent,
+    AccountComponent
   ],
   imports: [
     BrowserModule,
