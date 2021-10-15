@@ -1,5 +1,5 @@
 export class Roles {
-  User = 'User';
-  Supervisor = 'Supervisor';
-  Admin = 'Admin';
+  static User = 'User';
+  static Supervisor = 'Supervisor';
+  static Admin = 'Admin';
 }

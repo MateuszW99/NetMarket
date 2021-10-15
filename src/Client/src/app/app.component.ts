@@ -1,10 +1,6 @@
-import {
-  Component,
-  DoCheck,
-  OnInit
-} from '@angular/core';
+import { Component, DoCheck, OnInit } from '@angular/core';
 import { AuthService } from './auth/auth.service';
-import { RoutingService } from "./shared/services/routing/routing.service";
+import { RoutingService } from './shared/services/routing/routing.service';
 
 @Component({
   selector: 'app-root',
@@ -14,7 +10,10 @@ import { RoutingService } from "./shared/services/routing/routing.service";
 export class AppComponent implements OnInit, DoCheck {
   title = 'Client';
   public isAuthPage: boolean;
-  constructor(private authService: AuthService, private routingService: RoutingService) {}
+  constructor(
+    private authService: AuthService,
+    private routingService: RoutingService
+  ) {}
 
   ngOnInit(): void {
     this.authService.autoLogin();

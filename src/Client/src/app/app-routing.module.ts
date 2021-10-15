@@ -1,9 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AccountComponent } from './account/account.component';
+import { ProfileComponent } from './account/profile/profile.component';
 import { AuthComponent } from './auth/auth.component';
+import { AuthGuard } from './auth/auth.guard';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
+import { Roles } from './auth/roles';
 import { CollectiblesComponent } from './collectibles/collectibles.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { ElectronicsComponent } from './electronics/electronics.component';
@@ -33,9 +36,11 @@ const routes: Routes = [
   {
     path: 'account',
     component: AccountComponent,
+    canActivate: [AuthGuard],
+    data: { roles: [Roles.User] },
     children: [
-      { path: '', redirectTo: 'profile', pathMatch: 'full' }
-      // { path: 'profile', component: ProfileComponent },
+      { path: '', redirectTo: 'profile', pathMatch: 'full' },
+      { path: 'profile', component: ProfileComponent }
       // { path: 'buying', component: BuyingComponent },
       // { path: 'selling', component: SellingComponent },
       // { path: 'settings', component: UserSettingsComponent },
