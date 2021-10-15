@@ -1,4 +1,5 @@
 ﻿using Application.Common.Mappings;
+using AutoMapper;
 using Domain.Entities;
 
 namespace Application.Models.DTOs
@@ -20,5 +21,14 @@ namespace Application.Models.DTOs
         public string Status { get; set; }
         public string StartDate { get; set; }
         public string EndDate { get; set; }
+
+        public void Mapping(Profile profile)
+        {
+            profile.CreateMap<Transaction, TransactionObject>()
+                .ForMember(x => x.Ask,
+                    opt => opt.MapFrom(y => y.Ask))
+                .ForMember(x => x.Bid,
+                    opt => opt.MapFrom(y => y.Bid));
+        }
     }
 }

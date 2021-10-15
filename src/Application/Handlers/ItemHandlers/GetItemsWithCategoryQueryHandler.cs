@@ -23,8 +23,8 @@ namespace Application.Handlers.ItemHandlers
 
         public async Task<PaginatedList<ItemObject>> Handle(GetItemsWithCategoryQuery request, CancellationToken cancellationToken)
         {
-            var queredItems = _itemService.GetItemsWithCategory(request.Category);
-            var mappedItems = await queredItems.ProjectToListAsync<ItemObject>(_mapper.ConfigurationProvider);
+            var queriedItems = _itemService.GetItemsWithCategory(request.Category);
+            var mappedItems = await queriedItems.ProjectToListAsync<ItemObject>(_mapper.ConfigurationProvider);
             return PaginatedList<ItemObject>.Create(mappedItems, request.PageIndex, request.PageSize);
         }
     }

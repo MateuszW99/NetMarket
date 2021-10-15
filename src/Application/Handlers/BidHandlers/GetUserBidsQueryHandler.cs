@@ -27,8 +27,8 @@ namespace Application.Handlers.BidHandlers
         public async Task<PaginatedList<BidObject>> Handle(GetUserBidsQuery request, CancellationToken cancellationToken)
         {
             var userId = _httpService.GetUserId();
-            var queredBids = _bidService.GetUserBids(Guid.Parse(userId));
-            var mappedBids = await queredBids.ProjectToListAsync<BidObject>(_mapper.ConfigurationProvider);
+            var queriedBids = _bidService.GetUserBids(Guid.Parse(userId));
+            var mappedBids = await queriedBids.ProjectToListAsync<BidObject>(_mapper.ConfigurationProvider);
             return PaginatedList<BidObject>.Create(mappedBids, request.PageIndex, request.PageSize);
         }
     }

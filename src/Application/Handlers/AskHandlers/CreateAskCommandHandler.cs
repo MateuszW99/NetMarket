@@ -30,9 +30,8 @@ namespace Application.Handlers.AskHandlers
         {
             var userId = Guid.Parse(_httpService.GetUserId());
             var userSellerLevel = await _userSettingsService.GetUserSellerLevel(userId);
-            var fee = _feeService.CalculateFee(userSellerLevel, Convert.ToDecimal(request.Price));
-            
-            await _askService.CreateAskAsync(request, await fee, cancellationToken);
+            var fee = await _feeService.CalculateFee(userSellerLevel, Convert.ToDecimal(request.Price));
+            await _askService.CreateAskAsync(request, fee, cancellationToken);
             _logger.LogInformation("Ask created");
             return Unit.Value;
         }
