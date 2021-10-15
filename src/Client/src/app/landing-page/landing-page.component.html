@@ -13,8 +13,18 @@
         </div>
     </div>
     <div class="row">
+        <div class="col-6 offset-3">
+           
+        </div>
         <div class="col-12 mb-3" *ngFor="let category of categories">
-            <app-trending-items *ngIf="trendingItems.get(category).length === 12" [items]="trendingItems.get(category)" [category]="category"></app-trending-items>
+            <div class="col-6 offset-3 d-flex justify-content-between" *ngIf="loading">
+                <p>Loading trending {{ category }}...</p>
+                <app-loading-spinner></app-loading-spinner>
+            </div>
+            <div class="alert alert-danger" role="alert" *ngIf="loading === false && error === true">
+                Failed to get trending {{ category }}
+              </div>
+            <app-trending-items *ngIf="!loading && !error && trendingItems.get(category).length === 12" [items]="trendingItems.get(category)" [category]="category"></app-trending-items>
         </div>
     </div>
 </div>

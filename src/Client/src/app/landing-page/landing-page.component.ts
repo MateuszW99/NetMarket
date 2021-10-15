@@ -17,16 +17,27 @@ export class LandingPageComponent implements OnInit, OnDestroy {
   ]);
   categories = [...this.trendingItems.keys()];
   trendingItemsSubscription: Subscription;
+  error = false;
+  loading = true;
 
   constructor(private itemsService: ItemsService) {}
 
   ngOnInit(): void {
     this.categories.forEach((category: string) => {
+      this.loading = true;
       this.trendingItemsSubscription = this.itemsService
         .getTrendingItems(category, 12)
-        .subscribe((items: ItemDetails[]) => {
-          this.trendingItems.set(category, items);
-        });
+        .subscribe(
+          (items: ItemDetails[]) => {
+            this.trendingItems.set(category, items);
+            this.error = false;
+            this.loading = false;
+          },
+          () => {
+            this.error = true;
+            this.loading = false;
+          }
+        );
     });
   }
 
