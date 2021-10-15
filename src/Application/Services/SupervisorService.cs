@@ -21,8 +21,6 @@ namespace Application.Services
         {
             var supervisorIds = await _httpService.GetUserIdsInRole(role);
             var transactions = await _context.Transactions
-                .Where(x => 
-                    supervisorIds.Contains(x.AssignedSupervisorId))
                 .GroupBy(x => (x.AssignedSupervisorId))
                 .Select(x => new
                     {
