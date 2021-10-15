@@ -44,9 +44,9 @@ namespace Application.UnitTests.Services
         {
             var notExistingSellerLevel = (SellerLevel)((int)Enum.GetValues<SellerLevel>().Max() + 1);
             var price = 100m;
-            FluentActions.Awaiting(() => sut.CalculateFee(notExistingSellerLevel, price))
+            await FluentActions.Awaiting(() => sut.CalculateFee(notExistingSellerLevel, price))
                 .Should()
-                .Throw<Exception>();
+                .ThrowAsync<Exception>();
         }
 
         [Fact]
