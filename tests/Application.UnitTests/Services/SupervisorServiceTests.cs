@@ -7,8 +7,6 @@ using Application.Services;
 using Domain;
 using Domain.Entities;
 using FluentAssertions;
-using Infrastructure.Identity;
-using Microsoft.AspNetCore.Identity;
 using MockQueryable.Moq;
 using Moq;
 using Xunit;
@@ -19,15 +17,12 @@ namespace Application.UnitTests.Services
     {
         private readonly ISupervisorService _sut;
         private readonly Mock<IApplicationDbContext> _context;
-        private readonly Mock<IHttpService> _httpService;
-        private readonly Mock<IUserStore<ApplicationUser>> _userStore;
-        private readonly Mock<UserManager<ApplicationUser>> _userManager;
         private readonly Mock<IUserManagerService> _userManagerService;
 
         public SupervisorServiceTests()
         {
             _context = new Mock<IApplicationDbContext>();
-            _httpService = new Mock<IHttpService>();
+            _userManagerService = new Mock<IUserManagerService>();
             _sut = new SupervisorService(_context.Object, _userManagerService.Object);
         }
         
