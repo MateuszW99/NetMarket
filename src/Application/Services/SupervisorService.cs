@@ -9,17 +9,17 @@ namespace Application.Services
     public class SupervisorService : ISupervisorService
     {
         private readonly IApplicationDbContext _context;
-        private readonly IHttpService _httpService;
+        private readonly IUserManagerService _userManagerService;
 
-        public SupervisorService(IApplicationDbContext context, IHttpService httpService)
+        public SupervisorService(IApplicationDbContext context, IUserManagerService userManagerService)
         {
             _context = context;
-            _httpService = httpService;
+            _userManagerService = userManagerService;
         }
         
         public async Task<Guid> GetLeastLoadedSupervisorId(string role)
         {
-            var supervisorIds = await _httpService.GetUserIdsInRole(role);
+            var supervisorIds = await _userManagerService.GetUserIdsInRole(role);
             var transactions = await _context.Transactions
                 .GroupBy(x => (x.AssignedSupervisorId))
                 .Select(x => new

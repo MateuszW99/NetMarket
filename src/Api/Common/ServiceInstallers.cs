@@ -107,6 +107,7 @@ namespace Api.Common
         public static IServiceCollection AddInternalServices(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddTransient<IHttpService, HttpService>();
+            services.AddTransient<IUserManagerService, UserManagerService>();
             return services;
         }
     }

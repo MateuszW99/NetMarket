@@ -7,6 +7,8 @@ using Application.Services;
 using Domain;
 using Domain.Entities;
 using FluentAssertions;
+using Infrastructure.Identity;
+using Microsoft.AspNetCore.Identity;
 using MockQueryable.Moq;
 using Moq;
 using Xunit;
@@ -18,19 +20,22 @@ namespace Application.UnitTests.Services
         private readonly ISupervisorService _sut;
         private readonly Mock<IApplicationDbContext> _context;
         private readonly Mock<IHttpService> _httpService;
+        private readonly Mock<IUserStore<ApplicationUser>> _userStore;
+        private readonly Mock<UserManager<ApplicationUser>> _userManager;
+        private readonly Mock<IUserManagerService> _userManagerService;
 
         public SupervisorServiceTests()
         {
             _context = new Mock<IApplicationDbContext>();
             _httpService = new Mock<IHttpService>();
-            _sut = new SupervisorService(_context.Object, _httpService.Object);
+            _sut = new SupervisorService(_context.Object, _userManagerService.Object);
         }
         
         [Fact]
         public async Task GetLeastLoadedSupervisorId_Should_Return_Supervisor_Who_HasNoTransaction()
         {
             var userIds = Enumerable.Repeat(Guid.NewGuid(), 10).ToList();
-            _httpService.Setup(x => x.GetUserIdsInRole(It.IsAny<string>()))
+            _userManagerService.Setup(x => x.GetUserIdsInRole(It.IsAny<string>()))
                 .ReturnsAsync(userIds);
 
             var transactions = new List<Transaction>()
@@ -59,7 +64,7 @@ namespace Application.UnitTests.Services
         public async Task GetLeastLoadedSupervisorId_Should_Return_Supervisor_Who_HasLeastTransactions()
         {
             var userIds = Enumerable.Repeat(Guid.NewGuid(), 10).ToList();
-            _httpService.Setup(x => x.GetUserIdsInRole(It.IsAny<string>()))
+            _userManagerService.Setup(x => x.GetUserIdsInRole(It.IsAny<string>()))
                 .ReturnsAsync(userIds);
 
             var transactions = new List<Transaction>()

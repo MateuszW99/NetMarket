@@ -7,6 +7,5 @@ namespace Application.Common.Interfaces
     public interface IHttpService
     {
         string GetUserId();
-        Task<List<Guid>> GetUserIdsInRole(string role);
     }
 }
