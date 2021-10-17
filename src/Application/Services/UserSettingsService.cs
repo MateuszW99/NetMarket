@@ -48,7 +48,7 @@ namespace Application.Services
         public async Task<SellerLevel> GetUserSellerLevel(Guid userId)
         {
             var userSettings = await _context.UserSettings.FirstOrDefaultAsync(x => x.CreatedBy == userId);
-            return userSettings.SellerLevel;
+            return userSettings?.SellerLevel ?? SellerLevel.Beginner;
         }
 
         public async Task UpdateUserSettingsAsync(Guid userId, UpdateUserSettingsCommand request,
