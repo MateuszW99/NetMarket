@@ -113,7 +113,7 @@ namespace Application.UnitTests.Services
             var mockedAsks = asks.AsQueryable().BuildMockDbSet();
             _context.Setup(x => x.Asks).Returns(mockedAsks.Object);
             
-            var result = await sut.GetUserAsks(userId).ToListAsync();
+            var result = await sut.GetUserAsks(userId);
 
             result.Should().NotBeNull();
             result.Should().HaveCount(2);
@@ -134,8 +134,8 @@ namespace Application.UnitTests.Services
             
             var mockedAsks = asks.AsQueryable().BuildMockDbSet();
             _context.Setup(x => x.Asks).Returns(mockedAsks.Object);
-            
-            var result = await sut.GetUserAsks(userId).ToListAsync();
+
+            var result = await sut.GetUserAsks(userId);
 
             result.Should().NotBeNull();
             result.Should().HaveCount(0);

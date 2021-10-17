@@ -29,13 +29,13 @@ namespace Application.Services
             return bid;
         }
 
-        public IQueryable<Bid> GetUserBids(Guid userId)
+        public async Task<List<Bid>> GetUserBids(Guid userId)
         {
-            var bids = _context.Bids
+            var bids = await _context.Bids
                 .Include(x => x.Item)
                 .Include(x => x.Size)
                 .Where(x => x.CreatedBy == userId)
-                .AsQueryable();
+                .ToListAsync();
 
             return bids;
         }
