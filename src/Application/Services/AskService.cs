@@ -29,13 +29,13 @@ namespace Application.Services
             return ask;
         }
 
-        public IQueryable<Ask> GetUserAsks(Guid userId)
+        public async Task<List<Ask>> GetUserAsks(Guid userId)
         {
-            var asks = _context.Asks
+            var asks = await _context.Asks
                 .Include(x => x.Item)
                 .Include(x => x.Size)
                 .Where(x => x.CreatedBy == userId)
-                .AsQueryable();
+                .ToListAsync();
 
             return asks;
         }

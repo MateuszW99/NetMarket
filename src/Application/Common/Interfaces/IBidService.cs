@@ -11,7 +11,7 @@ namespace Application.Common.Interfaces
     public interface IBidService
     {
         Task<Bid> GetBidByIdAsync(Guid bidId);
-        IQueryable<Bid> GetUserBids(Guid userId);
+        Task<List<Bid>> GetUserBids(Guid userId);
         Task<List<Bid>> GetItemBids(Guid itemId);
         Task CreateBidAsync(CreateBidCommand command, decimal fee, CancellationToken cancellationToken);
         Task UpdateBidAsync(Bid bid, UpdateBidCommand command, decimal fee, CancellationToken cancellationToken);
