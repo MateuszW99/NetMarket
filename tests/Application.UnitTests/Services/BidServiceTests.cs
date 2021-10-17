@@ -109,7 +109,7 @@ namespace Application.UnitTests.Services
                 new() { Id = Guid.NewGuid() },
                 new() { Id = Guid.NewGuid() }
             };
-            
+            s
             var mockedBids = bids.AsQueryable().BuildMockDbSet();
             _context.Setup(x => x.Bids).Returns(mockedBids.Object);
             

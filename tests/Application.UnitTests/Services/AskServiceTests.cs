@@ -131,7 +131,7 @@ namespace Application.UnitTests.Services
                 new() { Id = Guid.NewGuid() },
                 new() { Id = Guid.NewGuid() }
             };
-            
+            s
             var mockedAsks = asks.AsQueryable().BuildMockDbSet();
             _context.Setup(x => x.Asks).Returns(mockedAsks.Object);
 
