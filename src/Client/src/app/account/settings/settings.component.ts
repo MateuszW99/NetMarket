@@ -14,11 +14,13 @@ export class SettingsComponent implements OnInit, OnDestroy {
   user: User;
   userSettings: UserSettings;
   error = '';
-  loading = false;
+  loading = true;
   userSubscription: Subscription;
   userSettingsSubscription: Subscription;
   errorSubscription: Subscription;
   loadingSubscription: Subscription;
+  shippingAddressProvided = false;
+  billingAddressProvided = false;
 
   constructor(
     private settingsService: SettingsService,
@@ -41,6 +43,7 @@ export class SettingsComponent implements OnInit, OnDestroy {
       this.settingsService.userSettingsChanged.subscribe(
         (settings: UserSettings) => {
           this.userSettings = settings;
+          this.checkSettings(this.userSettings);
           this.error = '';
         }
       );
@@ -50,6 +53,30 @@ export class SettingsComponent implements OnInit, OnDestroy {
         this.error = errorMessage;
       }
     );
+  }
+
+  checkSettings(userSettings: UserSettings): void {
+    if (
+      !userSettings.billingStreet ||
+      !userSettings.billingAddressLine1 ||
+      !userSettings.billingZipCode ||
+      !userSettings.billingCountry
+    ) {
+      this.billingAddressProvided = false;
+    } else {
+      this.billingAddressProvided = true;
+    }
+
+    if (
+      !userSettings.shippingStreet ||
+      !userSettings.shippingAddressLine1 ||
+      !userSettings.shippingZipCode ||
+      !userSettings.shippingCountry
+    ) {
+      this.shippingAddressProvided = false;
+    } else {
+      this.shippingAddressProvided = true;
+    }
   }
 
   ngOnDestroy(): void {
