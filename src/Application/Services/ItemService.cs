@@ -139,6 +139,11 @@ namespace Application.Services
             }
 
             var items = await itemsQuery.ToListAsync();
+
+            if (string.IsNullOrEmpty(query.MinPrice) && string.IsNullOrEmpty(query.MaxPrice))
+            {
+                return items;
+            }
             
             return await FilterItemsByPrice(items, 
                 string.IsNullOrEmpty(query.MinPrice) ? Decimal.MinValue : Convert.ToDecimal(query.MinPrice),
@@ -152,7 +157,6 @@ namespace Application.Services
                 var asks = await _context.Asks
                     .Include(x => x.Size)
                     .Where(x => x.ItemId == items[i].Id)
-                    .Where(x => minPrice <= x.Price && maxPrice >= x.Price)
                     .ToListAsync();
                 
                 if (!asks.Any())
@@ -160,9 +164,14 @@ namespace Application.Services
                     items.Remove(items[i]);
                     continue;
                 }
-
+                
+                asks = asks
+                    .Where(x => minPrice <= x.Price && maxPrice >= x.Price)
+                    .ToList();
+                
                 items[i].Asks = asks;
             }
+            
             return items;
         }
     }
