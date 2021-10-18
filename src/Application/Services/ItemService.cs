@@ -140,33 +140,21 @@ namespace Application.Services
 
             var items = await itemsQuery.ToListAsync();
             
-            if (!string.IsNullOrEmpty(query.MinPrice))
-            {
-                var price = Convert.ToDecimal(query.MinPrice);
-                items = await FilterItemsByPrice(items, price, (queriedPrice, askPrice) => queriedPrice <= askPrice);
-            }
-            
-            if (!string.IsNullOrEmpty(query.MaxPrice))
-            {
-                var price = Convert.ToDecimal(query.MaxPrice);
-                items = await FilterItemsByPrice(items, price, (queriedPrice, askPrice) => queriedPrice >= askPrice);
-            }
-            
-            return items;
+            return await FilterItemsByPrice(items, 
+                string.IsNullOrEmpty(query.MinPrice) ? Decimal.MinValue : Convert.ToDecimal(query.MinPrice),
+                string.IsNullOrEmpty(query.MaxPrice) ? Decimal.MinValue : Convert.ToDecimal(query.MaxPrice));
         }
         
-        private async Task<List<Item>> FilterItemsByPrice(List<Item> items, decimal price, Func<decimal, decimal, bool> filter)
+        private async Task<List<Item>> FilterItemsByPrice(List<Item> items, decimal minPrice, decimal maxPrice)
         {
             for (var i = items.Count - 1; i >= 0; i--)
             {
                 var asks = await _context.Asks
                     .Include(x => x.Size)
                     .Where(x => x.ItemId == items[i].Id)
+                    .Where(x => minPrice <= x.Price && maxPrice >= x.Price)
                     .ToListAsync();
-                asks = asks
-                    .Where(x => filter.Invoke(price, x.Price))
-                    .ToList();
-
+                
                 if (!asks.Any())
                 {
                     items.Remove(items[i]);
@@ -175,7 +163,6 @@ namespace Application.Services
 
                 items[i].Asks = asks;
             }
-            
             return items;
         }
     }
