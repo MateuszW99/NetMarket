@@ -37,6 +37,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { ProfileComponent } from './account/profile/profile.component';
+import { SettingsComponent } from './account/settings/settings.component';
 
 @NgModule({
   declarations: [
@@ -63,7 +64,8 @@ import { ProfileComponent } from './account/profile/profile.component';
     CategoryCardComponent,
     TrendingItemsComponent,
     AccountComponent,
-    ProfileComponent
+    ProfileComponent,
+    SettingsComponent
   ],
   imports: [
     BrowserModule,
