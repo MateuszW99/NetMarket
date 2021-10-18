@@ -14,25 +14,33 @@
         <hr class="mb-3">
        <div class="col-md-6 col-lg-3 mb-2">
            <h4>Name</h4>
+           <h3>TODO: Add First and last name in UserSettings on backend side</h3>
        </div>
        <div class="col-md-6 col-lg-3 mb-2">
-           <h4>Reset Password</h4>
+           <a mat-button class="mb-2 h4">Reset Password (TODO: Add this functionality on the backend side)</a>
        </div>
        <div class="col-md-6 col-lg-3 mb-2">
             <h4>Email Address</h4>
+            <h3>{{ user.email }}</h3>
        </div>
     </div>
     <div class="row">
         <div class="d-flex justify-content-between">
-            <h3>Buying Info</h3>
+            <h3>Billing Info</h3>
             <a mat-button class="mb-2 h4">Edit</a>
         </div>
         <hr class="mb-3">
         <div class="col-md-6 col-lg-3 mb-2">
             <h4>Payment</h4>
+            <h3>Paypal email: {{ userSettings.paypalEmail }}</h3>
         </div>
         <div class="col-md-6 col-lg-3 mb-2">
-            <h4>Billing</h4>
+            <h4>Billing address</h4>
+            <h4>{{userSettings.billingStreet}}</h4>
+            <h4>{{userSettings.billingAddressLine1}}</h4>
+            <h4>{{userSettings.billingAddressLine2}}</h4>
+            <h4>{{userSettings.billingZipCode}}</h4>
+            <h4>{{userSettings.billingCountry}}</h4>
         </div>
      </div>
      <div class="row">
@@ -43,20 +51,11 @@
         <hr class="mb-3">
         <div class="col-md-6 col-lg-3 mb-2">
             <h4>Address</h4>
+            <h4>{{userSettings.shippingStreet}}</h4>
+            <h4>{{userSettings.shippingAddressLine1}}</h4>
+            <h4>{{userSettings.shippingAddressLine2}}</h4>
+            <h4>{{userSettings.shippingZipCode}}</h4>
+            <h4>{{userSettings.shippingCountry}}</h4>
         </div>
      </div>
-     <div class="row">
-        <div class="d-flex justify-content-between">
-            <h3>Seller Info</h3>
-            <a mat-button class="mb-2 h4">Edit</a>
-        </div>
-        <hr class="mb-3">
-        <div class="col-md-6 col-lg-3 mb-2">
-            <h4>Payment</h4>
-        </div>
-        <div class="col-md-6 col-lg-3 mb-2">
-            <h4>Billing</h4>
-        </div>
-     </div>
-
 </div>
