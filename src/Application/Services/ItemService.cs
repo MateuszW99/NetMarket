@@ -140,6 +140,11 @@ namespace Application.Services
 
             var items = await itemsQuery.ToListAsync();
 
+            foreach (var item in items)
+            {
+                item.Asks = await GetItemAsks(item.Id);
+            }
+            
             if (string.IsNullOrEmpty(query.MinPrice) && string.IsNullOrEmpty(query.MaxPrice))
             {
                 return items;
@@ -147,32 +152,37 @@ namespace Application.Services
             
             return await FilterItemsByPrice(items, 
                 string.IsNullOrEmpty(query.MinPrice) ? Decimal.MinValue : Convert.ToDecimal(query.MinPrice),
-                string.IsNullOrEmpty(query.MaxPrice) ? Decimal.MinValue : Convert.ToDecimal(query.MaxPrice));
+                string.IsNullOrEmpty(query.MaxPrice) ? Decimal.MaxValue : Convert.ToDecimal(query.MaxPrice));
         }
         
         private async Task<List<Item>> FilterItemsByPrice(List<Item> items, decimal minPrice, decimal maxPrice)
         {
+            items = items.Where(x => x.Asks != null).ToList();
+            
             for (var i = items.Count - 1; i >= 0; i--)
             {
-                var asks = await _context.Asks
-                    .Include(x => x.Size)
-                    .Where(x => x.ItemId == items[i].Id)
-                    .ToListAsync();
-                
+                var asks = items[i].Asks
+                    .Where(x => minPrice <= x.Price && maxPrice >= x.Price)
+                    .ToList();
+
                 if (!asks.Any())
                 {
                     items.Remove(items[i]);
                     continue;
                 }
-                
-                asks = asks
-                    .Where(x => minPrice <= x.Price && maxPrice >= x.Price)
-                    .ToList();
-                
+
                 items[i].Asks = asks;
             }
             
-            return items;
+            return await Task.FromResult(items);
+        }
+
+        public async Task<List<Ask>> GetItemAsks(Guid itemId)
+        {
+            return await _context.Asks
+                .Where(x => x.ItemId == itemId)
+                .AsNoTracking()
+                .ToListAsync();
         }
     }
 }
