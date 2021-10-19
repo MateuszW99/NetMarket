@@ -31,6 +31,13 @@ export class SettingsService {
     );
   }
 
+  updateUserSettings(userSettings: UserSettings): Observable<unknown> {
+    return this.http.put<unknown>(
+      environment.apiUrl + ApiPaths.User,
+      userSettings
+    );
+  }
+
   private fetchUserSettings(): Observable<UserSettings> {
     return this.http.get<UserSettings>(environment.apiUrl + ApiPaths.User);
   }

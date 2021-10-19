@@ -1,9 +1,12 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import Modal from 'bootstrap/js/dist/modal';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
 import { User } from 'src/app/auth/user.model';
 import { SettingsService } from '../settings.service';
 import { UserSettings } from '../user-settings.model';
+import { BillingAddressEditModalComponent } from './billing-address-edit-modal/billing-address-edit-modal.component';
 
 @Component({
   selector: 'app-settings',
@@ -24,7 +27,8 @@ export class SettingsComponent implements OnInit, OnDestroy {
 
   constructor(
     private settingsService: SettingsService,
-    private authService: AuthService
+    private authService: AuthService,
+    public dialog: MatDialog
   ) {}
   ngOnInit(): void {
     this.userSubscription = this.authService.user.subscribe((user: User) => {
@@ -77,6 +81,19 @@ export class SettingsComponent implements OnInit, OnDestroy {
     } else {
       this.shippingAddressProvided = true;
     }
+  }
+
+  onModalShow(modalId: string): void {
+    const element = document.getElementById(modalId) as HTMLElement;
+    const modal = new Modal(element);
+    modal.show();
+  }
+
+  openBillingEdit(): void {
+    this.dialog.open(BillingAddressEditModalComponent, {
+      width: '600px',
+      data: { userSettings: this.userSettings }
+    });
   }
 
   ngOnDestroy(): void {

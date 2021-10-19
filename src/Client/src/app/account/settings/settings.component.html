@@ -29,7 +29,7 @@
         <div class="row mb-2">
             <div class="d-flex justify-content-between">
                 <h2>Billing Info</h2>
-                <a mat-button class="mb-2 h4">Edit</a>
+                <a mat-button class="mb-2 h4" (click)="openBillingEdit()">Edit</a>
             </div>
             <hr class="mb-3">
             <div class="col-md-6 col-lg-3 mb-2">
@@ -46,7 +46,7 @@
                     <p class="my-0">{{userSettings.billingZipCode}}</p>
                     <p class="my-0">{{userSettings.billingCountry}}</p>
                 </div>
-                <p class="my-o" *ngIf="!shippingAddressProvided">Not provided</p>
+                <p class="my-o" *ngIf="!billingAddressProvided">Not provided</p>
             </div>
          </div>
          <div class="row mb-2">

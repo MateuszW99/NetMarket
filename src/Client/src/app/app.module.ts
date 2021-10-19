@@ -38,6 +38,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { ProfileComponent } from './account/profile/profile.component';
 import { SettingsComponent } from './account/settings/settings.component';
+import { BillingAddressEditModalComponent } from './account/settings/billing-address-edit-modal/billing-address-edit-modal.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -65,7 +67,8 @@ import { SettingsComponent } from './account/settings/settings.component';
     TrendingItemsComponent,
     AccountComponent,
     ProfileComponent,
-    SettingsComponent
+    SettingsComponent,
+    BillingAddressEditModalComponent
   ],
   imports: [
     BrowserModule,
@@ -81,7 +84,8 @@ import { SettingsComponent } from './account/settings/settings.component';
     MatSidenavModule,
     MatButtonModule,
     MatIconModule,
-    MatDividerModule
+    MatDividerModule,
+    MatDialogModule
   ],
   providers: [
     {
