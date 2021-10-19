@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Api.Common;
 using Application.Common.Interfaces;
 using Application.Identity;
+using Domain;
 using Infrastructure.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
-using Infrastructure.Data;
 
 namespace Api.Services
 {

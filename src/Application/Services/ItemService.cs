@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Application.Common.Exceptions;
 using Application.Common.Interfaces;
 using Application.Common.Models;
 using Application.Models.ApiModels.Items.Commands;
@@ -51,23 +49,17 @@ namespace Application.Services
                 .Include(x => x.Brand)
                 .FirstOrDefaultAsync(x => x.Id == id);
 
-            if (item == null)
-            {
-                throw new NotFoundException(nameof(Item), id);
-            }
-            
             return item;
         }
 
-        public IQueryable<Item> GetItemsWithQuery(SearchItemsQuery query)
+        public async Task<List<Item>> GetItemsWithQuery(SearchItemsQuery query)
         {
             var itemsQuery = _context.Items
                 .Include(x => x.Brand)
-                .Include(x => x.Asks)
                 .OrderBy(x => x.Name)
                 .AsQueryable();
-
-            return FilterItems(itemsQuery, query);
+            
+            return await FilterItems(itemsQuery, query);
         }
 
         public IQueryable<Item> GetItemsWithCategory(string category)
@@ -92,15 +84,8 @@ namespace Application.Services
             return itemsQuery;
         }
 
-        public async Task UpdateItemAsync(UpdateItemCommand command, CancellationToken cancellationToken)
+        public async Task UpdateItemAsync(Item item, UpdateItemCommand command, CancellationToken cancellationToken)
         {
-            var item = await _context.Items.FirstOrDefaultAsync(x => x.Id == Guid.Parse(command.Id));
-            
-            if (item == null)
-            {
-                throw new NotFoundException(nameof(Item), command.Id);
-            }
-            
             item.Name = command.Name;
             item.Description = command.Description;
             item.Make = command.Make;
@@ -121,7 +106,7 @@ namespace Application.Services
             await _context.SaveChangesAsync(cancellationToken);
         }
 
-        private static IQueryable<Item> FilterItems(IQueryable<Item> itemsQuery, SearchItemsQuery query)
+        private async Task<List<Item>> FilterItems(IQueryable<Item> itemsQuery, SearchItemsQuery query)
         {
             if (!string.IsNullOrEmpty(query.Name))
             {
@@ -142,6 +127,7 @@ namespace Application.Services
             {
                 itemsQuery = itemsQuery.Where(x => x.Model.ToLower().Contains(query.Model.ToLower()));
             }
+            
             if (!string.IsNullOrEmpty(query.Gender))
             {
                 itemsQuery = itemsQuery.Where(x => x.Gender.ToLower().Contains(query.Gender.ToLower()));
@@ -151,63 +137,52 @@ namespace Application.Services
             {
                 itemsQuery = itemsQuery.Where(x => x.Brand.Name.ToLower().Contains(query.Brand.ToLower()));
             }
-            
-            if (!string.IsNullOrEmpty(query.MinPrice))
-            {
-                var itemsWithMinPrice = new List<Item>();
-                
-                foreach (var item in itemsQuery)
-                {
-                    var itemAsks = item.Asks;
-                    
-                    if (itemAsks.Any())
-                    {
-                        if(itemAsks.Any(x => x.Price >= Convert.ToDecimal(query.MinPrice, new CultureInfo("en-US"))))
-                        {
-                            itemsWithMinPrice.Add(item);
-                        }
-                    }
-                    else
-                    {
-                        if(item.RetailPrice >= Convert.ToDecimal(query.MinPrice, new CultureInfo("en-US")))
-                        {
-                            itemsWithMinPrice.Add(item);
-                        }
-                    }
-                }
 
-                itemsQuery = itemsQuery.Where(x => itemsWithMinPrice.Contains(x));
+            var items = await itemsQuery.ToListAsync();
+
+            foreach (var item in items)
+            {
+                item.Asks = await GetItemAsks(item.Id);
             }
             
-            if (!string.IsNullOrEmpty(query.MaxPrice))
+            if (string.IsNullOrEmpty(query.MinPrice) && string.IsNullOrEmpty(query.MaxPrice))
             {
-                var itemsWithMaxPrice = new List<Item>();
-                
-                foreach (var item in itemsQuery)
-                {
-                    var itemAsks = item.Asks;
-                    
-                    if (itemAsks.Any())
-                    {
-                        if(itemAsks.Any(x => x.Price <= Convert.ToDecimal(query.MaxPrice, new CultureInfo("en-US"))))
-                        {
-                            itemsWithMaxPrice.Add(item);
-                        }
-                    }
-                    else
-                    {
-                        if(item.RetailPrice <= Convert.ToDecimal(query.MaxPrice, new CultureInfo("en-US")))
-                        {
-                            itemsWithMaxPrice.Add(item);
-                        }
-                    }
-                }
-
-                itemsQuery = itemsQuery.Where(x => itemsWithMaxPrice.Contains(x));
-                
+                return items;
             }
             
-            return itemsQuery;
+            return await FilterItemsByPrice(items, 
+                string.IsNullOrEmpty(query.MinPrice) ? Decimal.MinValue : Convert.ToDecimal(query.MinPrice),
+                string.IsNullOrEmpty(query.MaxPrice) ? Decimal.MaxValue : Convert.ToDecimal(query.MaxPrice));
+        }
+        
+        private async Task<List<Item>> FilterItemsByPrice(List<Item> items, decimal minPrice, decimal maxPrice)
+        {
+            items = items.Where(x => x.Asks != null).ToList();
+            
+            for (var i = items.Count - 1; i >= 0; i--)
+            {
+                var asks = items[i].Asks
+                    .Where(x => minPrice <= x.Price && maxPrice >= x.Price)
+                    .ToList();
+
+                if (!asks.Any())
+                {
+                    items.Remove(items[i]);
+                    continue;
+                }
+
+                items[i].Asks = asks;
+            }
+            
+            return await Task.FromResult(items);
+        }
+
+        public async Task<List<Ask>> GetItemAsks(Guid itemId)
+        {
+            return await _context.Asks
+                .Where(x => x.ItemId == itemId)
+                .AsNoTracking()
+                .ToListAsync();
         }
     }
 }

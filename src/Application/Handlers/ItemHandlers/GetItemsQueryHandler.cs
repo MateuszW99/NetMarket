@@ -1,7 +1,7 @@
-﻿using System.Threading;
+﻿using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 using Application.Common.Interfaces;
-using Application.Common.Mappings;
 using Application.Common.Models;
 using Application.Models.ApiModels.Items.Queries;
 using Application.Models.DTOs;
@@ -23,8 +23,8 @@ namespace Application.Handlers.ItemHandlers
 
         public async Task<PaginatedList<ItemObject>> Handle(GetItemsQuery request, CancellationToken cancellationToken)
         {
-            var queredItems = _itemService.GetItemsWithQuery(request.SearchQuery);
-            var mappedItems = await queredItems.ProjectToListAsync<ItemObject>(_mapper.ConfigurationProvider);
+            var queriedItems = await _itemService.GetItemsWithQuery(request.SearchQuery);
+            var mappedItems = _mapper.Map<List<ItemObject>>(queriedItems);
             return PaginatedList<ItemObject>.Create(mappedItems, request.PageIndex, request.PageSize);
         }
     }

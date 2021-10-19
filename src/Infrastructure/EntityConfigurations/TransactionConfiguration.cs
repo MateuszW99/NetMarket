@@ -1,4 +1,4 @@
-﻿using System.Security.Cryptography.X509Certificates;
+﻿
 using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -46,7 +46,15 @@ namespace Infrastructure.EntityConfigurations
                 .HasColumnType("money")
                 .IsRequired();
 
-            builder.Property(e => e.Payout)
+            builder.Property(e => e.SellerPayout)
+                .HasColumnType("money")
+                .IsRequired();
+
+            builder.Property(e => e.TotalBuyerCost)
+                .HasColumnType("money")
+                .IsRequired();
+            
+            builder.Property(e => e.CompanyProfit)
                 .HasColumnType("money")
                 .IsRequired();
         }

@@ -2,7 +2,7 @@
 using System.Text;
 using Api.Services;
 using Application.Common.Interfaces;
-using Infrastructure.Data;
+using Domain;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -107,6 +107,7 @@ namespace Api.Common
         public static IServiceCollection AddInternalServices(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddTransient<IHttpService, HttpService>();
+            services.AddTransient<IUserManagerService, UserManagerService>();
             return services;
         }
     }

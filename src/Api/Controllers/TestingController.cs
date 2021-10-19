@@ -1,9 +1,9 @@
 ﻿using System.Threading.Tasks;
 using Application.Common.Interfaces;
+using Domain;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Infrastructure.Data;
 
 namespace Api.Controllers
 {

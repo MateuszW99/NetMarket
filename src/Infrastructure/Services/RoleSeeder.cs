@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Application.Common.Interfaces;
-using Infrastructure.Data;
+using Domain;
 using Microsoft.AspNetCore.Identity;
 
 namespace Infrastructure.Services

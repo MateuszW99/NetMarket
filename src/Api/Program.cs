@@ -36,8 +36,8 @@ namespace Api
             try
             {
                 var context = services.GetRequiredService<ApplicationDbContext>();
-                await context.Database.MigrateAsync();
-                
+                await context.Database.EnsureCreatedAsync();
+
                 var roleSeeder = services.GetRequiredService<RoleSeeder>();
                 await roleSeeder.SeedAsync();
 

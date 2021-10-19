@@ -34,7 +34,7 @@ namespace Application.UnitTests.Handlers.AskHandlers
                 SizeId = Guid.NewGuid().ToString()
             };
 
-            var commandHandler = new CreateAskCommandHandler(null, null);
+            var commandHandler = new CreateAskCommandHandler(null, null, null, null, null);
             var validationBehaviour = new ValidationBehaviour<CreateAskCommand, Unit>(
                 new List<CreateAskCommandValidator>()
                 {
@@ -59,7 +59,7 @@ namespace Application.UnitTests.Handlers.AskHandlers
                 SizeId = sizeId
             };
 
-            var commandHandler = new CreateAskCommandHandler(null, null);
+            var commandHandler = new CreateAskCommandHandler(null, null, null, null, null);
             var validationBehaviour = new ValidationBehaviour<CreateAskCommand, Unit>(
                 new List<CreateAskCommandValidator>()
                 {
@@ -72,6 +72,8 @@ namespace Application.UnitTests.Handlers.AskHandlers
                 .Should()
                 .ThrowAsync<ValidationException>();
         }
+        
+        
         
         #endregion
 
@@ -87,7 +89,7 @@ namespace Application.UnitTests.Handlers.AskHandlers
                 SizeId = Guid.NewGuid().ToString()
             };
 
-            var commandHandler = new UpdateAskCommandHandler(null, null, null);
+            var commandHandler = new UpdateAskCommandHandler(null, null, null, null, null);
             var validationBehaviour = new ValidationBehaviour<UpdateAskCommand, Unit>(
                 new List<UpdateAskCommandValidator>()
                 {
@@ -111,8 +113,8 @@ namespace Application.UnitTests.Handlers.AskHandlers
                 Price = price,
                 SizeId = sizeId
             };
-        
-            var commandHandler = new UpdateAskCommandHandler(null, null, null);
+
+            var commandHandler = new UpdateAskCommandHandler(null, null, null, null, null);
             var validationBehaviour = new ValidationBehaviour<UpdateAskCommand, Unit>(new List<UpdateAskCommandValidator>()
                 {
                     new()

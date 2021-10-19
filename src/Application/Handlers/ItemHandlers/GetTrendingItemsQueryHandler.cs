@@ -8,7 +8,6 @@ using Application.Models.ApiModels.Items.Queries;
 using Application.Models.DTOs;
 using AutoMapper;
 using MediatR;
-using Microsoft.EntityFrameworkCore;
 
 namespace Application.Handlers.ItemHandlers
 {
@@ -32,9 +31,8 @@ namespace Application.Handlers.ItemHandlers
             
             foreach (var item in items)
             {
-                var lowestAsk = await _askService.GetItemAsks(item.Id)
-                    .OrderBy(x => x.Price)
-                    .FirstOrDefaultAsync(cancellationToken);
+                var asks = await _askService.GetItemAsks(item.Id);
+                var lowestAsk = asks.FirstOrDefault();
                 
                 trendingItems.Add(new ItemCard()
                 {

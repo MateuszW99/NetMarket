@@ -3,6 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Application.Models.ApiModels.UserSettings.Commands;
 using Domain.Entities;
+using Domain.Enums;
 
 namespace Application.Common.Interfaces
 {
@@ -10,6 +11,8 @@ namespace Application.Common.Interfaces
     {
         Task<UserSettings> GetUserSettingsAsync(Guid userId);
 
+        Task<SellerLevel> GetUserSellerLevel(Guid userId);
+        
         Task UpdateUserSettingsAsync(Guid userId, UpdateUserSettingsCommand request,
             CancellationToken cancellationToken);
 
