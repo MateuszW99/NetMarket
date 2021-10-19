@@ -2,15 +2,15 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
-import { SettingsService } from '../../settings.service';
-import { UserSettings } from '../../user-settings.model';
+import { SettingsService } from '../../../settings.service';
+import { UserSettings } from '../../../user-settings.model';
 
 @Component({
-  selector: 'app-billing-address-edit-modal',
-  templateUrl: './billing-address-edit-modal.component.html',
-  styleUrls: ['./billing-address-edit-modal.component.css']
+  selector: 'app-billing-address-edit-',
+  templateUrl: './billing-address-edit.component.html',
+  styleUrls: ['./billing-address-edit.component.css']
 })
-export class BillingAddressEditModalComponent implements OnInit {
+export class BillingAddressEditComponent implements OnInit {
   userSettings: UserSettings;
   form: FormGroup;
   updateUserSettingsSubscription: Subscription;
@@ -19,7 +19,7 @@ export class BillingAddressEditModalComponent implements OnInit {
   constructor(
     private settingsService: SettingsService,
     @Inject(MAT_DIALOG_DATA) public data: { userSettings: UserSettings },
-    private dialogRef: MatDialogRef<BillingAddressEditModalComponent>
+    private dialogRef: MatDialogRef<BillingAddressEditComponent>
   ) {}
 
   ngOnInit(): void {

@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BillingAddressEditModalComponent } from './billing-address-edit-modal.component';
+import { BillingAddressEditComponent } from './billing-address-edit.component';
 
 describe('BillingAddressEditComponent', () => {
-  let component: BillingAddressEditModalComponent;
-  let fixture: ComponentFixture<BillingAddressEditModalComponent>;
+  let component: BillingAddressEditComponent;
+  let fixture: ComponentFixture<BillingAddressEditComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [BillingAddressEditModalComponent]
+      declarations: [BillingAddressEditComponent]
     }).compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BillingAddressEditModalComponent);
+    fixture = TestBed.createComponent(BillingAddressEditComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -2,6 +2,8 @@ export class UserSettings {
   constructor(
     public id: string,
     public userId: string,
+    public firstName: string,
+    public lastName: string,
     public sellerLevel: string,
     public salesCompleted: number,
     public paypalEmail: string,

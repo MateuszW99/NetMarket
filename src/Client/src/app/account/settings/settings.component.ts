@@ -6,7 +6,9 @@ import { AuthService } from 'src/app/auth/auth.service';
 import { User } from 'src/app/auth/user.model';
 import { SettingsService } from '../settings.service';
 import { UserSettings } from '../user-settings.model';
-import { BillingAddressEditModalComponent } from './billing-address-edit-modal/billing-address-edit-modal.component';
+import { BillingAddressEditComponent } from './edit-modals/billing-address-edit/billing-address-edit.component';
+import { ProfileEditComponent } from './edit-modals/profile-edit/profile-edit.component';
+import { ShippingAddressEditComponent } from './edit-modals/shipping-address-edit/shipping-address-edit.component';
 
 @Component({
   selector: 'app-settings',
@@ -90,7 +92,21 @@ export class SettingsComponent implements OnInit, OnDestroy {
   }
 
   openBillingEdit(): void {
-    this.dialog.open(BillingAddressEditModalComponent, {
+    this.dialog.open(BillingAddressEditComponent, {
+      width: '600px',
+      data: { userSettings: this.userSettings }
+    });
+  }
+
+  openShippingEdit(): void {
+    this.dialog.open(ShippingAddressEditComponent, {
+      width: '600px',
+      data: { userSettings: this.userSettings }
+    });
+  }
+
+  openProfileEdit(): void {
+    this.dialog.open(ProfileEditComponent, {
       width: '600px',
       data: { userSettings: this.userSettings }
     });

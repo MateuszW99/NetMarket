@@ -27,13 +27,13 @@
         <span *ngIf="form.get('billingStreet').invalid && form.get('billingStreet').touched"
           class="form-text text-danger mb-2">
           <span *ngIf="form.get('billingStreet').hasError('required')">
-            Billing street is required!
+            Street is required!
           </span>
           <span *ngIf="form.get('billingStreet').hasError('minlength')">
-            Billing street must have minimum 2 character!
+            Street must have minimum 2 character!
           </span>
           <span *ngIf="form.get('billingStreet').hasError('maxlength')">
-            Billing street must have maximum 50 characters!
+            Street must have maximum 50 characters!
           </span>
         </span>
       </div>

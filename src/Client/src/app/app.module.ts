@@ -38,8 +38,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { ProfileComponent } from './account/profile/profile.component';
 import { SettingsComponent } from './account/settings/settings.component';
-import { BillingAddressEditModalComponent } from './account/settings/billing-address-edit-modal/billing-address-edit-modal.component';
+import { BillingAddressEditComponent } from './account/settings/edit-modals/billing-address-edit/billing-address-edit.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { ShippingAddressEditComponent } from './account/settings/edit-modals/shipping-address-edit/shipping-address-edit.component';
+import { ProfileEditComponent } from './account/settings/edit-modals/profile-edit/profile-edit.component';
 
 @NgModule({
   declarations: [
@@ -68,7 +70,9 @@ import { MatDialogModule } from '@angular/material/dialog';
     AccountComponent,
     ProfileComponent,
     SettingsComponent,
-    BillingAddressEditModalComponent
+    BillingAddressEditComponent,
+    ShippingAddressEditComponent,
+    ProfileEditComponent
   ],
   imports: [
     BrowserModule,
