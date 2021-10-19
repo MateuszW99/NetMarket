@@ -6,7 +6,7 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { AuthInterceptorService } from './auth/auth-interceptor.service';
 import { AuthComponent } from './auth/auth.component';
 import { LoginComponent } from './auth/login/login.component';
-import { FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from './auth/register/register.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -22,6 +22,14 @@ import { ItemsListComponent } from './shared/items/items-list/items-list.compone
 import { ItemsComponent } from './shared/items/items.component';
 import { ElectronicsComponent } from './electronics/electronics.component';
 import { CollectiblesComponent } from './collectibles/collectibles.component';
+import { ItemDetailsComponent } from './shared/items/item-details/item-details.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ClipboardModule } from 'ngx-clipboard';
+import { ToastrModule } from 'ngx-toastr';
+import { SizeModalComponent } from './shared/size-modal/size-modal.component';
+import { CategoryCardComponent } from './landing-page/category-card/category-card.component';
+import { TrendingItemsComponent } from './landing-page/trending-items/trending-items.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -37,20 +45,27 @@ import { CollectiblesComponent } from './collectibles/collectibles.component';
     BannerComponent,
     FiltersComponent,
     ItemCardComponent,
-    PaginationComponent,
     StreetwearComponent,
     ItemsComponent,
     ElectronicsComponent,
     CollectiblesComponent,
+    ItemDetailsComponent,
     PaginationComponent,
-    SearchBarComponent
+    SearchBarComponent,
+    SizeModalComponent,
+    CategoryCardComponent,
+    TrendingItemsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    ClipboardModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
+    FontAwesomeModule
   ],
   providers: [
     {

@@ -21,9 +21,30 @@
         "description": "Jordan Brand paid homage to MJ’s alma mater with the Air Jordan 4 University Blue. The University Blue colorway draws a close resemblance to the extremely rare Air Jordan 4 UNC PE that was given to Tarheel student-athletes in 2019.\name\name\nThe Air Jordan 4 University Blue features a University Blue suede upper with mesh netting on the quarter panel and tongue. Similar to OG Jordan 4 colorways of the past, the eyelets, heel tab, and sections of the midsole are a speckled Cement Grey. Hits of black appear on the wing eyelets, sole, and Jumpman logo on the heel tab. Two woven labels are stitched to the tongue; one being the classic Jumpman woven label; the other being a Team Jordan jock tag. A black, white, and Tech Grey sole with a clear Air unit completes the design.\name\name\nThe Air Jordan 4 University Blue released in April of 2021 and retailed for $200."
     },
     {
+        "id": "EFFD6FCF-1882-420C-BB89-DC1CFEFB3E9C",
+        "name": "Hot Wheels x Tesla Cybertruck 1:10 Scale RC Car (2021 Version w/ Cyberquad)",
+        "category": "Collectibles",
+        "brand": "Hot Wheels",
+        "media": {
+            "imageUrl": "https://images.stockx.com/images/Hot-Wheels-x-Tesla-Cybertruck-110-Scale-RC-Car-2021-Version-w-Cyperquad-V2.jpg?fit=fill&bg=FFFFFF&w=480&h=320&auto=compress&q=90&dpr=1&trim=color&updated_at=1626902458&pad=0&fm=webp",
+            "smallImageUrl": "https://images.stockx.com/images/Hot-Wheels-x-Tesla-Cybertruck-110-Scale-RC-Car-2021-Version-w-Cyperquad-V2.jpg?fit=fill&bg=FFFFFF&w=480&h=320&auto=compress&q=90&dpr=1&trim=color&updated_at=1626902458&pad=0&fm=webp",
+            "thumbUrl": "https://images.stockx.com/images/Hot-Wheels-x-Tesla-Cybertruck-110-Scale-RC-Car-2021-Version-w-Cyperquad-V2.jpg?fit=fill&bg=FFFFFF&w=480&h=320&auto=compress&q=90&dpr=1&trim=color&updated_at=1626902458&pad=0&fm=webp"
+        },
+        "releaseDate": null,
+        "categories": [
+            "Hot Wheels",
+            "Other"
+        ],
+        "make": "The Hot Wheels x Tesla Cybertruck 1:10 Scale R/C Car 2021 Version",
+        "model": "Tesla Cybertruck 1:10 Scale",
+        "gender": "unisex",
+        "retailPrice": 100,
+        "description": "The Hot Wheels x Tesla Cybertruck 1:10 Scale R/C Car 2021 Version with Cyberquad is the third time Mattel and Elon Musk’s electric vehicle and clean energy company have collaborated on an R/C version of the Cybertruck by Tesla. The R/C Cybertruck includes working lights, realistic wheels modeled off of the actual vehicle, an R/C controller inspired by the Cybertruck’s steering wheel, and a 1:10 scale Hot Wheels Cyberquad that was made to fit in the bed of the truck. The Hot Wheels x Tesla Cybertruck 1:10 Scale R/C Car can hit speeds up to 12 MPH."
+    },
+    {
         "id": "26e58c99-ab90-4f5b-9c2f-9d8d6f42628d",
         "name": "Dior x Jordan Wings Card Holder (4 Card Slot) Navy",
-        "category": "Accessories",
+        "category": "Collectibles",
         "brand": "Dior",
         "media": {
             "imageUrl": "https://images.stockx.com/images/Dior-x-Jordan-Wings-Card-Holder-4-Card-Slot-Navy.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&trimcolor=ffffff&q=90&dpr=2&updated_at=1606319174",
@@ -37,34 +58,13 @@
         ],
         "make": "Dior x Jordan Wings Card Holder",
         "model": "(4 Card Slot) Navy",
-        "gender": "men",
+        "gender": "unisex",
         "retailPrice": 370,
         "description": ""
     },
     {
-        "id": "ad15c037-6376-48d5-899c-6fce32131933",
-        "category": "Accessories",
-        "name": "Dior x Jordan Wings Zip Wallet (4 Card Slot) Navy",
-        "brand": "Dior",
-        "media": {
-            "imageUrl": "https://stockx-assets.imgix.net/media/Product-Placeholder-Default-20210415.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&trimcolor=ffffff&q=90&dpr=2&updated_at=0",
-            "smallImageUrl": "https://stockx-assets.imgix.net/media/Product-Placeholder-Default-20210415.jpg?fit=fill&bg=FFFFFF&w=300&h=214&auto=format,compress&trim=color&trimcolor=ffffff&q=90&dpr=2&updated_at=0",
-            "thumbUrl": "https://stockx-assets.imgix.net/media/Product-Placeholder-Default-20210415.jpg?fit=fill&bg=FFFFFF&w=140&h=100&auto=format,compress&trim=color&trimcolor=ffffff&q=90&dpr=2&updated_at=0"
-        },
-        "releaseDate": null,
-        "categories": [
-            "Dior",
-            "Other"
-        ],
-        "make": "Dior x Jordan Wings Zip Wallet",
-        "model": "(4 Card Slot) Navy",
-        "gender": "men",
-        "retailPrice": 0,
-        "description": ""
-    },
-    {
         "id": "89d683ae-6801-4168-89bc-c153e0da3b3e",
-        "category": "Accessories",
+        "category": "Collectibles",
         "name": "Dior x Jordan Wings Card Holder (4 Card Slot) Grey",
         "brand": "Dior",
         "media": {
@@ -79,30 +79,198 @@
         ],
         "make": "Dior x Jordan Wings Card Holder",
         "model": "(4 Card Slot) Grey",
-        "gender": "men",
+        "gender": "unisex",
         "retailPrice": 370,
         "description": ""
     },
     {
-        "id": "504a09f9-cf30-47b3-b388-e5791f6e3599",
-        "category": "Accessories",
-        "name": "Dior x Jordan Wings Zip Wallet (4 Card Slot) Grey",
-        "brand": "Dior",
+        "id": "4a7109d0-b456-45b9-a275-b34a36f5abb6",
+        "category": "Collectibles",
+        "name": "Hot Wheels RLC Exclusive 1972 Skyline H/T 2000GT-R",
+        "brand": "Hot Wheels",
         "media": {
-            "imageUrl": "https://stockx-assets.imgix.net/media/Product-Placeholder-Default-20210415.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&trimcolor=ffffff&q=90&dpr=2&updated_at=0",
-            "smallImageUrl": "https://stockx-assets.imgix.net/media/Product-Placeholder-Default-20210415.jpg?fit=fill&bg=FFFFFF&w=300&h=214&auto=format,compress&trim=color&trimcolor=ffffff&q=90&dpr=2&updated_at=0",
-            "thumbUrl": "https://stockx-assets.imgix.net/media/Product-Placeholder-Default-20210415.jpg?fit=fill&bg=FFFFFF&w=140&h=100&auto=format,compress&trim=color&trimcolor=ffffff&q=90&dpr=2&updated_at=0"
+            "imageUrl": "https://images.stockx.com/images/Hot-Wheels-RLC-Exclusive-1972-Skyline-H-T-2000GT-R.jpg?fit=fill&bg=FFFFFF&w=480&h=320&auto=compress&q=90&dpr=1&trim=color&updated_at=1633101159&pad=0&fm=webp",
+            "smallImageUrl": "https://images.stockx.com/images/Hot-Wheels-RLC-Exclusive-1972-Skyline-H-T-2000GT-R.jpg?fit=fill&bg=FFFFFF&w=480&h=320&auto=compress&q=90&dpr=1&trim=color&updated_at=1633101159&pad=0&fm=webp",
+            "thumbUrl": "https://images.stockx.com/images/Hot-Wheels-RLC-Exclusive-1972-Skyline-H-T-2000GT-R.jpg?fit=fill&bg=FFFFFF&w=480&h=320&auto=compress&q=90&dpr=1&trim=color&updated_at=1633101159&pad=0&fm=webp"
         },
         "releaseDate": null,
         "categories": [
-            "Dior",
-            "Other"
+            "Hot Wheels",
+            "Collectibles"
         ],
-        "make": "Dior x Jordan Wings Zip Wallet",
-        "model": "(4 Card Slot) Grey",
-        "gender": "men",
-        "retailPrice": 0,
+        "make": "Hot Wheels",
+        "model": "RLC Exclusive 1972 Skyline H/T 2000GT-R",
+        "gender": "unisex",
+        "retailPrice": 25,
         "description": ""
+    },
+    {
+        "id": "0294de3f-b4c1-4038-830e-519c239100fd",
+        "category": "Collectibles",
+        "name": "KAWS Separated Vinyl Figure",
+        "brand": "Kaws",
+        "media": {
+            "imageUrl": "https://images.stockx.com/images/KAWS-Separated-Vinyl-Figure-Brown.jpg?fit=fill&bg=FFFFFF&w=480&h=320&auto=compress&q=90&dpr=1&trim=color&updated_at=1614359484&pad=0&fm=webp",
+            "smallImageUrl": "https://images.stockx.com/images/KAWS-Separated-Vinyl-Figure-Brown.jpg?fit=fill&bg=FFFFFF&w=480&h=320&auto=compress&q=90&dpr=1&trim=color&updated_at=1614359484&pad=0&fm=webp",
+            "thumbUrl": "https://images.stockx.com/images/KAWS-Separated-Vinyl-Figure-Brown.jpg?fit=fill&bg=FFFFFF&w=480&h=320&auto=compress&q=90&dpr=1&trim=color&updated_at=1614359484&pad=0&fm=webp"
+        },
+        "releaseDate": null,
+        "categories": [
+            "Kaws",
+            "Collectibles"
+        ],
+        "make": "Kaws",
+        "model": "Separated Vinyl Figure",
+        "gender": "unisex",
+        "retailPrice": 280,
+        "description": "To commemorate the launch of his groundbreaking new WHAT PARTY exhibition at the Brooklyn Museum, KAWS dropped this new Separated Figure. The KAWS Separated Figure Brown features his classic companion character in a seated position with its head down in a brown colorway. The KAWS Separated figure released on the Brooklyn Museum web shop for a retail price of $280 on February 26th, 2021. It sold out quickly upon release. Place a Bid or Buy now to take home this piece of KAWS toy history."
+    },
+    {
+        "id": "80c1bf14-f0ea-40cc-830f-360cfb39e661",
+        "category": "Collectibles",
+        "name": "Bandai Gundam x Nike SB Unicorn (Destroy Mode) (1/144 Scale) Model Kit Action Figure Set",
+        "brand": "Nike",
+        "media": {
+            "imageUrl": "https://images.stockx.com/images/Bandai-Gundam-x-Nike-SB-Unicorn-Gundam-1-144-Scale-Model-Kit-Action-Figure-Set-V.jpg?fit=fill&bg=FFFFFF&w=480&h=320&auto=compress&q=90&dpr=1&trim=color&updated_at=1632256551&pad=0&fm=webp",
+            "smallImageUrl": "https://images.stockx.com/images/Bandai-Gundam-x-Nike-SB-Unicorn-Gundam-1-144-Scale-Model-Kit-Action-Figure-Set-V.jpg?fit=fill&bg=FFFFFF&w=480&h=320&auto=compress&q=90&dpr=1&trim=color&updated_at=1632256551&pad=0&fm=webp",
+            "thumbUrl": "https://images.stockx.com/images/Bandai-Gundam-x-Nike-SB-Unicorn-Gundam-1-144-Scale-Model-Kit-Action-Figure-Set-V.jpg?fit=fill&bg=FFFFFF&w=480&h=320&auto=compress&q=90&dpr=1&trim=color&updated_at=1632256551&pad=0&fm=webp"
+        },
+        "releaseDate": null,
+        "categories": [
+            "Nike",
+            "Collectibles"
+        ],
+        "make": "Bandai Gundam x Nike",
+        "model": "(Destroy Mode) (1/144 Scale) Model",
+        "gender": "unisex",
+        "retailPrice": 54,
+        "description": "The Bandai Gundam x Nike SB Unicorn Gundam 1/144 Scale Model Kit Action Figure set helps to celebrate the collaboration between Nike SB and Unicorn Gundam. These Gundam action figures were released alongside two different pairs of Nike SB Dunk High RX-0 Unicorn Gundams. The two Bandai Gundam figures measure in at five inches tall with one coming in the White/Amarillo colorway and the other in the Thunder Blue/Metallic Gold colorway. Each Bandai Gundam x Nike SB Unicorn Gundam 1/144 Scale Model Kit Action Figure comes packaged in a special edition box that is made to look like a Nike SB shoe box. The Bandai Gundam x Nike SB Unicorn Gundam 1/144 Scale Model Kit Action Figure set released on December 1, 2021 for a retail price of $27 each."
+    },
+    {
+        "id": "b416687c-f66c-446e-88a8-7a17bd064bc7",
+        "category": "Collectibles",
+        "name": "Takashi Murakami Flower Plush 60 CM",
+        "brand": "Takashi Murakami",
+        "media": {
+            "imageUrl": "https://images.stockx.com/images/Takashi-Murakami-Kaikai-Kiki-Flower-60-CM-Cushion-Rainbow.png?fit=fill&bg=FFFFFF&w=480&h=320&auto=compress&q=90&dpr=1&trim=color&updated_at=1614788667&pad=0&fm=webp",
+            "smallImageUrl": "https://images.stockx.com/images/Takashi-Murakami-Kaikai-Kiki-Flower-60-CM-Cushion-Rainbow.png?fit=fill&bg=FFFFFF&w=480&h=320&auto=compress&q=90&dpr=1&trim=color&updated_at=1614788667&pad=0&fm=webp",
+            "thumbUrl": "https://images.stockx.com/images/Takashi-Murakami-Kaikai-Kiki-Flower-60-CM-Cushion-Rainbow.png?fit=fill&bg=FFFFFF&w=480&h=320&auto=compress&q=90&dpr=1&trim=color&updated_at=1614788667&pad=0&fm=webp"
+        },
+        "releaseDate": null,
+        "categories": [
+            "Takashi Murakami",
+            "Collectibles"
+        ],
+        "make": "Takashi Murakami",
+        "model": "Takashi Murakami",
+        "gender": "unisex",
+        "retailPrice": 120,
+        "description": "Takashi Murakami has a longstanding tradition of producing some of the cutest plush collectibles out there. His iconic flower character has been seen in galleries and homes all over the world, and this 60cm Rainbow Flower Plush is an affordable way to own a piece from the masterful Japanese artist. This particular plush features Murakami's classic smiling face surrounded by a rainbow of colors, and measures 60cm in diamater. Cop one today to brighten up any room."
+    },
+    {
+        "id": "afb854c7-fe80-4ef9-9861-465dc1d990ba",
+        "category": "Collectibles",
+        "name": "LEGO Star Wars R2-D2 Set 75308",
+        "brand": "LEGO",
+        "media": {
+            "imageUrl": "https://images.stockx.com/images/LEGO-Star-Wars-R2-D2-Set-75308.jpg?fit=fill&bg=FFFFFF&w=480&h=320&auto=compress&q=90&dpr=1&trim=color&updated_at=1619112805&pad=0&fm=webp",
+            "smallImageUrl": "https://images.stockx.com/images/LEGO-Star-Wars-R2-D2-Set-75308.jpg?fit=fill&bg=FFFFFF&w=480&h=320&auto=compress&q=90&dpr=1&trim=color&updated_at=1619112805&pad=0&fm=webp",
+            "thumbUrl": "https://images.stockx.com/images/LEGO-Star-Wars-R2-D2-Set-75308.jpg?fit=fill&bg=FFFFFF&w=480&h=320&auto=compress&q=90&dpr=1&trim=color&updated_at=1619112805&pad=0&fm=webp"
+        },
+        "releaseDate": null,
+        "categories": [
+            "LEGO",
+            "Collectibles"
+        ],
+        "make": "LEGO",
+        "model": "LEGO",
+        "gender": "unisex",
+        "retailPrice": 200,
+        "description": "Geared for building enthusiasts, Star Wars fans, and collectors alike, the LEGO Star Wars R2-D2 Set is part of a premium selection of Star Wars LEGO sets. The 2,300 piece set puts a highly detailed R2-D2 on display, equipped with a rotating head, openable hatches, a retractable leg, and a hidden lightsaber compartment. The LEGO Star Wars R2-D2 set is 12.5 inches (31 cm) high and 7.5 inches (20 cm) wide, big enough to display at the forefront of a collection. The LEGO Star Wars R2-D2 Set is made for adults and hobbyists itching to complete LEGO’s growing catalog of advanced Star Wars sets."
+    },
+    {
+        "id": "4e3d3a54-9859-480b-b004-5682c70fa077",
+        "category": "Collectibles",
+        "name": "Pokémon TCG 25th Anniversary Celebrations",
+        "brand": "Pokémon",
+        "media": {
+            "imageUrl": "https://images.stockx.com/images/Pokemon-TCG-25th-Anniversary-Celebrations-Ultra-Premium-Collection-Box.jpg?fit=fill&bg=FFFFFF&w=480&h=320&auto=compress&q=90&dpr=1&trim=color&updated_at=1630695021&pad=0&fm=webp",
+            "smallImageUrl": "https://images.stockx.com/images/Pokemon-TCG-25th-Anniversary-Celebrations-Ultra-Premium-Collection-Box.jpg?fit=fill&bg=FFFFFF&w=480&h=320&auto=compress&q=90&dpr=1&trim=color&updated_at=1630695021&pad=0&fm=webp",
+            "thumbUrl": "https://images.stockx.com/images/Pokemon-TCG-25th-Anniversary-Celebrations-Ultra-Premium-Collection-Box.jpg?fit=fill&bg=FFFFFF&w=480&h=320&auto=compress&q=90&dpr=1&trim=color&updated_at=1630695021&pad=0&fm=webp"
+        },
+        "releaseDate": null,
+        "categories": [
+            "Pokémon",
+            "Collectibles"
+        ],
+        "make": "Pokémon",
+        "model": "TCG",
+        "gender": "unisex",
+        "retailPrice": 120,
+        "description": "Celebrate 25 years of Pokémon with the Pokémon Celebrations Ultra Premium Collection Box featuring two of the Pokémon world's best-loved icons: Charizard and Pikachu! This fantastic collection includes a massive set of Pokémon TCG: Celebrations boosters as well as commemorative Pikachu and Charizard cards made of solid metal, showing these characters as they first appeared in the Pokémon TCG."
+    },
+    {
+        "id": "5e82ee2b-8f00-4134-9f4a-06e43a9d1428",
+        "category": "Collectibles",
+        "name": "Pokémon TCG 25th Anniversary Celebrations",
+        "brand": "Pokémon",
+        "media": {
+            "imageUrl": "https://images.stockx.com/images/Pokemon-TCG-25th-Anniversary-Celebrations-Prime-Collection-Box.jpg?fit=fill&bg=FFFFFF&w=480&h=320&auto=compress&q=90&dpr=1&trim=color&updated_at=1631333335&pad=0&fm=webp",
+            "smallImageUrl": "https://images.stockx.com/images/Pokemon-TCG-25th-Anniversary-Celebrations-Prime-Collection-Box.jpg?fit=fill&bg=FFFFFF&w=480&h=320&auto=compress&q=90&dpr=1&trim=color&updated_at=1631333335&pad=0&fm=webp",
+            "thumbUrl": "https://images.stockx.com/images/Pokemon-TCG-25th-Anniversary-Celebrations-Prime-Collection-Box.jpg?fit=fill&bg=FFFFFF&w=480&h=320&auto=compress&q=90&dpr=1&trim=color&updated_at=1631333335&pad=0&fm=webp"
+        },
+        "releaseDate": null,
+        "categories": [
+            "Pokémon",
+            "Collectibles"
+        ],
+        "make": "Pokémon",
+        "model": "TCG",
+        "gender": "unisex",
+        "retailPrice": 135,
+        "description": "The Pokémon Celebrations Prime Collection Box offers you the chance to find the coveted 1999 Base Set Charizard reprint among other classic Pokémon cards such as Blastoise, Mewtwo EX, Surfing Pikachu, Ho-Oh, and more. The Pokémon Celebrations Prime Collection Box is loaded up with one special promo card of Dragapult Prime, four oversized Pokémon cards featuring Light Toxtricity, Hydreigon C, Mimikyu δ, and Dragapult Prime."
+    },
+    {
+        "id": "db2f349d-6db1-4b48-ba70-78b5eb9e67b0",
+        "category": "Collectibles",
+        "name": "LEGO Super Mario Nintendo Entertainment System Set 71374",
+        "brand": "LEGO",
+        "media": {
+            "imageUrl": "https://images.stockx.com/images/Lego-Super-Mario-Nintendo-Entertainment-System-Set-71374.jpg?fit=fill&bg=FFFFFF&w=480&h=320&auto=compress&q=90&dpr=1&trim=color&updated_at=1611070400&pad=0&fm=webp",
+            "smallImageUrl": "https://images.stockx.com/images/Lego-Super-Mario-Nintendo-Entertainment-System-Set-71374.jpg?fit=fill&bg=FFFFFF&w=480&h=320&auto=compress&q=90&dpr=1&trim=color&updated_at=1611070400&pad=0&fm=webp",
+            "thumbUrl": "https://images.stockx.com/images/Lego-Super-Mario-Nintendo-Entertainment-System-Set-71374.jpg?fit=fill&bg=FFFFFF&w=480&h=320&auto=compress&q=90&dpr=1&trim=color&updated_at=1611070400&pad=0&fm=webp"
+        },
+        "releaseDate": null,
+        "categories": [
+            "LEGO",
+            "Collectibles"
+        ],
+        "make": "LEGO",
+        "model": "LEGO Super Mario",
+        "gender": "unisex",
+        "retailPrice": 230,
+        "description": "Released in 2020, the Lego Super Mario Nintendo Entertainment System Set 71374 has quickly become one of the hottest Lego sets on the market. this set features a realistic looking console, controller, game, and even a TV set. It carried an original retail price of $230, selling out quickly upon it's initial release. Each set comes brand new and sealed in it's original retail box, and includes precisely 2,646 pieces. Whether you're a collector or a builder, you can cop this popular Lego set now on StockX."
+    },
+    {
+        "id": "b1cf7b0d-75e3-495f-bc2d-eedb68ec3d9c",
+        "category": "Collectibles",
+        "name": "KAWS Sesame Street Uniqlo Elmo Plush Toy",
+        "brand": "KAWS",
+        "media": {
+            "imageUrl": "https://images.stockx.com/images/Kaws-Sesame-Street-Uniqlo-Elmo-Plush-Toy-Red.png?fit=fill&bg=FFFFFF&w=480&h=320&auto=compress&q=90&dpr=1&trim=color&updated_at=1614788102&pad=0&fm=webp",
+            "smallImageUrl": "https://images.stockx.com/images/Kaws-Sesame-Street-Uniqlo-Elmo-Plush-Toy-Red.png?fit=fill&bg=FFFFFF&w=480&h=320&auto=compress&q=90&dpr=1&trim=color&updated_at=1614788102&pad=0&fm=webp",
+            "thumbUrl": "https://images.stockx.com/images/Kaws-Sesame-Street-Uniqlo-Elmo-Plush-Toy-Red.png?fit=fill&bg=FFFFFF&w=480&h=320&auto=compress&q=90&dpr=1&trim=color&updated_at=1614788102&pad=0&fm=webp"
+        },
+        "releaseDate": null,
+        "categories": [
+            "KAWS",
+            "Collectibles"
+        ],
+        "make": "KAWS",
+        "model": "KAWS Sesame Street",
+        "gender": "unisex",
+        "retailPrice": 40,
+        "description": "KAWS has issued dozens of great collaborations throughout the years, however his Sesame Street collection with Uniqlo remains a fan favorite. The collection originally released on November 19th, 2018 in Uniqlo stores globally and on the Uniqlo web store. The most popular items from the collection are the adorable plushes of the most recognizable Sesame Street characters. This Elmo Plush Toy retailed for $40 and sold out quickly. Add this adorable item to your collection today by placing a Bid."
     },
     {
         "id": "62fbae69-e7c9-4bad-940f-e420c7be4bdd",
@@ -1069,6 +1237,237 @@
         "gender": "men",
         "retailPrice": 120,
         "description": "Kanye West is back with yet another iteration of his popular Calabasas line. Get cozy with this core/mink pair of Calabasas track pants featuring the iconic Calabasas logo along with the Calabasas font down the side. This particular pair of pants dropped on November 17th, 2018 for a retail price of $120. If you're looking for cozy with a side of style, these pants are for you. Place a bid today to secure your pair."
+    },
+    {
+        "id": "6ed98288-aa50-40d5-9e57-41bc5fa6e6b6",
+        "name": "Nike x Drake Certified Lover Boy Hat",
+        "category": "Streetwear",
+        "brand": "Nike",
+        "media": {
+            "imageUrl": "https://images.stockx.com/images/_0051_Nike-x-Drake-Certified-Lover-Boy-Hat-White.jpg?fit=fill&bg=FFFFFF&w=480&h=320&auto=compress&q=90&dpr=1&trim=color&updated_at=1607574979&pad=0&fm=webp",
+            "smallImageUrl": "https://images.stockx.com/images/_0051_Nike-x-Drake-Certified-Lover-Boy-Hat-White.jpg?fit=fill&bg=FFFFFF&w=480&h=320&auto=compress&q=90&dpr=1&trim=color&updated_at=1607574979&pad=0&fm=webp",
+            "thumbUrl": "https://images.stockx.com/images/_0051_Nike-x-Drake-Certified-Lover-Boy-Hat-White.jpg?fit=fill&bg=FFFFFF&w=480&h=320&auto=compress&q=90&dpr=1&trim=color&updated_at=1607574979&pad=0&fm=webp"
+        },
+        "releaseDate": null,
+        "categories": [
+            "Streetwear",
+            "Nike"
+        ],
+        "make": "Nike",
+        "model": "Nike x Drake Certified Lover Boy Hat",
+        "gender": "men",
+        "retailPrice": 28,
+        "description": "Drake and Nike released a collaborative merchandise capsule in late October, 2020, for the artist's new album, Certified Lover Boy. Though the album would not drop until several months after the merch capsule was dropped, Drake set the stage for the album's release with his Nike collaboration. The Drake Certified Lover Boy capsule included 12 pieces, of which four were friends and family only. The Certified Lover Boy Hat design was leaked months before it's release on Drake's Instagram Story and features a single Nike swoosh and a lipstick kiss mark on the brim. The Drake Nike Certified Lover Boy Hat released on October 26th, 2020, and retailed for the price of $28 USD."
+    },
+    {
+        "id": "8df9df02-e346-4145-b55c-95d8cdc52243",
+        "name": "Yeezy x Gap Hoodie",
+        "category": "Streetwear",
+        "brand": "Yeezy",
+        "media": {
+            "imageUrl": "https://images.stockx.com/images/Yeezy-x-GAP-Hoodie-Red.jpg?fit=fill&bg=FFFFFF&w=480&h=320&auto=compress&q=90&dpr=1&trim=color&updated_at=1632921116&pad=0&fm=webp",
+            "smallImageUrl": "https://images.stockx.com/images/Yeezy-x-GAP-Hoodie-Red.jpg?fit=fill&bg=FFFFFF&w=480&h=320&auto=compress&q=90&dpr=1&trim=color&updated_at=1632921116&pad=0&fm=webp",
+            "thumbUrl": "https://images.stockx.com/images/Yeezy-x-GAP-Hoodie-Red.jpg?fit=fill&bg=FFFFFF&w=480&h=320&auto=compress&q=90&dpr=1&trim=color&updated_at=1632921116&pad=0&fm=webp"
+        },
+        "releaseDate": null,
+        "categories": [
+            "Streetwear",
+            "Yeezy"
+        ],
+        "make": "Yeezy",
+        "model": "Gap Hoodie",
+        "gender": "men",
+        "retailPrice": 90,
+        "description": "This red hoodie was released as a part of the Yeezy x GAP partnership's first delivery of hooded sweatshirts. The Yeezy x GAP Hoodie release took place in late September of 2021 and featured six colors of the highly anticipated garment. This red Yeezy x GAP Hoodie is made from a 100% cotton material and does not feature any external branding."
+    },
+    {
+        "id": "b1a89305-976a-4a88-baf3-ab32b1ef1e02",
+        "name": "Off-White x Nike Women's NRG AOP Jacket",
+        "category": "Streetwear",
+        "brand": "Off-White",
+        "media": {
+            "imageUrl": "https://images.stockx.com/images/OFF-WHITE-x-Nike-Womens-NRG-AOP-Jacket-Volt.jpg?fit=fill&bg=FFFFFF&w=480&h=320&auto=compress&q=90&dpr=1&trim=color&updated_at=1614197015&pad=0&fm=webp",
+            "smallImageUrl": "https://images.stockx.com/images/OFF-WHITE-x-Nike-Womens-NRG-AOP-Jacket-Volt.jpg?fit=fill&bg=FFFFFF&w=480&h=320&auto=compress&q=90&dpr=1&trim=color&updated_at=1614197015&pad=0&fm=webp",
+            "thumbUrl": "https://images.stockx.com/images/OFF-WHITE-x-Nike-Womens-NRG-AOP-Jacket-Volt.jpg?fit=fill&bg=FFFFFF&w=480&h=320&auto=compress&q=90&dpr=1&trim=color&updated_at=1614197015&pad=0&fm=webp"
+        },
+        "releaseDate": null,
+        "categories": [
+            "Streetwear",
+            "Off-White"
+        ],
+        "make": "Off-White",
+        "model": "Nike Women's NRG AOP Jacket",
+        "gender": "women",
+        "retailPrice": 300,
+        "description": ""
+    },
+    {
+        "id": "415b8ba0-8507-4d79-bd3c-72afd104106a",
+        "name": "Billie Eilish Sketch T-Shirt",
+        "category": "Streetwear",
+        "brand": "Takashi Murakami",
+        "media": {
+            "imageUrl": "https://images.stockx.com/products/streetwear/Billie-Eilish-Sketch-T-Shirt-US-Womens-Sizing-Green.jpg?fit=fill&bg=FFFFFF&w=480&h=320&auto=compress&q=90&dpr=1&trim=color&updated_at=1603481985&pad=0&fm=webp",
+            "smallImageUrl": "https://images.stockx.com/products/streetwear/Billie-Eilish-Sketch-T-Shirt-US-Womens-Sizing-Green.jpg?fit=fill&bg=FFFFFF&w=480&h=320&auto=compress&q=90&dpr=1&trim=color&updated_at=1603481985&pad=0&fm=webp",
+            "thumbUrl": "https://images.stockx.com/products/streetwear/Billie-Eilish-Sketch-T-Shirt-US-Womens-Sizing-Green.jpg?fit=fill&bg=FFFFFF&w=480&h=320&auto=compress&q=90&dpr=1&trim=color&updated_at=1603481985&pad=0&fm=webp"
+        },
+        "releaseDate": null,
+        "categories": [
+            "Streetwear",
+            "Takashi Murakami"
+        ],
+        "make": "Takashi Murakami",
+        "model": "Billie Eilish Sketch T-Shirt",
+        "gender": "women",
+        "retailPrice": 15,
+        "description": ""
+    },
+    {
+        "id": "8ca21c97-5792-43bf-b0d2-973e76fdac6c",
+        "name": "BAPE x Pokemon Ladies Tee #6",
+        "category": "Streetwear",
+        "brand": "BAPE",
+        "media": {
+            "imageUrl": "https://images.stockx.com/products/streetwear/BAPE-x-Pokemon-Ladies-Tee-6-White.png?fit=fill&bg=FFFFFF&w=480&h=320&auto=compress&q=90&dpr=1&trim=color&updated_at=1603931951&pad=0&fm=webp",
+            "smallImageUrl": "https://images.stockx.com/products/streetwear/BAPE-x-Pokemon-Ladies-Tee-6-White.png?fit=fill&bg=FFFFFF&w=480&h=320&auto=compress&q=90&dpr=1&trim=color&updated_at=1603931951&pad=0&fm=webp",
+            "thumbUrl": "https://images.stockx.com/products/streetwear/BAPE-x-Pokemon-Ladies-Tee-6-White.png?fit=fill&bg=FFFFFF&w=480&h=320&auto=compress&q=90&dpr=1&trim=color&updated_at=1603931951&pad=0&fm=webp"
+        },
+        "releaseDate": null,
+        "categories": [
+            "Streetwear",
+            "BAPE"
+        ],
+        "make": "BAPE",
+        "model": "BAPE x Pokemon Ladies Tee #6",
+        "gender": "women",
+        "retailPrice": 90,
+        "description": ""
+    },
+    {
+        "id": "2678081f-e60e-40d6-a3bb-76e13e50d658",
+        "name": "Adidas Ivy Park Knit Logo Dress",
+        "category": "Streetwear",
+        "brand": "Adidas",
+        "media": {
+            "imageUrl": "https://images.stockx.com/images/adidas-Ivy-Park-Knit-Logo-Dress-Dark-Green-Green-Tint-Yellow-Tint.jpg?fit=fill&bg=FFFFFF&w=480&h=320&auto=compress&q=90&dpr=1&trim=color&updated_at=1619146048&pad=0&fm=webp",
+            "smallImageUrl": "https://images.stockx.com/images/adidas-Ivy-Park-Knit-Logo-Dress-Dark-Green-Green-Tint-Yellow-Tint.jpg?fit=fill&bg=FFFFFF&w=480&h=320&auto=compress&q=90&dpr=1&trim=color&updated_at=1619146048&pad=0&fm=webp",
+            "thumbUrl": "https://images.stockx.com/images/adidas-Ivy-Park-Knit-Logo-Dress-Dark-Green-Green-Tint-Yellow-Tint.jpg?fit=fill&bg=FFFFFF&w=480&h=320&auto=compress&q=90&dpr=1&trim=color&updated_at=1619146048&pad=0&fm=webp"
+        },
+        "releaseDate": null,
+        "categories": [
+            "Streetwear",
+            "Adidas"
+        ],
+        "make": "Adidas",
+        "model": "Adidas Ivy Park Knit Logo Dress",
+        "gender": "women",
+        "retailPrice": 130,
+        "description": ""
+    },
+    {
+        "id": "40198366-3836-4b86-afbf-c3f9e9fd6326",
+        "name": "KAWS x Uniqlo Tokyo First Kids Tee",
+        "category": "Streetwear",
+        "brand": "KAWS",
+        "media": {
+            "imageUrl": "https://images.stockx.com/images/KAWS-x-Uniqlo-Tokyo-First-Kids-Tee-Japanese-Sizing-Graphic-Tee-Set.jpg?fit=fill&bg=FFFFFF&w=480&h=320&auto=compress&q=90&dpr=1&trim=color&updated_at=1629828118&pad=0&fm=webp",
+            "smallImageUrl": "https://images.stockx.com/images/KAWS-x-Uniqlo-Tokyo-First-Kids-Tee-Japanese-Sizing-Graphic-Tee-Set.jpg?fit=fill&bg=FFFFFF&w=480&h=320&auto=compress&q=90&dpr=1&trim=color&updated_at=1629828118&pad=0&fm=webp",
+            "thumbUrl": "https://images.stockx.com/images/KAWS-x-Uniqlo-Tokyo-First-Kids-Tee-Japanese-Sizing-Graphic-Tee-Set.jpg?fit=fill&bg=FFFFFF&w=480&h=320&auto=compress&q=90&dpr=1&trim=color&updated_at=1629828118&pad=0&fm=webp"
+        },
+        "releaseDate": null,
+        "categories": [
+            "Streetwear",
+            "KAWS"
+        ],
+        "make": "KAWS",
+        "model": "KAWS x Uniqlo Tokyo First Kids Tee",
+        "gender": "kids",
+        "retailPrice": 40,
+        "description": ""
+    },
+    {
+        "id": "cdf6f866-cadb-4f35-a6db-41c3eaacf5ae",
+        "name": "Gallery Dept. Workshop Trucker Hat",
+        "category": "Streetwear",
+        "brand": "Gallery Dept.",
+        "media": {
+            "imageUrl": "https://images.stockx.com/images/Gallery-Dept-Workshop-Trucker-Hat-Orange.jpg?fit=fill&bg=FFFFFF&w=480&h=320&auto=compress&q=90&dpr=1&trim=color&updated_at=1629256106&pad=0&fm=webp",
+            "smallImageUrl": "https://images.stockx.com/images/Gallery-Dept-Workshop-Trucker-Hat-Orange.jpg?fit=fill&bg=FFFFFF&w=480&h=320&auto=compress&q=90&dpr=1&trim=color&updated_at=1629256106&pad=0&fm=webp",
+            "thumbUrl": "https://images.stockx.com/images/Gallery-Dept-Workshop-Trucker-Hat-Orange.jpg?fit=fill&bg=FFFFFF&w=480&h=320&auto=compress&q=90&dpr=1&trim=color&updated_at=1629256106&pad=0&fm=webp"
+        },
+        "releaseDate": null,
+        "categories": [
+            "Streetwear",
+            "Gallery Dept."
+        ],
+        "make": "Gallery Dept.",
+        "model": "Workshop Trucker Hat",
+        "gender": "unisex",
+        "retailPrice": 100,
+        "description": ""
+    },
+    {
+        "id": "66605f1a-e85b-471b-a713-7818db0142c8",
+        "name": "Supreme No Comp Box Logo New Era",
+        "category": "Streetwear",
+        "brand": "Supreme",
+        "media": {
+            "imageUrl": "https://images.stockx.com/images/Supreme-No-Comp-Box-Logo-New-Era-Black-5.jpg?fit=fill&bg=FFFFFF&w=480&h=320&auto=compress&q=90&dpr=1&trim=color&updated_at=1631804602&pad=0&fm=webp",
+            "smallImageUrl": "https://images.stockx.com/images/Supreme-No-Comp-Box-Logo-New-Era-Black-5.jpg?fit=fill&bg=FFFFFF&w=480&h=320&auto=compress&q=90&dpr=1&trim=color&updated_at=1631804602&pad=0&fm=webp",
+            "thumbUrl": "https://images.stockx.com/images/Supreme-No-Comp-Box-Logo-New-Era-Black-5.jpg?fit=fill&bg=FFFFFF&w=480&h=320&auto=compress&q=90&dpr=1&trim=color&updated_at=1631804602&pad=0&fm=webp"
+        },
+        "releaseDate": null,
+        "categories": [
+            "Streetwear",
+            "Supreme"
+        ],
+        "make": "Supreme",
+        "model": "No Comp Box Logo New Era",
+        "gender": "men",
+        "retailPrice": 48,
+        "description": "This Supreme New Era Fitted Hat was made available as a part of the brand's Fall/Winter 2021 Week 4 release. The Supreme No Comp Box Logo was released in six different colors. This colorway features a black Box Logo on the front and a Supreme 2021 Opening Day patch on the side."
+    },
+    {
+        "id": "34b2a19a-e4ae-474b-b59e-eb7d1208917f",
+        "name": "Supreme Thrasher Hooded Sweatshirt",
+        "category": "Streetwear",
+        "brand": "Supreme",
+        "media": {
+            "imageUrl": "https://images.stockx.com/images/Supreme-Thrasher-Hooded-Sweatshirt-Black.jpg?fit=fill&bg=FFFFFF&w=480&h=320&auto=compress&q=90&dpr=1&trim=color&updated_at=1632416982&pad=0&fm=webp",
+            "smallImageUrl": "https://images.stockx.com/images/Supreme-Thrasher-Hooded-Sweatshirt-Black.jpg?fit=fill&bg=FFFFFF&w=480&h=320&auto=compress&q=90&dpr=1&trim=color&updated_at=1632416982&pad=0&fm=webp",
+            "thumbUrl": "https://images.stockx.com/images/Supreme-Thrasher-Hooded-Sweatshirt-Black.jpg?fit=fill&bg=FFFFFF&w=480&h=320&auto=compress&q=90&dpr=1&trim=color&updated_at=1632416982&pad=0&fm=webp"
+        },
+        "releaseDate": null,
+        "categories": [
+            "Streetwear",
+            "Supreme"
+        ],
+        "make": "Supreme",
+        "model": "Thrasher Hooded Sweatshirt",
+        "gender": "men",
+        "retailPrice": 100,
+        "description": ""
+    },
+    {
+        "id": "3d5b2acd-e852-4cf6-80ae-9ac81f88ad3a",
+        "name": "Supreme Thrasher Skyline Tee",
+        "category": "Streetwear",
+        "brand": "Supreme",
+        "media": {
+            "imageUrl": "https://images.stockx.com/images/Supreme-Thrasher-Skyline-Tee-Ash-Grey.jpg?fit=fill&bg=FFFFFF&w=480&h=320&auto=compress&q=90&dpr=1&trim=color&updated_at=1632416984&pad=0&fm=webp",
+            "smallImageUrl": "https://images.stockx.com/images/Supreme-Thrasher-Skyline-Tee-Ash-Grey.jpg?fit=fill&bg=FFFFFF&w=480&h=320&auto=compress&q=90&dpr=1&trim=color&updated_at=1632416984&pad=0&fm=webp",
+            "thumbUrl": "https://images.stockx.com/images/Supreme-Thrasher-Skyline-Tee-Ash-Grey.jpg?fit=fill&bg=FFFFFF&w=480&h=320&auto=compress&q=90&dpr=1&trim=color&updated_at=1632416984&pad=0&fm=webp"
+        },
+        "releaseDate": null,
+        "categories": [
+            "Streetwear",
+            "Supreme"
+        ],
+        "make": "Supreme",
+        "model": "Thrasher Skyline Tee",
+        "gender": "men",
+        "retailPrice": 50,
+        "description": ""
     },
     {
         "id": "176409b2-977e-4272-b02b-8fab93796e8d",
@@ -2143,7 +2542,7 @@
     },
     {
         "id": "f995fc3b-c4b7-4f46-9795-a3d4d7ac2325",
-        "name": "NVIDIA EVGA GeForce RTX 3080 ULTRA GAMING Graphics Card (10G-P5-3897-KR) ",
+        "name": "NVIDIA EVGA GeForce RTX 3080 ULTRA GAMING Graphics Card (10G-P5-3897-KR)",
         "category": "Electronics",
         "brand": "NVIDIA",
         "media": {
@@ -2161,6 +2560,216 @@
         "gender": "unisex",
         "retailPrice": 810,
         "description": "NVIDIA’s RTX 3080 was already something special, but when NVIDIA partner EVGA released their EVGA RTX 3080 FTW3 Ultra Gaming iteration of the board, it was another game-changer. The EVGA RTX 3080 FTW3 Ultra Gaming is decked out with features including 1800 MHz boost clock speeds, a three fan cooling system, a metal backplate, and even LED lighting for your graphics card to perform in style. The EVGA RTX 3080 FTW3 Ultra Gaming also offers ray tracing capabilities, providing some of the most realistic graphical experiences available. Due to the global chip shortage, the EVGA RTX 3080 FTW3 Ultra Gaming might be hard to find in retail stores, but the FTW3 Ultra Gaming and other powerful cards will always be available on net Market.namePlease refer to the manufacturer directly regarding product functionality and other product-related questions. net Market facilitates the sale of products by connecting buyers and sellers and is not responsible for product-specific warranties from manufacturers."
+    },
+    {
+        "id": "6a30758b-00e4-4156-a9a2-4d7e42bddeda",
+        "name": "Sony PS5 PlayStation 5 (US Plug) Blu-ray Edition Console 3005718 / 3005720 / 3006634",
+        "category": "Electronics",
+        "brand": "Sony",
+        "media": {
+            "imageUrl": "https://images.stockx.com/images/Sony-Playstation-5-Blu-Ray-Edition-Console-White.jpg?fit=fill&bg=FFFFFF&w=480&h=320&auto=compress&q=90&dpr=1&trim=color&updated_at=1605716639&pad=0&fm=webp",
+            "smallImageUrl": "https://images.stockx.com/images/Sony-Playstation-5-Blu-Ray-Edition-Console-White.jpg?fit=fill&bg=FFFFFF&w=480&h=320&auto=compress&q=90&dpr=1&trim=color&updated_at=1605716639&pad=0&fm=webp",
+            "thumbUrl": "https://images.stockx.com/images/Sony-Playstation-5-Blu-Ray-Edition-Console-White.jpg?fit=fill&bg=FFFFFF&w=480&h=320&auto=compress&q=90&dpr=1&trim=color&updated_at=1605716639&pad=0&fm=webp"
+        },
+        "releaseDate": null,
+        "categories": [
+            "Electronics",
+            "Sony"
+        ],
+        "make": "Sony",
+        "model": "PS5",
+        "gender": "unisex",
+        "retailPrice": 500,
+        "description": "The Sony PlayStation 5 (US Plug) Blu-ray Edition Console could be the hottest release of 2020. This version includes a Blu-ray disc drive, unlike the Digital Edition which does not. The PlayStation 5 (US Plug) Blu-ray Edition Console released officially on November 12th, 2020, at a retail price of $500. However, the console sold out in mere seconds during its initial pre-order window in September. The Sony PlayStation 5 (US Plug) Blu-ray Edition Console looks like it could change the game."
+    },
+    {
+        "id": "e4bc16cb-72ef-450b-90ae-4d3f9544bf12",
+        "name": "Nintendo Switch (OLED) HEGSKABAA",
+        "category": "Electronics",
+        "brand": "Nintendo",
+        "media": {
+            "imageUrl": "https://images.stockx.com/images/Nintendo-Switch-OLE-HEGSKABAA-Neon-Red-Neon-Blue.jpg?fit=fill&bg=FFFFFF&w=480&h=320&auto=compress&q=90&dpr=1&trim=color&updated_at=1625775762&pad=0&fm=webp",
+            "smallImageUrl": "https://images.stockx.com/images/Nintendo-Switch-OLE-HEGSKABAA-Neon-Red-Neon-Blue.jpg?fit=fill&bg=FFFFFF&w=480&h=320&auto=compress&q=90&dpr=1&trim=color&updated_at=1625775762&pad=0&fm=webp",
+            "thumbUrl": "https://images.stockx.com/images/Nintendo-Switch-OLE-HEGSKABAA-Neon-Red-Neon-Blue.jpg?fit=fill&bg=FFFFFF&w=480&h=320&auto=compress&q=90&dpr=1&trim=color&updated_at=1625775762&pad=0&fm=webp"
+        },
+        "releaseDate": null,
+        "categories": [
+            "Electronics",
+            "Nintendo"
+        ],
+        "make": "Nintendo",
+        "model": "Switch (OLED) HEGSKABAA",
+        "gender": "unisex",
+        "retailPrice": 350,
+        "description": "The new and improved Nintendo Switch Lite OLED Neon Red/Neon Blue takes on the colorway of the original Switch, but with new additions on screen and under the hood. The Nintendo Switch OLED Neon Red/Neon Blue features a 7-inch OLED screen, providing gamers enhanced visuals. The vibrant colors and rich contrasting hues are great for media consumption too, guaranteeing great visuals at home or on the go. The Nintendo Switch OLED Neon Red/Neon Blue also features a LAN port, which will provide gamers a stable and fast wired connection to play online. A new kickstand features adjustable viewing angles at virtually any vantage point, and front facing speakers provide an enhanced audio experience for the Nintendo Switch OLED Neon Red/Neon Blue. The Nintendo Switch OLED Neon Red/Neon Blue also features 64GB of internal storage, double of the original Switch model."
+    },
+    {
+        "id": "8e3a8095-064f-4c4a-90f9-19ea23f7211f",
+        "name": "Apple AirPods with Charging Case (MMEF2AM/A, MV7N2AM/A, MV7N2ZM/A)",
+        "category": "Electronics",
+        "brand": "Apple",
+        "media": {
+            "imageUrl": "https://images.stockx.com/images/Apple-Airpods-with-Charging-Case-MMEF2AM-A.jpg?fit=fill&bg=FFFFFF&w=480&h=320&auto=compress&q=90&dpr=1&trim=color&updated_at=1608057680&pad=0&fm=webp",
+            "smallImageUrl": "https://images.stockx.com/images/Apple-Airpods-with-Charging-Case-MMEF2AM-A.jpg?fit=fill&bg=FFFFFF&w=480&h=320&auto=compress&q=90&dpr=1&trim=color&updated_at=1608057680&pad=0&fm=webp",
+            "thumbUrl": "https://images.stockx.com/images/Apple-Airpods-with-Charging-Case-MMEF2AM-A.jpg?fit=fill&bg=FFFFFF&w=480&h=320&auto=compress&q=90&dpr=1&trim=color&updated_at=1608057680&pad=0&fm=webp"
+        },
+        "releaseDate": null,
+        "categories": [
+            "Electronics",
+            "Apple"
+        ],
+        "make": "Apple",
+        "model": "(MMEF2AM/A, MV7N2AM/A, MV7N2ZM/A)",
+        "gender": "unisex",
+        "retailPrice": 159,
+        "description": "Whether you are around the home or on the go, Apple AirPods are the perfect earbuds to keep the music going. This version of the Apple AirPods, which released in December of 2016 for $159, utilizes the standard Charging Case which can be charged with Apple’s Lightning cable. The completely-wireless Apple AirPods are the most convenient way to listen to music, take calls, and so much more. Pairing with devices is easy, and you will never miss a beat with the Charging Case’s long-lasting battery life. The best part, however, is that Apple AirPods sound incredible. Apple AirPods wrap sound quality, ease, and portability all into one."
+    },
+    {
+        "id": "c80be52c-91c0-4b0f-b141-89a2e7888914",
+        "name": "Sony Playstation 5 DualSense Wireless Controller",
+        "category": "Electronics",
+        "brand": "Sony",
+        "media": {
+            "imageUrl": "https://images.stockx.com/images/Sony-Playstation-5-DualSense-Wireless-Controller-Midnight-Black.jpg?fit=fill&bg=FFFFFF&w=480&h=320&auto=compress&q=90&dpr=1&trim=color&updated_at=1623353501&pad=0&fm=webp",
+            "smallImageUrl": "https://images.stockx.com/images/Sony-Playstation-5-DualSense-Wireless-Controller-Midnight-Black.jpg?fit=fill&bg=FFFFFF&w=480&h=320&auto=compress&q=90&dpr=1&trim=color&updated_at=1623353501&pad=0&fm=webp",
+            "thumbUrl": "https://images.stockx.com/images/Sony-Playstation-5-DualSense-Wireless-Controller-Midnight-Black.jpg?fit=fill&bg=FFFFFF&w=480&h=320&auto=compress&q=90&dpr=1&trim=color&updated_at=1623353501&pad=0&fm=webp"
+        },
+        "releaseDate": null,
+        "categories": [
+            "Electronics",
+            "Sony"
+        ],
+        "make": "Sony",
+        "model": "Playstation 5 DualSense Wireless Controller",
+        "gender": "unisex",
+        "retailPrice": 70,
+        "description": "Switch up your PlayStation 5 controller with the Midnight Black PS5 DualSense Controller. The Midnight Black PS5 DualSense Controller is a complete changeup from most other PS5 accessories which are nearly all white, along with the system itself. PS4 players will feel right at home with this all-black controller, which features adaptive triggers, a built-in mic, and a speaker. The Midnight Black PS5 DualSense Controller was released in June of 2021 for $70."
+    },
+    {
+        "id": "fb17db01-8b03-4f68-a3f7-fa952975018f",
+        "name": "Sony PS5 PlayStation 5 Pulse 3D Wireless Headset",
+        "category": "Electronics",
+        "brand": "Sony",
+        "media": {
+            "imageUrl": "https://images.stockx.com/images/Sony-PS5-Playstation-5-Pulse-3D-Wireless-Headset-White.jpg?fit=fill&bg=FFFFFF&w=480&h=320&auto=compress&q=90&dpr=1&trim=color&updated_at=1606317996&pad=0&fm=webp",
+            "smallImageUrl": "https://images.stockx.com/images/Sony-PS5-Playstation-5-Pulse-3D-Wireless-Headset-White.jpg?fit=fill&bg=FFFFFF&w=480&h=320&auto=compress&q=90&dpr=1&trim=color&updated_at=1606317996&pad=0&fm=webp",
+            "thumbUrl": "https://images.stockx.com/images/Sony-PS5-Playstation-5-Pulse-3D-Wireless-Headset-White.jpg?fit=fill&bg=FFFFFF&w=480&h=320&auto=compress&q=90&dpr=1&trim=color&updated_at=1606317996&pad=0&fm=webp"
+        },
+        "releaseDate": null,
+        "categories": [
+            "Electronics",
+            "Sony"
+        ],
+        "make": "Sony",
+        "model": "PlayStation 5 Pulse 3D Wireless Headset",
+        "gender": "unisex",
+        "retailPrice": 100,
+        "description": "If you're picking up the new PS5 Digital Edition or Blu-ray Edition console, adding the Sony PlayStation 5 Pulse 3D Wireless Headset to your gaming experience is a must. The Sony PlayStation 5 Pulse 3D Wireless Headset offers next-level sound, easy-access controls, hidden dual microphones, and up to 12 hours of gaming on one charge. The Sony PlayStation 5 Pulse 3D Wireless Headset released on November 12th, 2020, for a retail price of $100 and sold out quickly during the pre-order period for the new consoles."
+    },
+    {
+        "id": "cb64b1bf-c11c-42c4-8d8f-f82e8656ebee",
+        "name": "Sony PS4 PlayStation 4 Slim 1TB Console Jet Black (CUH-2215B) US Plug",
+        "category": "Electronics",
+        "brand": "Sony",
+        "media": {
+            "imageUrl": "https://images.stockx.com/images/Sony-PlayStation-4-Slim-1TB-Console-Jet-Black-CUH-2215B-US-Plug.jpg?fit=fill&bg=FFFFFF&w=480&h=320&auto=compress&q=90&dpr=1&trim=color&updated_at=1616582938&pad=0&fm=webp",
+            "smallImageUrl": "https://images.stockx.com/images/Sony-PlayStation-4-Slim-1TB-Console-Jet-Black-CUH-2215B-US-Plug.jpg?fit=fill&bg=FFFFFF&w=480&h=320&auto=compress&q=90&dpr=1&trim=color&updated_at=1616582938&pad=0&fm=webp",
+            "thumbUrl": "https://images.stockx.com/images/Sony-PlayStation-4-Slim-1TB-Console-Jet-Black-CUH-2215B-US-Plug.jpg?fit=fill&bg=FFFFFF&w=480&h=320&auto=compress&q=90&dpr=1&trim=color&updated_at=1616582938&pad=0&fm=webp"
+        },
+        "releaseDate": null,
+        "categories": [
+            "Electronics",
+            "Sony"
+        ],
+        "make": "Sony",
+        "model": "S4 PlayStation 4 Slim 1TB",
+        "gender": "unisex",
+        "retailPrice": 500,
+        "description": "A classic console for any game, the PS4 Slim 1TB console is everything you need to get your gaming setup starting. This Jet Black console features a full 1TB storage, perfect for downloading lots of games and content, along with a Dualshock controller."
+    },
+    {
+        "id": "012beeee-e1a7-47aa-95f2-4cad8c3fff23",
+        "name": "Microsoft Xbox Series X Console (EU Plug) RRT-00009/RRT-00010",
+        "category": "Electronics",
+        "brand": "Microsoft",
+        "media": {
+            "imageUrl": "https://images.stockx.com/images/Microsoft-Xbox-Series-X-Console-EU-Plug-Black.jpg?fit=fill&bg=FFFFFF&w=480&h=320&auto=compress&q=90&dpr=1&trim=color&updated_at=1618597422&pad=0&fm=webp",
+            "smallImageUrl": "https://images.stockx.com/images/Microsoft-Xbox-Series-X-Console-EU-Plug-Black.jpg?fit=fill&bg=FFFFFF&w=480&h=320&auto=compress&q=90&dpr=1&trim=color&updated_at=1618597422&pad=0&fm=webp",
+            "thumbUrl": "https://images.stockx.com/images/Microsoft-Xbox-Series-X-Console-EU-Plug-Black.jpg?fit=fill&bg=FFFFFF&w=480&h=320&auto=compress&q=90&dpr=1&trim=color&updated_at=1618597422&pad=0&fm=webp"
+        },
+        "releaseDate": null,
+        "categories": [
+            "Electronics",
+            "Microsoft"
+        ],
+        "make": "Microsoft",
+        "model": "Xbox Series X",
+        "gender": "unisex",
+        "retailPrice": 500,
+        "description": "Gamers had the opportunity to upgrade to the next generation of gaming on November 10, 2020, with the release of the Microsoft Xbox Series X Console (EU Plug). It was a challenge to secure the Microsoft Xbox Series X Console (UK Plug), which retailed for €500, in its pre-order phase and around its release as it saw incredible demand. It is no surprise that so many wanted a Microsoft Xbox Series X Console (UK Plug) for themselves though, since the console brings next-level graphics and a stellar lineup of games."
+    },
+    {
+        "id": "e6900cea-f22d-4594-86c0-4309b8c8d590",
+        "name": "Microsoft Xbox Space Jam: A New Legacy Serververse Exclusive Wireless Controller",
+        "category": "Electronics",
+        "brand": "Microsoft",
+        "media": {
+            "imageUrl": "https://images.stockx.com/images/Microsoft-Xbox-Space-Jam-A-New-Legacy-Serverserse-Exclusive-Wireless-Controller.jpg?fit=fill&bg=FFFFFF&w=480&h=320&auto=compress&q=90&dpr=1&trim=color&updated_at=1625164100&pad=0&fm=webp",
+            "smallImageUrl": "https://images.stockx.com/images/Microsoft-Xbox-Space-Jam-A-New-Legacy-Serverserse-Exclusive-Wireless-Controller.jpg?fit=fill&bg=FFFFFF&w=480&h=320&auto=compress&q=90&dpr=1&trim=color&updated_at=1625164100&pad=0&fm=webp",
+            "thumbUrl": "https://images.stockx.com/images/Microsoft-Xbox-Space-Jam-A-New-Legacy-Serverserse-Exclusive-Wireless-Controller.jpg?fit=fill&bg=FFFFFF&w=480&h=320&auto=compress&q=90&dpr=1&trim=color&updated_at=1625164100&pad=0&fm=webp"
+        },
+        "releaseDate": null,
+        "categories": [
+            "Electronics",
+            "Microsoft"
+        ],
+        "make": "Microsoft",
+        "model": "Xbox Space Jam: A New Legacy Serververse Exclusive Wireless Controller",
+        "gender": "unisex",
+        "retailPrice": 80,
+        "description": "Get in on the excitement of Space Jam: A New Legacy with the Space Jam Serververse Xbox Controller. The Space Jam Serververse Xbox Controller's design draws inspiration from the Serververse, the dimension that LeBron James finds himself in during the long-awaited Space Jam sequel. The Space Jam Serververse Xbox Controller is compatible with Xbox Series X/S and Xbox One as well as Windows 10 and Android devices. It was released in July of 2021 for $80."
+    },
+    {
+        "id": "2bfb3ff4-d874-4afd-a350-c74cb3689455",
+        "name": "Microsoft Xbox Series X/Series S Controller QAT-00001",
+        "category": "Electronics",
+        "brand": "Microsoft",
+        "media": {
+            "imageUrl": "https://images.stockx.com/images/Microsoft-Xbox-Series-X-Series-S-Controller-QAT-00001-Carbon-Black.jpg?fit=fill&bg=FFFFFF&w=480&h=320&auto=compress&q=90&dpr=1&trim=color&updated_at=1615474865&pad=0&fm=webp",
+            "smallImageUrl": "https://images.stockx.com/images/Microsoft-Xbox-Series-X-Series-S-Controller-QAT-00001-Carbon-Black.jpg?fit=fill&bg=FFFFFF&w=480&h=320&auto=compress&q=90&dpr=1&trim=color&updated_at=1615474865&pad=0&fm=webp",
+            "thumbUrl": "https://images.stockx.com/images/Microsoft-Xbox-Series-X-Series-S-Controller-QAT-00001-Carbon-Black.jpg?fit=fill&bg=FFFFFF&w=480&h=320&auto=compress&q=90&dpr=1&trim=color&updated_at=1615474865&pad=0&fm=webp"
+        },
+        "releaseDate": null,
+        "categories": [
+            "Electronics",
+            "Microsoft"
+        ],
+        "make": "Microsoft",
+        "model": "Xbox Series X/Series S Controller",
+        "gender": "unisex",
+        "retailPrice": 60,
+        "description": "Securing a brand new Xbox Series X or Series S is the first step, but the second step is to pick up a Black Xbox Series X/S Controller. The controller released in November 2020 for $60. While the Xbox Series X/S Controller comes in a variety of colors, the Black Xbox Series X/S Controller is slick and is perfect to match your new Series X or complement your Series S. If you have plans to play Madden against a friend locally or any split screen games, you’re going to want to grab a second Black Xbox Series X/S Controller. But even if you’re not too into multiplayer games, it’s never a bad idea to refresh your controller and try a new color. For your next one, try the Black Xbox Series X/S Controller."
+    },
+    {
+        "id": "dfdca255-d16d-41ad-b64b-66f6cab7ba93",
+        "name": "Microsoft Xbox Space Jam: A New Legacy Tune Squad Exclusive Wireless Controller",
+        "category": "Electronics",
+        "brand": "Microsoft",
+        "media": {
+            "imageUrl": "https://images.stockx.com/images/Microsoft-Xbox-Space-Jam-A-New-Legacy-Tune-Squad-Exclusive-Wireless-Controller.jpg?fit=fill&bg=FFFFFF&w=480&h=320&auto=compress&q=90&dpr=1&trim=color&updated_at=1625164100&pad=0&fm=webp",
+            "smallImageUrl": "https://images.stockx.com/images/Microsoft-Xbox-Space-Jam-A-New-Legacy-Tune-Squad-Exclusive-Wireless-Controller.jpg?fit=fill&bg=FFFFFF&w=480&h=320&auto=compress&q=90&dpr=1&trim=color&updated_at=1625164100&pad=0&fm=webp",
+            "thumbUrl": "https://images.stockx.com/images/Microsoft-Xbox-Space-Jam-A-New-Legacy-Tune-Squad-Exclusive-Wireless-Controller.jpg?fit=fill&bg=FFFFFF&w=480&h=320&auto=compress&q=90&dpr=1&trim=color&updated_at=1625164100&pad=0&fm=webp"
+        },
+        "releaseDate": null,
+        "categories": [
+            "Electronics",
+            "Microsoft"
+        ],
+        "make": "Microsoft",
+        "model": "Xbox Series X/Series S Controller",
+        "gender": "unisex",
+        "retailPrice": 80,
+        "description": "Support Bugs, LeBron, and the rest of the Tune Squad with the Space Jam Tune Squad Xbox Controller. Released in celebration of Space Jam: A New Legacy, this controller prominently features the Tune Squad team logo and is perfect for any Space Jam fan to play on their Xbox Series X, Xbox Series S, Xbox One, Windows 10 device, or Android device. The Space Jam Tune Squad Xbox Controller was released in July of 2021 for $80."
     },
     {
         "id": "bb1b6202-c439-4712-807c-79040d6622a7",
@@ -2459,7 +3068,7 @@
     {
         "id": "f27193c8-e50a-4737-a399-9f761d558853",
         "name": "Pokemon TCG Zacian & Zamazenta 2020 Pokemon TCG Sword & Shield Ultra-Premium Collection ",
-        "category": "Accessories",
+        "category": "Collectibles",
         "brand": "Pokemon TCG",
         "media": {
             "imageUrl": "https://images.stockx.com/images/2020-Pokemon-TCG-Sword-Shield-Ultra-Premium-Collection-Zacian-Zamazenta.png?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1607639837",

@@ -9,6 +9,8 @@
     <ItemGroup>
         <PackageReference Include="FluentAssertions" Version="5.10.3" />
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.9.4" />
+        <PackageReference Include="MockQueryable.EntityFrameworkCore" Version="5.0.1" />
+        <PackageReference Include="MockQueryable.Moq" Version="5.0.1" />
         <PackageReference Include="Moq" Version="4.16.1" />
         <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
         <PackageReference Include="xunit" Version="2.4.1" />
@@ -23,6 +25,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\..\src\Api\Api.csproj" />
       <ProjectReference Include="..\..\src\Application\Application.csproj" />
       <ProjectReference Include="..\..\src\Infrastructure\Infrastructure.csproj" />
     </ItemGroup>

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -28,45 +29,47 @@ namespace Application.Services
             return bid;
         }
 
-        public IQueryable<Bid> GetUserBids(Guid userId)
+        public async Task<List<Bid>> GetUserBids(Guid userId)
         {
-            var bids = _context.Bids
+            var bids = await _context.Bids
                 .Include(x => x.Item)
                 .Include(x => x.Size)
                 .Where(x => x.CreatedBy == userId)
-                .AsQueryable();
+                .ToListAsync();
 
             return bids;
         }
 
-        public IQueryable<Bid> GetItemBids(Guid id)
+        public async Task<List<Bid>> GetItemBids(Guid itemId)
         {
-            var bids = _context.Bids
+            var bids = await _context.Bids
                 .Include(x => x.Item)
                 .Include(x => x.Size)
-                .OrderByDescending(x => x.Price)
-                .AsQueryable();
+                .Where(x => x.ItemId == itemId)
+                .ToListAsync();
 
             return bids;
         }
 
-        public async Task CreateBidAsync(CreateBidCommand command, CancellationToken cancellationToken)
+        public async Task CreateBidAsync(CreateBidCommand command, decimal fee, CancellationToken cancellationToken)
         {
             var bid = new Bid()
             {
                 ItemId = Guid.Parse(command.ItemId),
                 SizeId = Guid.Parse(command.SizeId),
-                Price = decimal.Parse(command.Price)
+                Price = decimal.Parse(command.Price),
+                BuyerFee = fee
             };
 
             await _context.Bids.AddAsync(bid, cancellationToken);
             await _context.SaveChangesAsync(cancellationToken);
         }
 
-        public async Task UpdateBidAsync(Bid bid, UpdateBidCommand command, Guid userId, CancellationToken cancellationToken)
+        public async Task UpdateBidAsync(Bid bid, UpdateBidCommand command, decimal fee, CancellationToken cancellationToken)
         {
             bid.Price = Decimal.Parse(command.Price);
             bid.SizeId = Guid.Parse(command.SizeId);
+            bid.BuyerFee = fee;
             await _context.SaveChangesAsync(cancellationToken);
         }
 

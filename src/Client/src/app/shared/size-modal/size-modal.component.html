@@ -1,0 +1,24 @@
+<div id="sizeModal" class="modal fade" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">Choose size</h3>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <h4 class="text-center my-2">Selected size: <strong>{{ selectedSize | uppercase }}</strong></h4>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col d-flex flex-wrap justify-content-center">
+            <button type="button" class="btn btn-outline-info m-1" [ngClass]="{'active': selectedSize == size}"
+              *ngFor="let size of sizes" (click)="onSelect(size)">{{ size | uppercase}}</button>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click)="onSaveChanges()" data-bs-dismiss="modal">Save
+          changes</button>
+      </div>
+    </div>
+  </div>
+</div>

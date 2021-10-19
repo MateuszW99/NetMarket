@@ -1,3 +1,30 @@
-<p>landing-page works!</p>
-<p>TODO: implement the page</p>
-
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-6 offset-3 my-4">
+            <a type="button" class="btn btn-light w-100 border border-2 rounded-pill" routerLink="/">
+                <h1 class="text-center fw-bold">NetMarket</h1>
+                <h2 class="text-center text-info"> Buy & Sell </h2>
+            </a>
+        </div>
+    </div>
+    <div class="row mx-5 mb-3">
+        <div class=" col-sm-6 col-lg-3 mb-2" *ngFor="let category of categories">
+           <app-category-card [category]="category"></app-category-card>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6 offset-3">
+           
+        </div>
+        <div class="col-12 mb-3" *ngFor="let category of categories">
+            <div class="col-6 offset-3 d-flex justify-content-between" *ngIf="loading">
+                <p>Loading trending {{ category }}...</p>
+                <app-loading-spinner></app-loading-spinner>
+            </div>
+            <div class="alert alert-danger" role="alert" *ngIf="loading === false && error === true">
+                Failed to get trending {{ category }}
+              </div>
+            <app-trending-items *ngIf="!loading && !error && trendingItems.get(category).length === 12" [items]="trendingItems.get(category)" [category]="category"></app-trending-items>
+        </div>
+    </div>
+</div>

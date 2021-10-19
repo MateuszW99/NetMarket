@@ -17,6 +17,9 @@ namespace Infrastructure.EntityConfigurations
             builder.HasOne(e => e.Size);
             
             builder.Property(e => e.Price)
+                .HasColumnType("money"); 
+            
+            builder.Property(e => e.BuyerFee)
                 .HasColumnType("money");
         }
     }

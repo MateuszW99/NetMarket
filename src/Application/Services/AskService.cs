@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -28,49 +29,51 @@ namespace Application.Services
             return ask;
         }
 
-        public IQueryable<Ask> GetUserAsks(Guid userId)
+        public async Task<List<Ask>> GetUserAsks(Guid userId)
         {
-            var asks = _context.Asks
+            var asks = await _context.Asks
                 .Include(x => x.Item)
                 .Include(x => x.Size)
                 .Where(x => x.CreatedBy == userId)
-                .AsQueryable();
+                .ToListAsync();
 
             return asks;
         }
 
-        public IQueryable<Ask> GetItemAsks(Guid id)
+        public async Task<List<Ask>> GetItemAsks(Guid itemId)
         {
-            var asks = _context.Asks
+            var asks = await _context.Asks
                 .Include(x => x.Item)
                 .Include(x => x.Size)
-                .OrderBy(x => x.Price)
-                .AsQueryable();
+                .Where(x => x.ItemId == itemId)
+                .ToListAsync();
 
             return asks;
         }
 
-        public async Task CreateAskAsync(CreateAskCommand command, CancellationToken cancellationToken)
+        public async Task CreateAskAsync(CreateAskCommand command, decimal fee, CancellationToken cancellationToken)
         {
             var ask = new Ask()
             {
                 ItemId = Guid.Parse(command.ItemId),
                 SizeId = Guid.Parse(command.SizeId),
-                Price = decimal.Parse(command.Price)
+                Price = decimal.Parse(command.Price),
+                SellerFee = fee
             };
 
             await _context.Asks.AddAsync(ask, cancellationToken);
             await _context.SaveChangesAsync(cancellationToken);
         }
 
-        public async Task UpdateAskAsync(Ask ask, UpdateAskCommand command, Guid userId, CancellationToken cancellationToken)
+        public async Task UpdateAskAsync(Ask ask, UpdateAskCommand command, decimal fee, CancellationToken cancellationToken)
         {
             ask.Price = Decimal.Parse(command.Price);
             ask.SizeId = Guid.Parse(command.SizeId);
-
+            ask.SellerFee = fee;
+            
             await _context.SaveChangesAsync(cancellationToken);
         }
-
+        
         public async Task DeleteAskAsync(Ask ask, CancellationToken cancellationToken)
         {
             _context.Asks.Remove(ask);

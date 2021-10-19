@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Infrastructure.Data;
+using Domain;
 using Infrastructure.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;

@@ -57,7 +57,7 @@ namespace Application.IntegrationTests.AdminPanel.Commands
             updatedTransaction.EndDate.Should().Be(oldTransaction.EndDate);
             updatedTransaction.SellerFee.Should().Be(command.SellerFee);
             updatedTransaction.BuyerFee.Should().Be(command.BuyerFee);
-            updatedTransaction.Payout.Should().Be(command.Payout);
+            updatedTransaction.SellerPayout.Should().Be(command.Payout);
             updatedTransaction.LastModified.Should().BeCloseTo(DateTime.Now, 1000);
             updatedTransaction.LastModifiedBy.Should().Be(Guid.Parse(userId));
         }
