@@ -12,14 +12,20 @@ namespace Application.Handlers.BidHandlers
     public class UpdateBidCommandHandler : IRequestHandler<UpdateBidCommand>
     {
         private readonly IBidService _bidService;
-        private IHttpService _httpService;
+        private readonly IFeeService _feeService;
+        private readonly IUserSettingsService _userSettingsService;
+        private readonly IHttpService _httpService;
         private readonly ILogger<UpdateBidCommandHandler> _logger;
 
-        public UpdateBidCommandHandler(IBidService bidService, IHttpService httpService, ILogger<UpdateBidCommandHandler> logger)
+        public UpdateBidCommandHandler(IBidService bidService, IHttpService httpService, 
+            IFeeService feeService, IUserSettingsService userSettingsService,
+            ILogger<UpdateBidCommandHandler> logger)
         {
             _bidService = bidService;
             _httpService = httpService;
             _logger = logger;
+            _feeService = feeService;
+            _userSettingsService = userSettingsService;
         }
 
         public async Task<Unit> Handle(UpdateBidCommand request, CancellationToken cancellationToken)
@@ -37,7 +43,10 @@ namespace Application.Handlers.BidHandlers
                 throw new ForbiddenAccessException();
             }
 
-            await _bidService.UpdateBidAsync(bid, request, userId, cancellationToken);
+            var userSellerLevel = await _userSettingsService.GetUserSellerLevel(userId);
+            var fee = _feeService.CalculateFee(userSellerLevel, Convert.ToDecimal(request.Price));
+            
+            await _bidService.UpdateBidAsync(bid, request, await fee, cancellationToken);
             _logger.LogInformation($"Updated bid {bid.Id} by {bid.CreatedBy}");
             return Unit.Value;
         }

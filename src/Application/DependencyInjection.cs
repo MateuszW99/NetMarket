@@ -1,7 +1,6 @@
 ﻿using System.Reflection;
 using Application.Common.Behaviours;
 using Application.Common.Interfaces;
-using Application.Models.DTOs;
 using Application.Services;
 using FluentValidation;
 using Microsoft.Extensions.Configuration;
@@ -26,7 +25,9 @@ namespace Application
             services.AddTransient<ITransactionService, TransactionService>();
             services.AddTransient<IAskService, AskService>();
             services.AddTransient<IBidService, BidService>();
-
+            services.AddTransient<IFeeService, FeeService>();
+            services.AddTransient<ISupervisorService, SupervisorService>();
+            
             return services;
         }
     }

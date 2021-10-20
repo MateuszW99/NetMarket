@@ -1,8 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using Application.Common.Interfaces;
-using Application.Common.Mappings;
 using Application.Common.Models;
 using Application.Models.ApiModels.Asks.Queries;
 using Application.Models.DTOs;
@@ -27,8 +27,8 @@ namespace Application.Handlers.AskHandlers
         public async Task<PaginatedList<AskObject>> Handle(GetUserAsksQuery request, CancellationToken cancellationToken)
         {
             var userId = _httpService.GetUserId();
-            var queredAsks = _askService.GetUserAsks(Guid.Parse(userId));
-            var mappedAsks = await queredAsks.ProjectToListAsync<AskObject>(_mapper.ConfigurationProvider);
+            var asks = await _askService.GetUserAsks(Guid.Parse(userId));
+            var mappedAsks = _mapper.Map<List<AskObject>>(asks);
             return PaginatedList<AskObject>.Create(mappedAsks, request.PageIndex, request.PageSize);
         }
     }

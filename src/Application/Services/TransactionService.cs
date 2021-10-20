@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -21,7 +22,7 @@ namespace Application.Services
             _context = context;
         }
 
-        public IQueryable<Transaction> GetTransactions(SearchTransactionsQuery query)
+        public async Task<List<Transaction>> GetTransactionsByStatus(SearchTransactionsQuery query)
         {
             var transactionsQuery = _context.Transactions
                 .Include(x => x.Ask).DefaultIfEmpty()
@@ -33,10 +34,10 @@ namespace Application.Services
                 transactionsQuery = transactionsQuery.Where(x => x.Status.ToString() == query.Status);
             }
 
-            return transactionsQuery.OrderBy(x => x.StartDate);
+            return await transactionsQuery.OrderBy(x => x.StartDate).ToListAsync();
         }
 
-        public IQueryable<Transaction> GetSupervisorTransactions(SearchTransactionsQuery query, string supervisorId)
+        public async Task<List<Transaction>> GetSupervisorTransactions(SearchTransactionsQuery query, string supervisorId)
         {
             var transactionsQuery = _context.Transactions
                 .Include(x => x.Ask).DefaultIfEmpty()
@@ -49,7 +50,7 @@ namespace Application.Services
                 transactionsQuery = transactionsQuery.Where(x => x.Status.ToString() == query.Status);
             }
 
-            return transactionsQuery.OrderBy(x => x.StartDate);
+            return await transactionsQuery.OrderBy(x => x.StartDate).ToListAsync();
         }
 
         public async Task<Transaction> GetTransactionByIdAsync(string transactionId, string supervisorId)
@@ -75,8 +76,9 @@ namespace Application.Services
 
         public async Task UpdateTransactionAsync(UpdateTransactionCommand command, CancellationToken cancellationToken)
         {
-            var transaction =
-                await _context.Transactions.FirstOrDefaultAsync(x => x.Id == Guid.Parse(command.Id), cancellationToken);
+            var transaction = await _context.Transactions.FirstOrDefaultAsync(
+                x => x.Id == Guid.Parse(command.Id),
+                cancellationToken);
 
             if (transaction == null)
             {
@@ -85,24 +87,24 @@ namespace Application.Services
 
             transaction.Status = (TransactionStatus)Enum.Parse(typeof(TransactionStatus), command.Status, true);
 
-            if ((TransactionStatus)Enum.Parse(typeof(TransactionStatus), command.Status, true) ==
-                TransactionStatus.Delivered)
+            if ((TransactionStatus)Enum.Parse(typeof(TransactionStatus), command.Status, true) == TransactionStatus.Delivered)
             {
                 transaction.EndDate = DateTime.Now;
             }
 
+            // TODO: could IFeeService do this?
             transaction.SellerFee = command.SellerFee;
             transaction.BuyerFee = command.BuyerFee;
-            transaction.Payout = command.Payout;
+            transaction.SellerPayout = command.Payout;
 
             await _context.SaveChangesAsync(cancellationToken);
         }
 
-        public async Task UpdateTransactionStatusAsync(UpdateTransactionStatusCommand command, string supervisorId,
-            CancellationToken cancellationToken)
+        public async Task UpdateTransactionStatusAsync(UpdateTransactionStatusCommand command, string supervisorId, CancellationToken cancellationToken)
         {
-            var transaction =
-                await _context.Transactions.FirstOrDefaultAsync(x => x.Id == Guid.Parse(command.Id), cancellationToken);
+            var transaction = await _context.Transactions.FirstOrDefaultAsync(
+                x => x.Id == Guid.Parse(command.Id),
+                cancellationToken);
 
             if (transaction == null)
             {
@@ -122,6 +124,28 @@ namespace Application.Services
                 transaction.EndDate = DateTime.Now;
             }
 
+            await _context.SaveChangesAsync(cancellationToken);
+        }
+
+        public async Task InitializeTransaction(Ask ask, Bid bid, DateTime startDate, Guid supervisorId, CancellationToken cancellationToken)
+        {
+            var transaction = new Transaction()
+            {
+                AssignedSupervisorId = supervisorId,
+                CompanyProfit = ask.SellerFee + bid.BuyerFee,
+                Ask = ask,
+                AskId = ask.Id,
+                SellerFee = ask.SellerFee,
+                SellerPayout = ask.Price - ask.SellerFee,
+                Bid = bid,
+                BidId = bid.Id,
+                TotalBuyerCost = bid.Price + bid.BuyerFee,
+                BuyerFee = bid.BuyerFee,
+                StartDate = startDate,
+                Status = TransactionStatus.Started
+            };
+
+            await _context.Transactions.AddAsync(transaction, cancellationToken);
             await _context.SaveChangesAsync(cancellationToken);
         }
     }

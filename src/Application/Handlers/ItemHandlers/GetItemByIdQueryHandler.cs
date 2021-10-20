@@ -1,16 +1,16 @@
 ﻿using System;
-using System.Globalization;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Application.Common.Exceptions;
 using Application.Common.Interfaces;
-using Application.Common.Mappings;
 using Application.Models.ApiModels.Items;
 using Application.Models.ApiModels.Items.Queries;
 using Application.Models.DTOs;
 using AutoMapper;
+using Domain.Entities;
 using MediatR;
-using Microsoft.EntityFrameworkCore;
 
 namespace Application.Handlers.ItemHandlers
 {
@@ -33,26 +33,26 @@ namespace Application.Handlers.ItemHandlers
         {
             var itemId = Guid.Parse(request.Id);
             var item = await _itemService.GetItemByIdAsync(itemId);
-            
-            var asks = _askService.GetItemAsks(itemId);
-            var bids = _bidService.GetItemBids(itemId);
 
-            var lowestAsk = await asks.OrderBy(x => x.Price).FirstOrDefaultAsync(cancellationToken: cancellationToken);
-            var highestBid = await bids.OrderByDescending(x => x.Price).FirstOrDefaultAsync(cancellationToken: cancellationToken);
-            
-            var mappedItem = _mapper.Map<ItemObject>(item);
-            if (lowestAsk != null)
+            if (item == null)
             {
-                mappedItem.LowestAsk = lowestAsk.Price.ToString(CultureInfo.InvariantCulture);
+                throw new NotFoundException(nameof(Item), itemId);
             }
             
+            var itemObject = _mapper.Map<ItemObject>(item);
+
+            var asks = await _askService.GetItemAsks(itemId);
+            var lowestAsk = asks.FirstOrDefault();
+            var bids = await _bidService.GetItemBids(itemId);
+            var highestBid = bids.LastOrDefault();
+
             return new ItemCard()
             {
-                Item = mappedItem,
-                Asks = await asks.ProjectToListAsync<AskObject>(_mapper.ConfigurationProvider),
-                Bids = await bids.ProjectToListAsync<BidObject>(_mapper.ConfigurationProvider),
-                LowestAsk = lowestAsk == null ? null : _mapper.Map<AskObject>(lowestAsk),
-                HighestBid = highestBid == null ? null : _mapper.Map<BidObject>(highestBid)
+                Item = itemObject,
+                Asks = _mapper.Map<List<AskObject>>(asks),
+                Bids = _mapper.Map<List<BidObject>>(bids),
+                LowestAsk = lowestAsk is null ? new AskObject() : _mapper.Map<AskObject>(lowestAsk),
+                HighestBid = highestBid is null ? new BidObject() : _mapper.Map<BidObject>(highestBid)
             };
         }
     }
