@@ -20,12 +20,12 @@
             <button class="btn btn-success w-100 mx-1" routerLink="bid">
                 <div class="row">
                     <div class="col-7 border-end border-1 border-dark d-flex justify-content-center align-items-center">
-                        <div *ngIf="itemCard.lowestAsk !== null">
+                        <div *ngIf="itemCard.lowestAsk.price !== null">
                             {{ itemCard.lowestAsk.price | currency}}
                             <br>
                             Lowest Ask
                         </div>
-                        <div *ngIf="itemCard.lowestAsk === null">
+                        <div *ngIf="itemCard.lowestAsk.price === null">
                             {{ itemCard.item.retailPrice | currency}}
                             <br>
                             Retail price
@@ -39,12 +39,12 @@
             <button class="btn btn-danger w-100 mx-1" routerLink="ask">
                 <div class="row">
                     <div class="col-7 border-end border-1 border-dark d-flex justify-content-center align-items-center">
-                        <div *ngIf="itemCard.highestBid !== null">
+                        <div *ngIf="itemCard.highestBid.price !== null">
                             {{ itemCard.highestBid.price | currency}}
                             <br>
                             Highest Bid
                         </div>
-                        <div *ngIf="itemCard.highestBid === null">
+                        <div *ngIf="itemCard.highestBid.price === null">
                             {{ itemCard.item.retailPrice | currency}}
                             <br>
                             Retail price
