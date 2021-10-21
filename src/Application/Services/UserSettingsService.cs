@@ -24,6 +24,8 @@ namespace Application.Services
                 .FirstOrDefaultAsync(x => x.UserId == userId) ?? new UserSettings()
             {
                 UserId = userId,
+                FirstName = string.Empty,
+                LastName = string.Empty,
                 PaypalEmail = string.Empty,
                 SellerLevel = SellerLevel.Beginner,
                 SalesCompleted = 0,
@@ -63,20 +65,24 @@ namespace Application.Services
                 return;
             }
 
-            userSettings.PaypalEmail = request.PaypalEmail;
+            
+            userSettings.FirstName = string.IsNullOrEmpty(request.FirstName) ? userSettings.FirstName : request.FirstName;
+            userSettings.LastName = string.IsNullOrEmpty(request.LastName) ? userSettings.LastName : request.LastName;
 
-            userSettings.BillingStreet = request.BillingStreet;
-            userSettings.BillingAddressLine1 = request.BillingAddressLine1;
-            userSettings.BillingAddressLine2 = request.BillingAddressLine2;
-            userSettings.BillingZipCode = request.BillingZipCode;
-            userSettings.BillingCountry = request.BillingCountry;
+            userSettings.PaypalEmail = string.IsNullOrEmpty(request.PaypalEmail) ? userSettings.PaypalEmail : request.PaypalEmail;
 
-            userSettings.ShippingStreet = request.ShippingStreet;
-            userSettings.ShippingAddressLine1 = request.ShippingAddressLine1;
-            userSettings.ShippingAddressLine2 = request.ShippingAddressLine2;
-            userSettings.ShippingZipCode = request.ShippingZipCode;
-            userSettings.ShippingCountry = request.ShippingCountry;
-
+            userSettings.BillingStreet = string.IsNullOrEmpty(request.BillingStreet) ? userSettings.BillingStreet : request.BillingStreet;
+            userSettings.BillingAddressLine1 = string.IsNullOrEmpty(request.BillingAddressLine1) ? userSettings.BillingAddressLine1 : request.BillingAddressLine1;
+            userSettings.BillingAddressLine2 = string.IsNullOrEmpty(request.BillingAddressLine2) ? userSettings.BillingAddressLine2 : request.BillingAddressLine2;
+            userSettings.BillingZipCode = string.IsNullOrEmpty(request.BillingZipCode) ? userSettings.BillingZipCode : request.BillingZipCode;
+            userSettings.BillingCountry = string.IsNullOrEmpty(request.BillingCountry) ? userSettings.BillingCountry : request.BillingCountry;
+            
+            userSettings.ShippingStreet = string.IsNullOrEmpty(request.ShippingStreet) ? userSettings.ShippingStreet : request.ShippingStreet;
+            userSettings.ShippingAddressLine1 = string.IsNullOrEmpty(request.ShippingAddressLine1) ? userSettings.ShippingAddressLine1 : request.ShippingAddressLine1;
+            userSettings.ShippingAddressLine2 = string.IsNullOrEmpty(request.ShippingAddressLine2) ? userSettings.ShippingAddressLine2 : request.ShippingAddressLine2;
+            userSettings.ShippingZipCode = string.IsNullOrEmpty(request.ShippingZipCode) ? userSettings.ShippingZipCode : request.ShippingZipCode;
+            userSettings.ShippingCountry = string.IsNullOrEmpty(request.ShippingCountry) ? userSettings.ShippingCountry : request.ShippingCountry;
+            
             await _context.SaveChangesAsync(cancellationToken);
         }
 
@@ -88,6 +94,8 @@ namespace Application.Services
                 UserId = userId,
                 SellerLevel = SellerLevel.Beginner,
                 SalesCompleted = 0,
+                FirstName = request.FirstName,
+                LastName = request.LastName,
                 PaypalEmail = request.PaypalEmail,
 
                 BillingStreet = request.BillingStreet,
