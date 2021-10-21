@@ -16,7 +16,11 @@
             <hr class="mb-3">
            <div class="col-md-6 col-lg-3 mb-2 mx-2">
                <h4>Name</h4>
-               <p>TODO: Add First and last name in UserSettings on backend side</p>
+               <div *ngIf="profileInfoProvided">
+                <span class="me-1">{{ userSettings.firstName }}</span>
+                <span class="ms-1">{{ userSettings.lastName }}</span>
+               </div>
+               <p *ngIf="!profileInfoProvided">Not provided</p>
            </div>
            <div class="col-md-6 col-lg-3 mb-2 mx-2">
                 <h4>Email Address</h4>

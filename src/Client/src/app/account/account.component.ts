@@ -33,6 +33,7 @@ export class AccountComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.userSubscription = this.authService.user.subscribe((user: User) => {
       this.user = user;
+      //TODO redirect if user not logged in
     });
   }
 

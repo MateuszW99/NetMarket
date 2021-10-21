@@ -84,6 +84,7 @@ export class AuthService {
         userData.id,
         userData.email,
         userData.role,
+        userData.username,
         userData._token,
         userData._tokenExpirationDate
       );
@@ -107,6 +108,7 @@ export class AuthService {
       decodedToken.id,
       decodedToken.email,
       decodedToken.role,
+      decodedToken.username,
       token,
       expirationDate
     );

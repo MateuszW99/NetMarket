@@ -24,6 +24,7 @@ export class SettingsComponent implements OnInit, OnDestroy {
   userSettingsSubscription: Subscription;
   errorSubscription: Subscription;
   loadingSubscription: Subscription;
+  profileInfoProvided = false;
   shippingAddressProvided = false;
   billingAddressProvided = false;
 
@@ -82,6 +83,12 @@ export class SettingsComponent implements OnInit, OnDestroy {
       this.shippingAddressProvided = false;
     } else {
       this.shippingAddressProvided = true;
+    }
+
+    if (!userSettings.firstName || !userSettings.lastName) {
+      this.profileInfoProvided = false;
+    } else {
+      this.profileInfoProvided = true;
     }
   }
 
