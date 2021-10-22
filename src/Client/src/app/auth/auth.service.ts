@@ -85,8 +85,8 @@ export class AuthService {
         userData.email,
         userData.role,
         userData.username,
-        userData._token,
-        userData._tokenExpirationDate
+        userData.tokenExpirationDate,
+        userData._token
       );
 
       if (loadedUser.token) {
@@ -109,8 +109,8 @@ export class AuthService {
       decodedToken.email,
       decodedToken.role,
       decodedToken.username,
-      token,
-      expirationDate
+      expirationDate,
+      token
     );
     this.user.next(user);
 

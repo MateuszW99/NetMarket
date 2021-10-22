@@ -10,8 +10,6 @@ import { MatSidenav } from '@angular/material/sidenav';
 import { AuthService } from '../auth/auth.service';
 import { User } from '../auth/user.model';
 import { Subscription } from 'rxjs';
-import { Roles } from '../auth/roles';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-account',
@@ -32,22 +30,27 @@ export class AccountComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.userSubscription = this.authService.user.subscribe((user: User) => {
-      this.user = user;
-      //TODO redirect if user not logged in
+      if (new Date() > new Date(user.tokenExpirationDate)) {
+        this.authService.logout();
+      } else {
+        this.user = user;
+      }
     });
   }
 
   ngAfterViewInit(): void {
-    this.observer.observe(['(max-width: 768px)']).subscribe((res) => {
-      if (res.matches) {
-        this.sidenav.mode = 'over';
-        this.sidenav.close();
-      } else {
-        this.sidenav.mode = 'side';
-        this.sidenav.open();
-      }
-    });
-    this.cdr.detectChanges();
+    if (this.user) {
+      this.observer.observe(['(max-width: 768px)']).subscribe((res) => {
+        if (res.matches) {
+          this.sidenav.mode = 'over';
+          this.sidenav.close();
+        } else {
+          this.sidenav.mode = 'side';
+          this.sidenav.open();
+        }
+      });
+      this.cdr.detectChanges();
+    }
   }
 
   ngOnDestroy(): void {
