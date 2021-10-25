@@ -17,14 +17,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
   userSubscription: Subscription;
   settingsSubscription: Subscription;
   loadingSubscription: Subscription;
-  sellerLevel: string;
-  sellerLevels: Map<string, number> = new Map([
-    ['Beginner', 1],
-    ['Intermediate', 2],
-    ['Advanced', 3],
-    ['Business', 4]
-  ]);
-  sellerLevelKeys = [...this.sellerLevels.keys()];
+  categories = ['sneakers', 'streetwear', 'electronics', 'collectibles'];
 
   constructor(
     private authService: AuthService,
@@ -48,7 +41,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
       this.settingsService.userSettingsChanged.subscribe(
         (settings: UserSettings) => {
           this.userSettings = settings;
-          this.sellerLevel = settings.sellerLevel;
         }
       );
   }

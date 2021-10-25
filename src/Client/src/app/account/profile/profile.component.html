@@ -9,32 +9,17 @@
                 </h1>
             </div>
         </div>
-        <div class="row">
+        <div class="row mb-5">
             <div class="col-5 offset-1 border-2 border-dark border-end">
-                <div class="d-none d-lg-block">
-                    <div class="d-flex align-items-center text-center justify-content-center">
-                        <span class="h1 level level-active level-bg-1" *ngFor="let level of sellerLevelKeys; let i = index"
-                         [ngClass]="{'level-active': sellerLevel === level, 'level-bg-1': i === 0,
-                          'level-bg-2': i === 1, 'level-bg-3': i === 2, 'level-bg-4': i === 3}">
-                            {{sellerLevels.get(level)}}
-                        </span>
-                    </div>
-                </div>
-                <div class="d-lg-none">
-                        <div class="d-flex align-items-center text-center justify-content-center">
-                            <span class="h1 level level-active level-active-md">
-                                {{sellerLevels.get(sellerLevel)}}
-                            </span>
-                        </div>
-                </div>
-
-               <h2 class="text-center">Seller level: {{sellerLevel}} </h2>
+                <app-seller-level [sellerLevel]="userSettings.sellerLevel"></app-seller-level>
             </div>
             <div class="col-5 mt-3 ms-2">
-                <div class="progress">
-                    <div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
+               <app-seller-level-progress [sellerLevel]="userSettings.sellerLevel" [salesCompleted]="userSettings.salesCompleted"></app-seller-level-progress>
             </div>
         </div>
-    
+        <div class="row mt-5">
+            <div class="col-xl-3 col-sm-6 col-12 text-center d-flex justify-content-center" *ngFor="let category of categories">
+                <app-fee-info [category]="category" [sellerLevel]="userSettings.sellerLevel"></app-fee-info>
+            </div>
+        </div>
     </div>

@@ -42,6 +42,9 @@ import { BillingAddressEditComponent } from './account/settings/edit-modals/bill
 import { MatDialogModule } from '@angular/material/dialog';
 import { ShippingAddressEditComponent } from './account/settings/edit-modals/shipping-address-edit/shipping-address-edit.component';
 import { ProfileEditComponent } from './account/settings/edit-modals/profile-edit/profile-edit.component';
+import { FeeInfoComponent } from './account/profile/fee-info/fee-info.component';
+import { SellerLevelComponent } from './account/profile/seller-level/seller-level.component';
+import { SellerLevelProgressComponent } from './account/profile/seller-level-progress/seller-level-progress.component';
 
 @NgModule({
   declarations: [
@@ -72,7 +75,10 @@ import { ProfileEditComponent } from './account/settings/edit-modals/profile-edi
     SettingsComponent,
     BillingAddressEditComponent,
     ShippingAddressEditComponent,
-    ProfileEditComponent
+    ProfileEditComponent,
+    FeeInfoComponent,
+    SellerLevelComponent,
+    SellerLevelProgressComponent
   ],
   imports: [
     BrowserModule,

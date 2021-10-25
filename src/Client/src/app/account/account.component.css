@@ -6,7 +6,8 @@ mat-sidenav {
 }
 
 .content {
-    height: 85vh;
+    height: auto;
+    min-height: 85vh;
     border-radius: 10px;
     margin: 16px;
     margin-left: 32px;
