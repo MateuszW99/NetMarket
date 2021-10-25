@@ -10,6 +10,8 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
 import { ItemDetailsComponent } from './shared/items/item-details/item-details.component';
 import { SneakersComponent } from './sneakers/sneakers.component';
 import { StreetwearComponent } from './streetwear/streetwear.component';
+import { AsksComponent } from "./shared/asks/asks.component";
+import { BidsComponent } from "./shared/bids/bids.component";
 
 const routes: Routes = [
   //AUTH GUARD ussage example
@@ -48,6 +50,14 @@ const routes: Routes = [
   {
     path: 'collectibles',
     component: CollectiblesComponent
+  },
+  {
+    path: 'sell',
+    component: AsksComponent
+  },
+  {
+    path: 'buy',
+    component: BidsComponent
   },
   { path: '**', pathMatch: 'full', component: PageNotFoundComponent }
 ];
