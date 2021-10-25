@@ -17,7 +17,7 @@
             </button>
         </div>
         <div class="col-md-6 border-end border-1 border-dark d-flex justify-content-between mb-2">
-            <button class="btn btn-success w-100 mx-1" routerLink="bid">
+            <button class="btn btn-success w-100 mx-1" routerLink="/buy" [state]="{ data: { item: this.itemCard, size: this.size } }">
                 <div class="row">
                     <div class="col-7 border-end border-1 border-dark d-flex justify-content-center align-items-center">
                         <div *ngIf="itemCard.lowestAsk.price !== null">
@@ -35,7 +35,7 @@
                     </div>
                 </div>
             </button>
-            <button class="btn btn-danger w-100 mx-1" routerLink="ask">
+            <button class="btn btn-danger w-100 mx-1" routerLink="/sell" [state]="{ data: { item: this.itemCard, size: this.size } }">
                 <div class="row">
                     <div class="col-7 border-end border-1 border-dark d-flex justify-content-center align-items-center">
                         <div *ngIf="itemCard.highestBid.price !== null">
@@ -62,7 +62,7 @@
     </div>
     <div class="row mb-2">
         <div class="col-6 offset-3 mb-2 d-flex justify-content-center">
-            <img [src]="itemCard.item.imageUrl" alt="item image" class="img-fluid">
+            <img [src]="itemCard.item.imageUrl" alt="{{ itemCard.item.name }}" class="img-fluid">
         </div>
     </div>
     <div class="row mb-2">
