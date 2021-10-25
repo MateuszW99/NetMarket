@@ -1,7 +1,9 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
 import { User } from 'src/app/auth/user.model';
+import { SettingsService } from '../settings.service';
+import { UserSettings } from '../user-settings.model';
 
 @Component({
   selector: 'app-profile',
@@ -10,18 +12,50 @@ import { User } from 'src/app/auth/user.model';
 })
 export class ProfileComponent implements OnInit, OnDestroy {
   user: User;
-  //userSettings: UserSettings;
+  userSettings: UserSettings;
+  loading = true;
   userSubscription: Subscription;
-  constructor(private authService: AuthService) {}
+  settingsSubscription: Subscription;
+  loadingSubscription: Subscription;
+  sellerLevel: string;
+  sellerLevels: Map<string, number> = new Map([
+    ['Beginner', 1],
+    ['Intermediate', 2],
+    ['Advanced', 3],
+    ['Business', 4]
+  ]);
+  sellerLevelKeys = [...this.sellerLevels.keys()];
+
+  constructor(
+    private authService: AuthService,
+    private settingsService: SettingsService
+  ) {}
 
   ngOnInit(): void {
     this.userSubscription = this.authService.user.subscribe((user: User) => {
       this.user = user;
     });
-    // TODO add user settings
+
+    this.settingsService.getUserSettings();
+
+    this.loadingSubscription = this.settingsService.loading.subscribe(
+      (isLoading) => {
+        this.loading = isLoading;
+      }
+    );
+
+    this.settingsSubscription =
+      this.settingsService.userSettingsChanged.subscribe(
+        (settings: UserSettings) => {
+          this.userSettings = settings;
+          this.sellerLevel = settings.sellerLevel;
+        }
+      );
   }
 
   ngOnDestroy(): void {
     this.userSubscription.unsubscribe();
+    this.settingsSubscription.unsubscribe();
+    this.loadingSubscription.unsubscribe();
   }
 }
