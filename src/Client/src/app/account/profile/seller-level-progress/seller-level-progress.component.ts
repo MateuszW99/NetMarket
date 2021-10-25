@@ -10,5 +10,24 @@ export class SellerLevelProgressComponent {
   @Input() salesCompleted: number;
   @Input() sellerLevel: string;
   sellerLevels = SellerLevels.sellerLevels;
-  sellerLevelKeys = SellerLevels.sellerLevelKeys;
+  salesNeeded: Map<string, number> = new Map([
+    ['Beginner', 3],
+    ['Intermediate', 10],
+    ['Advanced', 25],
+    ['Business', 100]
+  ]);
+
+  getNeededSalesNumber(): number {
+    if (this.salesCompleted < 100) {
+      return this.salesNeeded.get(this.sellerLevel) - this.salesCompleted;
+    }
+
+    return 0;
+  }
+
+  getProgressBarWidth(): string {
+    const width =
+      (this.salesCompleted / this.salesNeeded.get(this.sellerLevel)) * 100;
+    return width.toString() + '%';
+  }
 }
