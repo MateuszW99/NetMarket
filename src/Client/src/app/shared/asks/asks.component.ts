@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Size } from "../size.model";
 import { AsksService } from "./asks.service";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { ItemDetails } from "../items/item-details/item-details.model";
+import { ToastrService } from "ngx-toastr";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-asks',
@@ -12,21 +13,24 @@ import { ItemDetails } from "../items/item-details/item-details.model";
 export class AsksComponent implements OnInit {
 
   itemDetails: ItemDetails;
-  size: Size;
+  size: string;
   form: FormGroup;
   userWantsToPlaceAsk: boolean;
 
-  constructor(private askService: AsksService) { }
+  constructor(
+    private askService: AsksService,
+    private toastrSerivce: ToastrService,
+    private router: Router) { }
 
   ngOnInit(): void {
     // TODO: act in case data.X is empty/null
     this.itemDetails = history.state.data.item;
     this.size = history.state.data.size;
-
+    console.log(this.size);
     this.form = new FormGroup({
-      item: new FormControl(this.itemDetails.item, Validators.nullValidator),
-      size: new FormControl('', Validators.nullValidator),
-      price: new FormControl(this.itemDetails.highestBid.price, [ Validators.required, Validators.pattern('^[0-9]+(.[0-9]{0,2})?$')]),
+      item: new FormControl(this.itemDetails.item.id, Validators.nullValidator),
+      size: new FormControl(this.size, Validators.nullValidator),
+      price: new FormControl('', [ Validators.required, Validators.pattern('^[0-9]+(.[0-9]{0,2})?$')]),
     });
 
     this.userWantsToPlaceAsk = this.form.get('price').value >= this.itemDetails.lowestAsk.price;
@@ -50,7 +54,11 @@ export class AsksComponent implements OnInit {
   }
 
   onPlaceAsk(): void {
-
+    this.askService.placeAsk(this.form.value.item, this.form.value.size, this.form.value.price.toString())
+      .subscribe(() => {
+        this.router.navigate([`/items/${this.itemDetails.item.id}`])
+          .then(() => this.toastrSerivce.success('Ask placed!'));
+      });
   }
 
   onSellNow(): void {
