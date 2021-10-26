@@ -204,7 +204,7 @@ namespace Application.UnitTests.Services
             var command = new CreateAskCommand()
             {
                 ItemId = itemId.ToString(),
-                SizeId = sizeId.ToString(),
+                Size = "14",
                 Price = price.ToString(CultureInfo.InvariantCulture)
             };
             
@@ -288,7 +288,7 @@ namespace Application.UnitTests.Services
             {
                 Id = askId.ToString(),
                 Price = newPrice.ToString(CultureInfo.InvariantCulture),
-                SizeId = sizeId.ToString()
+                Size = "14"
             };
             
             await sut.UpdateAskAsync(oldAsk, command, newFee, CancellationToken.None);

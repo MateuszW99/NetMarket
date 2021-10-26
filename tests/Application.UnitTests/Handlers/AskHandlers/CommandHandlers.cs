@@ -31,7 +31,7 @@ namespace Application.UnitTests.Handlers.AskHandlers
             {
                 ItemId = Guid.NewGuid().ToString(),
                 Price = "100.50",
-                SizeId = Guid.NewGuid().ToString()
+                Size = "14"
             };
 
             var commandHandler = new CreateAskCommandHandler(null, null, null, null, null);
@@ -56,7 +56,7 @@ namespace Application.UnitTests.Handlers.AskHandlers
             {
                 ItemId = itemId,
                 Price = price,
-                SizeId = sizeId
+                Size = "14"
             };
 
             var commandHandler = new CreateAskCommandHandler(null, null, null, null, null);
@@ -86,7 +86,7 @@ namespace Application.UnitTests.Handlers.AskHandlers
             {
                 Id = Guid.NewGuid().ToString(),
                 Price = "100.50",
-                SizeId = Guid.NewGuid().ToString()
+                Size = "14"
             };
 
             var commandHandler = new UpdateAskCommandHandler(null, null, null, null, null);
@@ -111,7 +111,7 @@ namespace Application.UnitTests.Handlers.AskHandlers
             {
                 Id = id,
                 Price = price,
-                SizeId = sizeId
+                Size = "14"
             };
 
             var commandHandler = new UpdateAskCommandHandler(null, null, null, null, null);

@@ -53,10 +53,12 @@ namespace Application.Services
 
         public async Task CreateAskAsync(CreateAskCommand command, decimal fee, CancellationToken cancellationToken)
         {
+            var size = await _context.Sizes.FirstOrDefaultAsync(x => x.Value == command.Size, cancellationToken);
+            
             var ask = new Ask()
             {
                 ItemId = Guid.Parse(command.ItemId),
-                SizeId = Guid.Parse(command.SizeId),
+                Size = size,
                 Price = decimal.Parse(command.Price),
                 SellerFee = fee
             };
@@ -67,8 +69,10 @@ namespace Application.Services
 
         public async Task UpdateAskAsync(Ask ask, UpdateAskCommand command, decimal fee, CancellationToken cancellationToken)
         {
+            var size = await _context.Sizes.FirstOrDefaultAsync(x => x.Value == command.Size);
+            
             ask.Price = Decimal.Parse(command.Price);
-            ask.SizeId = Guid.Parse(command.SizeId);
+            ask.Size = size;
             ask.SellerFee = fee;
             
             await _context.SaveChangesAsync(cancellationToken);
