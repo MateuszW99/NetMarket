@@ -98,7 +98,7 @@ namespace Application.IntegrationTests.Bids.Commands
             var command = new CreateAskCommand()
             {
                 ItemId = item.Id.ToString(),
-                SizeId = size.Id.ToString(),
+                Size = "14",
                 Price = price.ToString()
             };
 

@@ -191,7 +191,7 @@ namespace Application.UnitTests.Services
             var sizeId = Guid.NewGuid();
             var price = 200.00m;
             var fee = 10m;
-            
+
             var ask = new Ask()
             {
                 Id = askId,
@@ -208,11 +208,14 @@ namespace Application.UnitTests.Services
                 Price = price.ToString(CultureInfo.InvariantCulture)
             };
             
+            var sizeMocks = new List<Size>() { new() { Id = sizeId, Value = "14" } };
+            var mockedSizes = sizeMocks.AsQueryable().BuildMockDbSet();
             var asksBefore = new List<Ask>();
             var mockedAsksBefore = asksBefore.AsQueryable().BuildMockDbSet();
             var asksAfter = new List<Ask>() { ask };
             var mockedAsksAfter = asksAfter.AsQueryable().BuildMockDbSet();
-            
+
+            _context.Setup(x => x.Sizes).Returns(mockedSizes.Object);
             _context.Setup(x => x.Asks).Returns(mockedAsksBefore.Object);
             _context.Setup(x => x.Asks.AddAsync(It.IsAny<Ask>(), CancellationToken.None))
                 .Callback(() => _context.Setup(x => x.Asks).Returns(mockedAsksAfter.Object));
@@ -279,7 +282,11 @@ namespace Application.UnitTests.Services
                 new() { Id = Guid.NewGuid() }
             };
             var mockedAsksAfter = asksAfter.AsQueryable().BuildMockDbSet();
+            
+            var sizeMocks = new List<Size>() { new() { Id = sizeId, Value = "14" } };
+            var mockedSizes = sizeMocks.AsQueryable().BuildMockDbSet();
 
+            _context.Setup(x => x.Sizes).Returns(mockedSizes.Object);
             _context.Setup(x => x.Asks).Returns(mockedAsksBefore.Object);
             _context.Setup(x => x.Asks.Update(It.IsAny<Ask>()))
                 .Callback(() => _context.Setup(x => x.Asks).Returns(mockedAsksAfter.Object));

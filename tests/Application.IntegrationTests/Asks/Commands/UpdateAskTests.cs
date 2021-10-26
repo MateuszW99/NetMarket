@@ -32,7 +32,7 @@ namespace Application.IntegrationTests.Asks.Commands
             var createAskCommand = new CreateAskCommand()
             {
                 ItemId = item.Id.ToString(),
-                SizeId = oldSize.Id.ToString(),
+                Size = "14",
                 Price = oldPrice.ToString()
             };
             var createAskRequest = new HttpRequestMessage(HttpMethod.Post, new Uri($"{Address.ApiBase}/{Address.Asks}", UriKind.Relative));
@@ -47,7 +47,7 @@ namespace Application.IntegrationTests.Asks.Commands
             {
                 Id = oldAsk.Id.ToString(),
                 Price = newPrice.ToString(),
-                SizeId = newSize.Id.ToString()
+                Size = "14",
             };
             var updateAskRequest = new HttpRequestMessage(HttpMethod.Put, new Uri($"{Address.ApiBase}/{Address.Asks}/{oldAsk.Id.ToString()}", UriKind.Relative));
             updateAskRequest.Content = new StringContent(JsonConvert.SerializeObject(updateAskCommand), Encoding.UTF8, "application/json");
@@ -80,7 +80,7 @@ namespace Application.IntegrationTests.Asks.Commands
             var createAskCommand = new CreateAskCommand()
             {
                 ItemId = item.Id.ToString(),
-                SizeId = oldSize.Id.ToString(),
+                Size = oldSize.Value,
                 Price = "200"
             };
             var createAskRequest = new HttpRequestMessage(HttpMethod.Post, new Uri($"{Address.ApiBase}/{Address.Asks}", UriKind.Relative));
@@ -95,7 +95,7 @@ namespace Application.IntegrationTests.Asks.Commands
             {
                 Id = oldAsk.Id.ToString(),
                 Price = newPrice.ToString(),
-                SizeId = newSize.Id.ToString()
+                Size = newSize.Value
             };
             var otherUserId = await AuthHelper.RunAsOtherUserAsync(_factory);
             var otherUserAuthResult = _identityService.LoginAsync(OtherUser.Email, OtherUser.Password);
