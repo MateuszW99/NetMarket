@@ -45,6 +45,7 @@ import { ProfileEditComponent } from './account/settings/edit-modals/profile-edi
 import { FeeInfoComponent } from './account/profile/fee-info/fee-info.component';
 import { SellerLevelComponent } from './account/profile/seller-level/seller-level.component';
 import { SellerLevelProgressComponent } from './account/profile/seller-level-progress/seller-level-progress.component';
+import { BuyingComponent } from './account/buying/buying.component';
 
 @NgModule({
   declarations: [
@@ -78,7 +79,8 @@ import { SellerLevelProgressComponent } from './account/profile/seller-level-pro
     ProfileEditComponent,
     FeeInfoComponent,
     SellerLevelComponent,
-    SellerLevelProgressComponent
+    SellerLevelProgressComponent,
+    BuyingComponent
   ],
   imports: [
     BrowserModule,

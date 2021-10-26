@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AccountComponent } from './account/account.component';
+import { BuyingComponent } from './account/buying/buying.component';
 import { ProfileComponent } from './account/profile/profile.component';
 import { SettingsComponent } from './account/settings/settings.component';
 import { AuthComponent } from './auth/auth.component';
@@ -42,7 +43,7 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo: 'profile', pathMatch: 'full' },
       { path: 'profile', component: ProfileComponent },
-      // { path: 'buying', component: BuyingComponent },
+      { path: 'buying', component: BuyingComponent },
       // { path: 'selling', component: SellingComponent },
       { path: 'settings', component: SettingsComponent }
     ]
