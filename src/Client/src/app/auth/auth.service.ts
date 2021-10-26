@@ -34,8 +34,6 @@ export class AuthService {
       )
       .pipe(
         tap((resData) => {
-          console.log(resData);
-
           if (resData.token) {
             this.handleAuthentication(resData.token, true);
           }
