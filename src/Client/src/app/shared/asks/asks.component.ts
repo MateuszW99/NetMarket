@@ -26,11 +26,11 @@ export class AsksComponent implements OnInit {
     // TODO: act in case data.X is empty/null
     this.itemDetails = history.state.data.item;
     this.size = history.state.data.size;
-    console.log(this.size);
+
     this.form = new FormGroup({
       item: new FormControl(this.itemDetails.item.id, Validators.nullValidator),
       size: new FormControl(this.size, Validators.nullValidator),
-      price: new FormControl('', [ Validators.required, Validators.pattern('^[0-9]+(.[0-9]{0,2})?$')]),
+      price: new FormControl('', [ Validators.required, Validators.pattern('^[0-9]+(.[0-9]{0,2})?$')]), // TODO: offer newLowestAsk
     });
 
     this.userWantsToPlaceAsk = this.form.get('price').value >= this.itemDetails.lowestAsk.price;

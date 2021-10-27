@@ -12,7 +12,6 @@ export class AsksService {
   constructor(private http: HttpClient) { }
 
   placeAsk(itemId: string, size: string, price: string): Observable<any> {
-
     return this.http.post(
       environment.apiUrl + ApiPaths.Asks,
       { itemId, size, price });
