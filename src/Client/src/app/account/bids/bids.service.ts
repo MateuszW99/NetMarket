@@ -3,13 +3,14 @@ import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { ApiPaths } from 'src/app/shared/api-paths';
 import { Bid } from 'src/app/shared/bid.model';
+import { PagedList } from 'src/app/shared/paged-list';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BidsService {
-  userBidsChanged = new Subject<Bid[]>();
+  userBidsChanged = new Subject<PagedList<Bid>>();
   errorCatched = new Subject<string>();
   loading = new Subject<boolean>();
 
@@ -18,7 +19,7 @@ export class BidsService {
   getUserBids(): void {
     this.loading.next(true);
     this.fetchUserBids().subscribe(
-      (bids: Bid[]) => {
+      (bids: PagedList<Bid>) => {
         this.userBidsChanged.next(bids);
         this.loading.next(false);
       },
@@ -29,7 +30,7 @@ export class BidsService {
     );
   }
 
-  private fetchUserBids(): Observable<Bid[]> {
-    return this.http.get<Bid[]>(environment.apiUrl + ApiPaths.Bids);
+  private fetchUserBids(): Observable<PagedList<Bid>> {
+    return this.http.get<PagedList<Bid>>(environment.apiUrl + ApiPaths.Bids);
   }
 }

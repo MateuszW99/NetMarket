@@ -45,7 +45,9 @@ import { ProfileEditComponent } from './account/settings/edit-modals/profile-edi
 import { FeeInfoComponent } from './account/profile/fee-info/fee-info.component';
 import { SellerLevelComponent } from './account/profile/seller-level/seller-level.component';
 import { SellerLevelProgressComponent } from './account/profile/seller-level-progress/seller-level-progress.component';
-import { BuyingComponent } from './account/buying/buying.component';
+import { OrderTableComponent } from './account/order-table/order-table.component';
+import { MatTableModule } from '@angular/material/table';
+import { BidsComponent } from './account/bids/bids.component';
 
 @NgModule({
   declarations: [
@@ -80,7 +82,8 @@ import { BuyingComponent } from './account/buying/buying.component';
     FeeInfoComponent,
     SellerLevelComponent,
     SellerLevelProgressComponent,
-    BuyingComponent
+    BidsComponent,
+    OrderTableComponent
   ],
   imports: [
     BrowserModule,
@@ -97,7 +100,8 @@ import { BuyingComponent } from './account/buying/buying.component';
     MatButtonModule,
     MatIconModule,
     MatDividerModule,
-    MatDialogModule
+    MatDialogModule,
+    MatTableModule
   ],
   providers: [
     {

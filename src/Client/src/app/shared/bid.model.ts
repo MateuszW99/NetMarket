@@ -8,6 +8,7 @@ export class Bid {
     public size: Size,
     public price: number,
     public userId: string,
-    public expires: Date
+    public expires: Date,
+    public buyerFee: number
   ) {}
 }

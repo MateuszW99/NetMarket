@@ -1,0 +1,18 @@
+<div class="mt-5">
+    <app-loading-spinner *ngIf="loading && !error"></app-loading-spinner>
+    <div class="alert alert-danger" role="alert" *ngIf="error && !loading">
+        {{ error }}
+    </div>
+</div>
+<div class="container mt-3" *ngIf="loading === false">
+    <div class="row">
+        <div class="col-12 my-3">
+            <h1 class="text-center">
+                Bids
+            </h1>
+        </div>
+    </div>
+    <div class="row mt-5">
+        <app-order-table [data]="bids"></app-order-table>
+    </div>
+</div>

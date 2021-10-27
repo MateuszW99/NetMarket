@@ -3,14 +3,15 @@ import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
 import { User } from 'src/app/auth/user.model';
 import { Bid } from 'src/app/shared/bid.model';
+import { PagedList } from 'src/app/shared/paged-list';
 import { BidsService } from './bids.service';
 
 @Component({
-  selector: 'app-buying',
-  templateUrl: './buying.component.html',
-  styleUrls: ['./buying.component.css']
+  selector: 'app-bids',
+  templateUrl: './bids.component.html',
+  styleUrls: ['./bids.component.css']
 })
-export class BuyingComponent implements OnInit, OnDestroy {
+export class BidsComponent implements OnInit, OnDestroy {
   userSubscription: Subscription;
   bidsSubscription: Subscription;
   loadingSubscription: Subscription;
@@ -45,8 +46,8 @@ export class BuyingComponent implements OnInit, OnDestroy {
     );
 
     this.bidsSubscription = this.bidsService.userBidsChanged.subscribe(
-      (bids: Bid[]) => {
-        this.bids = bids;
+      (bids: PagedList<Bid>) => {
+        this.bids = bids.items;
         console.log(this.bids);
       }
     );
