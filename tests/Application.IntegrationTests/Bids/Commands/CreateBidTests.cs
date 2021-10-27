@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -31,8 +32,8 @@ namespace Application.IntegrationTests.Bids.Commands
             var command = new CreateBidCommand()
             {
                 ItemId = item.Id.ToString(),
-                SizeId = size.Id.ToString(),
-                Price = price.ToString()
+                Size = size.Value,
+                Price = price.ToString(CultureInfo.InvariantCulture)
             };
             
             var request = new HttpRequestMessage(HttpMethod.Post, new Uri($"{Address.ApiBase}/{Address.Bids}", UriKind.Relative));
@@ -68,8 +69,8 @@ namespace Application.IntegrationTests.Bids.Commands
             var command = new CreateBidCommand()
             {
                 ItemId = item.Id.ToString(),
-                SizeId = size.Id.ToString(),
-                Price = price.ToString()
+                Size = size.Value,
+                Price = price.ToString(CultureInfo.InvariantCulture)
             };
 
             var request = new HttpRequestMessage(HttpMethod.Post, new Uri($"{Address.ApiBase}/{Address.Bids}", UriKind.Relative));
@@ -98,7 +99,7 @@ namespace Application.IntegrationTests.Bids.Commands
             var command = new CreateAskCommand()
             {
                 ItemId = item.Id.ToString(),
-                Size = "14",
+                Size = size.Value,
                 Price = price.ToString()
             };
 

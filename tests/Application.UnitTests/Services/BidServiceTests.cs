@@ -188,7 +188,7 @@ namespace Application.UnitTests.Services
         {
             var bidId = Guid.NewGuid();
             var itemId = Guid.NewGuid();
-            var sizeId = Guid.NewGuid();
+            var size = new Size { Id = Guid.NewGuid(), Value = "14" };
             var price = 200.00m;
             var fee = 10m;
             
@@ -196,7 +196,8 @@ namespace Application.UnitTests.Services
             {
                 Id = bidId,
                 ItemId = itemId,
-                SizeId = sizeId,
+                SizeId = size.Id,
+                Size = size,
                 Price = price,
                 BuyerFee = fee
             };
@@ -204,15 +205,18 @@ namespace Application.UnitTests.Services
             var command = new CreateBidCommand()
             {
                 ItemId = itemId.ToString(),
-                SizeId = sizeId.ToString(),
+                Size = size.Value,
                 Price = price.ToString(CultureInfo.InvariantCulture)
             };
-            
+
+            var sizes = new List<Size>() { size };
+            var mockedSizes = sizes.AsQueryable().BuildMockDbSet();
             var bidsBefore = new List<Bid>();
             var mockedBidsBefore = bidsBefore.AsQueryable().BuildMockDbSet();
             var bidsAfter = new List<Bid>() { bid };
             var mockedBidsAfter = bidsAfter.AsQueryable().BuildMockDbSet();
             
+            _context.Setup(x => x.Sizes).Returns(mockedSizes.Object);
             _context.Setup(x => x.Bids).Returns(mockedBidsBefore.Object);
             _context.Setup(x => x.Bids.AddAsync(It.IsAny<Bid>(), CancellationToken.None))
                 .Callback(() => _context.Setup(x => x.Bids).Returns(mockedBidsAfter.Object));
@@ -222,7 +226,8 @@ namespace Application.UnitTests.Services
             var newBid = await mockedBidsAfter.Object.FirstOrDefaultAsync(x => x.Id == bidId);
             newBid.Should().NotBeNull();
             newBid.Id.Should().Be(bidId);
-            newBid.SizeId.Should().Be(sizeId);
+            newBid.SizeId.Should().Be(size.Id);
+            newBid.Size.Value.Should().Be(size.Value);
             newBid.ItemId.Should().Be(itemId);
             newBid.Price.Should().Be(price);
             newBid.BuyerFee.Should().Be(fee);
@@ -234,7 +239,7 @@ namespace Application.UnitTests.Services
             var bidId = Guid.NewGuid();
             var userId = Guid.NewGuid();
             var itemId = Guid.NewGuid();
-            var sizeId = Guid.NewGuid();
+            var size = new Size { Id = Guid.NewGuid(), Value = "14" };
             var oldPrice = 2.0m;
             var oldBuyerFee = 2.0m;
             var oldBid = new Bid()
@@ -246,8 +251,13 @@ namespace Application.UnitTests.Services
                 ItemId = itemId,
                 Price = oldPrice,
                 LastModifiedBy = null,
-                SizeId = sizeId
+                Size = size,
+                SizeId = size.Id
             };
+            
+            var sizes = new List<Size>() { size };
+            var mockedSizes = sizes.AsQueryable().BuildMockDbSet();
+            
             
             var bidsBefore = new List<Bid>()
             {
@@ -257,7 +267,7 @@ namespace Application.UnitTests.Services
                 new() { Id = Guid.NewGuid() }
             };
             var mockedBidsBefore = bidsBefore.AsQueryable().BuildMockDbSet();
-
+            
             var newPrice = oldPrice + 1m;
             var newFee = oldBuyerFee + 1m;
             var updatedBid = new Bid()
@@ -267,7 +277,8 @@ namespace Application.UnitTests.Services
                 CreatedBy = userId,
                 ItemId = itemId,
                 Price = newPrice,
-                SizeId = sizeId,
+                SizeId = size.Id,
+                Size = size,
                 LastModifiedBy = userId
             };
             
@@ -280,6 +291,7 @@ namespace Application.UnitTests.Services
             };
             var mockedBidsAfter = bidsAfter.AsQueryable().BuildMockDbSet();
 
+            _context.Setup(x => x.Sizes).Returns(mockedSizes.Object);
             _context.Setup(x => x.Bids).Returns(mockedBidsBefore.Object);
             _context.Setup(x => x.Bids.Update(It.IsAny<Bid>()))
                 .Callback(() => _context.Setup(x => x.Bids).Returns(mockedBidsAfter.Object));
@@ -288,7 +300,7 @@ namespace Application.UnitTests.Services
             {
                 Id = bidId.ToString(),
                 Price = newPrice.ToString(CultureInfo.InvariantCulture),
-                SizeId = sizeId.ToString()
+                Size = size.Value
             };
             
             await sut.UpdateBidAsync(oldBid, command, newFee, CancellationToken.None);
@@ -300,7 +312,8 @@ namespace Application.UnitTests.Services
             count.Should().Be(oldCount);
 
             updatedBidFromDb.Should().NotBeNull();
-            updatedBidFromDb.SizeId.Should().Be(sizeId);
+            updatedBidFromDb.SizeId.Should().Be(size.Id);
+            updatedBidFromDb.Size.Value.Should().Be(size.Value);
             updatedBidFromDb.ItemId.Should().Be(itemId);
             updatedBidFromDb.Price.Should().Be(newPrice);
             updatedBidFromDb.BuyerFee.Should().Be(newFee);

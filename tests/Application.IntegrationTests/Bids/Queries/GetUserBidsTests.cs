@@ -47,7 +47,7 @@ namespace Application.IntegrationTests.Bids.Queries
                 var createBidCommand = new CreateBidCommand()
                 {
                     ItemId = item.Id.ToString(),
-                    SizeId = size.Id.ToString(),
+                    Size = size.Value,
                     Price = price.ToString(CultureInfo.InvariantCulture)
                 };
                 

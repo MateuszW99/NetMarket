@@ -53,10 +53,12 @@ namespace Application.Services
 
         public async Task CreateBidAsync(CreateBidCommand command, decimal fee, CancellationToken cancellationToken)
         {
+            var size = await _context.Sizes.FirstOrDefaultAsync(x => x.Value == command.Size);
+            
             var bid = new Bid()
             {
                 ItemId = Guid.Parse(command.ItemId),
-                SizeId = Guid.Parse(command.SizeId),
+                Size = size,
                 Price = decimal.Parse(command.Price),
                 BuyerFee = fee
             };
@@ -67,8 +69,10 @@ namespace Application.Services
 
         public async Task UpdateBidAsync(Bid bid, UpdateBidCommand command, decimal fee, CancellationToken cancellationToken)
         {
+            var size = await _context.Sizes.FirstOrDefaultAsync(x => x.Value == command.Size);
+            
             bid.Price = Decimal.Parse(command.Price);
-            bid.SizeId = Guid.Parse(command.SizeId);
+            bid.Size = size;
             bid.BuyerFee = fee;
             await _context.SaveChangesAsync(cancellationToken);
         }

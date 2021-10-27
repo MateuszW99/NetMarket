@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -81,7 +82,7 @@ namespace Application.IntegrationTests.Asks.Commands
             {
                 ItemId = item.Id.ToString(),
                 Size = oldSize.Value,
-                Price = "200"
+                Price = oldPrice.ToString(CultureInfo.InvariantCulture)
             };
             var createAskRequest = new HttpRequestMessage(HttpMethod.Post, new Uri($"{Address.ApiBase}/{Address.Asks}", UriKind.Relative));
             createAskRequest.Content = new StringContent(JsonConvert.SerializeObject(createAskCommand), Encoding.UTF8, "application/json");
