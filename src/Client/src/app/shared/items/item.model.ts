@@ -12,6 +12,7 @@ export class Item {
     public imageUrl: string,
     public thumbUrl: string,
     public brand: Brand,
-    public lowestAsk: number
+    public lowestAsk: number,
+    public highestBid: number
   ) {}
 }

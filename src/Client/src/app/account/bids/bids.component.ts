@@ -1,10 +1,13 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 import { Subscription } from 'rxjs';
-import { AuthService } from 'src/app/auth/auth.service';
-import { User } from 'src/app/auth/user.model';
+import { Ask } from 'src/app/shared/ask.model';
 import { Bid } from 'src/app/shared/bid.model';
 import { PagedList } from 'src/app/shared/paged-list';
-import { BidsService } from './bids.service';
+import { Pagination } from 'src/app/shared/pagination';
+import { BidsService } from '../bids/bids.service';
+import { TableRow } from './table-row';
 
 @Component({
   selector: 'app-bids',
@@ -12,26 +15,32 @@ import { BidsService } from './bids.service';
   styleUrls: ['./bids.component.css']
 })
 export class BidsComponent implements OnInit, OnDestroy {
-  userSubscription: Subscription;
   bidsSubscription: Subscription;
   loadingSubscription: Subscription;
   errrorSubscription: Subscription;
   loading = true;
   error: string;
-  user: User;
   bids: Bid[];
+  paginationData: Pagination;
+  pageEvent: PageEvent;
 
-  constructor(
-    private authService: AuthService,
-    private bidsService: BidsService
-  ) {}
+  displayedColumns = [
+    'name',
+    'price',
+    'size',
+    'fee',
+    'lowestAsk',
+    'highestBid',
+    'expires'
+  ];
+  dataSource = new MatTableDataSource<TableRow>();
+
+  //@ViewChild(MatPaginator) paginator: MatPaginator;
+
+  constructor(private bidsService: BidsService) {}
 
   ngOnInit(): void {
-    this.userSubscription = this.authService.user.subscribe((user: User) => {
-      this.user = user;
-    });
-
-    this.bidsService.getUserBids();
+    this.bidsService.getUserBids(1);
 
     this.loadingSubscription = this.bidsService.loading.subscribe(
       (isLoading) => {
@@ -47,14 +56,54 @@ export class BidsComponent implements OnInit, OnDestroy {
 
     this.bidsSubscription = this.bidsService.userBidsChanged.subscribe(
       (bids: PagedList<Bid>) => {
-        this.bids = bids.items;
-        console.log(this.bids);
+        this.paginationData = this.getPaginationData(bids);
+        this.dataSource = new MatTableDataSource<TableRow>(this.getRows(bids));
       }
     );
   }
 
+  changePage(event?: PageEvent): PageEvent {
+    this.bidsService.getUserBids(event.pageIndex + 1);
+    return event;
+  }
+
+  getRows(data: PagedList<Bid> | PagedList<Ask>): TableRow[] {
+    const rows = [];
+
+    data.items.forEach((element: Ask | Bid) => {
+      const row = new TableRow(
+        element.item.name,
+        element.price.toString(),
+        element.size.value,
+        element instanceof Ask
+          ? element.sellerFee.toString()
+          : element.buyerFee.toString(),
+        element.item.lowestAsk === null
+          ? 'No asks'
+          : element.item.lowestAsk.toString(),
+        element.item.highestBid === null
+          ? 'No bids'
+          : element.item.highestBid.toString(),
+        element.expires.toString()
+      );
+
+      rows.push(row);
+    });
+
+    return rows;
+  }
+
+  getPaginationData(bids: PagedList<Bid>): Pagination {
+    return {
+      pageIndex: bids.pageIndex,
+      hasNextPage: bids.hasNextPage,
+      hasPreviousPage: bids.hasPreviousPage,
+      totalPages: bids.totalPages,
+      totalCount: bids.totalCount
+    };
+  }
+
   ngOnDestroy(): void {
-    this.userSubscription.unsubscribe();
     this.bidsSubscription.unsubscribe();
     this.loadingSubscription.unsubscribe();
     this.errrorSubscription.unsubscribe();
