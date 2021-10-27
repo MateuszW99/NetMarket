@@ -21,6 +21,7 @@ namespace Application.Models.DTOs
         public string ThumbUrl { get; set; }
         public BrandObject Brand { get; set; }
         public string LowestAsk { get; set; }
+        public string HighestBid { get; set; }
         
         public void Mapping(Profile profile)
         {
@@ -29,7 +30,11 @@ namespace Application.Models.DTOs
                     opt => opt.MapFrom(a => a.Brand))
                 .ForMember(x => x.LowestAsk,
                     opt => opt.MapFrom(a =>
-                        a.Asks.OrderBy(x => x.Price).FirstOrDefault().Price.ToString(CultureInfo.InvariantCulture)));
+                        a.Asks.OrderBy(x => x.Price).FirstOrDefault().Price.ToString(CultureInfo.InvariantCulture)))
+                .ForMember(x => x.HighestBid,
+                    opt => opt.MapFrom(a =>
+                        a.Bids.OrderByDescending(x => x.Price).FirstOrDefault().Price.ToString(CultureInfo.InvariantCulture)));
+
         }
     }
 }
