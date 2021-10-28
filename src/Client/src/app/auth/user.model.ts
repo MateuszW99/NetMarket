@@ -3,12 +3,13 @@ export class User {
     public id: string,
     public email: string,
     public role: string,
-    private _token: string,
-    private _tokenExpirationDate: Date
+    public username: string,
+    public tokenExpirationDate: Date,
+    private _token: string
   ) {}
 
   get token(): string {
-    if (!this._tokenExpirationDate || new Date() > this._tokenExpirationDate) {
+    if (!this.tokenExpirationDate || new Date() > this.tokenExpirationDate) {
       return null;
     }
     return this._token;

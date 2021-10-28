@@ -9,6 +9,8 @@ namespace Domain.Entities
     {
         public Guid Id { get; init; }
         public Guid UserId { get; init; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
         public SellerLevel SellerLevel { get; set; }
         public int SalesCompleted { get; set; }
         public string PaypalEmail { get; set; }

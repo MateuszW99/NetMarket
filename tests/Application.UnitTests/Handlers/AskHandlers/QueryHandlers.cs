@@ -73,7 +73,11 @@ namespace Application.UnitTests.Handlers.AskHandlers
         [Fact]
         public async Task GetUserAsksQueryHandlerShouldNotThrowWhenPropertiesAreNotInitialized()
         {
-            var getUserAsksQuery = new GetUserAsksQuery();
+            var getUserAsksQuery = new GetUserAsksQuery()
+            {
+                PageSize = 10,
+                PageIndex = 1
+            };;
 
             var queryHandler = new GetUserAsksQueryHandler(null, null, null);
             var validationBehaviour = new ValidationBehaviour<GetUserAsksQuery, PaginatedList<AskObject>>(new List<GetUserAsksQueryValidator>

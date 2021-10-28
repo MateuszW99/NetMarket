@@ -1,0 +1,41 @@
+.level{
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+    margin-left: -0.75rem;
+    margin-right: -0.75rem;
+}
+
+.level-active{
+    height: 150px;
+    width: 150px;
+    margin-right: -3rem !important;
+    margin-left: -1.5rem !important;
+}
+
+.level-active-md{
+    height: 70px !important;
+    width: 70px !important;
+    margin: auto !important;
+    background-color: #41d9cc !important;
+}
+
+.level-bg-1{
+    background-color: #41d9cc;
+}
+
+.level-bg-2{
+    background-color: #7AE4DC;
+}
+
+.level-bg-3{
+    background-color: #A8EEE8;
+}
+
+.level-bg-4{
+    background-color: #CEF5F2;
+}

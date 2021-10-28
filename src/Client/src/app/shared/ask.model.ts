@@ -8,6 +8,7 @@ export class Ask {
     public size: Size,
     public price: number,
     public userId: string,
-    public expires: Date
+    public expires: Date,
+    public sellerFee: number
   ) {}
 }

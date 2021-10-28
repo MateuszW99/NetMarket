@@ -1,0 +1,48 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <h2 mat-dialog-title>Edit profile informations</h2>
+    <mat-dialog-content class="mat-typography">
+        <div class="row">
+          <div class="mb-3 col-6 offset-3">
+            <label class="form-label" for="firstName">First name</label>
+            <input formControlName="firstName" type="text" id="firstName" class="form-control" />
+            <span *ngIf="form.get('firstName').invalid && form.get('firstName').touched"
+              class="form-text text-danger mb-2">
+              <span *ngIf="form.get('firstName').hasError('required')">
+                First name is required!
+              </span>
+              <span *ngIf="form.get('firstName').hasError('minlength')">
+                First name must have minimum 2 character!
+              </span>
+              <span *ngIf="form.get('firstName').hasError('maxlength')">
+                First name must have maximum 50 characters!
+              </span>
+            </span>
+          </div>
+          <div class="mb-3 col-6 offset-3">
+            <label class="form-label" for="lastName">Last name</label>
+            <input formControlName="lastName" type="text" id="lastName" class="form-control" />
+            <span *ngIf="form.get('lastName').invalid && form.get('lastName').touched"
+              class="form-text text-danger mb-2">
+              <span *ngIf="form.get('lastName').hasError('required')">
+                Last name is required!
+              </span>
+              <span *ngIf="form.get('lastName').hasError('minlength')">
+                Last name must have minimum 2 character!
+              </span>
+              <span *ngIf="form.get('lastName').hasError('maxlength')">
+                Last name must have maximum 50 characters!
+              </span>
+            </span>
+          </div>
+          <div class="alert alert-danger" role="alert" *ngIf="error === true">
+            Something went wrong
+          </div>
+    
+        </div>
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+      <button mat-button mat-dialog-close>Cancel</button>
+      <button type="submit" mat-button [disabled]="!form.valid">Save</button>
+    </mat-dialog-actions>
+    </form>
+    

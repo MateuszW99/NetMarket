@@ -3,4 +3,5 @@ export interface TokenClaims {
   email: string;
   role: string;
   exp: string;
+  username: string;
 }

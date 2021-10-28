@@ -7,8 +7,8 @@ namespace Application.Models.ApiModels.Bids.Queries
 {
     public class GetUserBidsQuery: IRequest<PaginatedList<BidObject>>
     {
-        public int PageIndex { get; init; } = 1;
-        public int PageSize { get; init; } = 10;
+        public int PageIndex { get; init; } 
+        public int PageSize { get; init; } 
     }
     
     public class GetUserBidsQueryValidator : AbstractValidator<GetUserBidsQuery>

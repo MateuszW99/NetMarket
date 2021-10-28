@@ -71,7 +71,7 @@ export class AuthService {
   }
 
   autoLogin(): void {
-    if (JSON.parse(localStorage.getItem('RememberMe')) !== null) {
+    if (JSON.parse(localStorage.getItem('rememberMe')) !== null) {
       // get user from local storage
       const userData = JSON.parse(localStorage.getItem('userData'));
       if (!userData) {
@@ -82,8 +82,9 @@ export class AuthService {
         userData.id,
         userData.email,
         userData.role,
-        userData._token,
-        userData._tokenExpirationDate
+        userData.username,
+        userData.tokenExpirationDate,
+        userData._token
       );
 
       if (loadedUser.token) {
@@ -99,19 +100,15 @@ export class AuthService {
   private handleAuthentication(token: string, rememberMe: boolean): void {
     const decodedToken: TokenClaims = jwt_decode(token);
 
-    console.log(decodedToken.id);
-    console.log(decodedToken.email);
-    console.log(decodedToken.role);
-    console.log(decodedToken.exp);
-
     const expirationDate = new Date(+decodedToken.exp * 1000);
 
     const user = new User(
       decodedToken.id,
       decodedToken.email,
       decodedToken.role,
-      token,
-      expirationDate
+      decodedToken.username,
+      expirationDate,
+      token
     );
     this.user.next(user);
 

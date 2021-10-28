@@ -50,13 +50,13 @@ namespace Application.UnitTests.Handlers.AskHandlers
         
         [Theory]
         [MemberData(nameof(Data))]
-        public async Task CreateAskCommandHandlerShouldThrowWhenOneOrMorePropertiesAreInvalid(string id, string itemId, string price, string sizeId)
+        public async Task CreateAskCommandHandlerShouldThrowWhenOneOrMorePropertiesAreInvalid(string id, string itemId, string price, string size)
         {
             var createAskCommand = new CreateAskCommand()
             {
                 ItemId = itemId,
                 Price = price,
-                Size = "14"
+                Size = size
             };
 
             var commandHandler = new CreateAskCommandHandler(null, null, null, null, null);
@@ -105,13 +105,13 @@ namespace Application.UnitTests.Handlers.AskHandlers
         
         [Theory]
         [MemberData(nameof(Data))]
-        public async Task UpdateAskCommandHandlerShouldThrowWhenOneOrMorePropertiesAreInvalid(string id, string itemId, string price, string sizeId)
+        public async Task UpdateAskCommandHandlerShouldThrowWhenOneOrMorePropertiesAreInvalid(string id, string itemId, string price, string size)
         {
             var updateAskCommand = new UpdateAskCommand()
             {
                 Id = id,
                 Price = price,
-                Size = "14"
+                Size = size
             };
 
             var commandHandler = new UpdateAskCommandHandler(null, null, null, null, null);

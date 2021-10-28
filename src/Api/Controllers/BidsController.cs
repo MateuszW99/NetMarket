@@ -29,9 +29,13 @@ namespace Api.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<PaginatedList<BidObject>>> GetUserBids()
+        public async Task<ActionResult<PaginatedList<BidObject>>> GetUserBids([FromQuery] SearchBidsQuery query)
         {
-            var result = await _mediator.Send(new GetUserBidsQuery());
+            var result = await _mediator.Send(new GetUserBidsQuery()
+            {
+                PageIndex = query.PageIndex, 
+                PageSize = query.PageSize
+            });
             return Ok(result);
         }
 

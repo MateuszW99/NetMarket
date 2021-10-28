@@ -30,6 +30,24 @@ import { SizeModalComponent } from './shared/size-modal/size-modal.component';
 import { CategoryCardComponent } from './landing-page/category-card/category-card.component';
 import { TrendingItemsComponent } from './landing-page/trending-items/trending-items.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { AccountComponent } from './account/account.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatDividerModule } from '@angular/material/divider';
+import { ProfileComponent } from './account/profile/profile.component';
+import { SettingsComponent } from './account/settings/settings.component';
+import { BillingAddressEditComponent } from './account/settings/edit-modals/billing-address-edit/billing-address-edit.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ShippingAddressEditComponent } from './account/settings/edit-modals/shipping-address-edit/shipping-address-edit.component';
+import { ProfileEditComponent } from './account/settings/edit-modals/profile-edit/profile-edit.component';
+import { FeeInfoComponent } from './account/profile/fee-info/fee-info.component';
+import { SellerLevelComponent } from './account/profile/seller-level/seller-level.component';
+import { SellerLevelProgressComponent } from './account/profile/seller-level-progress/seller-level-progress.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { BidsComponent as AccountBidsComponent } from './account/bids/bids.component';
 import { AsksComponent } from './shared/asks/asks.component';
 import { BidsComponent } from './shared/bids/bids.component';
 
@@ -58,7 +76,18 @@ import { BidsComponent } from './shared/bids/bids.component';
     CategoryCardComponent,
     TrendingItemsComponent,
     AsksComponent,
-    BidsComponent
+    BidsComponent,
+    TrendingItemsComponent,
+    AccountComponent,
+    ProfileComponent,
+    SettingsComponent,
+    BillingAddressEditComponent,
+    ShippingAddressEditComponent,
+    ProfileEditComponent,
+    FeeInfoComponent,
+    SellerLevelComponent,
+    SellerLevelProgressComponent,
+    AccountBidsComponent
   ],
   imports: [
     BrowserModule,
@@ -69,7 +98,15 @@ import { BidsComponent } from './shared/bids/bids.component';
     ClipboardModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
-    FontAwesomeModule
+    FontAwesomeModule,
+    MatToolbarModule,
+    MatSidenavModule,
+    MatButtonModule,
+    MatIconModule,
+    MatDividerModule,
+    MatDialogModule,
+    MatTableModule,
+    MatPaginatorModule
   ],
   providers: [
     {

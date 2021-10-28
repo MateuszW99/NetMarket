@@ -1,0 +1,108 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+<h2 mat-dialog-title>Edit billing informations</h2>
+<mat-dialog-content class="mat-typography">
+    <div class="row">
+      <div class="mb-3 col-6 offset-3">
+        <label class="form-label" for="paypalEmail">Paypal email</label>
+        <input formControlName="paypalEmail" type="text" id="paypalEmail" class="form-control" />
+        <span *ngIf="form.get('paypalEmail').invalid && form.get('paypalEmail').touched"
+          class="form-text text-danger mb-2">
+          <span *ngIf="form.get('paypalEmail').hasError('required')">
+            Paypal email is required!
+          </span>
+          <span *ngIf="form.get('paypalEmail').hasError('minlength')">
+            Paypal email must have minimum 2 character!
+          </span>
+          <span *ngIf="form.get('paypalEmail').hasError('maxlength')">
+            Paypal email must have maximum 50 characters!
+          </span>
+          <span *ngIf="form.get('paypalEmail').hasError('email')">
+            Paypal email is incorrect!
+          </span>
+        </span>
+      </div>
+      <div class="mb-3 col-6 offset-3">
+        <label class="form-label" for="billingStreet">Street</label>
+        <input formControlName="billingStreet" type="text" id="billingStreet" class="form-control" />
+        <span *ngIf="form.get('billingStreet').invalid && form.get('billingStreet').touched"
+          class="form-text text-danger mb-2">
+          <span *ngIf="form.get('billingStreet').hasError('required')">
+            Street is required!
+          </span>
+          <span *ngIf="form.get('billingStreet').hasError('minlength')">
+            Street must have minimum 2 character!
+          </span>
+          <span *ngIf="form.get('billingStreet').hasError('maxlength')">
+            Street must have maximum 50 characters!
+          </span>
+        </span>
+      </div>
+      <div class="mb-3 col-6 offset-3">
+        <label class="form-label" for="billingAddressLine1">Address line 1</label>
+        <input formControlName="billingAddressLine1" type="text" id="billingAddressLine1" class="form-control" />
+        <span *ngIf="form.get('billingAddressLine1').invalid && form.get('billingAddressLine1').touched"
+          class="form-text text-danger mb-2">
+          <span *ngIf="form.get('billingAddressLine1').hasError('required')">
+            Address line 1 is required!
+          </span>
+          <span *ngIf="form.get('billingAddressLine1').hasError('minlength')">
+            Address line 1 must have minimum 2 character!
+          </span>
+          <span *ngIf="form.get('billingAddressLine1').hasError('maxlength')">
+            Address line 1 must have maximum 50 characters!
+          </span>
+        </span>
+      </div>
+      <div class="mb-3 col-6 offset-3">
+        <label class="form-label" for="billingAddressLine2">Address line 2</label>
+        <input formControlName="billingAddressLine2" type="text" id="billingAddressLine2" class="form-control" />
+        <span *ngIf="form.get('billingAddressLine2').invalid && form.get('billingAddressLine2').touched"
+          class="form-text text-danger mb-2">
+          <span *ngIf="form.get('billingAddressLine2').hasError('maxlength')">
+            Address line 2 must have maximum 50 characters!
+          </span>
+        </span>
+      </div>
+      <div class="mb-3 col-6 offset-3">
+        <label class="form-label" for="billingZipCode">Zip code</label>
+        <input formControlName="billingZipCode" type="text" id="billingZipCode" class="form-control" />
+        <span *ngIf="form.get('billingZipCode').invalid && form.get('billingZipCode').touched"
+          class="form-text text-danger mb-2">
+          <span *ngIf="form.get('billingZipCode').hasError('required')">
+            Zip code is required!
+          </span>
+          <span *ngIf="form.get('billingZipCode').hasError('pattern')">
+            Zip code is incorrect
+          </span>
+          <span *ngIf="form.get('billingZipCode').hasError('maxlength')">
+            Zip code must have maximum 6 characters!
+          </span>
+        </span>
+      </div>
+      <div class="mb-3 col-6 offset-3">
+        <label class="form-label" for="billingCountry">Country</label>
+        <input formControlName="billingCountry" type="text" id="billingCountry" class="form-control" />
+        <span *ngIf="form.get('billingCountry').invalid && form.get('billingCountry').touched"
+          class="form-text text-danger mb-2">
+          <span *ngIf="form.get('billingCountry').hasError('required')">
+            Country is required!
+          </span>
+          <span *ngIf="form.get('billingCountry').hasError('minlength')">
+            Country must have minimum 2 characters!
+          </span>
+          <span *ngIf="form.get('billingCountry').hasError('maxlength')">
+            Country must have maximum 50 characters!
+          </span>
+        </span>
+      </div>
+      <div class="alert alert-danger" role="alert" *ngIf="error === true">
+        Something went wrong
+      </div>
+
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button type="submit" mat-button [disabled]="!form.valid">Save</button>
+</mat-dialog-actions>
+</form>
