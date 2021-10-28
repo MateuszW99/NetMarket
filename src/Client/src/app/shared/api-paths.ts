@@ -5,5 +5,6 @@ export enum ApiPaths {
   Items = '/items',
   Trending = '/trending',
   Asks = '/asks',
-  Bids = '/bids'
+  Bids = '/bids',
+  UserSettings = '/user'
 }

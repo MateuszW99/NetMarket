@@ -33,6 +33,8 @@ export class AsksComponent implements OnInit {
       price: new FormControl('', [ Validators.required, Validators.pattern('^[0-9]+(.[0-9]{0,2})?$')]), // TODO: offer newLowestAsk
     });
 
+    //this.form.value.price.debouncedSubscription()
+
     this.userWantsToPlaceAsk = this.form.get('price').value >= this.itemDetails.lowestAsk.price;
   }
 

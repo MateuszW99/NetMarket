@@ -16,4 +16,5 @@ export class AsksService {
       environment.apiUrl + ApiPaths.Asks,
       { itemId, size, price });
   }
+
 }
