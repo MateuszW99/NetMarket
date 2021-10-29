@@ -4,9 +4,9 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Subscription } from 'rxjs';
 import { Ask } from 'src/app/shared/ask.model';
 import { Bid } from 'src/app/shared/bid.model';
+import { BidsService } from 'src/app/shared/bids/bids.service';
 import { PagedList } from 'src/app/shared/paged-list';
 import { Pagination } from 'src/app/shared/pagination';
-import { BidsService } from '../bids/bids.service';
 import { TableRow } from './table-row';
 
 @Component({
