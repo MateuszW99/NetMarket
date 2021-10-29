@@ -5,6 +5,7 @@ import { environment } from '../../../environments/environment';
 import { ApiPaths } from '../api-paths';
 import { PagedList } from '../paged-list';
 import { Bid } from '../bid.model';
+import { UpdateBid } from './update-bid.model';
 
 @Injectable({
   providedIn: 'root'
@@ -58,5 +59,18 @@ export class BidsService {
       size,
       price
     });
+  }
+
+  updateBid(bid: UpdateBid): Observable<unknown> {
+    return this.http.put<unknown>(
+      environment.apiUrl + ApiPaths.Bids + `/${bid.id}`,
+      bid
+    );
+  }
+
+  deleteBid(bidId: string): Observable<unknown> {
+    return this.http.delete<unknown>(
+      environment.apiUrl + ApiPaths.Bids + `/${bidId}`
+    );
   }
 }

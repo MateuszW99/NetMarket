@@ -1,4 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { SneakersSizes } from './sneakers-sizes';
+import { StreetwearSizes } from './streetwear-sizes';
 
 @Component({
   selector: 'app-size-modal',
@@ -9,33 +11,8 @@ export class SizeModalComponent implements OnInit {
   @Input() category = '';
   @Output() sizeChanged = new EventEmitter<string>();
   selectedSize = '14';
-  sneakersSizes = [
-    '4',
-    '4.5',
-    '5',
-    '5.5',
-    '6',
-    '6.5',
-    '7',
-    '7.5',
-    '8',
-    '8.5',
-    '9',
-    '9.5',
-    '10',
-    '10.5',
-    '11',
-    '11.5',
-    '12',
-    '12.5',
-    '13',
-    '13.5',
-    '14',
-    '15',
-    '16',
-    '17'
-  ];
-  streetwearSizes = ['oneSize', 'S', 'M', 'L', 'XL'];
+  sneakersSizes = SneakersSizes;
+  streetwearSizes = StreetwearSizes;
   sizes = this.sneakersSizes;
 
   ngOnInit(): void {

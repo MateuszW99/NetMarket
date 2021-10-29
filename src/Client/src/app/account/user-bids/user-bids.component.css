@@ -1,0 +1,12 @@
+/* table {
+    width: 100%;
+  } */
+
+  .mat-row:hover {
+    background: #f5f5f5;
+    cursor: pointer;
+  }
+
+  .mat-elevation-z8 {    
+    overflow-x: auto;
+   }

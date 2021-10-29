@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AccountComponent } from './account/account.component';
-import { BidsComponent as AccountBidsComponent } from './account/bids/bids.component';
 import { ProfileComponent } from './account/profile/profile.component';
 import { SettingsComponent } from './account/settings/settings.component';
 import { AuthComponent } from './auth/auth.component';
@@ -16,8 +15,9 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
 import { ItemDetailsComponent } from './shared/items/item-details/item-details.component';
 import { SneakersComponent } from './sneakers/sneakers.component';
 import { StreetwearComponent } from './streetwear/streetwear.component';
-import { AsksComponent } from "./shared/asks/asks.component";
-import { BidsComponent } from "./shared/bids/bids.component";
+import { AsksComponent } from './shared/asks/asks.component';
+import { BidsComponent } from './shared/bids/bids.component';
+import { UserBidsComponent } from './account/user-bids/user-bids.component';
 
 const routes: Routes = [
   //AUTH GUARD ussage example
@@ -47,7 +47,7 @@ const routes: Routes = [
       { path: 'profile', component: ProfileComponent },
       {
         path: 'bids',
-        component: AccountBidsComponent
+        component: UserBidsComponent
       },
       // { path: 'selling', component: SellingComponent },
       { path: 'settings', component: SettingsComponent }

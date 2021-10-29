@@ -92,11 +92,11 @@ export class SettingsComponent implements OnInit, OnDestroy {
     }
   }
 
-  onModalShow(modalId: string): void {
-    const element = document.getElementById(modalId) as HTMLElement;
-    const modal = new Modal(element);
-    modal.show();
-  }
+  // onModalShow(modalId: string): void {
+  //   const element = document.getElementById(modalId) as HTMLElement;
+  //   const modal = new Modal(element);
+  //   modal.show();
+  // }
 
   openBillingEdit(): void {
     this.dialog.open(BillingAddressEditComponent, {
