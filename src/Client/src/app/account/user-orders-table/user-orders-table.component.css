@@ -6,3 +6,7 @@ table {
     background: #f5f5f5;
     cursor: pointer;
 }
+
+.mat-cell, .mat-header-cell {
+  padding: 8px 8px 8px 0;
+}

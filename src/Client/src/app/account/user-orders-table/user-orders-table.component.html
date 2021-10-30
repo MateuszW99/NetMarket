@@ -7,13 +7,13 @@
       </h1>
     </div>
   </div>
-<div class="mt-5">
+<div class="mt-5" *ngIf="loading || error">
     <app-loading-spinner *ngIf="loading && !error"></app-loading-spinner>
     <div class="alert alert-danger" role="alert" *ngIf="error && !loading">
       {{ error }}
     </div>
 </div>
-<div class="mat-elevation-z8" *ngIf="loading === false">
+<div class="mat-elevation-z8 mb-5 table-responsive" *ngIf="loading === false">
     <table mat-table [dataSource]="dataSource">
   
         <ng-container matColumnDef="id">
