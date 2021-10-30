@@ -33,6 +33,7 @@ namespace Application.Services
         {
             var asks = await _context.Asks
                 .Include(x => x.Item)
+                    .ThenInclude(y => y.Bids)
                 .Include(x => x.Size)
                 .Where(x => x.CreatedBy == userId)
                 .ToListAsync();

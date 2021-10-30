@@ -43,12 +43,12 @@
     
         <ng-container matColumnDef="lowestAsk">
           <th mat-header-cell *matHeaderCellDef> Lowest Ask </th>
-          <td mat-cell *matCellDef="let element"> {{element.lowestAsk}} </td>
+          <td mat-cell *matCellDef="let element"> {{element.lowestAsk === 'No asks' ? (element.lowestAsk) : (element.lowestAsk | currency)}} </td>
         </ng-container>
     
         <ng-container matColumnDef="highestBid">
           <th mat-header-cell *matHeaderCellDef> Highest Bid </th>
-          <td mat-cell *matCellDef="let element"> {{element.highestBid}} </td>
+          <td mat-cell *matCellDef="let element"> {{element.highestBid === 'No bids' ? (element.highestBid) : (element.highestBid | currency)}} </td>
         </ng-container>
     
         <ng-container matColumnDef="expires">
