@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Api.Common;
 using Application.Common.Interfaces;
 using Application.Identity;
+using Application.Identity.Responses;
 using Domain;
 using Infrastructure.Identity;
 using Microsoft.AspNetCore.Identity;
@@ -20,8 +21,9 @@ namespace Api.Services
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly RoleManager<IdentityRole<Guid>> _roleManager;
         private readonly JwtSettings _jwtSettings;
-        
-        public IdentityService(UserManager<ApplicationUser> userManager, JwtSettings jwtSettings, RoleManager<IdentityRole<Guid>> roleManager)
+
+        public IdentityService(UserManager<ApplicationUser> userManager, JwtSettings jwtSettings,
+            RoleManager<IdentityRole<Guid>> roleManager)
         {
             _userManager = userManager;
             _jwtSettings = jwtSettings;
@@ -45,9 +47,9 @@ namespace Api.Services
                 Email = email,
                 UserName = username
             };
-            
+
             var createdUser = await _userManager.CreateAsync(newUser, password);
-            
+
             if (!createdUser.Succeeded)
             {
                 return new AuthenticationResult()
@@ -57,7 +59,7 @@ namespace Api.Services
             }
 
             await _userManager.AddToRoleAsync(newUser, Roles.User);
-            
+
             return await GenerateAuthenticationResult(newUser);
         }
 
@@ -84,7 +86,46 @@ namespace Api.Services
 
             return await GenerateAuthenticationResult(user);
         }
-        
+
+        public async Task<ResetPasswordResponse> ResetPassword(string email, string password, string newPassword)
+        {
+            var user = await _userManager.FindByEmailAsync(email);
+
+            if (user == null)
+            {
+                return new ResetPasswordResponse()
+                {
+                    ErrorMessages = new[] {"User does not exist."}
+                };
+            }
+
+            var isPasswordValid = await _userManager.CheckPasswordAsync(user, password);
+            if (!isPasswordValid)
+            {
+                return new ResetPasswordResponse()
+                {
+                    ErrorMessages = new[] {"Password is wrong"}
+                };
+            }
+
+            var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+            var resetPasswordResult = await _userManager.ResetPasswordAsync(user, token, newPassword);
+
+            if (!resetPasswordResult.Succeeded)
+            {
+                return new ResetPasswordResponse()
+                {
+                    ErrorMessages = resetPasswordResult.Errors.Select(x => x.Description)
+                };
+            }
+
+            return new ResetPasswordResponse()
+            {
+                Success = true
+            };
+        }
+
+
         private async Task<AuthenticationResult> GenerateAuthenticationResult(ApplicationUser user)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
@@ -98,12 +139,12 @@ namespace Api.Services
                 new Claim("username", user.UserName),
                 new Claim("id", user.Id.ToString())
             };
-            
+
             var userRoles = await _userManager.GetRolesAsync(user);
             foreach (var userRole in userRoles)
             {
                 claims.Add(new Claim(ClaimTypes.Role, userRole));
-                
+
                 var role = await _roleManager.FindByNameAsync(userRole);
                 if (role == null)
                 {
@@ -119,12 +160,13 @@ namespace Api.Services
                     }
                 }
             }
-            
+
             var tokenDescriptor = new SecurityTokenDescriptor()
             {
                 Subject = new ClaimsIdentity(claims),
                 Expires = DateTime.UtcNow.AddDays(3),
-                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key),
+                    SecurityAlgorithms.HmacSha256Signature)
             };
             var token = tokenHandler.CreateToken(tokenDescriptor);
 
@@ -134,7 +176,5 @@ namespace Api.Services
                 Token = tokenHandler.WriteToken(token)
             };
         }
-
-       
     }
 }

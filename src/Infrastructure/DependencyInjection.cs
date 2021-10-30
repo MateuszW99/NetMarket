@@ -31,7 +31,10 @@ namespace Infrastructure
             services.AddTransient<RoleSeeder>();
             services.AddTransient<UserSeeder>();
 
-            services.AddIdentityCore<ApplicationUser>()
+            services.AddIdentityCore<ApplicationUser>(options =>{
+                    options.Tokens.PasswordResetTokenProvider = TokenOptions.DefaultEmailProvider;
+                })
+                .AddDefaultTokenProviders()
                 .AddRoles<IdentityRole<Guid>>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             
