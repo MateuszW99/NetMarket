@@ -1,23 +1,22 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Subscription } from 'rxjs';
 import { Ask } from 'src/app/shared/ask.model';
-import { Bid } from 'src/app/shared/bid.model';
-import { BidsService } from 'src/app/shared/bids/bids.service';
+import { AsksService } from 'src/app/shared/asks/asks.service';
 import { PagedList } from 'src/app/shared/paged-list';
 import { Pagination } from 'src/app/shared/pagination';
-import { UserBidEditComponent } from './user-bid-edit/user-bid-edit.component';
-import { TableRow } from './table-row';
+import { TableRow } from '../user-bids/table-row';
+import { UserAskEditComponent } from './user-ask-edit/user-ask-edit.component';
 
 @Component({
-  selector: 'app-user-bids',
-  templateUrl: './user-bids.component.html',
-  styleUrls: ['./user-bids.component.css']
+  selector: 'app-user-asks',
+  templateUrl: './user-asks.component.html',
+  styleUrls: ['./user-asks.component.css']
 })
-export class UserBidsComponent implements OnInit, OnDestroy {
-  bidsSubscription: Subscription;
+export class UserAsksComponent implements OnInit {
+  asksSubscription: Subscription;
   loadingSubscription: Subscription;
   errrorSubscription: Subscription;
   loading = true;
@@ -37,48 +36,47 @@ export class UserBidsComponent implements OnInit, OnDestroy {
   ];
   dataSource = new MatTableDataSource<TableRow>();
 
-  constructor(private bidsService: BidsService, public dialog: MatDialog) {}
+  constructor(private asksService: AsksService, public dialog: MatDialog) {}
 
   ngOnInit(): void {
-    this.bidsService.getUserBids(1);
+    this.asksService.getUserAsks(1);
 
-    this.loadingSubscription = this.bidsService.loading.subscribe(
+    this.loadingSubscription = this.asksService.loading.subscribe(
       (isLoading) => {
         this.loading = isLoading;
       }
     );
 
-    this.errrorSubscription = this.bidsService.errorCatched.subscribe(
+    this.errrorSubscription = this.asksService.errorCatched.subscribe(
       (error) => {
         this.error = error;
       }
     );
 
-    this.bidsSubscription = this.bidsService.userBidsChanged.subscribe(
-      (bids: PagedList<Bid>) => {
-        this.paginationData = this.getPaginationData(bids);
-        this.dataSource = new MatTableDataSource<TableRow>(this.getRows(bids));
+    this.asksSubscription = this.asksService.userAsksChanged.subscribe(
+      (asks: PagedList<Ask>) => {
+        this.paginationData = this.getPaginationData(asks);
+        this.dataSource = new MatTableDataSource<TableRow>(this.getRows(asks));
       }
     );
   }
 
   changePage(event?: PageEvent): PageEvent {
-    this.bidsService.getUserBids(event.pageIndex + 1);
+    this.asksService.getUserAsks(event.pageIndex + 1);
     return event;
   }
 
-  getRows(data: PagedList<Bid> | PagedList<Ask>): TableRow[] {
+  getRows(data: PagedList<Ask>): TableRow[] {
     const rows = [];
 
-    data.items.forEach((element: Ask | Bid) => {
+    data.items.forEach((element: Ask) => {
       const row = new TableRow(
         element.id,
         element.item.name,
         element.price.toString(),
         element.size.value,
-        element instanceof Ask
-          ? element.sellerFee.toString()
-          : element.buyerFee.toString(),
+
+        element.sellerFee.toString(),
         element.item.lowestAsk === null
           ? 'No asks'
           : element.item.lowestAsk.toString(),
@@ -94,25 +92,25 @@ export class UserBidsComponent implements OnInit, OnDestroy {
     return rows;
   }
 
-  getPaginationData(bids: PagedList<Bid>): Pagination {
+  getPaginationData(asks: PagedList<Ask>): Pagination {
     return {
-      pageIndex: bids.pageIndex,
-      hasNextPage: bids.hasNextPage,
-      hasPreviousPage: bids.hasPreviousPage,
-      totalPages: bids.totalPages,
-      totalCount: bids.totalCount
+      pageIndex: asks.pageIndex,
+      hasNextPage: asks.hasNextPage,
+      hasPreviousPage: asks.hasPreviousPage,
+      totalPages: asks.totalPages,
+      totalCount: asks.totalCount
     };
   }
 
   onEdit(row: TableRow): void {
-    this.dialog.open(UserBidEditComponent, {
+    this.dialog.open(UserAskEditComponent, {
       width: '600px',
-      data: { bidRow: row }
+      data: { askRow: row }
     });
   }
 
   ngOnDestroy(): void {
-    this.bidsSubscription.unsubscribe();
+    this.asksSubscription.unsubscribe();
     this.loadingSubscription.unsubscribe();
     this.errrorSubscription.unsubscribe();
   }

@@ -18,6 +18,7 @@ import { StreetwearComponent } from './streetwear/streetwear.component';
 import { AsksComponent } from './shared/asks/asks.component';
 import { BidsComponent } from './shared/bids/bids.component';
 import { UserBidsComponent } from './account/user-bids/user-bids.component';
+import { UserAsksComponent } from './account/user-asks/user-asks.component';
 
 const routes: Routes = [
   //AUTH GUARD ussage example
@@ -49,7 +50,7 @@ const routes: Routes = [
         path: 'bids',
         component: UserBidsComponent
       },
-      // { path: 'selling', component: SellingComponent },
+      { path: 'asks', component: UserAsksComponent },
       { path: 'settings', component: SettingsComponent }
     ]
   },

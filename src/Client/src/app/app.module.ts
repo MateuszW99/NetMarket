@@ -51,6 +51,8 @@ import { AsksComponent } from './shared/asks/asks.component';
 import { BidsComponent } from './shared/bids/bids.component';
 import { UserBidEditComponent } from './account/user-bids/user-bid-edit/user-bid-edit.component';
 import { UserBidsComponent } from './account/user-bids/user-bids.component';
+import { UserAsksComponent } from './account/user-asks/user-asks.component';
+import { UserAskEditComponent } from './account/user-asks/user-ask-edit/user-ask-edit.component';
 
 @NgModule({
   declarations: [
@@ -89,7 +91,9 @@ import { UserBidsComponent } from './account/user-bids/user-bids.component';
     SellerLevelComponent,
     SellerLevelProgressComponent,
     UserBidsComponent,
-    UserBidEditComponent
+    UserBidEditComponent,
+    UserAsksComponent,
+    UserAskEditComponent
   ],
   imports: [
     BrowserModule,
