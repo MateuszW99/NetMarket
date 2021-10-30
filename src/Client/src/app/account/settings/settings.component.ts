@@ -9,6 +9,7 @@ import { UserSettings } from '../user-settings.model';
 import { BillingAddressEditComponent } from './edit-modals/billing-address-edit/billing-address-edit.component';
 import { ProfileEditComponent } from './edit-modals/profile-edit/profile-edit.component';
 import { ShippingAddressEditComponent } from './edit-modals/shipping-address-edit/shipping-address-edit.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 @Component({
   selector: 'app-settings',
@@ -92,11 +93,11 @@ export class SettingsComponent implements OnInit, OnDestroy {
     }
   }
 
-  // onModalShow(modalId: string): void {
-  //   const element = document.getElementById(modalId) as HTMLElement;
-  //   const modal = new Modal(element);
-  //   modal.show();
-  // }
+  openResetPassword(): void {
+    this.dialog.open(ResetPasswordComponent, {
+      width: '600px'
+    });
+  }
 
   openBillingEdit(): void {
     this.dialog.open(BillingAddressEditComponent, {

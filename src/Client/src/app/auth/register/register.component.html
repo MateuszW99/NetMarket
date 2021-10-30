@@ -67,12 +67,13 @@
                     <span *ngIf="form.get('passwords.confirmPassword').hasError('maxlength')">
                         Password confirmation must have maximum 64 characters!
                     </span>
-                    <span *ngIf="form.get('passwords').hasError('notSame')">
-                        Passwords doesn't match!
-                    </span>
                 </span>
-
             </div>
+            <span *ngIf="form.get('passwords.confirmPassword').touched" class="form-text text-danger mb-2">
+                <span *ngIf="form.get('passwords').hasError('notSame')">
+                    Passwords doesn't match!
+                </span>
+            </span>
         </div>
         <button class="btn btn-info my-3 w-25" type="submit" [disabled]="!form.valid || isLoading">
             Sign Up

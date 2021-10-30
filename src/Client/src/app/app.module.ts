@@ -53,6 +53,7 @@ import { UserBidsComponent } from './account/user-bids/user-bids.component';
 import { UserAsksComponent } from './account/user-asks/user-asks.component';
 import { UserOrdersTableComponent } from './account/user-orders-table/user-orders-table.component';
 import { OrderEditComponent } from './account/user-orders-table/order-edit/order-edit.component';
+import { ResetPasswordComponent } from './account/settings/reset-password/reset-password.component';
 
 @NgModule({
   declarations: [
@@ -93,7 +94,8 @@ import { OrderEditComponent } from './account/user-orders-table/order-edit/order
     UserBidsComponent,
     UserAsksComponent,
     UserOrdersTableComponent,
-    OrderEditComponent
+    OrderEditComponent,
+    ResetPasswordComponent
   ],
   imports: [
     BrowserModule,
