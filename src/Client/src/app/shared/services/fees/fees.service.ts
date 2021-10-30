@@ -1,15 +1,11 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
-import {Observable, of} from "rxjs";
-import { environment } from "../../../../environments/environment";
-import { ApiPaths } from "../../api-paths";
 
 @Injectable({
   providedIn: 'root'
 })
 export class FeesService {
 
-  constructor(private http: HttpClient) { }
+  constructor() { }
 
   private mapSellerLevelToFeeRate(sellerLevel: string = 'Beginner'): number {
     switch (sellerLevel) {
@@ -21,11 +17,7 @@ export class FeesService {
     }
   }
 
-  calculateFees(price: number): Observable<number> {
-    this.http.get<string>(environment.apiUrl + ApiPaths.UserSettings + '/level')
-      .subscribe(x => {
-        return of(price * this.mapSellerLevelToFeeRate(x));
-      });
-    return of(price * this.mapSellerLevelToFeeRate());
+  calculateFees(sellerLevel: string, price: number): number {
+    return this.mapSellerLevelToFeeRate(sellerLevel) * price;
   }
 }

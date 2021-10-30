@@ -10,6 +10,7 @@ import { UserSettings } from './user-settings.model';
 })
 export class SettingsService {
   userSettingsChanged = new Subject<UserSettings>();
+  userSellerLevelChanged = new Subject<string>();
   errorCatched = new Subject<string>();
   loading = new Subject<boolean>();
 
@@ -23,11 +24,25 @@ export class SettingsService {
         this.loading.next(false);
       },
       () => {
-        this.errorCatched.next(
-          'An eror occured while loading the user settings'
-        );
+        this.errorCatched.next('An error occurred while loading the user settings');
         this.loading.next(false);
       }
+    );
+  }
+
+  getUserSellerLevel(): void {
+    this.loading.next(true);
+    this.fetchUserSellerLevel().subscribe(
+      (userSellerLevel: string) => {
+        if (userSellerLevel !== '') {
+          this.userSellerLevelChanged.next(userSellerLevel);
+        }
+        this.loading.next(false);
+      },
+        () => {
+          this.errorCatched.next('An error occurred while loading user seller level');
+          this.loading.next(false);
+        }
     );
   }
 
@@ -40,5 +55,9 @@ export class SettingsService {
 
   private fetchUserSettings(): Observable<UserSettings> {
     return this.http.get<UserSettings>(environment.apiUrl + ApiPaths.UserSettings);
+  }
+
+  private fetchUserSellerLevel(): Observable<string> {
+    return this.http.get<string>(environment.apiUrl + ApiPaths.UserSettings + '/level');
   }
 }

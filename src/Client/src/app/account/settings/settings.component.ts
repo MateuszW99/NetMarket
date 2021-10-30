@@ -33,6 +33,7 @@ export class SettingsComponent implements OnInit, OnDestroy {
     private authService: AuthService,
     public dialog: MatDialog
   ) {}
+
   ngOnInit(): void {
     this.userSubscription = this.authService.user.subscribe((user: User) => {
       this.user = user;

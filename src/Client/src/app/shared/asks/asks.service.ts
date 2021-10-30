@@ -17,4 +17,8 @@ export class AsksService {
       { itemId, size, price });
   }
 
+  sellNow() {
+
+  }
+
 }
