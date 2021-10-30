@@ -66,8 +66,6 @@ export class AsksComponent implements OnInit, OnDestroy {
 
     //this.userWantsToPlaceAsk = this.form.get('price').value >= this.itemDetails.lowestAsk.price;
 
-
-
     this.loadingSubscription = this.settingsService.loading
       .subscribe((isLoading) => {
         this.loading = isLoading;
