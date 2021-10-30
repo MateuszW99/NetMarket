@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { UserAskEditComponent } from './user-ask-edit.component';
+import { UserOrdersTableComponent } from './user-orders-table.component';
 
-describe('UserAskEditComponent', () => {
-  let component: UserAskEditComponent;
-  let fixture: ComponentFixture<UserAskEditComponent>;
+describe('UserOrdersTableComponent', () => {
+  let component: UserOrdersTableComponent;
+  let fixture: ComponentFixture<UserOrdersTableComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ UserAskEditComponent ]
+      declarations: [ UserOrdersTableComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(UserAskEditComponent);
+    fixture = TestBed.createComponent(UserOrdersTableComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

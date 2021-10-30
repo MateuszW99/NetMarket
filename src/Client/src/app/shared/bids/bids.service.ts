@@ -5,7 +5,7 @@ import { environment } from '../../../environments/environment';
 import { ApiPaths } from '../api-paths';
 import { PagedList } from '../paged-list';
 import { Bid } from '../bid.model';
-import { UpdateBid } from './update-bid.model';
+import { UpdateOrder } from 'src/app/account/user-orders-table/order-edit/update-order';
 
 @Injectable({
   providedIn: 'root'
@@ -61,7 +61,7 @@ export class BidsService {
     });
   }
 
-  updateBid(bid: UpdateBid): Observable<unknown> {
+  updateBid(bid: UpdateOrder): Observable<unknown> {
     return this.http.put<unknown>(
       environment.apiUrl + ApiPaths.Bids + `/${bid.id}`,
       bid

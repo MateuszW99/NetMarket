@@ -1,5 +1,5 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <h2 mat-dialog-title>Edit bid</h2>
+    <h2 mat-dialog-title>Edit {{type | slice:0:3 | titlecase}}</h2>
     <mat-dialog-content class="mat-typography">
         <div class="row" *ngIf="!deleted">
           <div class="mb-3 col-6 offset-3" *ngIf="!nosize">
@@ -45,12 +45,12 @@
         </div>
         <div class="row" *ngIf="deleted">
           <div class="alert alert-danger" role="alert">
-            Bid deleted
+            {{type | slice:0:3 | titlecase}} deleted
           </div>
         </div>
     </mat-dialog-content>
     <mat-dialog-actions align="end">
-      <button type="button" mat-button color="warn" (click)="onDelete()" *ngIf="!deleted">Delete bid</button>
+      <button type="button" mat-button color="warn" (click)="onDelete()" *ngIf="!deleted">Delete {{type | slice:0:3 | titlecase}}</button>
       <button type="button" mat-button mat-dialog-close>Exit</button>
       <button type="submit" mat-button [disabled]="!form.valid" *ngIf="!deleted">Save</button>
     </mat-dialog-actions>

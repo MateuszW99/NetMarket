@@ -3,9 +3,9 @@ import { Observable, Subject } from 'rxjs';
 import { HttpClient, HttpParams, HttpResponse } from '@angular/common/http';
 import { ApiPaths } from '../api-paths';
 import { environment } from '../../../environments/environment';
-import { UpdateAsk } from './update-ask.model';
 import { Ask } from '../ask.model';
 import { PagedList } from '../paged-list';
+import { UpdateOrder } from 'src/app/account/user-orders-table/order-edit/update-order';
 
 @Injectable({
   providedIn: 'root'
@@ -45,7 +45,7 @@ export class AsksService {
         this.loading.next(false);
       },
       () => {
-        this.errorCatched.next('An eror occured while loading the bids');
+        this.errorCatched.next('An eror occured while loading the asks');
         this.loading.next(false);
       }
     );
@@ -60,7 +60,7 @@ export class AsksService {
     });
   }
 
-  updateAsk(ask: UpdateAsk): Observable<unknown> {
+  updateAsk(ask: UpdateOrder): Observable<unknown> {
     return this.http.put<unknown>(
       environment.apiUrl + ApiPaths.Asks + `/${ask.id}`,
       ask
