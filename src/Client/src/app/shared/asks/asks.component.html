@@ -26,6 +26,9 @@
           <div class="text-end">+{{ fee | currency }}</div>
         </div>
         <div class="border-bottom border-1"></div>
+        <div class="form-control border-bottom border-1">
+          <label class="col-sm col-form-label">Total Price: {{ totalPrice | currency }}</label>
+        </div>
         <div class="form-control">
           <button type="submit"
                   style="font-size: larger"

@@ -33,6 +33,7 @@ export class BidsComponent implements OnInit, OnDestroy {
   size: Size;
   form: FormGroup;
   userWantsToPlaceBid: boolean;
+  totalPrice: number = 0;
   fee: number = 0;
   feeSubscription: Subscription;
 
@@ -65,8 +66,6 @@ export class BidsComponent implements OnInit, OnDestroy {
       price: new FormControl('', [ Validators.required, Validators.pattern('^[0-9]+(.[0-9]{0,2})?$')]), // TODO: offer new highestBid
     });
 
-    this.userWantsToPlaceBid = this.form.get('price').value >= this.itemDetails.lowestAsk.price;
-
     this.loadingSubscription = this.settingsService.loading
       .subscribe((isLoading) => {
           this.loading = isLoading;
@@ -92,9 +91,11 @@ export class BidsComponent implements OnInit, OnDestroy {
       debounceTime(1000),
       distinctUntilChanged()
     ).subscribe(() => {
-      //this.settingsService.getUserSellerLevel();
       this.fee = this.feesService.calculateFees(this.sellerLevel, this.form.value.price);
+      this.totalPrice = this.fee + this.form.value.price;
     });
+
+    this.userWantsToPlaceBid = true;
   }
 
   getLabel() {

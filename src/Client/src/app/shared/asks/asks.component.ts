@@ -27,11 +27,11 @@ export class AsksComponent implements OnInit, OnDestroy {
   userSubscription: Subscription;
   sellerLevel: string = '';
   sellerLevelSubscription: Subscription;
-
+  userWantsToPlaceAsk: boolean;
   form: FormGroup;
   itemDetails: ItemDetails;
   size: string;
-  userWantsToPlaceAsk: boolean;
+  totalPrice: number = 0;
   fee: number = 0;
   feeSubscription: Subscription;
 
@@ -64,8 +64,6 @@ export class AsksComponent implements OnInit, OnDestroy {
       price: new FormControl('', [ Validators.required, Validators.pattern('^[0-9]+(.[0-9]{0,2})?$')]), // TODO: offer newLowestAsk
     });
 
-    //this.userWantsToPlaceAsk = this.form.get('price').value >= this.itemDetails.lowestAsk.price;
-
     this.loadingSubscription = this.settingsService.loading
       .subscribe((isLoading) => {
         this.loading = isLoading;
@@ -91,10 +89,11 @@ export class AsksComponent implements OnInit, OnDestroy {
       debounceTime(1000),
       distinctUntilChanged()
     ).subscribe(() => {
-        //this.settingsService.getUserSellerLevel();
         this.fee = this.feesService.calculateFees(this.sellerLevel, this.form.value.price);
+        this.totalPrice = this.fee + this.form.value.price;
     });
 
+    this.userWantsToPlaceAsk = true;
   }
 
   ngOnDestroy(): void {
@@ -104,6 +103,8 @@ export class AsksComponent implements OnInit, OnDestroy {
     this.errorSubscription.unsubscribe();
     this.loadingSubscription.unsubscribe();
   }
+
+
 
   isNewLowestAsk(): boolean {
     return this.form.get('price').value <= this.itemDetails.lowestAsk.price;
