@@ -58,6 +58,9 @@ export class SettingsService {
   }
 
   private fetchUserSellerLevel(): Observable<string> {
-    return this.http.get<string>(environment.apiUrl + ApiPaths.UserSettings + '/level');
+    const requestOptions: Object = {
+      responseType: 'text'
+    };
+    return this.http.get<string>(environment.apiUrl + ApiPaths.UserSettings + '/level', requestOptions);
   }
 }
