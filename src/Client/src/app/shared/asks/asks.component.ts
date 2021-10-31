@@ -1,15 +1,15 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import { Component, DoCheck, OnDestroy, OnInit } from '@angular/core';
 import { AsksService } from "./asks.service";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { ItemDetails } from "../items/item-details/item-details.model";
 import { ToastrService } from "ngx-toastr";
 import { Router } from "@angular/router";
-import {Subscription} from "rxjs";
-import {SettingsService} from "../../account/settings.service";
-import {FeesService} from "../services/fees/fees.service";
-import {debounceTime, distinctUntilChanged} from "rxjs/operators";
-import {AuthService} from "../../auth/auth.service";
-import {User} from "../../auth/user.model";
+import { Subscription } from "rxjs";
+import { SettingsService } from "../../account/settings.service";
+import { FeesService } from "../services/fees/fees.service";
+import { debounceTime, distinctUntilChanged } from "rxjs/operators";
+import { AuthService } from "../../auth/auth.service";
+import { User } from "../../auth/user.model";
 
 @Component({
   selector: 'app-asks',
@@ -35,6 +35,9 @@ export class AsksComponent implements OnInit, OnDestroy {
   fee: number = 0;
   feeSubscription: Subscription;
 
+  label: string;
+  formAction = (): void => {};
+
   constructor(
     private askService: AsksService,
     private settingsService: SettingsService,
@@ -47,6 +50,10 @@ export class AsksComponent implements OnInit, OnDestroy {
     // TODO: act in case data.X is empty/null
     this.itemDetails = history.state.data.item;
     this.size = history.state.data.size;
+
+    this.userWantsToPlaceAsk = true;
+    this.label = 'Place Ask';
+    this.formAction = this.onPlaceAsk;
 
     this.userSubscription = this.authService.user
       .subscribe((user: User) => {
@@ -61,7 +68,7 @@ export class AsksComponent implements OnInit, OnDestroy {
     this.form = new FormGroup({
       item: new FormControl(this.itemDetails.item.id, Validators.nullValidator),
       size: new FormControl(this.size, Validators.nullValidator),
-      price: new FormControl('', [ Validators.required, Validators.pattern('^[0-9]+(.[0-9]{0,2})?$')]), // TODO: offer newLowestAsk
+      price: new FormControl('', [ Validators.required, Validators.pattern('^[0-9]+(.[0-9]{0,2})?$') ]),
     });
 
     this.loadingSubscription = this.settingsService.loading
@@ -85,15 +92,12 @@ export class AsksComponent implements OnInit, OnDestroy {
 
     this.settingsService.getUserSellerLevel();
 
-    this.feeSubscription = this.form.valueChanges.pipe(
+    this.feeSubscription = this.form.controls['price'].valueChanges.pipe(
       debounceTime(1000),
       distinctUntilChanged()
     ).subscribe(() => {
-        this.fee = this.feesService.calculateFees(this.sellerLevel, this.form.value.price);
-        this.totalPrice = this.fee + this.form.value.price;
+        this.onPriceChange();
     });
-
-    this.userWantsToPlaceAsk = true;
   }
 
   ngOnDestroy(): void {
@@ -104,27 +108,34 @@ export class AsksComponent implements OnInit, OnDestroy {
     this.loadingSubscription.unsubscribe();
   }
 
+  private onPriceChange(): void {
+    const userPrice = this.form.controls['price'].value;
+    const highestBidPrice = +this.itemDetails.highestBid.price;
+    this.userWantsToPlaceAsk = userPrice > highestBidPrice;
 
+    if (this.userWantsToPlaceAsk) {
+      this.label = 'Place Ask';
+      this.formAction = this.onPlaceAsk;
+    } else {
+      if (userPrice === highestBidPrice) {
+        return;
+      }
+      this.label = 'Sell Now';
+      this.formAction = this.onSellNow;
+      this.form.controls['price'].setValue(highestBidPrice);
+      this.toastrSerivce.info('Your price matched the highest bid!');
+    }
 
-  isNewLowestAsk(): boolean {
-    return this.form.get('price').value <= this.itemDetails.lowestAsk.price;
-  }
-
-  getLabel() {
-    return this.userWantsToPlaceAsk ? 'Place Ask' : 'Sell';
+    this.fee = this.feesService.calculateFees(this.sellerLevel, this.form.controls['price'].value);
+    this.totalPrice = this.fee + this.form.controls['price'].value;
   }
 
   onSubmitForm(): void {
-    if (this.userWantsToPlaceAsk) {
-      this.onPlaceAsk();
-    }
-    else {
-      this.onSellNow();
-    }
+    this.formAction();
   }
 
   onPlaceAsk(): void {
-    this.askService.placeAsk(this.form.value.item, this.form.value.size, this.form.value.price.toString())
+    this.askService.placeAsk(this.form.controls['item'].value, this.form.controls['size'].value, this.form.controls['price'].value.toString())
       .subscribe(() => {
         this.router.navigate([`/items/${this.itemDetails.item.id}`])
           .then(() => this.toastrSerivce.success('Ask placed!'));
@@ -132,8 +143,7 @@ export class AsksComponent implements OnInit, OnDestroy {
   }
 
   onSellNow(): void {
-
+    // TODO: implement
   }
-
 
 }

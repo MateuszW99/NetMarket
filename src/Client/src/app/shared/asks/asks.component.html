@@ -8,7 +8,7 @@
     </div>
   </div>
   <div class="col ms-4 pe-5">
-    <h2 class="text-center">{{ getLabel() }}</h2>
+    <h2 class="text-center">{{ label }}</h2>
     <div class="d-flex justify-content-center">
       <form [formGroup]="form" (ngSubmit)="onSubmitForm()" class="form-group mt-2">
         <div class="form-control border-bottom border-1">
@@ -33,7 +33,7 @@
           <button type="submit"
                   style="font-size: larger"
                   class="btn btn-success w-100">
-            {{ getLabel() }}
+            {{ label }}
           </button>
         </div>
       </form>
