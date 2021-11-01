@@ -12,6 +12,7 @@ namespace Application.Common.Interfaces
         Task<Ask> GetAskByIdAsync(Guid askId);
         Task<List<Ask>> GetUserAsks(Guid userId);
         Task<List<Ask>> GetItemAsks(Guid itemId);
+        Task CreateAskAsync(Ask ask, CancellationToken cancellationToken);
         Task CreateAskAsync(CreateAskCommand command, decimal fee, CancellationToken cancellationToken);
         Task UpdateAskAsync(Ask ask, UpdateAskCommand command, decimal fee, CancellationToken cancellationToken);
         Task DeleteAskAsync(Ask ask, CancellationToken cancellationToken);

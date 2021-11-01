@@ -68,6 +68,12 @@ namespace Application.Services
             await _context.SaveChangesAsync(cancellationToken);
         }
 
+        public async Task CreateBidAsync(Bid bid, CancellationToken cancellationToken)
+        {
+            await _context.Bids.AddAsync(bid, cancellationToken);
+            await _context.SaveChangesAsync(cancellationToken);
+        }
+
         public async Task UpdateBidAsync(Bid bid, UpdateBidCommand command, decimal fee, CancellationToken cancellationToken)
         {
             var size = await _context.Sizes.FirstOrDefaultAsync(x => x.Value == command.Size);

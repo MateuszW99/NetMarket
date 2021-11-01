@@ -52,6 +52,12 @@ namespace Application.Services
             return asks;
         }
 
+        public async Task CreateAskAsync(Ask ask, CancellationToken cancellationToken)
+        {
+            await _context.Asks.AddAsync(ask, cancellationToken);
+            await _context.SaveChangesAsync(cancellationToken);
+        }
+
         public async Task CreateAskAsync(CreateAskCommand command, decimal fee, CancellationToken cancellationToken)
         {
             var size = await _context.Sizes.FirstOrDefaultAsync(x => x.Value == command.Size, cancellationToken);
