@@ -42,7 +42,7 @@ export class AsksComponent implements OnInit, OnDestroy {
     private askService: AsksService,
     private settingsService: SettingsService,
     private authService: AuthService,
-    private toastrSerivce: ToastrService,
+    private toastrService: ToastrService,
     private feesService: FeesService,
     private router: Router) { }
 
@@ -100,6 +100,22 @@ export class AsksComponent implements OnInit, OnDestroy {
     });
   }
 
+  onSubmitForm(): void {
+    this.formAction();
+  }
+
+  onPlaceAsk(): void {
+    this.askService.placeAsk(this.form.controls['item'].value, this.form.controls['size'].value, this.form.controls['price'].value.toString())
+      .subscribe(() => {
+        this.router.navigate([`/items/${this.itemDetails.item.id}`])
+          .then(() => this.toastrService.success('Ask placed!'));
+      });
+  }
+
+  onSellNow(): void {
+    // TODO: implement
+  }
+
   ngOnDestroy(): void {
     this.sellerLevelSubscription.unsubscribe();
     this.userSubscription.unsubscribe();
@@ -123,27 +139,10 @@ export class AsksComponent implements OnInit, OnDestroy {
       this.label = 'Sell Now';
       this.formAction = this.onSellNow;
       this.form.controls['price'].setValue(highestBidPrice);
-      this.toastrSerivce.info('Your price matched the highest bid!');
+      this.toastrService.info('Your price matched the highest bid!');
     }
 
     this.fee = this.feesService.calculateFees(this.sellerLevel, this.form.controls['price'].value);
     this.totalPrice = this.fee + this.form.controls['price'].value;
   }
-
-  onSubmitForm(): void {
-    this.formAction();
-  }
-
-  onPlaceAsk(): void {
-    this.askService.placeAsk(this.form.controls['item'].value, this.form.controls['size'].value, this.form.controls['price'].value.toString())
-      .subscribe(() => {
-        this.router.navigate([`/items/${this.itemDetails.item.id}`])
-          .then(() => this.toastrSerivce.success('Ask placed!'));
-      });
-  }
-
-  onSellNow(): void {
-    // TODO: implement
-  }
-
 }
