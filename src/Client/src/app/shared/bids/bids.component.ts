@@ -1,16 +1,15 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import { ItemDetails } from "../items/item-details/item-details.model";
-import { Size } from "../size.model";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { BidsService } from "./bids.service";
 import { ToastrService } from "ngx-toastr";
 import { Router } from "@angular/router";
-import {SettingsService} from "../../account/settings.service";
-import {AuthService} from "../../auth/auth.service";
-import {FeesService} from "../services/fees/fees.service";
-import {Subscription} from "rxjs";
-import {User} from "../../auth/user.model";
-import {debounceTime, distinctUntilChanged} from "rxjs/operators";
+import { SettingsService } from "../../account/settings.service";
+import { AuthService } from "../../auth/auth.service";
+import { FeesService } from "../services/fees/fees.service";
+import { Subscription } from "rxjs";
+import { User } from "../../auth/user.model";
+import { debounceTime, distinctUntilChanged } from "rxjs/operators";
 
 @Component({
   selector: 'app-bids',
@@ -28,14 +27,16 @@ export class BidsComponent implements OnInit, OnDestroy {
   userSubscription: Subscription;
   sellerLevel: string = '';
   sellerLevelSubscription: Subscription;
-
-  itemDetails: ItemDetails;
-  size: Size;
-  form: FormGroup;
   userWantsToPlaceBid: boolean;
+  form: FormGroup;
+  itemDetails: ItemDetails;
+  size: string;
   totalPrice: number = 0;
   fee: number = 0;
   feeSubscription: Subscription;
+
+  label: string;
+  formAction = (): void => {};
 
   constructor(
     private bidsService: BidsService,
@@ -50,6 +51,10 @@ export class BidsComponent implements OnInit, OnDestroy {
     this.itemDetails = history.state.data.item;
     this.size = history.state.data.size;
 
+    this.userWantsToPlaceBid = true;
+    this.label = 'Place Bid';
+    this.formAction = this.onPlaceBid;
+
     this.userSubscription = this.authService.user
       .subscribe((user: User) => {
           this.user = user;
@@ -63,7 +68,7 @@ export class BidsComponent implements OnInit, OnDestroy {
     this.form = new FormGroup({
       item: new FormControl(this.itemDetails.item.id, Validators.nullValidator),
       size: new FormControl(this.size, Validators.nullValidator),
-      price: new FormControl('', [ Validators.required, Validators.pattern('^[0-9]+(.[0-9]{0,2})?$')]), // TODO: offer new highestBid
+      price: new FormControl('', [ Validators.required, Validators.pattern('^[0-9]+(.[0-9]{0,2})?$') ]),
     });
 
     this.loadingSubscription = this.settingsService.loading
@@ -87,32 +92,20 @@ export class BidsComponent implements OnInit, OnDestroy {
 
     this.settingsService.getUserSellerLevel();
 
-    this.feeSubscription = this.form.valueChanges.pipe(
+    this.feeSubscription = this.form.controls['price'].valueChanges.pipe(
       debounceTime(1000),
       distinctUntilChanged()
     ).subscribe(() => {
-      this.fee = this.feesService.calculateFees(this.sellerLevel, this.form.value.price);
-      this.totalPrice = this.fee + this.form.value.price;
+      this.onPriceChange();
     });
-
-    this.userWantsToPlaceBid = true;
-  }
-
-  getLabel() {
-    return this.userWantsToPlaceBid ? 'Place Bid' : 'Buy';
   }
 
   onSubmitForm(): void {
-    if (this.userWantsToPlaceBid) {
-      this.onPlaceBid();
-    }
-    else {
-      this.onBuyNow();
-    }
+    this.formAction();
   }
 
   onPlaceBid(): void {
-    this.bidsService.placeBid(this.form.value.item, this.form.value.size, this.form.value.price.toString())
+    this.bidsService.placeBid(this.form.controls['item'].value, this.form.controls['size'].value, this.form.controls['price'].value.toString())
       .subscribe(() => {
         this.router.navigate([`/items/${this.itemDetails.item.id}`])
           .then(() => this.toastrService.success('Bid placed!'));
@@ -131,4 +124,25 @@ export class BidsComponent implements OnInit, OnDestroy {
     this.loadingSubscription.unsubscribe();
   }
 
+  private onPriceChange(): void {
+    const userPrice = this.form.controls['price'].value;
+    const lowestAskPrice = +this.itemDetails.lowestAsk.price;
+    this.userWantsToPlaceBid = userPrice < lowestAskPrice;
+
+    if (this.userWantsToPlaceBid) {
+      this.label = 'Place Bid';
+      this.formAction = this.onPlaceBid;
+    } else {
+      if (userPrice === lowestAskPrice) {
+        return;
+      }
+      this.label = 'Buy Now';
+      this.formAction = this.onBuyNow;
+      this.form.controls['price'].setValue(lowestAskPrice);
+      this.toastrService.info('Your price matched the lowest ask!');
+    }
+
+    this.fee = this.feesService.calculateFees(this.sellerLevel, this.form.controls['price'].value);
+    this.totalPrice = this.fee + this.form.controls['price'].value;
+  }
 }
