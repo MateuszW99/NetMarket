@@ -42,11 +42,12 @@ export class OrderEditComponent implements OnInit {
         Validators.minLength(1),
         Validators.maxLength(50)
       ]),
-      price: new FormControl(this.row.price, [
+      price: new FormControl(parseFloat(this.row.price).toFixed(2), [
         Validators.required,
         Validators.min(0.01),
         Validators.minLength(1),
-        Validators.maxLength(50)
+        Validators.maxLength(50),
+        Validators.pattern('^[0-9]+(.[0-9]{0,2})?$')
       ])
     });
   }

@@ -37,6 +37,9 @@
               <span *ngIf="form.get('price').hasError('min')">
                 Price must be at least $0.01!
               </span>
+              <span *ngIf="form.get('price').hasError('pattern')">
+                Price can contain a maximum of 2 decimal places!
+              </span>
             </span>
           </div>
           <div class="alert alert-danger" role="alert" *ngIf="error === true">
@@ -52,7 +55,7 @@
     <mat-dialog-actions align="end">
       <button type="button" mat-button color="warn" (click)="onDelete()" *ngIf="!deleted">Delete {{type | slice:0:3 | titlecase}}</button>
       <button type="button" mat-button mat-dialog-close>Exit</button>
-      <button type="submit" mat-button [disabled]="!form.valid" *ngIf="!deleted">Save</button>
+      <button type="submit" mat-button color="success" [disabled]="!form.valid" *ngIf="!deleted">Save</button>
     </mat-dialog-actions>
     </form>
     
