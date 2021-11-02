@@ -1,5 +1,4 @@
 ﻿using Application.Common.Validators;
-using Application.Models.ApiModels.Asks.Queries;
 using FluentValidation;
 using MediatR;
 

@@ -44,10 +44,8 @@ namespace Application.Handlers.TransactionHandlers
 
         public async Task<Unit> Handle(InitializeTransactionCommand request, CancellationToken cancellationToken)
         {
-            Ask ask = null;
-            Bid bid = null;
-            Item item = null;
-            Guid sellerId = Guid.Empty;
+            Ask ask;
+            Bid bid;
 
             var userId = Guid.Parse(_httpService.GetUserId());
             var userSellerLevel = await _userSettingsService.GetUserSellerLevel(userId);
@@ -65,8 +63,6 @@ namespace Application.Handlers.TransactionHandlers
                     BuyerFee = fee
                 };
                 await _bidService.CreateBidAsync(bid, cancellationToken);
-
-                sellerId = ask.CreatedBy;
             }
             else if (!string.IsNullOrEmpty(request.BidId)) // Sell now
             {
@@ -81,8 +77,6 @@ namespace Application.Handlers.TransactionHandlers
                     SellerFee = fee
                 };
                 await _askService.CreateAskAsync(ask, cancellationToken);
-                
-                sellerId = userId; 
             }
             else
             {
