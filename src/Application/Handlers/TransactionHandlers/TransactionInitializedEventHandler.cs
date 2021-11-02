@@ -22,7 +22,7 @@ namespace Application.Handlers.TransactionHandlers
         public async Task Handle(DomainEventNotification<TransactionInitializedEvent> notification, CancellationToken cancellationToken)
         {
             var domainEvent = notification.DomainEvent;
-            if (await _userSettingsService.TryUpdatingUserSellerLevel(domainEvent.SellerId, cancellationToken))
+            if (await _userSettingsService.TryUpdateUserSellerLevel(domainEvent.SellerId, cancellationToken))
             {
                 _logger.LogInformation($"Updated SellerLevel of user: {domainEvent.SellerId}");
             }
