@@ -18,7 +18,6 @@ namespace Application.Handlers.TransactionHandlers
         private readonly IAskService _askService;
         private readonly IBidService _bidService;
         private readonly ISupervisorService _supervisorService;
-        private readonly IItemService _itemService;
         private readonly IUserSettingsService _userSettingsService;
         private readonly IHttpService _httpService;
         private readonly IFeeService _feeService;
@@ -28,8 +27,7 @@ namespace Application.Handlers.TransactionHandlers
             ILogger<InitializeTransactionCommandHandler> logger, 
             IAskService askService, 
             IBidService bidService, 
-            ISupervisorService supervisorService, 
-            IItemService itemService,
+            ISupervisorService supervisorService,
             IUserSettingsService userSettingsService, 
             IHttpService httpService,
             IFeeService feeService)
@@ -39,7 +37,6 @@ namespace Application.Handlers.TransactionHandlers
             _askService = askService;
             _bidService = bidService;
             _supervisorService = supervisorService;
-            _itemService = itemService;
             _userSettingsService = userSettingsService;
             _httpService = httpService;
             _feeService = feeService;
@@ -50,16 +47,14 @@ namespace Application.Handlers.TransactionHandlers
             Ask ask = null;
             Bid bid = null;
             Item item = null;
-            
+            Guid sellerId = Guid.Empty;
+
             var userId = Guid.Parse(_httpService.GetUserId());
             var userSellerLevel = await _userSettingsService.GetUserSellerLevel(userId);
             
-            
-            if (!string.IsNullOrEmpty(request.AskId))
+            if (!string.IsNullOrEmpty(request.AskId)) // Buy now
             {
-                var askId = Guid.Parse(request.AskId);
                 ask = await _askService.GetAskByIdAsync(Guid.Parse(request.AskId));
-                item = await _itemService.GetItemByIdAsync(ask.ItemId);
                 var fee = await _feeService.CalculateFee(userSellerLevel, ask.Price);
                 
                 bid = new()
@@ -70,22 +65,24 @@ namespace Application.Handlers.TransactionHandlers
                     BuyerFee = fee
                 };
                 await _bidService.CreateBidAsync(bid, cancellationToken);
+
+                sellerId = ask.CreatedBy;
             }
-            else if (!string.IsNullOrEmpty(request.BidId))
+            else if (!string.IsNullOrEmpty(request.BidId)) // Sell now
             {
-                var bidId = Guid.Parse(request.BidId);
                 bid = await _bidService.GetBidByIdAsync(Guid.Parse(request.BidId));
-                item = await _itemService.GetItemByIdAsync(bid.ItemId);
                 var fee = await _feeService.CalculateFee(userSellerLevel, bid.Price);
 
                 ask = new()
                 {
-                    ItemId = item.Id,
+                    ItemId = bid.ItemId,
                     SizeId = bid.SizeId,
                     Price = bid.Price,
                     SellerFee = fee
                 };
                 await _askService.CreateAskAsync(ask, cancellationToken);
+                
+                sellerId = userId; 
             }
             else
             {
