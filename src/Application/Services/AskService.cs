@@ -33,6 +33,7 @@ namespace Application.Services
         {
             var asks = await _context.Asks
                 .Include(x => x.Item)
+                    .ThenInclude(y => y.Bids)
                 .Include(x => x.Size)
                 .Where(x => x.CreatedBy == userId)
                 .ToListAsync();
@@ -49,6 +50,12 @@ namespace Application.Services
                 .ToListAsync();
 
             return asks;
+        }
+
+        public async Task CreateAskAsync(Ask ask, CancellationToken cancellationToken)
+        {
+            await _context.Asks.AddAsync(ask, cancellationToken);
+            await _context.SaveChangesAsync(cancellationToken);
         }
 
         public async Task CreateAskAsync(CreateAskCommand command, decimal fee, CancellationToken cancellationToken)

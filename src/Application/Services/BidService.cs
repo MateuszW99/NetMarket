@@ -33,6 +33,7 @@ namespace Application.Services
         {
             var bids = await _context.Bids
                 .Include(x => x.Item)
+                    .ThenInclude(y => y.Asks)
                 .Include(x => x.Size)
                 .Where(x => x.CreatedBy == userId)
                 .ToListAsync();
@@ -63,6 +64,12 @@ namespace Application.Services
                 BuyerFee = fee
             };
 
+            await _context.Bids.AddAsync(bid, cancellationToken);
+            await _context.SaveChangesAsync(cancellationToken);
+        }
+
+        public async Task CreateBidAsync(Bid bid, CancellationToken cancellationToken)
+        {
             await _context.Bids.AddAsync(bid, cancellationToken);
             await _context.SaveChangesAsync(cancellationToken);
         }

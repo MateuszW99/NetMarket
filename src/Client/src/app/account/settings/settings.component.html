@@ -27,7 +27,7 @@
                 <p>{{ user.email }}</p>
            </div>
            <div class="col-md-6 col-lg-3 mb-2 mx-2">
-            <a type="button" class="btn btn-danger mb-2 w-100">Reset Password (TODO: Add this functionality on the backend side)</a>
+            <button mat-raised-button color="warn" class="mb-2 w-100" (click)="openResetPassword()">Reset Password</button>
         </div>
         </div>
         <div class="row mb-2">
@@ -46,7 +46,7 @@
                 <div *ngIf="billingAddressProvided">
                     <p class="my-0">{{userSettings.billingStreet}}</p>
                     <p class="my-0">{{userSettings.billingAddressLine1}}</p>
-                    <p class="my-0">{{userSettings.billingAddressLine2}}</p>
+                    <p class="my-0">{{userSettings.billingAddressLine2 === '' ? '-' : userSettings.billingAddressLine2}}</p>
                     <p class="my-0">{{userSettings.billingZipCode}}</p>
                     <p class="my-0">{{userSettings.billingCountry}}</p>
                 </div>
@@ -64,7 +64,7 @@
                 <div *ngIf="shippingAddressProvided">
                     <p class="my-0">{{userSettings.shippingStreet}}</p>
                     <p class="my-0">{{userSettings.shippingAddressLine1}}</p>
-                    <p class="my-0">{{userSettings.shippingAddressLine2}}</p>
+                    <p class="my-0">{{userSettings.shippingAddressLine2 === '' ? '-' : userSettings.shippingAddressLine2}}</p>
                     <p class="my-0">{{userSettings.shippingZipCode}}</p>
                     <p class="my-0">{{userSettings.shippingCountry}}</p>
                 </div>

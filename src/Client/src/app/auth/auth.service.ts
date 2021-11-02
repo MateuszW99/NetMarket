@@ -9,6 +9,8 @@ import { AuthResponse } from './auth-response';
 import { TokenClaims } from './token-claims';
 import { environment } from 'src/environments/environment';
 import { ApiPaths } from '../shared/api-paths';
+import { ResetPasswordResponse } from '../account/settings/reset-password/resset-password-result';
+import { ResetPasswordRequest } from '../account/settings/reset-password/reset-password-request';
 
 @Injectable({
   providedIn: 'root'
@@ -63,11 +65,21 @@ export class AuthService {
       );
   }
 
+  resetPassword(
+    resetPasswordRequest: ResetPasswordRequest
+  ): Observable<ResetPasswordResponse> {
+    return this.http.post<ResetPasswordResponse>(
+      environment.apiUrl + ApiPaths.Identity + ApiPaths.ResetPassword,
+      resetPasswordRequest
+    );
+  }
+
   logout(): void {
     this.user.next(null);
     this.router.navigate(['/auth']);
     localStorage.removeItem('userData');
     localStorage.removeItem('rememberMe');
+    console.log('logout');
   }
 
   autoLogin(): void {

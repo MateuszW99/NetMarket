@@ -30,10 +30,12 @@ export class AccountComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.userSubscription = this.authService.user.subscribe((user: User) => {
-      if (new Date() > new Date(user.tokenExpirationDate)) {
-        this.authService.logout();
-      } else {
-        this.user = user;
+      if (user) {
+        if (new Date() > new Date(user.tokenExpirationDate)) {
+          this.authService.logout();
+        } else {
+          this.user = user;
+        }
       }
     });
   }

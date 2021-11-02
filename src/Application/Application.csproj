@@ -30,13 +30,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Models\ApiModels\Brands\Commands" />
-    <Folder Include="Models\ApiModels\Brands\Queries" />
-    <Folder Include="Models\ApiModels\Brands\Responses" />
-    <Folder Include="Models\ApiModels\Sizes" />
     <Folder Include="Models\ApiModels\Transactions\Queries" />
-    <Folder Include="Models\ApiModels\Transactions\Responses" />
-    <Folder Include="Models\ApiModels\UserSettings\Responses" />
   </ItemGroup>
 
   <ItemGroup>

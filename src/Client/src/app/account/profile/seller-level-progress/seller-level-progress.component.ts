@@ -18,8 +18,14 @@ export class SellerLevelProgressComponent {
   ]);
 
   getNeededSalesNumber(): number {
+
     if (this.salesCompleted < 100) {
-      return this.salesNeeded.get(this.sellerLevel) - this.salesCompleted;
+      let salesNeeded = this.salesNeeded.get(this.sellerLevel) - this.salesCompleted;
+      
+      if(salesNeeded < 0)
+        return 0;
+      
+      return salesNeeded;
     }
 
     return 0;

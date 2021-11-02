@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using Application.Common.Interfaces;
@@ -12,6 +13,14 @@ namespace Application.Services
     public class UserSettingsService : IUserSettingsService
     {
         private readonly IApplicationDbContext _context;
+
+        private readonly IDictionary<SellerLevel, int> _salesNeededToUpdateSellerLevel = new Dictionary<SellerLevel, int>
+        {
+            { SellerLevel.Beginner, 3 },
+            { SellerLevel.Intermediate, 10 },
+            { SellerLevel.Advanced, 25 },
+            { SellerLevel.Business, 100 }
+        };
 
         public UserSettingsService(IApplicationDbContext context)
         {
@@ -64,7 +73,6 @@ namespace Application.Services
                 await CreateUserSettingsAsync(userId, request, cancellationToken);
                 return;
             }
-
             
             userSettings.FirstName = string.IsNullOrEmpty(request.FirstName) ? userSettings.FirstName : request.FirstName;
             userSettings.LastName = string.IsNullOrEmpty(request.LastName) ? userSettings.LastName : request.LastName;
@@ -73,21 +81,20 @@ namespace Application.Services
 
             userSettings.BillingStreet = string.IsNullOrEmpty(request.BillingStreet) ? userSettings.BillingStreet : request.BillingStreet;
             userSettings.BillingAddressLine1 = string.IsNullOrEmpty(request.BillingAddressLine1) ? userSettings.BillingAddressLine1 : request.BillingAddressLine1;
-            userSettings.BillingAddressLine2 = string.IsNullOrEmpty(request.BillingAddressLine2) ? userSettings.BillingAddressLine2 : request.BillingAddressLine2;
+            userSettings.BillingAddressLine2 = request.BillingAddressLine2;
             userSettings.BillingZipCode = string.IsNullOrEmpty(request.BillingZipCode) ? userSettings.BillingZipCode : request.BillingZipCode;
             userSettings.BillingCountry = string.IsNullOrEmpty(request.BillingCountry) ? userSettings.BillingCountry : request.BillingCountry;
             
             userSettings.ShippingStreet = string.IsNullOrEmpty(request.ShippingStreet) ? userSettings.ShippingStreet : request.ShippingStreet;
             userSettings.ShippingAddressLine1 = string.IsNullOrEmpty(request.ShippingAddressLine1) ? userSettings.ShippingAddressLine1 : request.ShippingAddressLine1;
-            userSettings.ShippingAddressLine2 = string.IsNullOrEmpty(request.ShippingAddressLine2) ? userSettings.ShippingAddressLine2 : request.ShippingAddressLine2;
+            userSettings.ShippingAddressLine2 = request.ShippingAddressLine2;
             userSettings.ShippingZipCode = string.IsNullOrEmpty(request.ShippingZipCode) ? userSettings.ShippingZipCode : request.ShippingZipCode;
             userSettings.ShippingCountry = string.IsNullOrEmpty(request.ShippingCountry) ? userSettings.ShippingCountry : request.ShippingCountry;
             
             await _context.SaveChangesAsync(cancellationToken);
         }
 
-        public async Task CreateUserSettingsAsync(Guid userId, UpdateUserSettingsCommand request,
-            CancellationToken cancellationToken)
+        public async Task CreateUserSettingsAsync(Guid userId, UpdateUserSettingsCommand request, CancellationToken cancellationToken)
         {
             var userSettings = new UserSettings()
             {
@@ -113,6 +120,22 @@ namespace Application.Services
 
             await _context.UserSettings.AddAsync(userSettings, cancellationToken);
             await _context.SaveChangesAsync(cancellationToken);
+        }
+
+        public async Task<bool> TryUpdateUserSellerLevel(Guid userId, CancellationToken cancellationToken)
+        {
+            var levelUpdated = false;
+            var userSettings = await _context.UserSettings.FirstOrDefaultAsync(x => x.UserId == userId, cancellationToken);
+            userSettings.SalesCompleted += 1;
+
+            if (_salesNeededToUpdateSellerLevel[userSettings.SellerLevel] >= userSettings.SalesCompleted)
+            {
+                userSettings.SellerLevel++;
+                levelUpdated = true;
+            }
+            await _context.SaveChangesAsync(cancellationToken);
+            
+            return levelUpdated;
         }
     }
 }

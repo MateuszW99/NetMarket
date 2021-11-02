@@ -11,8 +11,12 @@ mat-sidenav {
     border-radius: 10px;
     margin: 16px;
     margin-left: 32px;
-    /* font-size: 2rem; */
 }
+@media only screen and (max-width: 768px) {
+    .content {
+        margin-right: 32px;
+    }
+  }
 
 .menu-button {
     width: 100%;

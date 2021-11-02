@@ -21,14 +21,12 @@
                 <div class="row">
                     <div class="col-7 border-end border-1 border-dark d-flex justify-content-center align-items-center">
                         <div *ngIf="itemCard.lowestAsk.price !== null">
-                            {{ itemCard.lowestAsk.price | currency }}
+                            {{ itemCard.lowestAsk.item.lowestAsk | currency }}
                             <br>
                             Lowest Ask
                         </div>
                         <div *ngIf="itemCard.lowestAsk.price === null">
                             No Asks
-                            <br>
-                            Retail price
                         </div>
                     </div>
                     <div class="col-5 d-flex justify-content-center align-items-center">
@@ -40,13 +38,12 @@
                 <div class="row">
                     <div class="col-7 border-end border-1 border-dark d-flex justify-content-center align-items-center">
                         <div *ngIf="itemCard.highestBid.price !== null">
-                            {{ itemCard.highestBid.price | currency}}
+                            {{ itemCard.highestBid.item.highestBid| currency}}
                             <br>
                             Highest Bid
                         </div>
                         <div *ngIf="itemCard.highestBid.price === null">
                             No Bids
-                            <br>
                         </div>
                     </div>
                     <div class="col-5 d-flex justify-content-center align-items-center">

@@ -47,9 +47,13 @@ import { SellerLevelComponent } from './account/profile/seller-level/seller-leve
 import { SellerLevelProgressComponent } from './account/profile/seller-level-progress/seller-level-progress.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
-import { BidsComponent as AccountBidsComponent } from './account/bids/bids.component';
 import { AsksComponent } from './shared/asks/asks.component';
 import { BidsComponent } from './shared/bids/bids.component';
+import { UserBidsComponent } from './account/user-bids/user-bids.component';
+import { UserAsksComponent } from './account/user-asks/user-asks.component';
+import { UserOrdersTableComponent } from './account/user-orders-table/user-orders-table.component';
+import { OrderEditComponent } from './account/user-orders-table/order-edit/order-edit.component';
+import { ResetPasswordComponent } from './account/settings/reset-password/reset-password.component';
 
 @NgModule({
   declarations: [
@@ -87,7 +91,11 @@ import { BidsComponent } from './shared/bids/bids.component';
     FeeInfoComponent,
     SellerLevelComponent,
     SellerLevelProgressComponent,
-    AccountBidsComponent
+    UserBidsComponent,
+    UserAsksComponent,
+    UserOrdersTableComponent,
+    OrderEditComponent,
+    ResetPasswordComponent
   ],
   imports: [
     BrowserModule,

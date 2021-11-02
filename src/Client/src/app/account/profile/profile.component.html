@@ -1,25 +1,25 @@
-<div class="mt-5">
-    <app-loading-spinner *ngIf="loading"></app-loading-spinner>
-</div>
-<div class="container mt-3" *ngIf="loading === false">
-    <div class="row">
-        <div class="col-12 my-3">
-            <h1 class="text-center">
-                Profile
-            </h1>
+    <div class="mt-5" *ngIf="loading">
+        <app-loading-spinner></app-loading-spinner>
+    </div>
+    <div class="container mt-3" *ngIf="loading === false">
+        <div class="row">
+            <div class="col-12 my-3">
+                <h1 class="text-center">
+                    Profile
+                </h1>
+            </div>
+        </div>
+        <div class="row mb-5">
+            <div class="col-5 offset-1 border-2 border-dark border-end">
+                <app-seller-level [sellerLevel]="userSettings.sellerLevel"></app-seller-level>
+            </div>
+            <div class="col-5 mt-3 ms-2">
+               <app-seller-level-progress [sellerLevel]="userSettings.sellerLevel" [salesCompleted]="userSettings.salesCompleted"></app-seller-level-progress>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-xl-3 col-sm-6 col-12 text-center d-flex justify-content-center" *ngFor="let category of categories">
+                <app-fee-info [category]="category" [sellerLevel]="userSettings.sellerLevel"></app-fee-info>
+            </div>
         </div>
     </div>
-    <div class="row mb-5">
-        <div class="col-5 offset-1 border-2 border-dark border-end">
-            <app-seller-level [sellerLevel]="userSettings.sellerLevel"></app-seller-level>
-        </div>
-        <div class="col-5 mt-3 ms-2">
-           <app-seller-level-progress [sellerLevel]="userSettings.sellerLevel" [salesCompleted]="userSettings.salesCompleted"></app-seller-level-progress>
-        </div>
-    </div>
-    <div class="row mt-5">
-        <div class="col-xl-3 col-sm-6 col-12 text-center d-flex justify-content-center" *ngFor="let category of categories">
-            <app-fee-info [category]="category" [sellerLevel]="userSettings.sellerLevel"></app-fee-info>
-        </div>
-    </div>
-</div>
