@@ -7,8 +7,10 @@ using Application.Common.Exceptions;
 using Application.Common.Interfaces;
 using Application.Common.Models;
 using Application.Models.ApiModels.Transactions.Commands;
+using Domain.Common;
 using Domain.Entities;
 using Domain.Enums;
+using Domain.Events;
 using Microsoft.EntityFrameworkCore;
 
 namespace Application.Services
@@ -142,9 +144,10 @@ namespace Application.Services
                 TotalBuyerCost = bid.Price + bid.BuyerFee,
                 BuyerFee = bid.BuyerFee,
                 StartDate = startDate,
-                Status = TransactionStatus.Started
+                Status = TransactionStatus.Started,
+                DomainEvents = new List<DomainEvent> { new TransactionInitializedEvent(ask.CreatedBy) }
             };
-
+            
             await _context.Transactions.AddAsync(transaction, cancellationToken);
             await _context.SaveChangesAsync(cancellationToken);
         }
