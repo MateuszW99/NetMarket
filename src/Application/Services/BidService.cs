@@ -13,10 +13,12 @@ namespace Application.Services
     public class BidService : IBidService
     {
         private readonly IApplicationDbContext _context;
+        private readonly string _currentUserId;
 
-        public BidService(IApplicationDbContext context)
+        public BidService(IApplicationDbContext context, IHttpService httpService)
         {
             _context = context;
+            _currentUserId = httpService.GetUserId();
         }
 
         public async Task<Bid> GetBidByIdAsync(Guid bidId)
@@ -48,8 +50,17 @@ namespace Application.Services
                 .Include(x => x.Size)
                 .Where(x => x.ItemId == itemId)
                 .ToListAsync();
-
-            return bids;
+            
+            if (!string.IsNullOrEmpty(_currentUserId))
+            {
+                bids.RemoveAll(x => x.CreatedBy == Guid.Parse(_currentUserId));
+                bids.ForEach(x =>
+                {
+                    x.Item.Bids.RemoveAll(x => x.CreatedBy == Guid.Parse(_currentUserId));
+                });
+            }
+                
+            return bids.OrderByDescending(x => x.Price).ToList();
         }
 
         public async Task CreateBidAsync(CreateBidCommand command, decimal fee, CancellationToken cancellationToken)

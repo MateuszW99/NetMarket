@@ -20,11 +20,11 @@ namespace Application.UnitTests.Services
     {
         private readonly IBidService sut;
         private readonly Mock<IApplicationDbContext> _context;
-
         public BidServiceTests()
         {
             _context = new Mock<IApplicationDbContext>();
-            sut = new BidService(_context.Object);
+            var httpService = new Mock<IHttpService>();
+            sut = new BidService(_context.Object, httpService.Object);
         }
         
         [Fact]

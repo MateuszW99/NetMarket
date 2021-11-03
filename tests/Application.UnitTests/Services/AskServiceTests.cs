@@ -24,7 +24,8 @@ namespace Application.UnitTests.Services
         public AskServiceTests()
         {
             _context = new Mock<IApplicationDbContext>();
-            sut = new AskService(_context.Object);
+            var httpService = new Mock<IHttpService>();
+            sut = new AskService(_context.Object, httpService.Object);
         }
         
         [Fact]
