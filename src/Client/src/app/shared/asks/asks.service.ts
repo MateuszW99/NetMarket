@@ -24,10 +24,6 @@ export class AsksService {
     });
   }
 
-  sellNow() {
-
-  }
-
   getUserAsks(pageIndex: number): void {
     this.loading.next(true);
 
