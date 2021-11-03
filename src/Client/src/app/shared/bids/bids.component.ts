@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ItemDetails } from "../items/item-details/item-details.model";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { BidsService } from "./bids.service";
@@ -9,7 +9,8 @@ import { AuthService } from "../../auth/auth.service";
 import { FeesService } from "../services/fees/fees.service";
 import { Subscription } from "rxjs";
 import { User } from "../../auth/user.model";
-import { debounceTime, distinctUntilChanged } from "rxjs/operators";
+import { catchError, debounceTime, distinctUntilChanged } from "rxjs/operators";
+import { TransactionService } from "../services/orders/transaction.service";
 
 @Component({
   selector: 'app-bids',
@@ -44,6 +45,7 @@ export class BidsComponent implements OnInit, OnDestroy {
     private authService: AuthService,
     private toastrService: ToastrService,
     private feesService: FeesService,
+    private transactionService: TransactionService,
     private router: Router) { }
 
   ngOnInit(): void {
@@ -113,7 +115,20 @@ export class BidsComponent implements OnInit, OnDestroy {
   }
 
   onBuyNow(): void {
-
+    this.transactionService.buyNow(this.itemDetails.lowestAsk.id)
+      .pipe(
+        catchError(err => {
+          this.router.navigate([`/items/${this.itemDetails.item.id}`]);
+          this.toastrService.clear();
+          this.toastrService.error('An error occurred. Try again later.');
+          return err;
+        })
+      )
+      .subscribe(() => {
+        this.router.navigate([`/items/${this.itemDetails.item.id}`]);
+        this.toastrService.clear();
+        this.toastrService.success('Congratulations! You just sold an item!');
+      });
   }
 
   ngOnDestroy(): void {
@@ -127,15 +142,13 @@ export class BidsComponent implements OnInit, OnDestroy {
   private onPriceChange(): void {
     const userPrice = this.form.controls['price'].value;
     const lowestAskPrice = +this.itemDetails.lowestAsk.price;
-    this.userWantsToPlaceBid = userPrice < lowestAskPrice;
+    this.userWantsToPlaceBid = userPrice <= lowestAskPrice;
 
-    if (this.userWantsToPlaceBid) {
+    if (this.userWantsToPlaceBid && userPrice !== lowestAskPrice) {
+      this.toastrService.clear();
       this.label = 'Place Bid';
       this.formAction = this.onPlaceBid;
     } else {
-      if (userPrice === lowestAskPrice) {
-        return;
-      }
       this.label = 'Buy Now';
       this.formAction = this.onBuyNow;
       this.form.controls['price'].setValue(lowestAskPrice);

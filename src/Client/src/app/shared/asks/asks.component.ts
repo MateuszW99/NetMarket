@@ -1,4 +1,4 @@
-import { Component, DoCheck, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AsksService } from "./asks.service";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { ItemDetails } from "../items/item-details/item-details.model";
@@ -7,9 +7,10 @@ import { Router } from "@angular/router";
 import { Subscription } from "rxjs";
 import { SettingsService } from "../../account/settings.service";
 import { FeesService } from "../services/fees/fees.service";
-import { debounceTime, distinctUntilChanged } from "rxjs/operators";
+import {catchError, debounceTime, distinctUntilChanged} from "rxjs/operators";
 import { AuthService } from "../../auth/auth.service";
 import { User } from "../../auth/user.model";
+import { TransactionService } from "../services/orders/transaction.service";
 
 @Component({
   selector: 'app-asks',
@@ -44,6 +45,7 @@ export class AsksComponent implements OnInit, OnDestroy {
     private authService: AuthService,
     private toastrService: ToastrService,
     private feesService: FeesService,
+    private transactionService: TransactionService,
     private router: Router) { }
 
   ngOnInit(): void {
@@ -113,7 +115,20 @@ export class AsksComponent implements OnInit, OnDestroy {
   }
 
   onSellNow(): void {
-    // TODO: implement
+    this.transactionService.sellNow(this.itemDetails.highestBid.id)
+      .pipe(
+        catchError(err => {
+            this.router.navigate([`/items/${this.itemDetails.item.id}`]);
+            this.toastrService.clear();
+            this.toastrService.error('An error occurred. Try again later.');
+            return err;
+        })
+      )
+      .subscribe(() => {
+        this.router.navigate([`/items/${this.itemDetails.item.id}`]);
+        this.toastrService.clear();
+        this.toastrService.success('Congratulations! You just bought an item!');
+      });
   }
 
   ngOnDestroy(): void {
@@ -127,15 +142,13 @@ export class AsksComponent implements OnInit, OnDestroy {
   private onPriceChange(): void {
     const userPrice = this.form.controls['price'].value;
     const highestBidPrice = +this.itemDetails.highestBid.price;
-    this.userWantsToPlaceAsk = userPrice > highestBidPrice;
+    this.userWantsToPlaceAsk = userPrice >= highestBidPrice;
 
-    if (this.userWantsToPlaceAsk) {
+    if (this.userWantsToPlaceAsk && userPrice !== highestBidPrice) {
+      this.toastrService.clear();
       this.label = 'Place Ask';
       this.formAction = this.onPlaceAsk;
     } else {
-      if (userPrice === highestBidPrice) {
-        return;
-      }
       this.label = 'Sell Now';
       this.formAction = this.onSellNow;
       this.form.controls['price'].setValue(highestBidPrice);
