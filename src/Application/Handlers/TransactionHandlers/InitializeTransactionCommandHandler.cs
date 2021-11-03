@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
+using Application.Common.Exceptions;
 using Application.Common.Interfaces;
 using Application.Models.ApiModels.Transactions.Commands;
 using Domain;
@@ -81,6 +82,11 @@ namespace Application.Handlers.TransactionHandlers
             else
             {
                 throw new BadHttpRequestException("Wrong AskId or BidId");
+            }
+
+            if (ask.CreatedBy == bid.CreatedBy)
+            {
+                throw new FraudDetectedException($"Fraud detected for user: {ask.CreatedBy}");
             }
             
             var supervisorId = await _supervisorService.GetLeastLoadedSupervisorId(Roles.Supervisor);

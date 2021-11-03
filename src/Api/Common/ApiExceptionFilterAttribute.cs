@@ -21,6 +21,7 @@ namespace Api.Common
                 { typeof(ValidationException), HandleValidationException },
                 { typeof(NotFoundException), HandleNotFoundException },
                 { typeof(ForbiddenAccessException), HandleForbiddenAccessException },
+                { typeof(FraudDetectedException), HandleFraudFoundException }
             };
         }
 
@@ -99,6 +100,25 @@ namespace Api.Common
             context.ExceptionHandled = true;
         }
 
+        private void HandleFraudFoundException(ExceptionContext context)
+        {
+            var details = new ProblemDetails()
+            {
+                Status = StatusCodes.Status403Forbidden,
+                Title = "Fraud detected",
+                Type = "https://tools.ietf.org/html/rfc7231#section-6.5.3"
+            };
+            
+            _logger.LogError(context.Exception.Message);
+
+            context.Result = new ObjectResult(details)
+            {
+                StatusCode = details.Status
+            };
+
+            context.ExceptionHandled = true;
+        }
+        
         private void HandleInvalidModelStateException(ExceptionContext context)
         {
             var details = new ValidationProblemDetails(context.ModelState)
