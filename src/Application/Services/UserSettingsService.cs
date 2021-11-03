@@ -126,6 +126,12 @@ namespace Application.Services
         {
             var levelUpdated = false;
             var userSettings = await _context.UserSettings.FirstOrDefaultAsync(x => x.UserId == userId, cancellationToken);
+
+            if (userSettings is null)
+            {
+                return false;
+            } 
+            
             userSettings.SalesCompleted += 1;
 
             if (_salesNeededToUpdateSellerLevel[userSettings.SellerLevel] <= userSettings.SalesCompleted)
