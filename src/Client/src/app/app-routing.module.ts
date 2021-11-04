@@ -19,6 +19,9 @@ import { AsksComponent } from './shared/asks/asks.component';
 import { BidsComponent } from './shared/bids/bids.component';
 import { UserBidsComponent } from './account/user-bids/user-bids.component';
 import { UserAsksComponent } from './account/user-asks/user-asks.component';
+import { FaqComponent } from './faq/faq.component';
+import { AskFaqComponent } from './faq/ask-faq/ask-faq.component';
+import { CustomerServiceFaqComponent } from './faq/customer-service-faq/customer-service-faq.component';
 
 const routes: Routes = [
   //AUTH GUARD ussage example
@@ -82,6 +85,23 @@ const routes: Routes = [
     path: 'buy',
     component: BidsComponent
   },
+  {
+    path: 'faq',
+    component: FaqComponent
+  },
+  {
+    path: 'faq/ask',
+    component: AskFaqComponent
+  },
+  {
+    path: 'faq/bid',
+    component: AskFaqComponent
+  },
+  {
+    path: 'faq/customer-service',
+    component: CustomerServiceFaqComponent
+  },
+
   { path: '**', pathMatch: 'full', component: PageNotFoundComponent }
 ];
 
