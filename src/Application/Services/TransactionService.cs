@@ -147,6 +147,9 @@ namespace Application.Services
                 Status = TransactionStatus.Started,
                 DomainEvents = new List<DomainEvent> { new TransactionInitializedEvent(ask.CreatedBy) }
             };
+
+            ask.UsedInTransaction = true;
+            bid.UsedInTransaction = true;
             
             await _context.Transactions.AddAsync(transaction, cancellationToken);
             await _context.SaveChangesAsync(cancellationToken);
