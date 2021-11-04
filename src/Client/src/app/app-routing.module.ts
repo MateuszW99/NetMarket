@@ -22,6 +22,7 @@ import { UserAsksComponent } from './account/user-asks/user-asks.component';
 import { FaqComponent } from './faq/faq.component';
 import { AskFaqComponent } from './faq/ask-faq/ask-faq.component';
 import { CustomerServiceFaqComponent } from './faq/customer-service-faq/customer-service-faq.component';
+import { BidFaqComponent } from './faq/bid-faq/bid-faq.component';
 
 const routes: Routes = [
   //AUTH GUARD ussage example
@@ -95,7 +96,7 @@ const routes: Routes = [
   },
   {
     path: 'faq/bid',
-    component: AskFaqComponent
+    component: BidFaqComponent
   },
   {
     path: 'faq/customer-service',
