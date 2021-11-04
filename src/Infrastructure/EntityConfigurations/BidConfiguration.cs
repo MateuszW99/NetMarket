@@ -21,6 +21,8 @@ namespace Infrastructure.EntityConfigurations
             
             builder.Property(e => e.BuyerFee)
                 .HasColumnType("money");
+
+            builder.Property(e => e.UsedInTransaction).HasDefaultValue(false);
         }
     }
 }

@@ -49,6 +49,11 @@ namespace Infrastructure.Migrations
                     b.Property<Guid>("SizeId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<bool>("UsedInTransaction")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
+
                     b.HasKey("Id");
 
                     b.HasIndex("ItemId");
@@ -87,6 +92,11 @@ namespace Infrastructure.Migrations
 
                     b.Property<Guid>("SizeId")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("UsedInTransaction")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
 
                     b.HasKey("Id");
 
@@ -541,7 +551,7 @@ namespace Infrastructure.Migrations
             modelBuilder.Entity("Domain.Entities.Ask", b =>
                 {
                     b.HasOne("Domain.Entities.Item", "Item")
-                        .WithMany()
+                        .WithMany("Asks")
                         .HasForeignKey("ItemId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -560,7 +570,7 @@ namespace Infrastructure.Migrations
             modelBuilder.Entity("Domain.Entities.Bid", b =>
                 {
                     b.HasOne("Domain.Entities.Item", "Item")
-                        .WithMany()
+                        .WithMany("Bids")
                         .HasForeignKey("ItemId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -664,6 +674,13 @@ namespace Infrastructure.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Domain.Entities.Item", b =>
+                {
+                    b.Navigation("Asks");
+
+                    b.Navigation("Bids");
                 });
 #pragma warning restore 612, 618
         }
