@@ -142,7 +142,12 @@ export class AsksComponent implements OnInit, OnDestroy {
   private onPriceChange(): void {
     const userPrice = this.form.controls['price'].value;
     const highestBidPrice = +this.itemDetails.highestBid.price;
-    this.userWantsToPlaceAsk = userPrice >= highestBidPrice;
+
+    if (highestBidPrice === 0) {
+      this.userWantsToPlaceAsk = true;
+    } else {
+      this.userWantsToPlaceAsk = userPrice >= highestBidPrice;
+    }
 
     if (this.userWantsToPlaceAsk && userPrice !== highestBidPrice) {
       this.toastrService.clear();

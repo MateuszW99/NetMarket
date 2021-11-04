@@ -142,7 +142,12 @@ export class BidsComponent implements OnInit, OnDestroy {
   private onPriceChange(): void {
     const userPrice = this.form.controls['price'].value;
     const lowestAskPrice = +this.itemDetails.lowestAsk.price;
-    this.userWantsToPlaceBid = userPrice <= lowestAskPrice;
+
+    if (lowestAskPrice === 0) {
+      this.userWantsToPlaceBid = true;
+    } else {
+      this.userWantsToPlaceBid = userPrice >= lowestAskPrice;
+    }
 
     if (this.userWantsToPlaceBid && userPrice !== lowestAskPrice) {
       this.toastrService.clear();
