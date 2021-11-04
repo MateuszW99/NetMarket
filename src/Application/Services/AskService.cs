@@ -13,10 +13,12 @@ namespace Application.Services
     public class AskService : IAskService
     {
         private readonly IApplicationDbContext _context;
+        private readonly string _currentUserId;
 
-        public AskService(IApplicationDbContext context)
+        public AskService(IApplicationDbContext context, IHttpService httpService)
         {
             _context = context;
+            _currentUserId = httpService.GetUserId();
         }
 
         public async Task<Ask> GetAskByIdAsync(Guid askId)
@@ -49,7 +51,16 @@ namespace Application.Services
                 .Where(x => x.ItemId == itemId)
                 .ToListAsync();
 
-            return asks;
+            if (!string.IsNullOrEmpty(_currentUserId))
+            {
+                asks.RemoveAll(x => x.CreatedBy == Guid.Parse(_currentUserId));
+                asks.ForEach(x =>
+                {
+                    x.Item.Asks.RemoveAll(x => x.CreatedBy == Guid.Parse(_currentUserId));
+                });
+            }
+                
+            return asks.OrderBy(x => x.Price).ToList();
         }
 
         public async Task CreateAskAsync(Ask ask, CancellationToken cancellationToken)

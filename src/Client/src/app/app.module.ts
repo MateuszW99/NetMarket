@@ -54,6 +54,10 @@ import { UserAsksComponent } from './account/user-asks/user-asks.component';
 import { UserOrdersTableComponent } from './account/user-orders-table/user-orders-table.component';
 import { OrderEditComponent } from './account/user-orders-table/order-edit/order-edit.component';
 import { ResetPasswordComponent } from './account/settings/reset-password/reset-password.component';
+import { FaqComponent } from './faq/faq.component';
+import { CustomerServiceFaqComponent } from './faq/customer-service-faq/customer-service-faq.component';
+import { BidFaqComponent } from './faq/bid-faq/bid-faq.component';
+import { AskFaqComponent } from './faq/ask-faq/ask-faq.component';
 
 @NgModule({
   declarations: [
@@ -95,7 +99,11 @@ import { ResetPasswordComponent } from './account/settings/reset-password/reset-
     UserAsksComponent,
     UserOrdersTableComponent,
     OrderEditComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    FaqComponent,
+    CustomerServiceFaqComponent,
+    BidFaqComponent,
+    AskFaqComponent
   ],
   imports: [
     BrowserModule,
