@@ -7,9 +7,9 @@ import { Router } from "@angular/router";
 import { SettingsService } from "../../account/settings.service";
 import { AuthService } from "../../auth/auth.service";
 import { FeesService } from "../services/fees/fees.service";
-import { Subscription } from "rxjs";
+import { Subject, Subscription } from "rxjs";
 import { User } from "../../auth/user.model";
-import { catchError, debounceTime, distinctUntilChanged } from "rxjs/operators";
+import { catchError, debounceTime, distinctUntilChanged, takeUntil } from "rxjs/operators";
 import { TransactionService } from "../services/orders/transaction.service";
 
 @Component({
@@ -39,6 +39,8 @@ export class BidsComponent implements OnInit, OnDestroy {
   label: string;
   formAction = (): void => {};
 
+  private unsubscribe = new Subject();
+
   constructor(
     private bidsService: BidsService,
     private settingsService: SettingsService,
@@ -49,7 +51,11 @@ export class BidsComponent implements OnInit, OnDestroy {
     private router: Router) { }
 
   ngOnInit(): void {
-    // TODO: act in case data.X is empty/null
+    if (history.state.data === undefined) {
+      this.router.navigate(['..']);
+      return;
+    }
+
     this.itemDetails = history.state.data.item;
     this.size = history.state.data.size;
 
@@ -64,7 +70,7 @@ export class BidsComponent implements OnInit, OnDestroy {
       );
 
     if (this.user === null) {
-      this.router.navigate(['/error']);
+      this.router.navigate(['/auth']);
     }
 
     this.form = new FormGroup({
@@ -74,12 +80,14 @@ export class BidsComponent implements OnInit, OnDestroy {
     });
 
     this.loadingSubscription = this.settingsService.loading
+      .pipe(takeUntil(this.unsubscribe))
       .subscribe((isLoading) => {
           this.loading = isLoading;
         }
       );
 
     this.sellerLevelSubscription = this.settingsService.userSellerLevelChanged
+      .pipe(takeUntil(this.unsubscribe))
       .subscribe((sellerLevel) => {
           this.sellerLevel = sellerLevel;
           this.error = '';
@@ -87,6 +95,7 @@ export class BidsComponent implements OnInit, OnDestroy {
       );
 
     this.errorSubscription = this.settingsService.errorCatched
+      .pipe(takeUntil(this.unsubscribe))
       .subscribe((errorMessage) => {
           this.error = errorMessage;
         }
@@ -95,6 +104,7 @@ export class BidsComponent implements OnInit, OnDestroy {
     this.settingsService.getUserSellerLevel();
 
     this.feeSubscription = this.form.controls['price'].valueChanges.pipe(
+      takeUntil(this.unsubscribe),
       debounceTime(1000),
       distinctUntilChanged()
     ).subscribe(() => {
@@ -132,11 +142,8 @@ export class BidsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.sellerLevelSubscription.unsubscribe();
-    this.userSubscription.unsubscribe();
-    this.feeSubscription.unsubscribe();
-    this.errorSubscription.unsubscribe();
-    this.loadingSubscription.unsubscribe();
+    this.unsubscribe.next();
+    this.unsubscribe.complete();
   }
 
   private onPriceChange(): void {

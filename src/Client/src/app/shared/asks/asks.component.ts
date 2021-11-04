@@ -4,10 +4,10 @@ import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { ItemDetails } from "../items/item-details/item-details.model";
 import { ToastrService } from "ngx-toastr";
 import { Router } from "@angular/router";
-import { Subscription } from "rxjs";
+import { Subject, Subscription } from "rxjs";
 import { SettingsService } from "../../account/settings.service";
 import { FeesService } from "../services/fees/fees.service";
-import {catchError, debounceTime, distinctUntilChanged} from "rxjs/operators";
+import { catchError, debounceTime, distinctUntilChanged, takeUntil } from "rxjs/operators";
 import { AuthService } from "../../auth/auth.service";
 import { User } from "../../auth/user.model";
 import { TransactionService } from "../services/orders/transaction.service";
@@ -39,6 +39,8 @@ export class AsksComponent implements OnInit, OnDestroy {
   label: string;
   formAction = (): void => {};
 
+  private unsubscribe = new Subject();
+
   constructor(
     private askService: AsksService,
     private settingsService: SettingsService,
@@ -49,7 +51,10 @@ export class AsksComponent implements OnInit, OnDestroy {
     private router: Router) { }
 
   ngOnInit(): void {
-    // TODO: act in case data.X is empty/null
+    if (history.state.data === undefined) {
+      this.router.navigate(['..']);
+    }
+
     this.itemDetails = history.state.data.item;
     this.size = history.state.data.size;
 
@@ -64,7 +69,7 @@ export class AsksComponent implements OnInit, OnDestroy {
     );
 
     if (this.user === null) {
-      this.router.navigate(['/error']);
+      this.router.navigate(['/auth']);
     }
 
     this.form = new FormGroup({
@@ -74,12 +79,14 @@ export class AsksComponent implements OnInit, OnDestroy {
     });
 
     this.loadingSubscription = this.settingsService.loading
+      .pipe(takeUntil(this.unsubscribe))
       .subscribe((isLoading) => {
         this.loading = isLoading;
       }
     );
 
     this.sellerLevelSubscription = this.settingsService.userSellerLevelChanged
+      .pipe(takeUntil(this.unsubscribe))
       .subscribe((sellerLevel) => {
         this.sellerLevel = sellerLevel;
         this.error = '';
@@ -87,6 +94,7 @@ export class AsksComponent implements OnInit, OnDestroy {
     );
 
     this.errorSubscription = this.settingsService.errorCatched
+      .pipe(takeUntil(this.unsubscribe))
       .subscribe((errorMessage) => {
         this.error = errorMessage;
       }
@@ -95,6 +103,7 @@ export class AsksComponent implements OnInit, OnDestroy {
     this.settingsService.getUserSellerLevel();
 
     this.feeSubscription = this.form.controls['price'].valueChanges.pipe(
+      takeUntil(this.unsubscribe),
       debounceTime(1000),
       distinctUntilChanged()
     ).subscribe(() => {
@@ -132,11 +141,8 @@ export class AsksComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.sellerLevelSubscription.unsubscribe();
-    this.userSubscription.unsubscribe();
-    this.feeSubscription.unsubscribe();
-    this.errorSubscription.unsubscribe();
-    this.loadingSubscription.unsubscribe();
+    this.unsubscribe.next();
+    this.unsubscribe.complete();
   }
 
   private onPriceChange(): void {
