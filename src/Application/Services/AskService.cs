@@ -48,7 +48,7 @@ namespace Application.Services
             var asks = await _context.Asks
                 .Include(x => x.Item)
                 .Include(x => x.Size)
-                .Where(x => x.ItemId == itemId)
+                .Where(x => x.ItemId == itemId && !x.UsedInTransaction)
                 .ToListAsync();
 
             if (!string.IsNullOrEmpty(_currentUserId))

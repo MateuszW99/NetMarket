@@ -48,7 +48,7 @@ namespace Application.Services
             var bids = await _context.Bids
                 .Include(x => x.Item)
                 .Include(x => x.Size)
-                .Where(x => x.ItemId == itemId)
+                .Where(x => x.ItemId == itemId && !x.UsedInTransaction)
                 .ToListAsync();
             
             if (!string.IsNullOrEmpty(_currentUserId))
