@@ -127,7 +127,7 @@ export class BidsComponent implements OnInit, OnDestroy {
       .subscribe(() => {
         this.router.navigate([`/items/${this.itemDetails.item.id}`]);
         this.toastrService.clear();
-        this.toastrService.success('Congratulations! You just sold an item!');
+        this.toastrService.success('Congratulations! You just bought an item!');
       });
   }
 
