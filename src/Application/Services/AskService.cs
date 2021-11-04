@@ -67,7 +67,8 @@ namespace Application.Services
                 ItemId = Guid.Parse(command.ItemId),
                 Size = size,
                 Price = decimal.Parse(command.Price),
-                SellerFee = fee
+                SellerFee = fee,
+                UsedInTransaction = false
             };
 
             await _context.Asks.AddAsync(ask, cancellationToken);

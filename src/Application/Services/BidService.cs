@@ -61,7 +61,8 @@ namespace Application.Services
                 ItemId = Guid.Parse(command.ItemId),
                 Size = size,
                 Price = decimal.Parse(command.Price),
-                BuyerFee = fee
+                BuyerFee = fee,
+                UsedInTransaction = false
             };
 
             await _context.Bids.AddAsync(bid, cancellationToken);

@@ -231,6 +231,7 @@ namespace Application.UnitTests.Services
             newBid.ItemId.Should().Be(itemId);
             newBid.Price.Should().Be(price);
             newBid.BuyerFee.Should().Be(fee);
+            newBid.UsedInTransaction.Should().Be(false);
         }
 
         [Fact]
@@ -319,6 +320,7 @@ namespace Application.UnitTests.Services
             updatedBidFromDb.BuyerFee.Should().Be(newFee);
             updatedBidFromDb.CreatedBy.Should().Be(userId);
             updatedBidFromDb.LastModifiedBy.Should().Be(userId);
+            updatedBidFromDb.UsedInTransaction.Should().Be(false);
         }
         
         [Fact]
