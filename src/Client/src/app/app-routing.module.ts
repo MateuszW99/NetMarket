@@ -9,7 +9,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { Roles } from './auth/roles';
 import { CollectiblesComponent } from './collectibles/collectibles.component';
-import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { ElectronicsComponent } from './electronics/electronics.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { ItemDetailsComponent } from './shared/items/item-details/item-details.component';

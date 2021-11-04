@@ -1,9 +1,9 @@
 import { Component, DoCheck, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/auth/auth.service';
-import { ItemsService } from "../../shared/items/items.service";
-import { ItemsParams } from "../../shared/items/items-params";
-import { RoutingService } from "../../shared/services/routing/routing.service";
+import { ItemsService } from "../shared/items/items.service";
+import { ItemsParams } from "../shared/items/items-params";
+import { RoutingService } from "../shared/services/routing/routing.service";
 
 @Component({
   selector: 'app-search-bar',
