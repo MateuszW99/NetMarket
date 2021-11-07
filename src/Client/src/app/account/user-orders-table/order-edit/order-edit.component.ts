@@ -7,7 +7,6 @@ import { BidsService } from 'src/app/shared/bids/bids.service';
 import { SneakersSizes } from 'src/app/shared/size-modal/sneakers-sizes';
 import { StreetwearSizes } from 'src/app/shared/size-modal/streetwear-sizes';
 import { TableRow } from '../table-row';
-import { UpdateOrder } from './update-order';
 
 @Component({
   selector: 'app-order-edit',
@@ -52,27 +51,7 @@ export class OrderEditComponent implements OnInit {
     });
   }
 
-  onSubmit(): void {
-    const order: UpdateOrder = new UpdateOrder(
-      this.row.id,
-      this.nosize === true ? 'nosize' : this.form.value.size,
-      this.form.value.price
-    );
-
-    if (this.type === 'asks') {
-      this.updateSubscription = this.asksService
-        .updateAsk(order)
-        .subscribe(() => {
-          this.asksService.getUserAsks(1);
-        });
-    } else {
-      this.updateSubscription = this.bidsService
-        .updateBid(order)
-        .subscribe(() => {
-          this.bidsService.getUserBids(1);
-        });
-    }
-
+  onPageChanged(): void {
     this.dialogRef.close();
   }
 

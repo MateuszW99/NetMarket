@@ -10,7 +10,7 @@ import { BidsService } from 'src/app/shared/bids/bids.service';
 import { PagedList } from 'src/app/shared/paged-list';
 import { Pagination } from 'src/app/shared/pagination';
 import { TableRow } from './table-row';
-import { Router } from "@angular/router";
+import { OrderEditComponent } from "./order-edit/order-edit.component";
 
 @Component({
   selector: 'app-user-orders-table',
@@ -23,9 +23,11 @@ export class UserOrdersTableComponent implements OnInit, OnDestroy {
   ordersSubscription: Subscription;
   loadingSubscription: Subscription;
   errrorSubscription: Subscription;
+  deleteSubscription: Subscription;
   pageDestination: string;
   loading = true;
   error: string;
+  deleted = false;
   paginationData: Pagination;
   pageEvent: PageEvent;
   displayedColumns = [
@@ -41,8 +43,7 @@ export class UserOrdersTableComponent implements OnInit, OnDestroy {
   constructor(
     public dialog: MatDialog,
     private asksService: AsksService,
-    private bidsService: BidsService,
-    private router: Router
+    private bidsService: BidsService
   ) {}
 
   ngOnInit(): void {
@@ -54,18 +55,10 @@ export class UserOrdersTableComponent implements OnInit, OnDestroy {
   }
 
   onEdit(row: TableRow): void {
-    this.router.navigate(['/sell',
-      {
-        data: {
-          item: {
-            id: row.id,
-            name: row.name
-          },
-          size: row.size,
-          price: row.price
-        }
-      }
-    ]);
+    this.dialog.open(OrderEditComponent, {
+      width: '600px',
+      data: { type: this.type, row: row }
+    });
   }
 
   getRows(data: PagedList<Ask | Bid>): TableRow[] {
@@ -156,6 +149,24 @@ export class UserOrdersTableComponent implements OnInit, OnDestroy {
       totalPages: orders.totalPages,
       totalCount: orders.totalCount
     };
+  }
+
+  onDelete(row: TableRow) {
+    if (this.type === 'asks') {
+      this.deleteSubscription = this.asksService
+        .deleteAsk(row.id)
+        .subscribe(() => {
+          this.deleted = true;
+          this.asksService.getUserAsks(1);
+        });
+    } else {
+      this.deleteSubscription = this.bidsService
+        .deleteBid(row.id)
+        .subscribe(() => {
+          this.deleted = true;
+          this.bidsService.getUserBids(1);
+        });
+    }
   }
 
   ngOnDestroy(): void {
