@@ -49,6 +49,11 @@ namespace Infrastructure.Migrations
                     b.Property<Guid>("SizeId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<bool>("UsedInTransaction")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
+
                     b.HasKey("Id");
 
                     b.HasIndex("ItemId");
@@ -87,6 +92,11 @@ namespace Infrastructure.Migrations
 
                     b.Property<Guid>("SizeId")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("UsedInTransaction")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
 
                     b.HasKey("Id");
 
@@ -282,11 +292,19 @@ namespace Infrastructure.Migrations
                     b.Property<Guid>("CreatedBy")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("FirstName")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
                     b.Property<DateTime?>("LastModified")
                         .HasColumnType("datetime2");
 
                     b.Property<Guid?>("LastModifiedBy")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("LastName")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("PaypalEmail")
                         .HasMaxLength(40)
@@ -533,7 +551,7 @@ namespace Infrastructure.Migrations
             modelBuilder.Entity("Domain.Entities.Ask", b =>
                 {
                     b.HasOne("Domain.Entities.Item", "Item")
-                        .WithMany()
+                        .WithMany("Asks")
                         .HasForeignKey("ItemId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -552,7 +570,7 @@ namespace Infrastructure.Migrations
             modelBuilder.Entity("Domain.Entities.Bid", b =>
                 {
                     b.HasOne("Domain.Entities.Item", "Item")
-                        .WithMany()
+                        .WithMany("Bids")
                         .HasForeignKey("ItemId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -656,6 +674,13 @@ namespace Infrastructure.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Domain.Entities.Item", b =>
+                {
+                    b.Navigation("Asks");
+
+                    b.Navigation("Bids");
                 });
 #pragma warning restore 612, 618
         }

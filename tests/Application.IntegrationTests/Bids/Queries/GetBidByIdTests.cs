@@ -40,7 +40,7 @@ namespace Application.IntegrationTests.Bids.Queries
             var createBidCommand = new CreateBidCommand()
             {
                 ItemId = item.Id.ToString(),
-                SizeId = size.Id.ToString(),
+                Size = size.Value,
                 Price = price.ToString(CultureInfo.InvariantCulture)
             };
             var createBidRequest = new HttpRequestMessage(HttpMethod.Post, new Uri($"{Address.ApiBase}/{Address.Bids}", UriKind.Relative));
@@ -96,7 +96,7 @@ namespace Application.IntegrationTests.Bids.Queries
             var createBidCommand = new CreateBidCommand()
             {
                 ItemId = item.Id.ToString(),
-                SizeId = size.Id.ToString(),
+                Size = size.Value,
                 Price = price.ToString(CultureInfo.InvariantCulture)
             };
             var createBidRequest = new HttpRequestMessage(HttpMethod.Post, new Uri($"{Address.ApiBase}/{Address.Bids}", UriKind.Relative));

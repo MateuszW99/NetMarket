@@ -28,7 +28,7 @@ namespace Application.IntegrationTests.Bids.Commands
             var createBidCommand = new CreateBidCommand()
             {
                 ItemId = item.Id.ToString(),
-                SizeId = size.Id.ToString(),
+                Size = size.Value,
                 Price = "200"
             };
             var createBidRequest = new HttpRequestMessage(HttpMethod.Post, new Uri($"{Address.ApiBase}/{Address.Bids}", UriKind.Relative));
@@ -59,7 +59,7 @@ namespace Application.IntegrationTests.Bids.Commands
             var createBidCommand = new CreateBidCommand()
             {
                 ItemId = item.Id.ToString(),
-                SizeId = size.Id.ToString(),
+                Size = size.Value,
                 Price = "200"
             };
             var createBidRequest = new HttpRequestMessage(HttpMethod.Post, new Uri($"{Address.ApiBase}/{Address.Bids}", UriKind.Relative));

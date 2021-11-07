@@ -24,7 +24,8 @@ namespace Application.UnitTests.Services
         public ItemServiceTests()
         {
             _context = new Mock<IApplicationDbContext>();
-            sut = new ItemService(_context.Object);
+            var httpService = new Mock<IHttpService>();
+            sut = new ItemService(_context.Object, httpService.Object);
         }
 
         [Fact]
@@ -33,39 +34,63 @@ namespace Application.UnitTests.Services
             var id = Guid.NewGuid();
             var items = new List<Item>()
             {
-                new() { Id = id }
+                new() {Id = id}
+            };
+            var asks = new List<Ask>()
+            {
+                new() {Id = new Guid()}
+            };
+            var bids = new List<Bid>()
+            {
+                new() {Id = new Guid()}
             };
 
             var mockedItems = items.AsQueryable().BuildMockDbSet();
+            var mockedAsks = asks.AsQueryable().BuildMockDbSet();
+            var mockedBids = bids.AsQueryable().BuildMockDbSet();
             _context.Setup(x => x.Items).Returns(mockedItems.Object);
+            _context.Setup(x => x.Asks).Returns(mockedAsks.Object);
+            _context.Setup(x => x.Bids).Returns(mockedBids.Object);
 
             var result = await sut.GetItemByIdAsync(id);
 
             result.Should().NotBeNull();
             result.Id.Should().Be(id);
         }
-        
+
         [Fact]
         public async Task GetItemByIdAsync_Should_ReturnItem_When_ManyItemsExist()
         {
             var id = Guid.NewGuid();
             var items = new List<Item>()
             {
-                new() { Id = id },
-                new() {Id = Guid.NewGuid() },
-                new() {Id = Guid.NewGuid() },
-                new() {Id = Guid.NewGuid() }
+                new() {Id = id},
+                new() {Id = Guid.NewGuid()},
+                new() {Id = Guid.NewGuid()},
+                new() {Id = Guid.NewGuid()}
+            };
+             var asks = new List<Ask>()
+            {
+                new() {Id = new Guid()}
+            };
+            var bids = new List<Bid>()
+            {
+                new() {Id = new Guid()}
             };
 
             var mockedItems = items.AsQueryable().BuildMockDbSet();
+            var mockedAsks = asks.AsQueryable().BuildMockDbSet();
+            var mockedBids = bids.AsQueryable().BuildMockDbSet();
             _context.Setup(x => x.Items).Returns(mockedItems.Object);
+            _context.Setup(x => x.Asks).Returns(mockedAsks.Object);
+            _context.Setup(x => x.Bids).Returns(mockedBids.Object);
 
             var result = await sut.GetItemByIdAsync(id);
 
             result.Should().NotBeNull();
             result.Id.Should().Be(id);
         }
-        
+
         [Fact]
         public async Task GetItemByIdAsync_Should_ReturnItem_When_ItemWithGivenId_DoesntExist()
         {
@@ -86,16 +111,16 @@ namespace Application.UnitTests.Services
             var category = "Sneakers";
             var items = new List<Item>()
             {
-                new() { Id = Guid.NewGuid(), Category = category },
-                new() { Id = Guid.NewGuid(), Category = category },
-                new() { Id = Guid.NewGuid() }
+                new() {Id = Guid.NewGuid(), Category = category},
+                new() {Id = Guid.NewGuid(), Category = category},
+                new() {Id = Guid.NewGuid()}
             };
 
             var mockedItems = items.AsQueryable().BuildMockDbSet();
             _context.Setup(x => x.Items).Returns(mockedItems.Object);
 
             var result = await sut.GetItemsWithCategory(category).ToListAsync();
-            
+
             result.ForEach(x => x.Category.Should().Be(category));
             result.Count.Should().Be(2);
         }
@@ -104,28 +129,30 @@ namespace Application.UnitTests.Services
         [InlineData("Sneakers", "Electronics", 3)]
         [InlineData("Collectibles", "", 5)]
         [InlineData("Collectibles", null, 2)]
-        public async Task GetItemsWithCategory_Should_ReturnListOfItems_ForGivenCategory_When_ManyItemsWithDifferentCategoriesExist(string categoryToLookup, string otherCategory, int lookupCount)
+        public async Task
+            GetItemsWithCategory_Should_ReturnListOfItems_ForGivenCategory_When_ManyItemsWithDifferentCategoriesExist(
+                string categoryToLookup, string otherCategory, int lookupCount)
         {
             var items = new List<Item>()
             {
-                new() { Id = Guid.NewGuid(), Category = otherCategory},
-                new() { Id = Guid.NewGuid(), Category = otherCategory},
+                new() {Id = Guid.NewGuid(), Category = otherCategory},
+                new() {Id = Guid.NewGuid(), Category = otherCategory},
             };
             items.AddRange(Enumerable.Repeat(new Item()
                 {
                     Id = Guid.NewGuid(), Category = categoryToLookup
-                }, 
+                },
                 lookupCount));
-            
+
             var mockedItems = items.AsQueryable().BuildMockDbSet();
             _context.Setup(x => x.Items).Returns(mockedItems.Object);
 
             var result = await sut.GetItemsWithCategory(categoryToLookup).ToListAsync();
-            
+
             result.ForEach(x => x.Category.Should().Be(categoryToLookup));
             result.Count.Should().Be(lookupCount);
         }
-    
+
         [Fact]
         public async Task CreateItemAsync_Should_CreateItem()
         {
@@ -162,7 +189,7 @@ namespace Application.UnitTests.Services
 
             var command = new CreateItemCommand()
             {
-                Brand = new BrandObject() { Id = brandId.ToString(), Name = "Nile" },
+                Brand = new BrandObject() {Id = brandId.ToString(), Name = "Nile"},
                 Category = category,
                 Description = description,
                 Gender = gender,
@@ -177,9 +204,9 @@ namespace Application.UnitTests.Services
 
             var itemsBefore = new List<Item>();
             var mockedItemsBefore = itemsBefore.AsQueryable().BuildMockDbSet();
-            var brands = new List<Brand>() { brand };
+            var brands = new List<Brand>() {brand};
             var mockedBrands = brands.AsQueryable().BuildMockDbSet();
-            var itemsAfter = new List<Item>() { item };
+            var itemsAfter = new List<Item>() {item};
             var mockedItemsAfter = itemsAfter.AsQueryable().BuildMockDbSet();
 
             _context.Setup(x => x.Brands).Returns(mockedBrands.Object);
@@ -188,10 +215,10 @@ namespace Application.UnitTests.Services
                 .Callback(() => _context.Setup(x => x.Items).Returns(mockedItemsAfter.Object));
 
             var oldCount = _context.Object.Items.CountAsync();
-            
+
             await sut.CreateItemAsync(command, CancellationToken.None);
             var newCount = _context.Object.Items.CountAsync();
-            
+
             var newItem = await _context.Object.Items.FirstOrDefaultAsync(x => x.Id == id);
             newItem.Should().NotBeNull();
             newItem.Should().BeEquivalentTo(item);
@@ -251,11 +278,11 @@ namespace Application.UnitTests.Services
                 RetailPrice = price,
                 Name = name
             };
-            
+
             var command = new UpdateItemCommand()
             {
                 Id = id.ToString(),
-                Brand = new BrandObject() { Id = brandId.ToString(), Name = "Nike" },
+                Brand = new BrandObject() {Id = brandId.ToString(), Name = "Nike"},
                 Description = newDescriptions,
                 Make = make,
                 Model = newModel,
@@ -267,12 +294,12 @@ namespace Application.UnitTests.Services
                 RetailPrice = price,
                 Name = name
             };
-            
-            var itemsBefore = new List<Item>() { itemToUpdate };
+
+            var itemsBefore = new List<Item>() {itemToUpdate};
             var mockedItemsBefore = itemsBefore.AsQueryable().BuildMockDbSet();
-            var brands = new List<Brand>() { brand };
+            var brands = new List<Brand>() {brand};
             var mockedBrands = brands.AsQueryable().BuildMockDbSet();
-            var itemsAfter = new List<Item>() { updatedItem };
+            var itemsAfter = new List<Item>() {updatedItem};
             var mockedItemsAfter = itemsAfter.AsQueryable().BuildMockDbSet();
 
             _context.Setup(x => x.Brands).Returns(mockedBrands.Object);

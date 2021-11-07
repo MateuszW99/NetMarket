@@ -13,6 +13,7 @@ namespace Domain.Entities
         public Size Size { get; set; }
         public decimal Price { get; set; }
         public decimal SellerFee { get; set; }
+        public bool UsedInTransaction { get; set; }
         public List<DomainEvent> DomainEvents { get; set; }
     }
 }

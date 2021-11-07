@@ -37,14 +37,13 @@
             </ng-container>
             <ng-container *ngIf="isUserLoggedIn">
               <li *ngIf="isUserLoggedIn">
-                <a class="dropdown-item" (click)="logout()">Log Out</a>
+                <a type="button" class="dropdown-item" (click)="logout()">Log Out</a>
               </li>
             </ng-container>
           </ul>
         </li>
         <li class="nav-item">
-          <!-- TODO: add path to user settings -->
-          <a class="nav-link active" routerLink="{{ isUserLoggedIn ? '/path-to-userSettings' : '/auth/login' }}">
+          <a class="nav-link active" routerLink="/account">
             <img src="{{ accountIconPath }}" alt="Account" class="menu-icon">
           </a>
         </li>

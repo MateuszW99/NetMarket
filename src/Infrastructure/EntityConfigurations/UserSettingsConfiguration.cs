@@ -20,7 +20,13 @@ namespace Infrastructure.EntityConfigurations
                 .WithOne()
                 .HasForeignKey<UserSettings>(x => x.UserId)
                 .OnDelete(DeleteBehavior.Cascade);
+
+            builder.Property(e => e.FirstName)
+                .HasMaxLength(50);
             
+            builder.Property(e => e.LastName)
+                .HasMaxLength(50);
+
             builder.Property(e => e.SellerLevel)
                 .HasDefaultValue(SellerLevel.Beginner)
                 .HasConversion<string>();

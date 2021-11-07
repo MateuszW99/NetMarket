@@ -24,6 +24,8 @@ namespace Application.IntegrationTests.UserSettings.Commands
             
             var command = new UpdateUserSettingsCommand()
             {
+                FirstName = "John",
+                LastName = "Smith",
                 PaypalEmail = "test@test.com",
 
                 BillingStreet = "Test billing street",
@@ -52,6 +54,8 @@ namespace Application.IntegrationTests.UserSettings.Commands
             response.StatusCode.Should().Be(StatusCodes.Status200OK);
             userSettings.Id.Should().NotBeEmpty();
             userSettings.UserId.Should().Be(userId);
+            userSettings.FirstName.Should().Be(command.FirstName);
+            userSettings.LastName.Should().Be(command.LastName);
             userSettings.SellerLevel.Should().Be(SellerLevel.Beginner);
             userSettings.SalesCompleted.Should().Be(0);
             userSettings.PaypalEmail.Should().Be(command.PaypalEmail);
@@ -81,6 +85,8 @@ namespace Application.IntegrationTests.UserSettings.Commands
             // First, create settings
             var command = new UpdateUserSettingsCommand()
             {
+                FirstName = "John",
+                LastName = "Smith",
                 PaypalEmail = "test@test.com",
 
                 BillingStreet = "Test billing street",
@@ -105,6 +111,8 @@ namespace Application.IntegrationTests.UserSettings.Commands
             // Update settings
             command = new UpdateUserSettingsCommand()
             {
+                FirstName = "John",
+                LastName = "Smith",
                 PaypalEmail = "test@test.com",
 
                 BillingStreet = "Updated billing street",
@@ -134,6 +142,8 @@ namespace Application.IntegrationTests.UserSettings.Commands
             updatedSettingsResponse.StatusCode.Should().Be(StatusCodes.Status200OK);
             userSettings.Id.Should().NotBeEmpty();
             userSettings.UserId.Should().Be(userId);
+            userSettings.FirstName.Should().Be(command.FirstName);
+            userSettings.LastName.Should().Be(command.LastName);
             userSettings.SellerLevel.Should().Be(SellerLevel.Beginner);
             userSettings.SalesCompleted.Should().Be(0);
             userSettings.PaypalEmail.Should().Be(command.PaypalEmail);

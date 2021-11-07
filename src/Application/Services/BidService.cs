@@ -13,10 +13,12 @@ namespace Application.Services
     public class BidService : IBidService
     {
         private readonly IApplicationDbContext _context;
+        private readonly string _currentUserId;
 
-        public BidService(IApplicationDbContext context)
+        public BidService(IApplicationDbContext context, IHttpService httpService)
         {
             _context = context;
+            _currentUserId = httpService.GetUserId();
         }
 
         public async Task<Bid> GetBidByIdAsync(Guid bidId)
@@ -33,8 +35,9 @@ namespace Application.Services
         {
             var bids = await _context.Bids
                 .Include(x => x.Item)
+                    .ThenInclude(y => y.Asks)
                 .Include(x => x.Size)
-                .Where(x => x.CreatedBy == userId)
+                .Where(x => x.CreatedBy == userId && !x.UsedInTransaction)
                 .ToListAsync();
 
             return bids;
@@ -45,30 +48,50 @@ namespace Application.Services
             var bids = await _context.Bids
                 .Include(x => x.Item)
                 .Include(x => x.Size)
-                .Where(x => x.ItemId == itemId)
+                .Where(x => x.ItemId == itemId && !x.UsedInTransaction)
                 .ToListAsync();
-
-            return bids;
+            
+            if (!string.IsNullOrEmpty(_currentUserId))
+            {
+                bids.RemoveAll(x => x.CreatedBy == Guid.Parse(_currentUserId));
+                bids.ForEach(x =>
+                {
+                    x.Item.Bids.RemoveAll(x => x.CreatedBy == Guid.Parse(_currentUserId));
+                });
+            }
+                
+            return bids.OrderByDescending(x => x.Price).ToList();
         }
 
         public async Task CreateBidAsync(CreateBidCommand command, decimal fee, CancellationToken cancellationToken)
         {
+            var size = await _context.Sizes.FirstOrDefaultAsync(x => x.Value == command.Size);
+            
             var bid = new Bid()
             {
                 ItemId = Guid.Parse(command.ItemId),
-                SizeId = Guid.Parse(command.SizeId),
+                Size = size,
                 Price = decimal.Parse(command.Price),
-                BuyerFee = fee
+                BuyerFee = fee,
+                UsedInTransaction = false
             };
 
             await _context.Bids.AddAsync(bid, cancellationToken);
             await _context.SaveChangesAsync(cancellationToken);
         }
 
+        public async Task CreateBidAsync(Bid bid, CancellationToken cancellationToken)
+        {
+            await _context.Bids.AddAsync(bid, cancellationToken);
+            await _context.SaveChangesAsync(cancellationToken);
+        }
+
         public async Task UpdateBidAsync(Bid bid, UpdateBidCommand command, decimal fee, CancellationToken cancellationToken)
         {
+            var size = await _context.Sizes.FirstOrDefaultAsync(x => x.Value == command.Size);
+            
             bid.Price = Decimal.Parse(command.Price);
-            bid.SizeId = Guid.Parse(command.SizeId);
+            bid.Size = size;
             bid.BuyerFee = fee;
             await _context.SaveChangesAsync(cancellationToken);
         }

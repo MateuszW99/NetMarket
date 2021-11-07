@@ -14,6 +14,7 @@ namespace Application.Common.Interfaces
         Task<List<Bid>> GetUserBids(Guid userId);
         Task<List<Bid>> GetItemBids(Guid itemId);
         Task CreateBidAsync(CreateBidCommand command, decimal fee, CancellationToken cancellationToken);
+        Task CreateBidAsync(Bid bid, CancellationToken cancellationToken);
         Task UpdateBidAsync(Bid bid, UpdateBidCommand command, decimal fee, CancellationToken cancellationToken);
         Task DeleteBidAsync(Bid bid, CancellationToken cancellationToken);
     }

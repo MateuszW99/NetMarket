@@ -39,6 +39,8 @@ namespace Application.IntegrationTests.UserSettings.Queries
             
             userSettings.SellerLevel.Should().Be(SellerLevel.Beginner.ToString());
             userSettings.SalesCompleted.Should().Be(0);
+            userSettings.FirstName.Should().Be(string.Empty);
+            userSettings.LastName.Should().Be(string.Empty);
             userSettings.PaypalEmail.Should().Be(string.Empty);
             userSettings.BillingStreet.Should().Be(string.Empty);
             userSettings.BillingAddressLine1.Should().Be(string.Empty);
@@ -61,6 +63,8 @@ namespace Application.IntegrationTests.UserSettings.Queries
             // First, create user settings
             var command = new UpdateUserSettingsCommand()
             {
+                FirstName = "John",
+                LastName = "Smith",
                 PaypalEmail = "test@test.com",
 
                 BillingStreet = "Test billing street",
@@ -94,6 +98,8 @@ namespace Application.IntegrationTests.UserSettings.Queries
             userSettings.UserId.Should().Be(userId);
             userSettings.SellerLevel.Should().Be(SellerLevel.Beginner.ToString());
             userSettings.SalesCompleted.Should().Be(0);
+            userSettings.FirstName.Should().Be(command.FirstName);
+            userSettings.LastName.Should().Be(command.LastName);
             userSettings.PaypalEmail.Should().Be(command.PaypalEmail);
             userSettings.BillingStreet.Should().Be(command.BillingStreet);
             userSettings.BillingAddressLine1.Should().Be(command.BillingAddressLine1);

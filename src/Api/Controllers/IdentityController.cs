@@ -53,6 +53,19 @@ namespace Api.Controllers
                 Token = loginResponse.Token
             });
         }
+        
+        [HttpPost("resetPassword")]
+        public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordRequest request)
+        {
+            var resetPasswordResponse = await _identityService.ResetPassword(request.Email, request.Password, request.NewPassword);
+
+            if (!resetPasswordResponse.Success)
+            {
+                return BadRequest(resetPasswordResponse);
+            }
+            
+            return Ok(resetPasswordResponse);
+        }
 
 
     }

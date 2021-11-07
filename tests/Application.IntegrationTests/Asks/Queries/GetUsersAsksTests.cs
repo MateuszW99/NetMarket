@@ -46,7 +46,7 @@ namespace Application.IntegrationTests.Asks.Queries
                 var createAskCommand = new CreateAskCommand()
                 {
                     ItemId = item.Id.ToString(),
-                    SizeId = size.Id.ToString(),
+                    Size = "14",
                     Price = price.ToString(CultureInfo.InvariantCulture)
                 };
                 

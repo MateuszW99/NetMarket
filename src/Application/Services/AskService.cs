@@ -13,10 +13,12 @@ namespace Application.Services
     public class AskService : IAskService
     {
         private readonly IApplicationDbContext _context;
+        private readonly string _currentUserId;
 
-        public AskService(IApplicationDbContext context)
+        public AskService(IApplicationDbContext context, IHttpService httpService)
         {
             _context = context;
+            _currentUserId = httpService.GetUserId();
         }
 
         public async Task<Ask> GetAskByIdAsync(Guid askId)
@@ -33,8 +35,9 @@ namespace Application.Services
         {
             var asks = await _context.Asks
                 .Include(x => x.Item)
+                    .ThenInclude(y => y.Bids)
                 .Include(x => x.Size)
-                .Where(x => x.CreatedBy == userId)
+                .Where(x => x.CreatedBy == userId && !x.UsedInTransaction)
                 .ToListAsync();
 
             return asks;
@@ -45,20 +48,38 @@ namespace Application.Services
             var asks = await _context.Asks
                 .Include(x => x.Item)
                 .Include(x => x.Size)
-                .Where(x => x.ItemId == itemId)
+                .Where(x => x.ItemId == itemId && !x.UsedInTransaction)
                 .ToListAsync();
 
-            return asks;
+            if (!string.IsNullOrEmpty(_currentUserId))
+            {
+                asks.RemoveAll(x => x.CreatedBy == Guid.Parse(_currentUserId));
+                asks.ForEach(x =>
+                {
+                    x.Item.Asks.RemoveAll(x => x.CreatedBy == Guid.Parse(_currentUserId));
+                });
+            }
+                
+            return asks.OrderBy(x => x.Price).ToList();
+        }
+
+        public async Task CreateAskAsync(Ask ask, CancellationToken cancellationToken)
+        {
+            await _context.Asks.AddAsync(ask, cancellationToken);
+            await _context.SaveChangesAsync(cancellationToken);
         }
 
         public async Task CreateAskAsync(CreateAskCommand command, decimal fee, CancellationToken cancellationToken)
         {
+            var size = await _context.Sizes.FirstOrDefaultAsync(x => x.Value == command.Size, cancellationToken);
+            
             var ask = new Ask()
             {
                 ItemId = Guid.Parse(command.ItemId),
-                SizeId = Guid.Parse(command.SizeId),
+                Size = size,
                 Price = decimal.Parse(command.Price),
-                SellerFee = fee
+                SellerFee = fee,
+                UsedInTransaction = false
             };
 
             await _context.Asks.AddAsync(ask, cancellationToken);
@@ -67,8 +88,10 @@ namespace Application.Services
 
         public async Task UpdateAskAsync(Ask ask, UpdateAskCommand command, decimal fee, CancellationToken cancellationToken)
         {
+            var size = await _context.Sizes.FirstOrDefaultAsync(x => x.Value == command.Size);
+            
             ask.Price = Decimal.Parse(command.Price);
-            ask.SizeId = Guid.Parse(command.SizeId);
+            ask.Size = size;
             ask.SellerFee = fee;
             
             await _context.SaveChangesAsync(cancellationToken);

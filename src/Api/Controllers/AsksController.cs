@@ -29,9 +29,13 @@ namespace Api.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<PaginatedList<AskObject>>> GetUserAsks()
+        public async Task<ActionResult<PaginatedList<AskObject>>> GetUserAsks([FromQuery] SearchAsksQuery query)
         {
-            var result = await _mediator.Send(new GetUserAsksQuery());
+            var result = await _mediator.Send(new GetUserAsksQuery()
+            {
+                PageIndex = query.PageIndex, 
+                PageSize = query.PageSize
+            });
             return Ok(result);
         }
 

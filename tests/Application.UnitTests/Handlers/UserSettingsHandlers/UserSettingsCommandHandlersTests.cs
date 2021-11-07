@@ -35,6 +35,8 @@ namespace Application.UnitTests.Handlers.UserSettingsHandlers
         {
             var updateUserSettingsCommand = new UpdateUserSettingsCommand()
             {
+                FirstName = "John",
+                LastName = "Smith",
                 PaypalEmail = "user@test.com",
                 BillingStreet = "test",
                 BillingAddressLine1 = "test",
@@ -67,13 +69,16 @@ namespace Application.UnitTests.Handlers.UserSettingsHandlers
 
         [Theory]
         [MemberData(nameof(UserSettings))]
-        public async Task UpdateUserSettingsCommandHandlerShouldThrowWhenOneOrMorePropertiesAreInvalid(
+        public async Task UpdateUserSettingsCommandHandlerShouldThrowWhenOneOrMorePropertiesAreInvalid(string firstName,
+            string lastName,
             string paypalEmail, string billingStreet, string billingAddressLine1, string billingAddressLine2,
             string billingZipCode, string billingCountry, string shippingStreet, string shippingAddressLine1,
             string shippingAddressLine2, string shippingZipCode, string shippingCountry)
         {
             var updateUserSettingsCommand = new UpdateUserSettingsCommand()
             {
+                FirstName = firstName,
+                LastName = lastName,
                 PaypalEmail = paypalEmail,
                 BillingStreet = billingStreet,
                 BillingAddressLine1 = billingAddressLine1,
@@ -108,12 +113,12 @@ namespace Application.UnitTests.Handlers.UserSettingsHandlers
         {
             new object[]
             {
-                "user@test.com", "street", "address line 1", "address line 2", "123-45", "USA", "street",
+                "John", "Smith", "user@test.com", "street", "address line 1", "address line 2", "123-45", "USA", "street",
                 "address line 1", " address line 2", "1234-5", "USA"
             },
             new object[]
             {
-                "usertest.com", "street", "address line 1", "address line 2", "12345", "USA", "street",
+                "John", "Smith", "usertest.com", "street", "address line 1", "address line 2", "12345", "USA", "street",
                 "address line 1", " address line 2", "12345", "USA"
             }
         };

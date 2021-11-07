@@ -14,19 +14,21 @@ namespace Application.Services
     public class ItemService : IItemService
     {
         private readonly IApplicationDbContext _context;
+        private readonly string _currentUserId;
 
-        public ItemService(IApplicationDbContext context)
+        public ItemService(IApplicationDbContext context, IHttpService httpService)
         {
             _context = context;
+            _currentUserId = httpService.GetUserId();
         }
 
         public async Task CreateItemAsync(CreateItemCommand command, CancellationToken cancellationToken)
         {
             var brand = _context.Brands.FirstOrDefaultAsync(x => x.Id == Guid.Parse(command.Brand.Id));
-            
+
             var item = new Item()
             {
-                Brand = await brand, 
+                Brand = await brand,
                 Make = command.Make,
                 Model = command.Model,
                 Gender = command.Gender,
@@ -48,6 +50,13 @@ namespace Application.Services
             var item = await _context.Items
                 .Include(x => x.Brand)
                 .FirstOrDefaultAsync(x => x.Id == id);
+            
+            if (item != null)
+            {
+                item.Asks = await GetItemAsks(item.Id);
+                item.Bids = await GetItemBids(item.Id);
+            }
+           
 
             return item;
         }
@@ -58,7 +67,7 @@ namespace Application.Services
                 .Include(x => x.Brand)
                 .OrderBy(x => x.Name)
                 .AsQueryable();
-            
+
             return await FilterItems(itemsQuery, query);
         }
 
@@ -96,43 +105,44 @@ namespace Application.Services
             item.ThumbUrl = command.ThumbUrl;
             item.RetailPrice = command.RetailPrice;
             item.Category = command.Category;
-            
+
             if (item.BrandId != Guid.Parse(command.Brand.Id))
             {
-                var brand = await _context.Brands.FirstOrDefaultAsync(x => x.Id == Guid.Parse(command.Brand.Id), cancellationToken);
+                var brand = await _context.Brands.FirstOrDefaultAsync(x => x.Id == Guid.Parse(command.Brand.Id),
+                    cancellationToken);
                 item.Brand = brand;
             }
-            
+
             await _context.SaveChangesAsync(cancellationToken);
         }
-
+        
         private async Task<List<Item>> FilterItems(IQueryable<Item> itemsQuery, SearchItemsQuery query)
         {
             if (!string.IsNullOrEmpty(query.Name))
             {
                 itemsQuery = itemsQuery.Where(x => x.Name.ToLower().Contains(query.Name.ToLower()));
             }
-            
+
             if (!string.IsNullOrEmpty(query.Category))
             {
                 itemsQuery = itemsQuery.Where(x => x.Category.ToLower().Contains(query.Category.ToLower()));
             }
-            
+
             if (!string.IsNullOrEmpty(query.Make))
             {
                 itemsQuery = itemsQuery.Where(x => x.Make.ToLower().Contains(query.Make.ToLower()));
             }
-            
+
             if (!string.IsNullOrEmpty(query.Model))
             {
                 itemsQuery = itemsQuery.Where(x => x.Model.ToLower().Contains(query.Model.ToLower()));
             }
-            
+
             if (!string.IsNullOrEmpty(query.Gender))
             {
                 itemsQuery = itemsQuery.Where(x => x.Gender.ToLower().Contains(query.Gender.ToLower()));
             }
-            
+
             if (!string.IsNullOrEmpty(query.Brand))
             {
                 itemsQuery = itemsQuery.Where(x => x.Brand.Name.ToLower().Contains(query.Brand.ToLower()));
@@ -143,22 +153,23 @@ namespace Application.Services
             foreach (var item in items)
             {
                 item.Asks = await GetItemAsks(item.Id);
+                item.Bids = await GetItemBids(item.Id);
             }
-            
+
             if (string.IsNullOrEmpty(query.MinPrice) && string.IsNullOrEmpty(query.MaxPrice))
             {
                 return items;
             }
-            
-            return await FilterItemsByPrice(items, 
+
+            return await FilterItemsByPrice(items,
                 string.IsNullOrEmpty(query.MinPrice) ? Decimal.MinValue : Convert.ToDecimal(query.MinPrice),
                 string.IsNullOrEmpty(query.MaxPrice) ? Decimal.MaxValue : Convert.ToDecimal(query.MaxPrice));
         }
-        
+
         private async Task<List<Item>> FilterItemsByPrice(List<Item> items, decimal minPrice, decimal maxPrice)
         {
             items = items.Where(x => x.Asks != null).ToList();
-            
+
             for (var i = items.Count - 1; i >= 0; i--)
             {
                 var asks = items[i].Asks
@@ -173,15 +184,33 @@ namespace Application.Services
 
                 items[i].Asks = asks;
             }
-            
+
             return await Task.FromResult(items);
         }
 
         public async Task<List<Ask>> GetItemAsks(Guid itemId)
         {
-            return await _context.Asks
-                .Where(x => x.ItemId == itemId)
-                .AsNoTracking()
+            var query = _context.Asks.Where(x => x.ItemId == itemId).AsNoTracking();
+
+            if (string.IsNullOrEmpty(_currentUserId))
+            {
+                return await query.ToListAsync();
+            }
+
+            return await query.Where(x => x.CreatedBy != Guid.Parse(_currentUserId))
+                .ToListAsync();
+        }
+
+        public async Task<List<Bid>> GetItemBids(Guid itemId)
+        {
+            var query = _context.Bids.Where(x => x.ItemId == itemId).AsNoTracking();
+
+            if (string.IsNullOrEmpty(_currentUserId))
+            {
+                return await query.ToListAsync();
+            }
+
+            return await query.Where(x => x.CreatedBy != Guid.Parse(_currentUserId))
                 .ToListAsync();
         }
     }

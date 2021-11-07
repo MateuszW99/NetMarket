@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -32,7 +33,7 @@ namespace Application.IntegrationTests.Asks.Commands
             var createAskCommand = new CreateAskCommand()
             {
                 ItemId = item.Id.ToString(),
-                SizeId = oldSize.Id.ToString(),
+                Size = "14",
                 Price = oldPrice.ToString()
             };
             var createAskRequest = new HttpRequestMessage(HttpMethod.Post, new Uri($"{Address.ApiBase}/{Address.Asks}", UriKind.Relative));
@@ -47,7 +48,7 @@ namespace Application.IntegrationTests.Asks.Commands
             {
                 Id = oldAsk.Id.ToString(),
                 Price = newPrice.ToString(),
-                SizeId = newSize.Id.ToString()
+                Size = "14",
             };
             var updateAskRequest = new HttpRequestMessage(HttpMethod.Put, new Uri($"{Address.ApiBase}/{Address.Asks}/{oldAsk.Id.ToString()}", UriKind.Relative));
             updateAskRequest.Content = new StringContent(JsonConvert.SerializeObject(updateAskCommand), Encoding.UTF8, "application/json");
@@ -80,8 +81,8 @@ namespace Application.IntegrationTests.Asks.Commands
             var createAskCommand = new CreateAskCommand()
             {
                 ItemId = item.Id.ToString(),
-                SizeId = oldSize.Id.ToString(),
-                Price = "200"
+                Size = oldSize.Value,
+                Price = oldPrice.ToString(CultureInfo.InvariantCulture)
             };
             var createAskRequest = new HttpRequestMessage(HttpMethod.Post, new Uri($"{Address.ApiBase}/{Address.Asks}", UriKind.Relative));
             createAskRequest.Content = new StringContent(JsonConvert.SerializeObject(createAskCommand), Encoding.UTF8, "application/json");
@@ -95,7 +96,7 @@ namespace Application.IntegrationTests.Asks.Commands
             {
                 Id = oldAsk.Id.ToString(),
                 Price = newPrice.ToString(),
-                SizeId = newSize.Id.ToString()
+                Size = newSize.Value
             };
             var otherUserId = await AuthHelper.RunAsOtherUserAsync(_factory);
             var otherUserAuthResult = _identityService.LoginAsync(OtherUser.Email, OtherUser.Password);

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 
 @Component({
@@ -12,8 +12,13 @@ export class LoginComponent implements OnInit {
   form: FormGroup;
   errorMessage = '';
   isLoading = false;
+  returnUrl: string;
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.form = new FormGroup({
@@ -29,6 +34,8 @@ export class LoginComponent implements OnInit {
       ]),
       rememberMe: new FormControl(true)
     });
+
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
 
   onLogin(): void {
@@ -45,11 +52,10 @@ export class LoginComponent implements OnInit {
           this.errorMessage = '';
           this.form.reset();
           this.isLoading = false;
-          this.router.navigate(['/']);
+          this.router.navigateByUrl(this.returnUrl);
         },
         (error) => {
           this.isLoading = false;
-          console.log(error);
           if (
             !error.error.errorMessages ||
             error.error.errorMessages.length === 0

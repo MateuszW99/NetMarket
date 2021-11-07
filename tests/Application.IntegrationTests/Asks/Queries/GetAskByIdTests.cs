@@ -40,7 +40,7 @@ namespace Application.IntegrationTests.Asks.Queries
             var createAskCommand = new CreateAskCommand()
             {
                 ItemId = item.Id.ToString(),
-                SizeId = size.Id.ToString(),
+                Size = "14",
                 Price = price.ToString(CultureInfo.InvariantCulture)
             };
             var createAskRequest = new HttpRequestMessage(HttpMethod.Post, new Uri($"{Address.ApiBase}/{Address.Asks}", UriKind.Relative));
@@ -96,7 +96,7 @@ namespace Application.IntegrationTests.Asks.Queries
             var createAskCommand = new CreateAskCommand()
             {
                 ItemId = item.Id.ToString(),
-                SizeId = size.Id.ToString(),
+                Size = "14",
                 Price = price.ToString(CultureInfo.InvariantCulture)
             };
             var createAskRequest = new HttpRequestMessage(HttpMethod.Post, new Uri($"{Address.ApiBase}/{Address.Asks}", UriKind.Relative));
