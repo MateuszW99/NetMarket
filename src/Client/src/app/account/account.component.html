@@ -1,0 +1,49 @@
+<div class="container-fluid" *ngIf="user">
+    <mat-toolbar class="mat-elevation-z8 bg-light text-dark d-md-none">
+        <button mat-icon-button *ngIf="sidenav.mode === 'over'" (click)="sidenav.toggle()">
+            <mat-icon *ngIf="!sidenav.opened">
+                menu
+            </mat-icon>
+            <mat-icon *ngIf="sidenav.opened">
+                close
+            </mat-icon>
+        </button>
+    </mat-toolbar>
+
+    <mat-sidenav-container>
+        <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8 text-center m-3 border-end-0">
+
+            <mat-icon class="account-icon">person</mat-icon>
+            <h5 class="mb-3 text-truncate">{{ user.username }}</h5>
+
+            <mat-divider></mat-divider>
+
+            <a mat-button class="menu-button my-3" routerLink="profile">
+                <mat-icon class="me-3">account_circle</mat-icon>
+                <span>Profile</span>
+            </a>
+            <a mat-button class="menu-button mb-3" routerLink="bids">
+                <mat-icon class="me-3">shopping_cart</mat-icon>
+                <span>Bids</span>
+            </a>
+            <a mat-button class="menu-button mb-3" routerLink="asks">
+                <mat-icon class="me-3">sell</mat-icon>
+                <span>Asks</span>
+            </a>
+
+            <mat-divider></mat-divider>
+
+            <a mat-button class="menu-button my-3" routerLink="settings">
+                <mat-icon class="me-3">settings</mat-icon>
+                <span>Settings</span>
+            </a>
+
+        </mat-sidenav>
+        <mat-sidenav-content>
+            <div class="content mat-elevation-z8">
+                <router-outlet></router-outlet>
+            </div>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+
+</div>

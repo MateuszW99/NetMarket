@@ -6,29 +6,27 @@
     <app-size-modal (sizeChanged)="changeSize($event)" [category]="itemCard.item.category | lowercase"></app-size-modal>
     <div class="row mb-2">
         <div class="col-6 offset-3 text-center mt-3 mb-2">
-            <h1>{{ itemCard.item.name | titlecase}}</h1>
+            <h1>{{ itemCard.item.name | titlecase }}</h1>
         </div>
     </div>
     <div class="row mb-2 d-flex justify-content-center">
         <div class="col-sm col-md-3 border-end border-1 border-dark mb-2" *ngIf="size !== 'noSize'">
             <button class="btn btn-outline-secondary w-100 me-1" (click)="onSelectSize()">
-                Size: {{ size | uppercase}}<br />
+                Size: {{ size | uppercase }}<br />
                 <img src="assets/expand_more.svg" alt="Dropdown">
             </button>
         </div>
         <div class="col-md-6 border-end border-1 border-dark d-flex justify-content-between mb-2">
-            <button class="btn btn-success w-100 mx-1" routerLink="bid">
+            <button class="btn btn-success w-100 mx-1" routerLink="/buy" [state]="{ data: { item: this.itemCard, size: this.size } }">
                 <div class="row">
                     <div class="col-7 border-end border-1 border-dark d-flex justify-content-center align-items-center">
-                        <div *ngIf="itemCard.lowestAsk !== null">
-                            {{ itemCard.lowestAsk.price | currency}}
+                        <div *ngIf="itemCard.lowestAsk.price !== null">
+                            {{ itemCard.lowestAsk.item.lowestAsk | currency }}
                             <br>
                             Lowest Ask
                         </div>
-                        <div *ngIf="itemCard.lowestAsk === null">
-                            {{ itemCard.item.retailPrice | currency}}
-                            <br>
-                            Retail price
+                        <div *ngIf="itemCard.lowestAsk.price === null">
+                            No Asks
                         </div>
                     </div>
                     <div class="col-5 d-flex justify-content-center align-items-center">
@@ -36,20 +34,17 @@
                     </div>
                 </div>
             </button>
-            <button class="btn btn-danger w-100 mx-1" routerLink="ask">
+            <button class="btn btn-danger w-100 mx-1" routerLink="/sell" [state]="{ data: { item: this.itemCard, size: this.size } }">
                 <div class="row">
                     <div class="col-7 border-end border-1 border-dark d-flex justify-content-center align-items-center">
-                        <div *ngIf="itemCard.highestBid !== null">
-                            {{ itemCard.highestBid.price | currency}}
+                        <div *ngIf="itemCard.highestBid.price !== null">
+                            {{ itemCard.highestBid.item.highestBid| currency}}
                             <br>
                             Highest Bid
                         </div>
-                        <div *ngIf="itemCard.highestBid === null">
-                            {{ itemCard.item.retailPrice | currency}}
-                            <br>
-                            Retail price
+                        <div *ngIf="itemCard.highestBid.price === null">
+                            No Bids
                         </div>
-
                     </div>
                     <div class="col-5 d-flex justify-content-center align-items-center">
                         Sell or <br> Ask
@@ -65,7 +60,7 @@
     </div>
     <div class="row mb-2">
         <div class="col-6 offset-3 mb-2 d-flex justify-content-center">
-            <img [src]="itemCard.item.imageUrl" alt="item image" class="img-fluid">
+            <img [src]="itemCard.item.imageUrl" alt="{{ itemCard.item.name }}" class="img-fluid">
         </div>
     </div>
     <div class="row mb-2">

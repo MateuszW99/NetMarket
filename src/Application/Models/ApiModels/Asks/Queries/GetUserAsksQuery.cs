@@ -7,8 +7,8 @@ namespace Application.Models.ApiModels.Asks.Queries
 {
     public class GetUserAsksQuery : IRequest<PaginatedList<AskObject>>
     {        
-        public int PageIndex { get; init; } = 1;
-        public int PageSize { get; init; } = 10;
+        public int PageIndex { get; init; }
+        public int PageSize { get; init; }
     }
 
     public class GetUserAsksQueryValidator : AbstractValidator<GetUserAsksQuery>

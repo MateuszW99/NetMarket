@@ -73,7 +73,11 @@ namespace Application.UnitTests.Handlers.BidHandlers
         [Fact]
         public async Task GetUserBidsQueryHandlerShouldNotThrowWhenPropertiesAreNotInitialized()
         {
-            var getUserBidsQuery = new GetUserBidsQuery();
+            var getUserBidsQuery = new GetUserBidsQuery()
+            {
+                PageSize = 10,
+                PageIndex = 1
+            };
 
             var queryHandler = new GetUserBidsQueryHandler(null, null, null);
             var validationBehaviour = new ValidationBehaviour<GetUserBidsQuery, PaginatedList<BidObject>>(new List<GetUserBidsQueryValidator>

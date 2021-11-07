@@ -1,15 +1,28 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AccountComponent } from './account/account.component';
+import { ProfileComponent } from './account/profile/profile.component';
+import { SettingsComponent } from './account/settings/settings.component';
 import { AuthComponent } from './auth/auth.component';
+import { AuthGuard } from './auth/auth.guard';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
+import { Roles } from './auth/roles';
 import { CollectiblesComponent } from './collectibles/collectibles.component';
-import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { ElectronicsComponent } from './electronics/electronics.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { ItemDetailsComponent } from './shared/items/item-details/item-details.component';
 import { SneakersComponent } from './sneakers/sneakers.component';
 import { StreetwearComponent } from './streetwear/streetwear.component';
+import { AsksComponent } from './shared/asks/asks.component';
+import { BidsComponent } from './shared/bids/bids.component';
+import { UserBidsComponent } from './account/user-bids/user-bids.component';
+import { UserAsksComponent } from './account/user-asks/user-asks.component';
+import { FaqComponent } from './faq/faq.component';
+import { AskFaqComponent } from './faq/ask-faq/ask-faq.component';
+import { CustomerServiceFaqComponent } from './faq/customer-service-faq/customer-service-faq.component';
+import { BidFaqComponent } from './faq/bid-faq/bid-faq.component';
 
 const routes: Routes = [
   //AUTH GUARD ussage example
@@ -27,6 +40,22 @@ const routes: Routes = [
       { path: '', redirectTo: 'login', pathMatch: 'full' },
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent }
+    ]
+  },
+  {
+    path: 'account',
+    component: AccountComponent,
+    canActivate: [AuthGuard],
+    data: { roles: [Roles.User] },
+    children: [
+      { path: '', redirectTo: 'profile', pathMatch: 'full' },
+      { path: 'profile', component: ProfileComponent },
+      {
+        path: 'bids',
+        component: UserBidsComponent
+      },
+      { path: 'asks', component: UserAsksComponent },
+      { path: 'settings', component: SettingsComponent }
     ]
   },
   {
@@ -49,6 +78,31 @@ const routes: Routes = [
     path: 'collectibles',
     component: CollectiblesComponent
   },
+  {
+    path: 'sell',
+    component: AsksComponent
+  },
+  {
+    path: 'buy',
+    component: BidsComponent
+  },
+  {
+    path: 'faq',
+    component: FaqComponent
+  },
+  {
+    path: 'faq/ask',
+    component: AskFaqComponent
+  },
+  {
+    path: 'faq/bid',
+    component: BidFaqComponent
+  },
+  {
+    path: 'faq/customer-service',
+    component: CustomerServiceFaqComponent
+  },
+
   { path: '**', pathMatch: 'full', component: PageNotFoundComponent }
 ];
 

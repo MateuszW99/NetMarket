@@ -31,7 +31,7 @@ namespace Application.IntegrationTests.Asks.Commands
             var command = new CreateAskCommand()
             {
                 ItemId = item.Id.ToString(),
-                SizeId = size.Id.ToString(),
+                Size = "14",
                 Price = price.ToString()
             };
 
@@ -69,7 +69,7 @@ namespace Application.IntegrationTests.Asks.Commands
             var command = new CreateAskCommand()
             {
                 ItemId = item.Id.ToString(),
-                SizeId = size.Id.ToString(),
+                Size = "14",
                 Price = price.ToString()
             };
 
@@ -101,7 +101,7 @@ namespace Application.IntegrationTests.Asks.Commands
             var command = new CreateAskCommand()
             {
                 ItemId = item.Id.ToString(),
-                SizeId = size.Id.ToString(),
+                Size = "14",
                 Price = price.ToString()
             };
 

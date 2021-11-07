@@ -6,7 +6,8 @@ namespace Application.Models.ApiModels.UserSettings.Commands
 {
     public class UpdateUserSettingsCommand : IRequest
     {
-       
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
         public string PaypalEmail { get; set; }
 
         public string BillingStreet { get; set; }
@@ -27,6 +28,9 @@ namespace Application.Models.ApiModels.UserSettings.Commands
         public UpdateUserSettingsCommandValidator()
         
         {
+            RuleFor(x => x.FirstName).MaximumLength(50);
+            RuleFor(x => x.LastName).MaximumLength(50);
+
             RuleFor(x => x.PaypalEmail).EmailAddress().MaximumLength(40);
 
             RuleFor(x => x.BillingStreet).MaximumLength(50);

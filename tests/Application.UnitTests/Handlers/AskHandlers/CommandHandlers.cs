@@ -31,7 +31,7 @@ namespace Application.UnitTests.Handlers.AskHandlers
             {
                 ItemId = Guid.NewGuid().ToString(),
                 Price = "100.50",
-                SizeId = Guid.NewGuid().ToString()
+                Size = "14"
             };
 
             var commandHandler = new CreateAskCommandHandler(null, null, null, null, null);
@@ -50,13 +50,13 @@ namespace Application.UnitTests.Handlers.AskHandlers
         
         [Theory]
         [MemberData(nameof(Data))]
-        public async Task CreateAskCommandHandlerShouldThrowWhenOneOrMorePropertiesAreInvalid(string id, string itemId, string price, string sizeId)
+        public async Task CreateAskCommandHandlerShouldThrowWhenOneOrMorePropertiesAreInvalid(string id, string itemId, string price, string size)
         {
             var createAskCommand = new CreateAskCommand()
             {
                 ItemId = itemId,
                 Price = price,
-                SizeId = sizeId
+                Size = size
             };
 
             var commandHandler = new CreateAskCommandHandler(null, null, null, null, null);
@@ -86,7 +86,7 @@ namespace Application.UnitTests.Handlers.AskHandlers
             {
                 Id = Guid.NewGuid().ToString(),
                 Price = "100.50",
-                SizeId = Guid.NewGuid().ToString()
+                Size = "14"
             };
 
             var commandHandler = new UpdateAskCommandHandler(null, null, null, null, null);
@@ -105,13 +105,13 @@ namespace Application.UnitTests.Handlers.AskHandlers
         
         [Theory]
         [MemberData(nameof(Data))]
-        public async Task UpdateAskCommandHandlerShouldThrowWhenOneOrMorePropertiesAreInvalid(string id, string itemId, string price, string sizeId)
+        public async Task UpdateAskCommandHandlerShouldThrowWhenOneOrMorePropertiesAreInvalid(string id, string itemId, string price, string size)
         {
             var updateAskCommand = new UpdateAskCommand()
             {
                 Id = id,
                 Price = price,
-                SizeId = sizeId
+                Size = size
             };
 
             var commandHandler = new UpdateAskCommandHandler(null, null, null, null, null);

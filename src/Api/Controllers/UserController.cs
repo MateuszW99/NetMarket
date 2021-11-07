@@ -28,7 +28,14 @@ namespace Api.Controllers
             var result = await _mediator.Send(new GetUserSettingsQuery());
             return Ok(result);
         }
-        
+
+        [HttpGet("level")]
+        public async Task<ActionResult<string>> GetUserSellerLevel()
+        {
+            var result = await _mediator.Send(new GetUserSellerLevelQuery());
+            return Ok(result);
+        }
+
         [HttpPut]
         public async Task<IActionResult> UpdateUserSettings([FromBody] UpdateUserSettingsCommand command)
         {

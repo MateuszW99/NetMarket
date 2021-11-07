@@ -9,6 +9,8 @@ import { AuthResponse } from './auth-response';
 import { TokenClaims } from './token-claims';
 import { environment } from 'src/environments/environment';
 import { ApiPaths } from '../shared/api-paths';
+import { ResetPasswordResponse } from '../account/settings/reset-password/resset-password-result';
+import { ResetPasswordRequest } from '../account/settings/reset-password/reset-password-request';
 
 @Injectable({
   providedIn: 'root'
@@ -34,8 +36,6 @@ export class AuthService {
       )
       .pipe(
         tap((resData) => {
-          console.log(resData);
-
           if (resData.token) {
             this.handleAuthentication(resData.token, true);
           }
@@ -65,15 +65,25 @@ export class AuthService {
       );
   }
 
+  resetPassword(
+    resetPasswordRequest: ResetPasswordRequest
+  ): Observable<ResetPasswordResponse> {
+    return this.http.post<ResetPasswordResponse>(
+      environment.apiUrl + ApiPaths.Identity + ApiPaths.ResetPassword,
+      resetPasswordRequest
+    );
+  }
+
   logout(): void {
     this.user.next(null);
     this.router.navigate(['/auth']);
     localStorage.removeItem('userData');
     localStorage.removeItem('rememberMe');
+    console.log('logout');
   }
 
   autoLogin(): void {
-    if (JSON.parse(localStorage.getItem('RememberMe')) !== null) {
+    if (JSON.parse(localStorage.getItem('rememberMe')) !== null) {
       // get user from local storage
       const userData = JSON.parse(localStorage.getItem('userData'));
       if (!userData) {
@@ -84,8 +94,9 @@ export class AuthService {
         userData.id,
         userData.email,
         userData.role,
-        userData._token,
-        userData._tokenExpirationDate
+        userData.username,
+        userData.tokenExpirationDate,
+        userData._token
       );
 
       if (loadedUser.token) {
@@ -101,19 +112,15 @@ export class AuthService {
   private handleAuthentication(token: string, rememberMe: boolean): void {
     const decodedToken: TokenClaims = jwt_decode(token);
 
-    console.log(decodedToken.id);
-    console.log(decodedToken.email);
-    console.log(decodedToken.role);
-    console.log(decodedToken.exp);
-
     const expirationDate = new Date(+decodedToken.exp * 1000);
 
     const user = new User(
       decodedToken.id,
       decodedToken.email,
       decodedToken.role,
-      token,
-      expirationDate
+      decodedToken.username,
+      expirationDate,
+      token
     );
     this.user.next(user);
 

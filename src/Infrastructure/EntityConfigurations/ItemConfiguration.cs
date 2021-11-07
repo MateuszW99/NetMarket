@@ -10,8 +10,6 @@ namespace Infrastructure.EntityConfigurations
         {
             builder.Ignore(e => e.DomainEvents);
 
-            builder.Ignore(e => e.Asks);
-
             builder.HasKey(e => e.Id);
 
             builder.Property(e => e.Name)

@@ -1,0 +1,21 @@
+<h2 mat-dialog-title>Edit {{type | slice:0:3 | titlecase}}</h2>
+<mat-dialog-actions>
+  <button type="button" mat-button color="warn" (click)="onDelete()" *ngIf="!deleted">Delete {{type | slice:0:3 | titlecase}}</button>
+  <button type="button" mat-button color="success"
+          [disabled]="!form.valid"
+          *ngIf="!deleted"
+          (click)="onPageChanged()"
+          routerLink="{{type === 'asks' ? '/sell' : '/buy'}}"
+          [state]="{
+            data:
+            {
+              item: { item: { name: row.name, id: row.itemId, imageUrl: row.imageUrl, highestBid: row.highestBid, lowestAsk: row.lowestAsk } },
+              size: row.size,
+              price: +row.price,
+              id: row.id}
+            }">
+    Edit
+  </button>
+  <button type="button" mat-button mat-dialog-close>Exit</button>
+</mat-dialog-actions>
+

@@ -1,0 +1,90 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <h2 mat-dialog-title>Edit shipping informations</h2>
+    <mat-dialog-content class="mat-typography">
+        <div class="row">
+          <div class="mb-3 col-6 offset-3">
+            <label class="form-label" for="shippingStreet">Street</label>
+            <input formControlName="shippingStreet" type="text" id="shippingStreet" class="form-control" />
+            <span *ngIf="form.get('shippingStreet').invalid && form.get('shippingStreet').touched"
+              class="form-text text-danger mb-2">
+              <span *ngIf="form.get('shippingStreet').hasError('required')">
+                Street is required!
+              </span>
+              <span *ngIf="form.get('shippingStreet').hasError('minlength')">
+                Street must have minimum 2 character!
+              </span>
+              <span *ngIf="form.get('shippingStreet').hasError('maxlength')">
+                Street must have maximum 50 characters!
+              </span>
+            </span>
+          </div>
+          <div class="mb-3 col-6 offset-3">
+            <label class="form-label" for="shippingAddressLine1">Address line 1</label>
+            <input formControlName="shippingAddressLine1" type="text" id="shippingAddressLine1" class="form-control" />
+            <span *ngIf="form.get('shippingAddressLine1').invalid && form.get('shippingAddressLine1').touched"
+              class="form-text text-danger mb-2">
+              <span *ngIf="form.get('shippingAddressLine1').hasError('required')">
+                Address line 1 is required!
+              </span>
+              <span *ngIf="form.get('shippingAddressLine1').hasError('minlength')">
+                Address line 1 must have minimum 2 character!
+              </span>
+              <span *ngIf="form.get('shippingAddressLine1').hasError('maxlength')">
+                Address line 1 must have maximum 50 characters!
+              </span>
+            </span>
+          </div>
+          <div class="mb-3 col-6 offset-3">
+            <label class="form-label" for="shippingAddressLine2">Address line 2</label>
+            <input formControlName="shippingAddressLine2" type="text" id="shippingAddressLine2" class="form-control" />
+            <span *ngIf="form.get('shippingAddressLine2').invalid && form.get('shippingAddressLine2').touched"
+              class="form-text text-danger mb-2">
+              <span *ngIf="form.get('shippingAddressLine2').hasError('maxlength')">
+                Address line 2 must have maximum 50 characters!
+              </span>
+            </span>
+          </div>
+          <div class="mb-3 col-6 offset-3">
+            <label class="form-label" for="shippingZipCode">Zip code</label>
+            <input formControlName="shippingZipCode" type="text" id="shippingZipCode" class="form-control" />
+            <span *ngIf="form.get('shippingZipCode').invalid && form.get('shippingZipCode').touched"
+              class="form-text text-danger mb-2">
+              <span *ngIf="form.get('shippingZipCode').hasError('required')">
+                Zip code is required!
+              </span>
+              <span *ngIf="form.get('shippingZipCode').hasError('pattern')">
+                Zip code is incorrect
+              </span>
+              <span *ngIf="form.get('shippingZipCode').hasError('maxlength')">
+                Zip code must have maximum 6 characters!
+              </span>
+            </span>
+          </div>
+          <div class="mb-3 col-6 offset-3">
+            <label class="form-label" for="shippingCountry">Country</label>
+            <input formControlName="shippingCountry" type="text" id="shippingCountry" class="form-control" />
+            <span *ngIf="form.get('shippingCountry').invalid && form.get('shippingCountry').touched"
+              class="form-text text-danger mb-2">
+              <span *ngIf="form.get('shippingCountry').hasError('required')">
+                Country is required!
+              </span>
+              <span *ngIf="form.get('shippingCountry').hasError('minlength')">
+                Country must have minimum 2 characters!
+              </span>
+              <span *ngIf="form.get('shippingCountry').hasError('maxlength')">
+                Country must have maximum 50 characters!
+              </span>
+            </span>
+          </div>
+          <div class="alert alert-danger" role="alert" *ngIf="error === true">
+            Something went wrong
+          </div>
+    
+        </div>
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+      <button mat-button mat-dialog-close>Cancel</button>
+      <button type="submit" color="success" mat-button [disabled]="!form.valid">Save</button>
+    </mat-dialog-actions>
+    </form>
+    

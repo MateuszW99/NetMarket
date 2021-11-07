@@ -1,0 +1,8 @@
+<h4>Level: {{ sellerLevels.get(sellerLevel) }}</h4>
+<div class="progress">
+    <div class="progress-bar progress-bar-striped bg-info" role="progressbar" [style.width]="getProgressBarWidth()"></div>
+</div>
+<div class="d-flex justify-content-between">
+    <h6 class="me-1">{{ salesCompleted }} completed</h6>
+    <h6 class="ms-1">{{ getNeededSalesNumber() }} needed</h6>
+</div>

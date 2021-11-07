@@ -1,0 +1,18 @@
+<div class="d-none d-lg-block">
+    <div class="d-flex align-items-center text-center justify-content-center">
+        <span class="h1 level level-active level-bg-1" *ngFor="let level of sellerLevelKeys; let i = index"
+         [ngClass]="{'level-active': sellerLevel === level, 'level-bg-1': i === 0,
+          'level-bg-2': i === 1, 'level-bg-3': i === 2, 'level-bg-4': i === 3}">
+            {{sellerLevels.get(level)}}
+        </span>
+    </div>
+</div>
+<div class="d-lg-none">
+    <div class="d-flex align-items-center text-center justify-content-center">
+        <span class="h1 level level-active level-active-md">
+            {{sellerLevels.get(sellerLevel)}}
+        </span>
+    </div>
+</div>
+
+<h2 class="text-center">Seller level: {{sellerLevel}} </h2>

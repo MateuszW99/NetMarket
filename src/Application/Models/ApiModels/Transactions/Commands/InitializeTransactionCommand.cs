@@ -15,12 +15,14 @@ namespace Application.Models.ApiModels.Transactions.Commands
         public InitializeTransactionCommandValidator()
         {
             RuleFor(x => x.AskId)
-                .NotNull()
-                .IdMustMatchGuidPattern();
-            
+                .IdMustMatchGuidPattern().When(x => 
+                    !string.IsNullOrEmpty(x.AskId) &&
+                    string.IsNullOrEmpty(x.BidId));
+
             RuleFor(x => x.BidId)
-                .NotNull()
-                .IdMustMatchGuidPattern();
+                .IdMustMatchGuidPattern().When(x => 
+                    !string.IsNullOrEmpty(x.BidId) &&
+                    string.IsNullOrEmpty(x.AskId));
         }
     }
 }

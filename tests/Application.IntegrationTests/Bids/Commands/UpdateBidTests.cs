@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -32,8 +33,8 @@ namespace Application.IntegrationTests.Bids.Commands
             var createBidCommand = new CreateBidCommand()
             {
                 ItemId = item.Id.ToString(),
-                SizeId = oldSize.Id.ToString(),
-                Price = oldPrice.ToString()
+                Size = oldSize.Value,
+                Price = oldPrice.ToString(CultureInfo.InvariantCulture)
             };
             var createBidRequest = new HttpRequestMessage(HttpMethod.Post, new Uri($"{Address.ApiBase}/{Address.Bids}", UriKind.Relative));
             createBidRequest.Content = new StringContent(JsonConvert.SerializeObject(createBidCommand), Encoding.UTF8, "application/json");
@@ -46,8 +47,8 @@ namespace Application.IntegrationTests.Bids.Commands
             var updateBidCommand = new UpdateBidCommand()
             {
                 Id = oldBid.Id.ToString(),
-                Price = newPrice.ToString(),
-                SizeId = newSize.Id.ToString()
+                Price = newPrice.ToString(CultureInfo.InvariantCulture),
+                Size = newSize.Value
             };
             var updateBidRequest = new HttpRequestMessage(HttpMethod.Put, new Uri($"{Address.ApiBase}/{Address.Bids}/{oldBid.Id.ToString()}", UriKind.Relative));
             updateBidRequest.Content = new StringContent(JsonConvert.SerializeObject(updateBidCommand), Encoding.UTF8, "application/json");
@@ -80,8 +81,8 @@ namespace Application.IntegrationTests.Bids.Commands
             var createBidCommand = new CreateBidCommand()
             {
                 ItemId = item.Id.ToString(),
-                SizeId = oldSize.Id.ToString(),
-                Price = "200"
+                Size = oldSize.Value,
+                Price = oldPrice.ToString(CultureInfo.InvariantCulture)
             };
             var createBidRequest = new HttpRequestMessage(HttpMethod.Post, new Uri($"{Address.ApiBase}/{Address.Bids}", UriKind.Relative));
             createBidRequest.Content = new StringContent(JsonConvert.SerializeObject(createBidCommand), Encoding.UTF8, "application/json");
@@ -94,8 +95,8 @@ namespace Application.IntegrationTests.Bids.Commands
             var updateBidCommand = new UpdateBidCommand()
             {
                 Id = oldBid.Id.ToString(),
-                Price = newPrice.ToString(),
-                SizeId = newSize.Id.ToString()
+                Price = newPrice.ToString(CultureInfo.InvariantCulture),
+                Size = newSize.Value
             };
             var otherUserId = await AuthHelper.RunAsOtherUserAsync(_factory);
             var otherUserAuthResult = _identityService.LoginAsync(OtherUser.Email, OtherUser.Password);

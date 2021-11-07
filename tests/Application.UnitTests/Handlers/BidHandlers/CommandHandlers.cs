@@ -18,7 +18,7 @@ namespace Application.UnitTests.Handlers.BidHandlers
         {
             new[] { string.Empty, string.Empty, "0", string.Empty },
             new[] { string.Empty, Guid.NewGuid().ToString(), "0", string.Empty },
-            new[] { null, string.Empty, "100", "abc" }
+            new[] { null, string.Empty, "100", "14" }
         };
         
         #region CreateBidCommandHandler
@@ -30,7 +30,7 @@ namespace Application.UnitTests.Handlers.BidHandlers
             {
                 ItemId = Guid.NewGuid().ToString(),
                 Price = "100.50",
-                SizeId = Guid.NewGuid().ToString()
+                Size = "14"
             };
 
             var commandHandler = new CreateBidCommandHandler(null, null, null, null, null);
@@ -49,13 +49,13 @@ namespace Application.UnitTests.Handlers.BidHandlers
         
         [Theory]
         [MemberData(nameof(Data))]
-        public async Task CreateBidCommandHandlerShouldThrowWhenOneOrMorePropertiesAreInvalid(string id, string itemId, string price, string sizeId)
+        public async Task CreateBidCommandHandlerShouldThrowWhenOneOrMorePropertiesAreInvalid(string id, string itemId, string price, string size)
         {
             var createBidCommand = new CreateBidCommand()
             {
                 ItemId = itemId,
                 Price = price,
-                SizeId = sizeId
+                Size = size
             };
 
             var commandHandler = new CreateBidCommandHandler(null, null, null, null, null);
@@ -83,7 +83,7 @@ namespace Application.UnitTests.Handlers.BidHandlers
             {
                 Id = Guid.NewGuid().ToString(),
                 Price = "100.50",
-                SizeId = Guid.NewGuid().ToString()
+                Size = "14"
             };
 
             var commandHandler = new UpdateBidCommandHandler(null, null, null, null, null);
@@ -102,13 +102,13 @@ namespace Application.UnitTests.Handlers.BidHandlers
         
         [Theory]
         [MemberData(nameof(Data))]
-        public async Task UpdateBidCommandHandlerShouldThrowWhenOneOrMorePropertiesAreInvalid(string id, string itemId, string price, string sizeId)
+        public async Task UpdateBidCommandHandlerShouldThrowWhenOneOrMorePropertiesAreInvalid(string id, string itemId, string price, string size)
         {
             var updateBidCommand = new UpdateBidCommand()
             {
                 Id = id,
                 Price = price,
-                SizeId = sizeId
+                Size = size
             };
         
             var commandHandler = new UpdateBidCommandHandler(null, null, null, null, null);
