@@ -11,6 +11,7 @@ import { catchError, debounceTime, distinctUntilChanged, takeUntil } from "rxjs/
 import { AuthService } from "../../auth/auth.service";
 import { User } from "../../auth/user.model";
 import { TransactionService } from "../services/orders/transaction.service";
+import { UpdateOrder } from "../../account/user-orders-table/order-edit/update-order";
 
 @Component({
   selector: 'app-asks',
@@ -40,6 +41,11 @@ export class AsksComponent implements OnInit, OnDestroy {
   formAction = (): void => {};
 
   private unsubscribe = new Subject();
+  private id: string;
+  private canUpdate: boolean = false;
+  private defaultLabel: string = 'Place Ask';
+  private transactionLabel = 'Sell Now';
+  private highestBid: number;
 
   constructor(
     private askService: AsksService,
@@ -57,9 +63,31 @@ export class AsksComponent implements OnInit, OnDestroy {
 
     this.itemDetails = history.state.data.item;
     this.size = history.state.data.size;
+    let price = undefined;
+    if (this.itemDetails.highestBid){
+      this.highestBid = +this.itemDetails.highestBid.price;
+    }
+    else if (history.state.data.id) {
+      this.id = history.state.data.id;
+      this.canUpdate = true;
+      this.defaultLabel = 'Update Ask';
+      price = history.state.data.price;
+      this.highestBid = +history.state.data.item.highestBid;
+    }
+
+    this.form = new FormGroup({
+      item: new FormControl(this.itemDetails.item.id, Validators.nullValidator),
+      size: new FormControl(this.size, Validators.nullValidator),
+      price: new FormControl(price, [ Validators.required, Validators.pattern('^[0-9]+(.[0-9]{0,4})?$') ]),
+    });
+
+    if (this.form.controls['price'].value !== 0 || this.form.controls['price'].value !== undefined) {
+      this.fee = this.feesService.calculateFees(this.sellerLevel, this.form.controls['price'].value);
+      this.totalPrice = this.fee + this.form.controls['price'].value;
+    }
 
     this.userWantsToPlaceAsk = true;
-    this.label = 'Place Ask';
+    this.label = this.defaultLabel;
     this.formAction = this.onPlaceAsk;
 
     this.userSubscription = this.authService.user
@@ -75,7 +103,7 @@ export class AsksComponent implements OnInit, OnDestroy {
     this.form = new FormGroup({
       item: new FormControl(this.itemDetails.item.id, Validators.nullValidator),
       size: new FormControl(this.size, Validators.nullValidator),
-      price: new FormControl('', [ Validators.required, Validators.pattern('^[0-9]+(.[0-9]{0,2})?$') ]),
+      price: new FormControl(price, [ Validators.required, Validators.pattern('^[0-9]+(.[0-9]{0,2})?$') ]),
     });
 
     this.loadingSubscription = this.settingsService.loading
@@ -116,11 +144,18 @@ export class AsksComponent implements OnInit, OnDestroy {
   }
 
   onPlaceAsk(): void {
-    this.askService.placeAsk(this.form.controls['item'].value, this.form.controls['size'].value, this.form.controls['price'].value.toString())
-      .subscribe(() => {
+    if (this.canUpdate) {
+      this.askService.updateAsk(new UpdateOrder(this.id, this.form.controls['size'].value, this.form.controls['price'].value.toString()))        .subscribe(() => {
         this.router.navigate([`/items/${this.itemDetails.item.id}`])
-          .then(() => this.toastrService.success('Ask placed!'));
-      });
+          .then(() => this.toastrService.success('Ask updated!'));
+      })
+    } else {
+      this.askService.placeAsk(this.form.controls['item'].value, this.form.controls['size'].value, this.form.controls['price'].value.toString())
+        .subscribe(() => {
+          this.router.navigate([`/items/${this.itemDetails.item.id}`])
+            .then(() => this.toastrService.success('Ask placed!'));
+        });
+    }
   }
 
   onSellNow(): void {
@@ -147,22 +182,20 @@ export class AsksComponent implements OnInit, OnDestroy {
 
   private onPriceChange(): void {
     const userPrice = this.form.controls['price'].value;
-    const highestBidPrice = +this.itemDetails.highestBid.price;
-
-    if (highestBidPrice === 0) {
+    if (!this.highestBid) {
       this.userWantsToPlaceAsk = true;
     } else {
-      this.userWantsToPlaceAsk = userPrice >= highestBidPrice;
+      this.userWantsToPlaceAsk = userPrice > this.highestBid;
     }
 
-    if (this.userWantsToPlaceAsk && userPrice !== highestBidPrice) {
+    if (this.userWantsToPlaceAsk && userPrice !== this.highestBid) {
       this.toastrService.clear();
-      this.label = 'Place Ask';
+      this.label = this.defaultLabel;
       this.formAction = this.onPlaceAsk;
     } else {
       this.label = 'Sell Now';
       this.formAction = this.onSellNow;
-      this.form.controls['price'].setValue(highestBidPrice);
+      this.form.controls['price'].setValue(this.highestBid);
       this.toastrService.info('Your price matched the highest bid!');
     }
 

@@ -10,7 +10,7 @@ import { BidsService } from 'src/app/shared/bids/bids.service';
 import { PagedList } from 'src/app/shared/paged-list';
 import { Pagination } from 'src/app/shared/pagination';
 import { TableRow } from './table-row';
-import { OrderEditComponent } from './order-edit/order-edit.component';
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-user-orders-table',
@@ -23,6 +23,7 @@ export class UserOrdersTableComponent implements OnInit, OnDestroy {
   ordersSubscription: Subscription;
   loadingSubscription: Subscription;
   errrorSubscription: Subscription;
+  pageDestination: string;
   loading = true;
   error: string;
   paginationData: Pagination;
@@ -40,7 +41,8 @@ export class UserOrdersTableComponent implements OnInit, OnDestroy {
   constructor(
     public dialog: MatDialog,
     private asksService: AsksService,
-    private bidsService: BidsService
+    private bidsService: BidsService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -52,10 +54,18 @@ export class UserOrdersTableComponent implements OnInit, OnDestroy {
   }
 
   onEdit(row: TableRow): void {
-    this.dialog.open(OrderEditComponent, {
-      width: '600px',
-      data: { type: this.type, row: row }
-    });
+    this.router.navigate(['/sell',
+      {
+        data: {
+          item: {
+            id: row.id,
+            name: row.name
+          },
+          size: row.size,
+          price: row.price
+        }
+      }
+    ]);
   }
 
   getRows(data: PagedList<Ask | Bid>): TableRow[] {
@@ -65,6 +75,7 @@ export class UserOrdersTableComponent implements OnInit, OnDestroy {
       const row = new TableRow(
         element.id,
         element.item.name,
+        element.item.id,
         element.price.toString(),
         element.size.value,
         this.type === 'asks'
@@ -76,7 +87,8 @@ export class UserOrdersTableComponent implements OnInit, OnDestroy {
         element.item.highestBid === null
           ? 'No bids'
           : element.item.highestBid.toString(),
-        element.expires.toString()
+        element.expires.toString(),
+        element.item.imageUrl
       );
 
       rows.push(row);
