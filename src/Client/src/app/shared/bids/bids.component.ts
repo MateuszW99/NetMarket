@@ -153,7 +153,7 @@ export class BidsComponent implements OnInit, OnDestroy {
     if (lowestAskPrice === 0) {
       this.userWantsToPlaceBid = true;
     } else {
-      this.userWantsToPlaceBid = userPrice >= lowestAskPrice;
+      this.userWantsToPlaceBid = userPrice < lowestAskPrice;
     }
 
     if (this.userWantsToPlaceBid && userPrice !== lowestAskPrice) {

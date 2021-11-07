@@ -37,7 +37,7 @@ namespace Application.Services
                 .Include(x => x.Item)
                     .ThenInclude(y => y.Asks)
                 .Include(x => x.Size)
-                .Where(x => x.CreatedBy == userId)
+                .Where(x => x.CreatedBy == userId && !x.UsedInTransaction)
                 .ToListAsync();
 
             return bids;

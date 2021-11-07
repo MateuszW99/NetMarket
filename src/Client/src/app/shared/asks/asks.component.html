@@ -32,7 +32,8 @@
         <div class="form-control">
           <button type="submit"
                   style="font-size: larger"
-                  class="btn btn-success w-100">
+                  class="btn btn-success w-100"
+                  [disabled]="!form.valid">
             {{ label }}
           </button>
         </div>

@@ -9,10 +9,10 @@
     <div class="d-flex justify-content-center">
       <form [formGroup]="form" (ngSubmit)="onSubmitForm()" class="form-group mt-2">
         <div class="form-control border-bottom border-1">
-          <label class="col-sm col-form-label">{{ itemDetails.item.name }}</label>
+          <label class="col-sm col-form-label">{{ itemDetails.item.name | titlecase }}</label>
         </div>
         <div class="form-control border-bottom border-1">
-          <label class="col-sm col-form-label">Size: {{ size }}</label>
+          <label class="col-sm col-form-label">Size: {{ size | titlecase }}</label>
         </div>
         <div class="form-floating border-bottom border-1">
           <input type="number" class="form-control" id="price" placeholder="Price" formControlName="price">
@@ -29,7 +29,8 @@
         <div class="form-control">
           <button type="submit"
                   style="font-size: larger"
-                  class="btn btn-success w-100">
+                  class="btn btn-success w-100"
+                  [disabled]="!form.valid">
             {{ label }}
           </button>
         </div>
