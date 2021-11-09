@@ -1,11 +1,17 @@
-input.ng-invalid.ng-touched{
-    border: 1px solid red;
+input.ng-invalid.ng-touched {
+  border: 1px solid red;
 }
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
 .mat-button.mat-success,
 .mat-stroked-button.mat-success {
-    color: #155724;
+  color: #155724;
 }
 .mat-button.mat-success:hover,
 .mat-stroked-button.mat-success:hover {
@@ -21,5 +27,26 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 }
 
 .mat-icon-button.mat-success {
-  color:#155724;
+  color: #155724;
+}
+
+.mat-button.mat-primary,
+.mat-stroked-button.mat-primary {
+  color: #41d9cc;
+}
+.mat-button.mat-primary:hover,
+.mat-stroked-button.mat-primary:hover {
+  background-color: #f0fff3;
+}
+
+.mat-raised-button.mat-primary,
+.mat-flat-button.mat-primary,
+.mat-fab.mat-primary,
+.mat-mini-fab.mat-primary {
+  color: #f0fff3;
+  background-color: #41d9cc;
+}
+
+.mat-icon-button.mat-primary {
+  color: #41d9cc;
 }
