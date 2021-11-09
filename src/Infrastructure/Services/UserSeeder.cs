@@ -39,8 +39,6 @@ namespace Infrastructure.Services
             };
 
             await _userManager.CreateAsync(adminUser, "Admin123!");
-            await _userManager.AddToRoleAsync(adminUser, Roles.User);
-            await _userManager.AddToRoleAsync(adminUser, Roles.Supervisor);
             await _userManager.AddToRoleAsync(adminUser, Roles.Admin);
         }
 
@@ -62,7 +60,6 @@ namespace Infrastructure.Services
             };
 
             await _userManager.CreateAsync(supervisorUser, "Supervisor123!");
-            await _userManager.AddToRoleAsync(supervisorUser, Roles.User);
             await _userManager.AddToRoleAsync(supervisorUser, Roles.Supervisor);
         }
     }

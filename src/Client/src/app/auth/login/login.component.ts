@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../auth.service';
+import { Roles } from '../roles';
 
 @Component({
   selector: 'app-login',
@@ -52,7 +53,24 @@ export class LoginComponent implements OnInit {
           this.errorMessage = '';
           this.form.reset();
           this.isLoading = false;
-          this.router.navigateByUrl(this.returnUrl);
+          const role = this.authService.getUserRole();
+          console.log(role);
+          
+          if(role === Roles.User){
+            if(this.returnUrl.includes('supervisor') || this.returnUrl.includes('admin')){
+              console.log('if');
+              this.router.navigate(['']);
+            }
+            else{
+              this.router.navigateByUrl(this.returnUrl);
+            }
+          }
+          else if(role === Roles.Supervisor){
+            this.router.navigate(['/supervisor-panel']);
+          }
+          else if(role === Roles.Admin){
+            this.router.navigate(['/admin-panel']);
+          }
         },
         (error) => {
           this.isLoading = false;

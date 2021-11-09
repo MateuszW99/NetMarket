@@ -109,6 +109,10 @@ export class AuthService {
     return this.user.value !== null;
   }
 
+  getUserRole(): string{
+    return this.user.value.role;
+  }
+
   private handleAuthentication(token: string, rememberMe: boolean): void {
     const decodedToken: TokenClaims = jwt_decode(token);
 
