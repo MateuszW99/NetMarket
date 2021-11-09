@@ -54,7 +54,6 @@ export class LoginComponent implements OnInit {
           this.form.reset();
           this.isLoading = false;
           const role = this.authService.getUserRole();
-          console.log(role);
           
           if(role === Roles.User){
             if(this.returnUrl.includes('supervisor') || this.returnUrl.includes('admin')){

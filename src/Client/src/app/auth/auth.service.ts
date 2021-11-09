@@ -110,7 +110,7 @@ export class AuthService {
   }
 
   getUserRole(): string{
-    return this.user.value.role;
+    return this.isUserLoggedIn() === true ? this.user.value.role : 'notLoggedIn';
   }
 
   private handleAuthentication(token: string, rememberMe: boolean): void {

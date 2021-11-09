@@ -1,8 +1,5 @@
 <div class="container-fluid d-flex justify-content-between">
     <span class="text-muted">©2021 NetMarket. All Rights Reserved.</span>
-    <!--TODO show this only for supervisor or admins-->
-    <div>
-        <a routerLink="/admin-panel" class="text-muted mx-1 text-decoration-none">Admin panel</a>
-        <a routerLink="/supervisor-panel" class="text-muted mx-1 text-decoration-none">Supervisor panel</a>
-    </div>
+    <a *ngIf="role === 'Admin'" routerLink="/admin-panel" class="text-muted mx-1 text-decoration-none">Admin panel</a>
+    <a *ngIf="role === 'Supervisor'" routerLink="/supervisor-panel" class="text-muted mx-1 text-decoration-none">Supervisor panel</a>
 </div>
