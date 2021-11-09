@@ -59,6 +59,9 @@ import { CustomerServiceFaqComponent } from './faq/customer-service-faq/customer
 import { BidFaqComponent } from './faq/bid-faq/bid-faq.component';
 import { AskFaqComponent } from './faq/ask-faq/ask-faq.component';
 import { FooterComponent } from './shared/footer/footer.component';
+import { SupervisorPanelComponent } from './supervisor-panel/supervisor-panel.component';
+import { ManagementComponent } from './supervisor-panel/management/management.component';
+import { SupervisorSettingsComponent } from './supervisor-panel/supervisor-settings/supervisor-settings.component';
 
 @NgModule({
   declarations: [
@@ -105,7 +108,10 @@ import { FooterComponent } from './shared/footer/footer.component';
     CustomerServiceFaqComponent,
     BidFaqComponent,
     AskFaqComponent,
-    FooterComponent
+    FooterComponent,
+    SupervisorPanelComponent,
+    ManagementComponent,
+    SupervisorSettingsComponent
   ],
   imports: [
     BrowserModule,

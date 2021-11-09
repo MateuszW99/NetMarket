@@ -25,10 +25,14 @@ export class AuthGuard implements CanActivate {
     return this.authService.user.pipe(
       take(1),
       map((user) => {
+        console.log(user);
+        console.log(route.data.roles);
+        
+        
         const isAuthenticated = !!user;
         if (isAuthenticated) {
           if (
-            (route.data.roles && route.data.roles == user.role) ||
+            (route.data.roles && user.role.includes(route.data.roles[0])) ||
             !route.data.roles
           ) {
             return true;

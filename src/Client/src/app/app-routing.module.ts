@@ -23,6 +23,9 @@ import { FaqComponent } from './faq/faq.component';
 import { AskFaqComponent } from './faq/ask-faq/ask-faq.component';
 import { CustomerServiceFaqComponent } from './faq/customer-service-faq/customer-service-faq.component';
 import { BidFaqComponent } from './faq/bid-faq/bid-faq.component';
+import { SupervisorPanelComponent } from './supervisor-panel/supervisor-panel.component';
+import { ManagementComponent } from './supervisor-panel/management/management.component';
+import { SupervisorSettingsComponent } from './supervisor-panel/supervisor-settings/supervisor-settings.component';
 
 const routes: Routes = [
   //AUTH GUARD ussage example
@@ -56,6 +59,18 @@ const routes: Routes = [
       },
       { path: 'asks', component: UserAsksComponent },
       { path: 'settings', component: SettingsComponent }
+    ]
+  },
+  {
+    path: 'supervisor-panel',
+    component: SupervisorPanelComponent,
+    canActivate: [AuthGuard],
+    data: { roles: [Roles.Supervisor] },
+    children: [
+      { path: '', redirectTo: 'management', pathMatch: 'full' },
+      { path: 'management', component: ManagementComponent },
+     
+      { path: 'settings', component: SupervisorSettingsComponent }
     ]
   },
   {
