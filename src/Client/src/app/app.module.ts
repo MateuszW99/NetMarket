@@ -58,6 +58,7 @@ import { FaqComponent } from './faq/faq.component';
 import { CustomerServiceFaqComponent } from './faq/customer-service-faq/customer-service-faq.component';
 import { BidFaqComponent } from './faq/bid-faq/bid-faq.component';
 import { AskFaqComponent } from './faq/ask-faq/ask-faq.component';
+import { FooterComponent } from './shared/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -103,7 +104,8 @@ import { AskFaqComponent } from './faq/ask-faq/ask-faq.component';
     FaqComponent,
     CustomerServiceFaqComponent,
     BidFaqComponent,
-    AskFaqComponent
+    AskFaqComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
