@@ -8,7 +8,7 @@ import { TableRow } from 'src/app/account/user-orders-table/table-row';
 import { PagedList } from 'src/app/shared/paged-list';
 import { Pagination } from 'src/app/shared/pagination';
 import { Statuses } from '../../statuses';
-import { ManageTransactionComponent } from '../../supervisor-transactions/manage-transaction/manage-transaction.component';
+import { ManageTransactionComponent } from '../manage-transaction/manage-transaction.component';
 import { SupervisorService } from '../../supervisor.service';
 import { Transaction } from '../../transaction';
 import { TransactionRow } from './transaction-row';

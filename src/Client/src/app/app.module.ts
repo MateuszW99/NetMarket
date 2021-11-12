@@ -60,9 +60,12 @@ import { AskFaqComponent } from './faq/ask-faq/ask-faq.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { SupervisorPanelComponent } from './supervisor-panel/supervisor-panel.component';
 import { ManagementComponent } from './supervisor-panel/management/management.component';
-import { SupervisorSettingsComponent } from './supervisor-panel/supervisor-settings/supervisor-settings.component';
 import { SupervisorTransactionsComponent } from './supervisor-panel/management/supervisor-transactions/supervisor-transactions.component';
-import { ManageTransactionComponent } from './supervisor-panel/supervisor-transactions/manage-transaction/manage-transaction.component';
+import { ManageTransactionComponent } from './supervisor-panel/management/manage-transaction/manage-transaction.component';
+import { AdminPanelComponent } from './admin-panel/admin-panel.component';
+import { EmployeesComponent } from './admin-panel/employees/employees.component';
+import { ProductsComponent } from './admin-panel/products/products.component';
+import { AdminAndSupervisorSettingsComponent } from './shared/admin-and-supervisor-settings/admin-and-supervisor-settings.component';
 
 @NgModule({
   declarations: [
@@ -112,9 +115,12 @@ import { ManageTransactionComponent } from './supervisor-panel/supervisor-transa
     FooterComponent,
     SupervisorPanelComponent,
     ManagementComponent,
-    SupervisorSettingsComponent,
     SupervisorTransactionsComponent,
-    ManageTransactionComponent
+    ManageTransactionComponent,
+    AdminPanelComponent,
+    EmployeesComponent,
+    ProductsComponent,
+    AdminAndSupervisorSettingsComponent
   ],
   imports: [
     BrowserModule,

@@ -9,11 +9,11 @@ import { AuthService } from 'src/app/auth/auth.service';
 import { User } from 'src/app/auth/user.model';
 
 @Component({
-  selector: 'app-supervisor-settings',
-  templateUrl: './supervisor-settings.component.html',
-  styleUrls: ['./supervisor-settings.component.css']
+  selector: 'app-admin-and-supervisor-settings',
+  templateUrl: './admin-and-supervisor-settings.component.html',
+  styleUrls: ['./admin-and-supervisor-settings.component.css']
 })
-export class SupervisorSettingsComponent implements OnInit {
+export class AdminAndSupervisorSettingsComponent implements OnInit {
   user: User;
   userSettings: UserSettings;
   error = '';
@@ -86,5 +86,4 @@ export class SupervisorSettingsComponent implements OnInit {
     this.errorSubscription.unsubscribe();
     this.loadingSubscription.unsubscribe();
   }
-
 }

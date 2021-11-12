@@ -25,16 +25,12 @@ import { CustomerServiceFaqComponent } from './faq/customer-service-faq/customer
 import { BidFaqComponent } from './faq/bid-faq/bid-faq.component';
 import { SupervisorPanelComponent } from './supervisor-panel/supervisor-panel.component';
 import { ManagementComponent } from './supervisor-panel/management/management.component';
-import { SupervisorSettingsComponent } from './supervisor-panel/supervisor-settings/supervisor-settings.component';
+import { AdminPanelComponent } from './admin-panel/admin-panel.component';
+import { EmployeesComponent } from './admin-panel/employees/employees.component';
+import { ProductsComponent } from './admin-panel/products/products.component';
+import { AdminAndSupervisorSettingsComponent } from './shared/admin-and-supervisor-settings/admin-and-supervisor-settings.component';
 
 const routes: Routes = [
-  //AUTH GUARD ussage example
-  // {
-  //   path: 'admin',
-  //   component: AdminComponent,
-  //   canActivate: [AuthGuard],
-  //   data: { roles: [Roles.Admin] }
-  // },
   { path: '', component: LandingPageComponent, pathMatch: 'full' },
   {
     path: 'auth',
@@ -69,8 +65,19 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo: 'management', pathMatch: 'full' },
       { path: 'management', component: ManagementComponent },
-     
-      { path: 'settings', component: SupervisorSettingsComponent }
+      { path: 'settings', component: AdminAndSupervisorSettingsComponent }
+    ]
+  },
+  {
+    path: 'admin-panel',
+    component: AdminPanelComponent,
+    canActivate: [AuthGuard],
+    data: { roles: [Roles.Admin] },
+    children: [
+      { path: '', redirectTo: 'employees', pathMatch: 'full' },
+      { path: 'employees', component: EmployeesComponent },
+      { path: 'products', component: ProductsComponent },
+      { path: 'settings', component: AdminAndSupervisorSettingsComponent }
     ]
   },
   {

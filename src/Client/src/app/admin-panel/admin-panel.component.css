@@ -1,0 +1,33 @@
+mat-sidenav {
+  width: 200px;
+  background: #41d9cc;
+  border-radius: 10px;
+  padding: 16px;
+}
+
+.content {
+  height: auto;
+  min-height: 85vh;
+  border-radius: 10px;
+  margin: 16px;
+  margin-left: 32px;
+}
+@media only screen and (max-width: 768px) {
+  .content {
+    margin-right: 32px;
+  }
+}
+
+.menu-button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 1rem;
+}
+
+.account-icon {
+  font-size: 50px;
+  height: 50px;
+  width: 50px;
+}
