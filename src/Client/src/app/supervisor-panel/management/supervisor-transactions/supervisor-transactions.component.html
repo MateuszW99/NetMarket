@@ -14,17 +14,27 @@
   
             <ng-container matColumnDef="category">
               <th mat-header-cell *matHeaderCellDef> Category </th>
-              <td mat-cell *matCellDef="let element"> {{element.name | titlecase}} </td>
+              <td mat-cell *matCellDef="let element"> {{element.category | titlecase}} </td>
             </ng-container>
   
-            <ng-container matColumnDef="product">
+            <ng-container matColumnDef="name">
               <th mat-header-cell *matHeaderCellDef> Product </th>
-              <td mat-cell *matCellDef="let element"> {{element.price | currency}} </td>
+              <td mat-cell *matCellDef="let element"> {{element.name | titlecase}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="companyProfit">
+              <th mat-header-cell *matHeaderCellDef> Company profit </th>
+              <td mat-cell *matCellDef="let element"> {{element.companyProfit | currency}} </td>
             </ng-container>
   
             <ng-container matColumnDef="date">
               <th mat-header-cell *matHeaderCellDef> Date </th>
-              <td mat-cell *matCellDef="let element"> {{element.fee | currency}} </td>
+              <td mat-cell *matCellDef="let element"> {{element.date | date}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="status">
+              <th mat-header-cell *matHeaderCellDef> Status </th>
+              <td mat-cell *matCellDef="let element"> {{element.status | titlecase}} </td>
             </ng-container>
   
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

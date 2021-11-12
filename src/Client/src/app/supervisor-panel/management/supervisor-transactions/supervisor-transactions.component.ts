@@ -21,7 +21,6 @@ export class SupervisorTransactionsComponent implements OnInit {
   transactionsSubscription: Subscription;
   loadingSubscription: Subscription;
   errrorSubscription: Subscription;
-  pageDestination: string;
   loading = true;
   error: string;
   paginationData: Pagination;
@@ -30,7 +29,9 @@ export class SupervisorTransactionsComponent implements OnInit {
     'id',
     'category',
     'name',
-    'date'
+    'companyProfit',
+    'date',
+    'status'
   ];
   constructor(
     public dialog: MatDialog,
@@ -54,6 +55,8 @@ export class SupervisorTransactionsComponent implements OnInit {
       (transactions: PagedList<Transaction>) => {
         this.dataSource = new MatTableDataSource<TransactionRow>(this.getRows(transactions));
         this.paginationData = this.getPaginationData(transactions);
+        console.log(transactions);
+        
       }
     );
   }
@@ -61,6 +64,7 @@ export class SupervisorTransactionsComponent implements OnInit {
   onManage(row: TableRow): void {
     console.log('manage clicked');
     
+    //TODO Add TransactionManageComponent
     // this.dialog.open(TransactionManageComponent, {
     //   width: '600px',
     //   data: { type: this.type, row: row }
@@ -75,7 +79,9 @@ export class SupervisorTransactionsComponent implements OnInit {
         element.id,
         element.ask.item.category, 
         element.ask.item.name,
+        element.companyProfit,
         element.startDate,
+        element.status
       );
 
       rows.push(row);
