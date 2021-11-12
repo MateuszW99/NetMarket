@@ -50,7 +50,7 @@ namespace Application.Services
 
             if (!string.IsNullOrEmpty(query.Status))
             {
-                transactionsQuery = transactionsQuery.Where(x => x.Status.ToString() == query.Status);
+                transactionsQuery = transactionsQuery.Where(x => x.Status == (TransactionStatus)Enum.Parse(typeof(TransactionStatus), query.Status));
             }
 
             return await transactionsQuery.OrderBy(x => x.StartDate).ToListAsync();
