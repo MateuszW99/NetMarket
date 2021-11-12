@@ -5,6 +5,16 @@
           {{ error }}
         </div>
     </div>
+    <div class="row">
+      <form [formGroup]="form">
+      <div class="mb-3 col-6 offset-3">
+          <label class="form-label" for="status">Status</label>
+          <select id="status" class="form-select mb-2" formControlName="status" (change)="onFilterByStatus()">
+              <option *ngFor="let status of statuses | keyvalue" [value]="status.key">{{status.value}}</option>
+          </select>
+      </div>
+    </form>
+  </div>
     <div class="mat-elevation-z8 mb-5 table-responsive" *ngIf="loading === false">
         <table mat-table [dataSource]="dataSource">
             <ng-container matColumnDef="id">

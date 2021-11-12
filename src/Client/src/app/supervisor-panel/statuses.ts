@@ -1,4 +1,4 @@
-export const Statuses = new Map([
+export const Statuses = new Map<string, string>([
   ['Started', 'Started'],
   ['AwaitingSender', 'Awaitng sender'],
   ['EnRouteFromSeller', 'En route from seller'],
@@ -6,5 +6,5 @@ export const Statuses = new Map([
   ['Checked', 'Checked'],
   ['PayoutSend', 'Payout send'],
   ['EnRouteFromWarehouse', 'En route from warehouse'],
-  ['Delivered', 'Awaitng sender']
+  ['Delivered', 'Delivered']
 ]);

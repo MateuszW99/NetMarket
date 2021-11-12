@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
@@ -27,7 +28,7 @@ export class SupervisorTransactionsComponent implements OnInit {
   error: string;
   paginationData: Pagination;
   pageEvent: PageEvent;
-  statuses: Map<string, string> = Statuses;
+  statuses: Map<string, string> = new Map(Statuses);
   displayedColumns = [
     'id',
     'category',
@@ -36,12 +37,20 @@ export class SupervisorTransactionsComponent implements OnInit {
     'date',
     'status'
   ];
+  form: FormGroup;
+
   constructor(
     public dialog: MatDialog,
     private supervisorService: SupervisorService
   ) {}
 
   ngOnInit(): void {
+    this.statuses.set('All', 'All');
+
+    this.form = new FormGroup({
+      status: new FormControl('All')
+    });
+
     this.supervisorService.getAssignedTransactions(1);
     this.loadingSubscription = this.supervisorService.loading.subscribe(
       (isLoading) => {
@@ -105,6 +114,15 @@ export class SupervisorTransactionsComponent implements OnInit {
       totalPages: orders.totalPages,
       totalCount: orders.totalCount
     };
+  }
+
+  onFilterByStatus() {
+    const status = this.form.value.status;
+
+    this.supervisorService.getAssignedTransactions(
+      1,
+      status !== 'All' ? status : ''
+    );
   }
 
   ngOnDestroy(): void {
