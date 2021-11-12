@@ -8,8 +8,8 @@
     <div class="mat-elevation-z8 mb-5 table-responsive" *ngIf="loading === false">
         <table mat-table [dataSource]="dataSource">
             <ng-container matColumnDef="id">
-              <th mat-header-cell *matHeaderCellDef></th>
-              <td mat-cell *matCellDef="let element"></td>
+              <th mat-header-cell *matHeaderCellDef>Transaction ID</th>
+              <td mat-cell *matCellDef="let element"> {{ element.id }} </td>
             </ng-container>
   
             <ng-container matColumnDef="category">
