@@ -61,6 +61,7 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { SupervisorPanelComponent } from './supervisor-panel/supervisor-panel.component';
 import { ManagementComponent } from './supervisor-panel/management/management.component';
 import { SupervisorSettingsComponent } from './supervisor-panel/supervisor-settings/supervisor-settings.component';
+import { SupervisorTransactionsComponent } from './supervisor-panel/management/supervisor-transactions/supervisor-transactions.component';
 
 @NgModule({
   declarations: [
@@ -110,7 +111,8 @@ import { SupervisorSettingsComponent } from './supervisor-panel/supervisor-setti
     FooterComponent,
     SupervisorPanelComponent,
     ManagementComponent,
-    SupervisorSettingsComponent
+    SupervisorSettingsComponent,
+    SupervisorTransactionsComponent
   ],
   imports: [
     BrowserModule,
