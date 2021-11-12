@@ -4,6 +4,7 @@ import { AuthService } from 'src/app/auth/auth.service';
 import { ItemsService } from "../shared/items/items.service";
 import { ItemsParams } from "../shared/items/items-params";
 import { RoutingService } from "../shared/services/routing/routing.service";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-search-bar',
@@ -23,6 +24,7 @@ export class SearchBarComponent implements OnInit, DoCheck {
   currentCategory: string;
 
   constructor(private authService: AuthService,
+              private router: Router,
               private itemsService: ItemsService,
               private routingService: RoutingService
   ) {}
@@ -49,8 +51,20 @@ export class SearchBarComponent implements OnInit, DoCheck {
     return this.currentCategory;
   }
 
-  onSearch(): void {
-    this.itemsService.getItems(new ItemsParams(15, 1, this.form.value.category, this.form.value.searchText));
+  onSearch(): void {    
+    const searchQuery = this.form.value.searchText
+    const currentRoute = this.routingService.getCurrentRoute();
+
+    if(currentRoute !== 'sneakers' && currentRoute !== 'streetwear' && currentRoute !== 'collectibles' && currentRoute !== 'electronics'){
+      this.router.navigate([this.form.value.category], { 
+        state: { searchQuery: searchQuery } 
+      });
+    }
+    
+    else{
+      this.itemsService.getItems(new ItemsParams(15, 1, this.form.value.category, searchQuery));
+    }
+   
 }
 
   logout(): void {
