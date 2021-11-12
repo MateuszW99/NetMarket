@@ -11,7 +11,6 @@ import { UpdateTransactionStatus } from './update-transaction-status';
   providedIn: 'root'
 })
 export class SupervisorService {
-
   transactionsChanged = new Subject<PagedList<Transaction>>();
   errorCatched = new Subject<string>();
   loading = new Subject<boolean>();
@@ -42,26 +41,44 @@ export class SupervisorService {
         this.loading.next(false);
       },
       () => {
-        this.errorCatched.next('An eror occured while loading assigned transactions');
+        this.errorCatched.next(
+          'An eror occured while loading assigned transactions'
+        );
         this.loading.next(false);
       }
     );
   }
 
-  updateTransactionStatus(transaction: UpdateTransactionStatus): Observable<unknown> {
+  updateTransactionStatus(
+    transaction: UpdateTransactionStatus
+  ): Observable<unknown> {
     return this.http.put<unknown>(
-      environment.apiUrl + ApiPaths.SupervisorPanel + ApiPaths.Orders + `/${transaction.id}`,
+      environment.apiUrl +
+        ApiPaths.SupervisorPanel +
+        ApiPaths.Orders +
+        `/${transaction.id}`,
       transaction
     );
   }
 
+  getTransaction(transactionId: string): Observable<Transaction> {
+    return this.http.get<Transaction>(
+      environment.apiUrl +
+        ApiPaths.SupervisorPanel +
+        ApiPaths.Orders +
+        `/${transactionId}`
+    );
+  }
 
   private fetchAssignedTransactions(
     params: HttpParams
   ): Observable<HttpResponse<PagedList<Transaction>>> {
-    return this.http.get<PagedList<Transaction>>(environment.apiUrl + ApiPaths.SupervisorPanel + ApiPaths.Orders, {
-      observe: 'response',
-      params: params
-    });
+    return this.http.get<PagedList<Transaction>>(
+      environment.apiUrl + ApiPaths.SupervisorPanel + ApiPaths.Orders,
+      {
+        observe: 'response',
+        params: params
+      }
+    );
   }
 }

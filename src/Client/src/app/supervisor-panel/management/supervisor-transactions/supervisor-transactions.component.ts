@@ -6,6 +6,8 @@ import { Subscription } from 'rxjs';
 import { TableRow } from 'src/app/account/user-orders-table/table-row';
 import { PagedList } from 'src/app/shared/paged-list';
 import { Pagination } from 'src/app/shared/pagination';
+import { Statuses } from '../../statuses';
+import { ManageTransactionComponent } from '../../supervisor-transactions/manage-transaction/manage-transaction.component';
 import { SupervisorService } from '../../supervisor.service';
 import { Transaction } from '../../transaction';
 import { TransactionRow } from './transaction-row';
@@ -25,6 +27,7 @@ export class SupervisorTransactionsComponent implements OnInit {
   error: string;
   paginationData: Pagination;
   pageEvent: PageEvent;
+  statuses: Map<string, string> = Statuses;
   displayedColumns = [
     'id',
     'category',
@@ -35,7 +38,7 @@ export class SupervisorTransactionsComponent implements OnInit {
   ];
   constructor(
     public dialog: MatDialog,
-    private supervisorService: SupervisorService,
+    private supervisorService: SupervisorService
   ) {}
 
   ngOnInit(): void {
@@ -51,24 +54,22 @@ export class SupervisorTransactionsComponent implements OnInit {
         this.error = error;
       }
     );
-    this.transactionsSubscription = this.supervisorService.transactionsChanged.subscribe(
-      (transactions: PagedList<Transaction>) => {
-        this.dataSource = new MatTableDataSource<TransactionRow>(this.getRows(transactions));
-        this.paginationData = this.getPaginationData(transactions);
-        console.log(transactions);
-        
-      }
-    );
+    this.transactionsSubscription =
+      this.supervisorService.transactionsChanged.subscribe(
+        (transactions: PagedList<Transaction>) => {
+          this.dataSource = new MatTableDataSource<TransactionRow>(
+            this.getRows(transactions)
+          );
+          this.paginationData = this.getPaginationData(transactions);
+        }
+      );
   }
 
-  onManage(row: TableRow): void {
-    console.log('manage clicked');
-    
-    //TODO Add TransactionManageComponent
-    // this.dialog.open(TransactionManageComponent, {
-    //   width: '600px',
-    //   data: { type: this.type, row: row }
-    // });
+  onManage(row: TransactionRow): void {
+    this.dialog.open(ManageTransactionComponent, {
+      width: '600px',
+      data: { transactionId: row.id, status: row.status }
+    });
   }
 
   getRows(data: PagedList<Transaction>): TransactionRow[] {
@@ -77,7 +78,7 @@ export class SupervisorTransactionsComponent implements OnInit {
     data.items.forEach((element: any) => {
       const row = new TransactionRow(
         element.id,
-        element.ask.item.category, 
+        element.ask.item.category,
         element.ask.item.name,
         element.companyProfit,
         element.startDate,
@@ -91,9 +92,8 @@ export class SupervisorTransactionsComponent implements OnInit {
   }
 
   changePage(event?: PageEvent): PageEvent {
-
     this.supervisorService.getAssignedTransactions(event.pageIndex + 1);
-    
+
     return event;
   }
 
@@ -112,5 +112,4 @@ export class SupervisorTransactionsComponent implements OnInit {
     this.loadingSubscription.unsubscribe();
     this.errrorSubscription.unsubscribe();
   }
-
 }

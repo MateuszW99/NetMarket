@@ -62,6 +62,7 @@ import { SupervisorPanelComponent } from './supervisor-panel/supervisor-panel.co
 import { ManagementComponent } from './supervisor-panel/management/management.component';
 import { SupervisorSettingsComponent } from './supervisor-panel/supervisor-settings/supervisor-settings.component';
 import { SupervisorTransactionsComponent } from './supervisor-panel/management/supervisor-transactions/supervisor-transactions.component';
+import { ManageTransactionComponent } from './supervisor-panel/supervisor-transactions/manage-transaction/manage-transaction.component';
 
 @NgModule({
   declarations: [
@@ -112,7 +113,8 @@ import { SupervisorTransactionsComponent } from './supervisor-panel/management/s
     SupervisorPanelComponent,
     ManagementComponent,
     SupervisorSettingsComponent,
-    SupervisorTransactionsComponent
+    SupervisorTransactionsComponent,
+    ManageTransactionComponent
   ],
   imports: [
     BrowserModule,
