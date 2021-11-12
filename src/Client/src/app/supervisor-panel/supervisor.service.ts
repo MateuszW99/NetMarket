@@ -18,13 +18,15 @@ export class SupervisorService {
 
   constructor(private http: HttpClient) {}
 
-  getAssignedTransactions(pageIndex: number, status: string): void {
+  getAssignedTransactions(pageIndex: number, status?: string): void {
     this.loading.next(true);
 
     let params = new HttpParams();
     params = params.append('pageIndex', pageIndex);
     params = params.append('pageSize', 10);
-    params = params.append('status', status);
+    if (status && status.trim() !== '') {
+      params = params.append('status', status);
+    }
 
     this.fetchAssignedTransactions(params).subscribe(
       (response: HttpResponse<PagedList<Transaction>>) => {
@@ -48,7 +50,7 @@ export class SupervisorService {
 
   updateTransactionStatus(transaction: UpdateTransactionStatus): Observable<unknown> {
     return this.http.put<unknown>(
-      environment.apiUrl + ApiPaths.Supervisor + ApiPaths.Orders + `/${transaction.id}`,
+      environment.apiUrl + ApiPaths.SupervisorPanel + ApiPaths.Orders + `/${transaction.id}`,
       transaction
     );
   }
@@ -57,7 +59,7 @@ export class SupervisorService {
   private fetchAssignedTransactions(
     params: HttpParams
   ): Observable<HttpResponse<PagedList<Transaction>>> {
-    return this.http.get<PagedList<Transaction>>(environment.apiUrl + ApiPaths.Supervisor + ApiPaths.Orders, {
+    return this.http.get<PagedList<Transaction>>(environment.apiUrl + ApiPaths.SupervisorPanel + ApiPaths.Orders, {
       observe: 'response',
       params: params
     });

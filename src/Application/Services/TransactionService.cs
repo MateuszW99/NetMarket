@@ -42,7 +42,8 @@ namespace Application.Services
         public async Task<List<Transaction>> GetSupervisorTransactions(SearchTransactionsQuery query, string supervisorId)
         {
             var transactionsQuery = _context.Transactions
-                .Include(x => x.Ask).DefaultIfEmpty()
+                .Include(x => x.Ask)
+                .ThenInclude(y => y.Item).DefaultIfEmpty()
                 .Include(x => x.Bid).DefaultIfEmpty()
                 .Where(x => x.AssignedSupervisorId == Guid.Parse(supervisorId))
                 .AsQueryable();

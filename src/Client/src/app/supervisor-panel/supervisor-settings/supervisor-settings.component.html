@@ -1,1 +1,35 @@
-<p>supervisor-settings works!</p>
+<div class="container mt-3">
+    <div class="row">
+        <div class="col-12 my-3">
+            <h1 class="text-center">
+                Account Settings
+            </h1>
+        </div>
+    </div>
+    <app-loading-spinner *ngIf="loading === true"></app-loading-spinner>
+    <div *ngIf="loading === false">
+        <div class="row mb-2">
+            <div class="d-flex justify-content-between">
+                <h2>Profile</h2>
+                <a mat-button class="mb-2 h4" (click)="openProfileEdit()">Edit</a>
+            </div>
+            <hr class="mb-3">
+            <div class="col-md-6 col-lg-3 mb-2 mx-2">
+                <h4>Name</h4>
+                <div *ngIf="profileInfoProvided">
+                    <span class="me-1">{{ userSettings.firstName }}</span>
+                    <span class="ms-1">{{ userSettings.lastName }}</span>
+                </div>
+                <p *ngIf="!profileInfoProvided">Not provided</p>
+            </div>
+            <div class="col-md-6 col-lg-3 mb-2 mx-2">
+                <h4>Email Address</h4>
+                <p>{{ user.email }}</p>
+            </div>
+            <div class="col-md-6 col-lg-3 mb-2 mx-2">
+                <button mat-raised-button color="warn" class="mb-2 w-100" (click)="openResetPassword()">Reset
+                    Password</button>
+            </div>
+        </div>
+    </div>
+</div>
