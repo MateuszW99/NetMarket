@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Application.Common.Exceptions;
 using Application.Common.Interfaces;
 using Application.Common.Models;
 using Application.Models.ApiModels.Items.Commands;
@@ -50,13 +51,13 @@ namespace Application.Services
             var item = await _context.Items
                 .Include(x => x.Brand)
                 .FirstOrDefaultAsync(x => x.Id == id);
-            
+
             if (item != null)
             {
                 item.Asks = await GetItemAsks(item.Id);
                 item.Bids = await GetItemBids(item.Id);
             }
-           
+
 
             return item;
         }
@@ -115,7 +116,13 @@ namespace Application.Services
 
             await _context.SaveChangesAsync(cancellationToken);
         }
-        
+
+        public async Task DeleteItemAsync(Item item, CancellationToken cancellationToken)
+        {
+            _context.Items.Remove(item);
+            await _context.SaveChangesAsync(cancellationToken);
+        }
+
         private async Task<List<Item>> FilterItems(IQueryable<Item> itemsQuery, SearchItemsQuery query)
         {
             if (!string.IsNullOrEmpty(query.Name))
