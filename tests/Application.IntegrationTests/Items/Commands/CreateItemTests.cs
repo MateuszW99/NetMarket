@@ -26,7 +26,7 @@ namespace Application.IntegrationTests.Items.Commands
             
             var command = new CreateItemCommand()
             {
-                Brand = new BrandObject() {Id = Guid.NewGuid().ToString(), Name = "A brand new Brand"},
+                Brand = "A brand new Brand",
                 Name = "Jordan 4 Retro University Red",
                 ImageUrl = "https://images.stockx.com/images/Air-Jordan-4-Retro-University-Blue-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1616520672",
                 SmallImageUrl = "https://images.stockx.com/images/Air-Jordan-4-Retro-University-Blue-Product.jpg?fit=fill&bg=FFFFFF&w=300&h=214&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1616520672",
@@ -72,7 +72,7 @@ namespace Application.IntegrationTests.Items.Commands
             
             var command = new CreateItemCommand()
             {
-                Brand = new BrandObject() {Id = Guid.NewGuid().ToString(), Name = "A brand new Brand"},
+                Brand = "A brand new Brand",
                 Name = "Jordan 4 Retro University Red",
                 ImageUrl = "https://images.stockx.com/images/Air-Jordan-4-Retro-University-Blue-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1616520672",
                 SmallImageUrl = "https://images.stockx.com/images/Air-Jordan-4-Retro-University-Blue-Product.jpg?fit=fill&bg=FFFFFF&w=300&h=214&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1616520672",
@@ -107,7 +107,7 @@ namespace Application.IntegrationTests.Items.Commands
             
             var command = new CreateItemCommand()
             {
-                Brand = new BrandObject() {Id = Guid.NewGuid().ToString(), Name = "A brand new Brand"},
+                Brand = "A brand new Brand",
                 Name = "Jordan 4 Retro University Red",
                 ImageUrl = "https://images.stockx.com/images/Air-Jordan-4-Retro-University-Blue-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1616520672",
                 SmallImageUrl = "https://images.stockx.com/images/Air-Jordan-4-Retro-University-Blue-Product.jpg?fit=fill&bg=FFFFFF&w=300&h=214&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1616520672",
@@ -139,7 +139,7 @@ namespace Application.IntegrationTests.Items.Commands
             
             var command = new CreateItemCommand()
             {
-                Brand = new BrandObject() {Id = Guid.NewGuid().ToString(), Name = "A brand new Brand"},
+                Brand = "A brand new Brand",
                 Name = "Jordan 4 Retro University Red",
                 ImageUrl = "https://images.stockx.com/images/Air-Jordan-4-Retro-University-Blue-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1616520672",
                 SmallImageUrl = "https://images.stockx.com/images/Air-Jordan-4-Retro-University-Blue-Product.jpg?fit=fill&bg=FFFFFF&w=300&h=214&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1616520672",
