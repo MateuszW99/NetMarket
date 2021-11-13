@@ -11,6 +11,7 @@ export class Item {
     public retailPrice: number,
     public description: string,
     public imageUrl: string,
+    public smallImageUrl: string,
     public thumbUrl: string,
     public brand: Brand,
     public lowestAsk: number,

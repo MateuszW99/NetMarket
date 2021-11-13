@@ -80,6 +80,8 @@ export class EditProductComponent implements OnInit, OnDestroy {
       this.form.value.retailPrice,
       this.form.value.description,
       this.form.value.imageUrl,
+      this.form.value.smallImageUrl,
+      this.form.value.thumbUrl,
       new Brand(this.item.brand.id, this.form.value.brand),
       this.form.value.category
     );
@@ -153,6 +155,18 @@ export class EditProductComponent implements OnInit, OnDestroy {
         Validators.maxLength(1500)
       ]),
       imageUrl: new FormControl(this.item.imageUrl, [
+        Validators.required,
+        Validators.pattern(
+          /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/
+        )
+      ]),
+      smallImageUrl: new FormControl(this.item.smallImageUrl, [
+        Validators.required,
+        Validators.pattern(
+          /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/
+        )
+      ]),
+      thumbUrl: new FormControl(this.item.thumbUrl, [
         Validators.required,
         Validators.pattern(
           /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/

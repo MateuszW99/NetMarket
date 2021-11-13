@@ -10,6 +10,8 @@ export class UpdateItem {
     public retailPrice: number,
     public description: string,
     public imageUrl: string,
+    public smallImageUrl: string,
+    public thumbUrl: string,
     public brand: Brand,
     public category: string
   ) {}

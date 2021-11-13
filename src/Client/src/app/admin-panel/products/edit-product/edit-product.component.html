@@ -108,16 +108,6 @@
         </div>
 
         <div class="mb-3 col-12">
-          <label for="description" class="form-label">Description</label>
-          <textarea class="form-control" id="description" rows="3"></textarea>
-          <span *ngIf="form.get('description').invalid && form.get('description').touched" class="form-text text-danger mb-2">
-            <span *ngIf="form.get('description').hasError('maxlength')">
-              Description must have maximum 50 characters!
-            </span>
-          </span>
-        </div>
-
-        <div class="mb-3 col-12">
           <label class="form-label" for="imageUrl">Image URL</label>
           <input formControlName="imageUrl" type="text" id="imageUrl" class="form-control" />
           <span *ngIf="form.get('imageUrl').invalid && form.get('imageUrl').touched" class="form-text text-danger mb-2">
@@ -130,12 +120,50 @@
           </span>
         </div>
 
+        <div class="mb-3 col-12">
+          <label class="form-label" for="smallImageUrl">Small image URL</label>
+          <input formControlName="smallImageUrl" type="text" id="smallImageUrl" class="form-control" />
+          <span *ngIf="form.get('smallImageUrl').invalid && form.get('smallImageUrl').touched" class="form-text text-danger mb-2">
+            <span *ngIf="form.get('smallImageUrl').hasError('required')">
+              Small image URL is required!
+            </span>
+            <span *ngIf="form.get('smallImageUrl').hasError('pattern')">
+              Small image URL is invalid!
+            </span>
+          </span>
+        </div>
+
+        <div class="mb-3 col-12">
+          <label class="form-label" for="thumbUrl">Thumb image URL</label>
+          <input formControlName="thumbUrl" type="text" id="thumbUrl" class="form-control" />
+          <span *ngIf="form.get('thumbUrl').invalid && form.get('thumbUrl').touched" class="form-text text-danger mb-2">
+            <span *ngIf="form.get('thumbUrl').hasError('required')">
+              Thumb URL is required!
+            </span>
+            <span *ngIf="form.get('thumbUrl').hasError('pattern')">
+              Thumb URL is invalid!
+            </span>
+          </span>
+        </div>
+
       </div>
 
       <div class="col-md-4 d-flex align-items-center">
         <img [src]="item.imageUrl" alt="item image" class="img-fluid">
       </div>
 
+    </div>
+
+    <div class="row">
+      <div class="mb-3 col-12">
+        <label for="description" class="form-label">Description</label>
+        <textarea class="form-control" formControlName="description" id="description" rows="3"></textarea>
+        <span *ngIf="form.get('description').invalid && form.get('description').touched" class="form-text text-danger mb-2">
+          <span *ngIf="form.get('description').hasError('maxlength')">
+            Description must have maximum 50 characters!
+          </span>
+        </span>
+      </div>
     </div>
     <div class="row">
       <div class="alert alert-danger" role="alert" *ngIf="error === true">

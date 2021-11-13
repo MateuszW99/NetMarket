@@ -6,7 +6,7 @@
         </div>
     </div>
     <div class="row mb-2">
-        <div class="col-6 col-md-4">
+        <div class="col-sm-6 col-md-4 mb-2">
             <form [formGroup]="form" (ngSubmit)="onSearch()" class="form-group input-group row gx-0 border-0">
                 <div class="input-group">
                     <input class="form-control" type="search" placeholder="Search" id="search" formControlName="search">
@@ -18,7 +18,7 @@
                 </div>
             </form>
         </div>
-        <div class="col-4 offset-2 offset-md-4" align="end">
+        <div class="col-sm-6 offset-md-4 col-md-4 d-flex justify-content-end">
             <button mat-raised-button color="success">Add product</button>
         </div>
     </div>
