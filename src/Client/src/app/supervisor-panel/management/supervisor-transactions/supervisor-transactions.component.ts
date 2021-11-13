@@ -106,13 +106,13 @@ export class SupervisorTransactionsComponent implements OnInit {
     return event;
   }
 
-  getPaginationData(orders: PagedList<Transaction>): Pagination {
+  getPaginationData(transactions: PagedList<Transaction>): Pagination {
     return {
-      pageIndex: orders.pageIndex,
-      hasNextPage: orders.hasNextPage,
-      hasPreviousPage: orders.hasPreviousPage,
-      totalPages: orders.totalPages,
-      totalCount: orders.totalCount
+      pageIndex: transactions.pageIndex,
+      hasNextPage: transactions.hasNextPage,
+      hasPreviousPage: transactions.hasPreviousPage,
+      totalPages: transactions.totalPages,
+      totalCount: transactions.totalCount
     };
   }
 

@@ -66,6 +66,8 @@ import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 import { EmployeesComponent } from './admin-panel/employees/employees.component';
 import { ProductsComponent } from './admin-panel/products/products.component';
 import { AdminAndSupervisorSettingsComponent } from './shared/admin-and-supervisor-settings/admin-and-supervisor-settings.component';
+import { ProductFiltersComponent } from './admin-panel/products/products-table/product-filters/product-filters.component';
+import { ProductsTableComponent } from './admin-panel/products/products-table/products-table.component';
 
 @NgModule({
   declarations: [
@@ -120,7 +122,9 @@ import { AdminAndSupervisorSettingsComponent } from './shared/admin-and-supervis
     AdminPanelComponent,
     EmployeesComponent,
     ProductsComponent,
-    AdminAndSupervisorSettingsComponent
+    AdminAndSupervisorSettingsComponent,
+    ProductsTableComponent,
+    ProductFiltersComponent
   ],
   imports: [
     BrowserModule,

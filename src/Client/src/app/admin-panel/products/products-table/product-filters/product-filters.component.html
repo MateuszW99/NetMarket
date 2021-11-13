@@ -1,0 +1,25 @@
+<div class="container mt-1">
+    <div class="row mb-4">
+        <div class="col-lg-3 col-sm-6 text-center" *ngFor="let category of categories">
+            <button class="h2" mat-button [color]="currentCategory === category ? 'primary' : ''"
+                (click)="onCategoryChange(category)">{{ category | titlecase }}</button>
+        </div>
+    </div>
+    <div class="row mb-2">
+        <div class="col-6 col-md-4">
+            <form [formGroup]="form" (ngSubmit)="onSearch()" class="form-group input-group row gx-0 border-0">
+                <div class="input-group">
+                    <input class="form-control" type="search" placeholder="Search" id="search" formControlName="search">
+                    <div class="input-group-append">
+                        <button class="btn border search-icon" type="submit">
+                            <img src="assets/search.svg" alt="Search">
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-4 offset-2 offset-md-4" align="end">
+            <button mat-raised-button color="success">Add product</button>
+        </div>
+    </div>
+</div>
