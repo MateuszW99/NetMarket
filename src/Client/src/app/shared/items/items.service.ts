@@ -1,6 +1,7 @@
 import { HttpClient, HttpParams, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
+import { UpdateItem } from 'src/app/admin-panel/products/edit-product/update-item';
 import { environment } from 'src/environments/environment';
 import { ApiPaths } from '../api-paths';
 import { PagedList } from '../paged-list';
@@ -72,4 +73,24 @@ export class ItemsService {
       }
     );
   }
+
+  updateItem(updateItem: UpdateItem): Observable<unknown> {
+    return this.http.put<unknown>(
+      environment.apiUrl + ApiPaths.Items + `/${updateItem.id}`,
+      updateItem
+    );
+  }
+
+  deleteItem(itemId: string): Observable<unknown> {
+    return this.http.delete<unknown>(
+      environment.apiUrl + ApiPaths.Items + `/${itemId}`
+    );
+  }
+
+  // addItem(addItem: AddItem): Observable<unknown> {
+  //   return this.http.post<unknown>(
+  //     environment.apiUrl + ApiPaths.Items,
+  //     addItem
+  //   );
+  // }
 }

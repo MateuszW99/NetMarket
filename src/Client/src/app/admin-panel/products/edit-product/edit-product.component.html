@@ -1,0 +1,151 @@
+<app-loading-spinner *ngIf="loading"></app-loading-spinner>
+<form [formGroup]="form" (ngSubmit)="onSubmit()" *ngIf="!loading">
+  <h2 mat-dialog-title>Edit product</h2>
+  <mat-dialog-content class="mat-typography">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="mb-3 col-12">
+          <label class="form-label" for="name">Name</label>
+          <input formControlName="name" type="text" id="name" class="form-control" />
+          <span *ngIf="form.get('name').invalid && form.get('name').touched" class="form-text text-danger mb-2">
+            <span *ngIf="form.get('name').hasError('required')">
+              Name is required!
+            </span>
+            <span *ngIf="form.get('name').hasError('minlength')">
+              Name must have minimum 2 character!
+            </span>
+            <span *ngIf="form.get('name').hasError('maxlength')">
+              Name must have maximum 150 characters!
+            </span>
+          </span>
+        </div>
+  
+        <div class="mb-3 col-12">
+          <label class="form-label" for="make">Make</label>
+          <input formControlName="make" type="text" id="make" class="form-control" />
+          <span *ngIf="form.get('make').invalid && form.get('make').touched" class="form-text text-danger mb-2">
+            <span *ngIf="form.get('make').hasError('required')">
+              Make is required!
+            </span>
+            <span *ngIf="form.get('make').hasError('minlength')">
+              Make must have minimum 2 character!
+            </span>
+            <span *ngIf="form.get('make').hasError('maxlength')">
+              Make must have maximum 150 characters!
+            </span>
+          </span>
+        </div>
+  
+        <div class="mb-3 col-12">
+          <label class="form-label" for="model">Model</label>
+          <input formControlName="model" type="text" id="model" class="form-control" />
+          <span *ngIf="form.get('model').invalid && form.get('model').touched" class="form-text text-danger mb-2">
+            <span *ngIf="form.get('model').hasError('required')">
+              Model is required!
+            </span>
+            <span *ngIf="form.get('model').hasError('minlength')">
+              Model must have minimum 2 character!
+            </span>
+            <span *ngIf="form.get('model').hasError('maxlength')">
+              Model must have maximum 150 characters!
+            </span>
+          </span>
+        </div>
+
+        <div class="mb-3 col-12">
+          <label class="form-label" for="brand">Brand</label>
+          <input formControlName="brand" type="text" id="brand" class="form-control" />
+          <span *ngIf="form.get('brand').invalid && form.get('brand').touched" class="form-text text-danger mb-2">
+            <span *ngIf="form.get('brand').hasError('required')">
+              Brand is required!
+            </span>
+            <span *ngIf="form.get('brand').hasError('minlength')">
+              Brand must have minimum 2 character!
+            </span>
+            <span *ngIf="form.get('brand').hasError('maxlength')">
+              Brand must have maximum 150 characters!
+            </span>
+          </span>
+        </div>
+
+        <div class="mb-3 col-12">
+          <label class="form-label" for="retailPrice">Retail price</label>
+          <input formControlName="retailPrice" type="text" id="retailPrice" class="form-control" />
+          <span *ngIf="form.get('retailPrice').invalid && form.get('retailPrice').touched" class="form-text text-danger mb-2">
+            <span *ngIf="form.get('retailPrice').hasError('required')">
+              Retail price is required!
+            </span>
+            <span *ngIf="form.get('retailPrice').hasError('minlength')">
+              Retail price must have minimum 2 character!
+            </span>
+            <span *ngIf="form.get('retailPrice').hasError('maxlength')">
+              Retail price must have maximum 50 characters!
+            </span>
+            <span *ngIf="form.get('retailPrice').hasError('min')">
+              Retail price must be at least $0.01!
+            </span>
+            <span *ngIf="form.get('retailPrice').hasError('pattern')">
+              Retail price can contain a maximum of 2 decimal places!
+            </span>
+          </span>
+        </div>
+
+      </div>
+      <div class="col-md-4">
+
+        <div class="mb-3 col-12">
+          <label class="form-label" for="category">Category</label>
+          <select id="category" class="form-select mb-2" formControlName="category">
+            <option *ngFor="let category of categories" [value]="category">{{category}}</option>
+          </select>
+        </div>
+
+        <div class="mb-3 col-12">
+          <label class="form-label" for="gender">Gender</label>
+          <select id="gender" class="form-select mb-2" formControlName="gender">
+            <option *ngFor="let gender of genders" [value]="gender">{{ gender | titlecase }}</option>
+          </select>
+        </div>
+
+        <div class="mb-3 col-12">
+          <label for="description" class="form-label">Description</label>
+          <textarea class="form-control" id="description" rows="3"></textarea>
+          <span *ngIf="form.get('description').invalid && form.get('description').touched" class="form-text text-danger mb-2">
+            <span *ngIf="form.get('description').hasError('maxlength')">
+              Description must have maximum 50 characters!
+            </span>
+          </span>
+        </div>
+
+        <div class="mb-3 col-12">
+          <label class="form-label" for="imageUrl">Image URL</label>
+          <input formControlName="imageUrl" type="text" id="imageUrl" class="form-control" />
+          <span *ngIf="form.get('imageUrl').invalid && form.get('imageUrl').touched" class="form-text text-danger mb-2">
+            <span *ngIf="form.get('imageUrl').hasError('required')">
+              Image URL is required!
+            </span>
+            <span *ngIf="form.get('imageUrl').hasError('pattern')">
+              Image URL is invalid!
+            </span>
+          </span>
+        </div>
+
+      </div>
+
+      <div class="col-md-4 d-flex align-items-center">
+        <img [src]="item.imageUrl" alt="item image" class="img-fluid">
+      </div>
+
+    </div>
+    <div class="row">
+      <div class="alert alert-danger" role="alert" *ngIf="error === true">
+        Something went wrong
+      </div>
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button type="button" mat-button color="warn" (click)="onDelete()">Delete</button>
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button type="submit" color="success" mat-button [disabled]="!form.valid">Save</button>
+  </mat-dialog-actions>
+</form>

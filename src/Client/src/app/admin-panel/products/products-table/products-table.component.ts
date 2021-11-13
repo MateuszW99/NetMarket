@@ -8,6 +8,7 @@ import { ItemsParams } from 'src/app/shared/items/items-params';
 import { ItemsService } from 'src/app/shared/items/items.service';
 import { PagedList } from 'src/app/shared/paged-list';
 import { Pagination } from 'src/app/shared/pagination';
+import { EditProductComponent } from '../edit-product/edit-product.component';
 import { ItemRow } from './item-row';
 
 @Component({
@@ -18,6 +19,7 @@ import { ItemRow } from './item-row';
 export class ProductsTableComponent implements OnInit, OnDestroy {
   category = 'sneakers';
   searchText = '';
+  currentPage: number;
   dataSource = new MatTableDataSource<ItemRow>();
   itemsSubscription: Subscription;
   loadingSubscription: Subscription;
@@ -54,12 +56,15 @@ export class ProductsTableComponent implements OnInit, OnDestroy {
   }
 
   onManage(row: ItemRow): void {
-    console.log('on manage clicked');
-
-    // this.dialog.open(ManageItemComponent, {
-    //   width: '600px',
-    //   data: { itemId: row.id }
-    // });
+    this.dialog.open(EditProductComponent, {
+      width: '1000px',
+      data: {
+        itemId: row.id,
+        currentPage: this.currentPage,
+        currentCategory: this.category,
+        searchText: this.searchText
+      }
+    });
   }
 
   getRows(data: PagedList<Item>): ItemRow[] {
@@ -84,10 +89,12 @@ export class ProductsTableComponent implements OnInit, OnDestroy {
     this.itemsService.getItems(
       new ItemsParams(10, event.pageIndex + 1, this.category, this.searchText)
     );
+    this.currentPage = event.pageIndex + 1;
     return event;
   }
 
   getPaginationData(items: PagedList<Item>): Pagination {
+    this.currentPage = items.pageIndex;
     return {
       pageIndex: items.pageIndex,
       hasNextPage: items.hasNextPage,
