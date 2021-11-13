@@ -189,7 +189,7 @@ namespace Application.UnitTests.Services
 
             var command = new CreateItemCommand()
             {
-                Brand = new BrandObject() {Id = brandId.ToString(), Name = "Nile"},
+                Brand = "Nike",
                 Category = category,
                 Description = description,
                 Gender = gender,

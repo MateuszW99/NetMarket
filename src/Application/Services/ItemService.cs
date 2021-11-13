@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Application.Common.Exceptions;
 using Application.Common.Interfaces;
 using Application.Common.Models;
 using Application.Models.ApiModels.Items.Commands;
@@ -25,11 +24,23 @@ namespace Application.Services
 
         public async Task CreateItemAsync(CreateItemCommand command, CancellationToken cancellationToken)
         {
-            var brand = _context.Brands.FirstOrDefaultAsync(x => x.Id == Guid.Parse(command.Brand.Id));
+            var brand = await _context.Brands.FirstOrDefaultAsync(x => x.Name == command.Brand, cancellationToken: cancellationToken);
+
+            if (brand == null)
+            {
+                var newBrand = new Brand()
+                {
+                    Name = command.Brand
+                };
+                
+                await _context.Brands.AddAsync(newBrand, cancellationToken);
+                await _context.SaveChangesAsync(cancellationToken);
+                brand = newBrand;
+            }
 
             var item = new Item()
             {
-                Brand = await brand,
+                Brand = brand,
                 Make = command.Make,
                 Model = command.Model,
                 Gender = command.Gender,

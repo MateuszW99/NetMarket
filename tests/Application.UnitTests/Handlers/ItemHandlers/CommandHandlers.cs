@@ -40,7 +40,7 @@ namespace Application.UnitTests.Handlers.ItemHandlers
                 ImageUrl = "www.google.com",
                 SmallImageUrl = "www.google.com",
                 ThumbUrl = "www.google.com",
-                Brand = new BrandObject() { Name = "Nike" },
+                Brand =  "Nike",
                 Category = "Sneakers"
             };
 
@@ -96,7 +96,7 @@ namespace Application.UnitTests.Handlers.ItemHandlers
                 ImageUrl = imageUrl,
                 SmallImageUrl = smallImageUrl,
                 ThumbUrl = thumbUrl,
-                Brand = new BrandObject() { Name = "Nike" }
+                Brand = "Nike"
             };
 
             var commandHandler = new CreateItemCommandHandler(null, null);
