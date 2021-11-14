@@ -29,6 +29,7 @@ import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 import { EmployeesComponent } from './admin-panel/employees/employees.component';
 import { ProductsComponent } from './admin-panel/products/products.component';
 import { AdminAndSupervisorSettingsComponent } from './shared/admin-and-supervisor-settings/admin-and-supervisor-settings.component';
+import { TransactionsComponent } from './account/transactions/transactions.component';
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent, pathMatch: 'full' },
@@ -54,6 +55,7 @@ const routes: Routes = [
         component: UserBidsComponent
       },
       { path: 'asks', component: UserAsksComponent },
+      { path: 'transactions', component: TransactionsComponent },
       { path: 'settings', component: SettingsComponent }
     ]
   },

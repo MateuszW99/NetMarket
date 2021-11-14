@@ -74,6 +74,9 @@ import { SupervisorsTableComponent } from './admin-panel/employees/supervisors-t
 import { AddSupervisorComponent } from './admin-panel/employees/add-supervisor/add-supervisor.component';
 import { DeleteSupervisorComponent } from './admin-panel/employees/delete-supervisor/delete-supervisor.component';
 import { SupervisorFiltersComponent } from './admin-panel/employees/supervisors-table/supervisor-filters/supervisor-filters.component';
+import { TransactionsComponent } from './account/transactions/transactions.component';
+import { TransactionsTableComponent } from './account/transactions/transactions-table/transactions-table.component';
+import { TransactionsFiltersComponent } from './account/transactions/transactions-table/transactions-filters/transactions-filters.component';
 
 @NgModule({
   declarations: [
@@ -136,7 +139,10 @@ import { SupervisorFiltersComponent } from './admin-panel/employees/supervisors-
     SupervisorsTableComponent,
     AddSupervisorComponent,
     DeleteSupervisorComponent,
-    SupervisorFiltersComponent
+    SupervisorFiltersComponent,
+    TransactionsComponent,
+    TransactionsTableComponent,
+    TransactionsFiltersComponent
   ],
   imports: [
     BrowserModule,
