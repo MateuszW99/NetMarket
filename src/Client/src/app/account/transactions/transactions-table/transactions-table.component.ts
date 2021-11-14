@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 import { PagedList } from 'src/app/shared/paged-list';
 import { Pagination } from 'src/app/shared/pagination';
 import { TransactionService } from 'src/app/shared/services/orders/transaction.service';
+import { Statuses } from 'src/app/supervisor-panel/statuses';
 import { Transaction } from 'src/app/supervisor-panel/transaction';
 import { UserTransactionRow } from './user-transaction-row';
 
@@ -24,6 +25,7 @@ export class TransactionsTableComponent implements OnInit {
   error: string;
   paginationData: Pagination;
   pageEvent: PageEvent;
+  statuses: Map<string, string> = new Map(Statuses);
   displayedColumns = [
     'name',
     'category',
