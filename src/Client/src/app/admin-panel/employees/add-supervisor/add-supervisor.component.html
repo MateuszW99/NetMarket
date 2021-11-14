@@ -32,6 +32,9 @@
             <span *ngIf="form.get('email').hasError('maxlength')">
                 Email must have maximum 50 characters!
             </span>
+            <span *ngIf="form.get('email').hasError('email')">
+              Email is invalid!
+          </span>
           </span>
         </div>
   
@@ -54,8 +57,8 @@
       </div>
 
     <div class="row">
-      <div class="alert alert-danger" role="alert" *ngIf="error === true">
-        Something went wrong
+      <div class="alert alert-danger" role="alert" *ngIf="error !== ''">
+        {{ error }}
       </div>
     </div>
   </mat-dialog-content>

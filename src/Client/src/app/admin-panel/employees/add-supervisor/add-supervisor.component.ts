@@ -1,6 +1,6 @@
-import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
 import { AdminPanelService } from '../../admin-panel.service';
 import { AddSupervisor } from './add-supervisor';
@@ -13,12 +13,11 @@ import { AddSupervisor } from './add-supervisor';
 export class AddSupervisorComponent implements OnInit, OnDestroy {
   form: FormGroup;
   addSupervisorSubscription: Subscription;
-  error = false;
+  error = '';
   loading = false;
 
   constructor(
     private adminPanelService: AdminPanelService,
-    @Inject(MAT_DIALOG_DATA)
     private dialogRef: MatDialogRef<AddSupervisorComponent>
   ) {}
 
@@ -40,12 +39,20 @@ export class AddSupervisorComponent implements OnInit, OnDestroy {
       .subscribe(
         () => {
           this.loading = false;
+          this.error = '';
           this.adminPanelService.getSupervisors(1);
           this.dialogRef.close();
         },
-        () => {
-          this.error = true;
+        (error) => {
           this.loading = false;
+          if (
+            !error.error.errorMessages ||
+            error.error.errorMessages.length === 0
+          ) {
+            this.error = 'Something went wrong';
+          } else {
+            this.error = error.error.errorMessages[0];
+          }
         }
       );
   }
@@ -60,7 +67,8 @@ export class AddSupervisorComponent implements OnInit, OnDestroy {
       email: new FormControl('', [
         Validators.required,
         Validators.minLength(2),
-        Validators.maxLength(50)
+        Validators.maxLength(50),
+        Validators.email
       ]),
       password: new FormControl('', [
         Validators.required,

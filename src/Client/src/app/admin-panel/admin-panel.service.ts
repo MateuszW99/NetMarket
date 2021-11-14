@@ -24,7 +24,7 @@ export class AdminPanelService {
     params = params.append('pageIndex', pageIndex);
     params = params.append('pageSize', 10);
     if (searchText && searchText.trim() !== '') {
-      params = params.append('searchText', searchText);
+      params = params.append('searchQuery', searchText);
     }
 
     this.fetchSupervisors(params).subscribe(
