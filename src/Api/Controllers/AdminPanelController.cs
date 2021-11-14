@@ -52,14 +52,7 @@ namespace Api.Controllers
         [HttpGet("supervisors")]
         public async Task<IActionResult> GetSupervisors([FromQuery]GetSupervisorsQuery query)
         {
-            
-            var result = await _mediator.Send(new GetSupervisorsQuery()
-            {
-                PageIndex = query.PageIndex,
-                PageSize = query.PageSize,
-                SearchQuery = query.SearchQuery
-            });
-
+            var result = await _mediator.Send(query);
             return Ok(result);
         }
         

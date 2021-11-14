@@ -31,7 +31,6 @@
 
   <ItemGroup>
     <Folder Include="Models\ApiModels\Supervisors\Commands" />
-    <Folder Include="Models\ApiModels\Transactions\Queries" />
   </ItemGroup>
 
   <ItemGroup>

@@ -3,18 +3,18 @@ using Application.Models.DTOs;
 using FluentValidation;
 using MediatR;
 
-namespace Application.Models.ApiModels.Supervisors.Queries
+namespace Application.Models.ApiModels.Transactions.Queries
 {
-    public class GetSupervisorsQuery: IRequest<PaginatedList<SupervisorObject>>
-    {        
+    public class GetUserTransactionsQuery : IRequest<PaginatedList<TransactionObject>>
+    {
         public int PageIndex { get; init; }
         public int PageSize { get; init; }
         public string SearchQuery { get; init; }
     }
 
-    public class GetSupervisorsQueryValidator : AbstractValidator<GetSupervisorsQuery>
+    public class GetUserTransactionsQueryValidator : AbstractValidator<GetUserTransactionsQuery>
     {
-        public GetSupervisorsQueryValidator()
+        public GetUserTransactionsQueryValidator()
         {
             RuleFor(x => x.PageIndex).GreaterThanOrEqualTo(1);
             RuleFor(x => x.PageSize).GreaterThanOrEqualTo(10);
