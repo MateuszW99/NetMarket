@@ -10,5 +10,7 @@ export enum ApiPaths {
   Asks = '/asks',
   Transactions = '/transactions',
   SupervisorPanel = '/supervisorPanel',
-  Orders = '/orders'
+  Orders = '/orders',
+  AdminPanel = 'adminPanel',
+  Supervisors = 'supervisors'
 }
