@@ -4,7 +4,7 @@ import { Observable, Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { ApiPaths } from '../shared/api-paths';
 import { PagedList } from '../shared/paged-list';
-import { AddSupervisor } from './employees/add-supervisor';
+import { AddSupervisor } from './employees/add-supervisor/add-supervisor';
 import { Supervisor } from './employees/supervisor.model';
 
 @Injectable({

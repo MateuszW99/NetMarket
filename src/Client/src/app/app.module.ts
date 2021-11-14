@@ -70,6 +70,10 @@ import { ProductFiltersComponent } from './admin-panel/products/products-table/p
 import { ProductsTableComponent } from './admin-panel/products/products-table/products-table.component';
 import { EditProductComponent } from './admin-panel/products/edit-product/edit-product.component';
 import { AddProductComponent } from './admin-panel/products/add-product/add-product.component';
+import { SupervisorsTableComponent } from './admin-panel/employees/supervisors-table/supervisors-table.component';
+import { AddSupervisorComponent } from './admin-panel/employees/add-supervisor/add-supervisor.component';
+import { DeleteSupervisorComponent } from './admin-panel/employees/delete-supervisor/delete-supervisor.component';
+import { SupervisorFiltersComponent } from './admin-panel/employees/supervisors-table/supervisor-filters/supervisor-filters.component';
 
 @NgModule({
   declarations: [
@@ -128,7 +132,11 @@ import { AddProductComponent } from './admin-panel/products/add-product/add-prod
     ProductsTableComponent,
     ProductFiltersComponent,
     EditProductComponent,
-    AddProductComponent
+    AddProductComponent,
+    SupervisorsTableComponent,
+    AddSupervisorComponent,
+    DeleteSupervisorComponent,
+    SupervisorFiltersComponent
   ],
   imports: [
     BrowserModule,
