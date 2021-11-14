@@ -54,20 +54,19 @@ export class LoginComponent implements OnInit {
           this.form.reset();
           this.isLoading = false;
           const role = this.authService.getUserRole();
-          
-          if(role === Roles.User){
-            if(this.returnUrl.includes('supervisor') || this.returnUrl.includes('admin')){
-              console.log('if');
+
+          if (role === Roles.User) {
+            if (
+              this.returnUrl.includes('supervisor') ||
+              this.returnUrl.includes('admin')
+            ) {
               this.router.navigate(['']);
-            }
-            else{
+            } else {
               this.router.navigateByUrl(this.returnUrl);
             }
-          }
-          else if(role === Roles.Supervisor){
+          } else if (role === Roles.Supervisor) {
             this.router.navigate(['/supervisor-panel']);
-          }
-          else if(role === Roles.Admin){
+          } else if (role === Roles.Admin) {
             this.router.navigate(['/admin-panel']);
           }
         },
