@@ -6,7 +6,7 @@
             <div class="mb-3 col-6 offset-3">
                 <label class="form-label" for="status">Status</label>
                 <select id="status" class="form-select mb-2" formControlName="status">
-                    <option *ngFor="let status of statuses | keyvalue" [value]="status.key">{{status.value}}</option>
+                    <option *ngFor="let status of statuses | keyvalue: asIsOrder" [value]="status.key">{{status.value}}</option>
                 </select>
                 <span *ngIf="form.get('status').invalid && form.get('status').touched"
                     class="form-text text-danger mb-2">

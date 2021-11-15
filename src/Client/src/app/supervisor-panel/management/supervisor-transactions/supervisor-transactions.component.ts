@@ -130,4 +130,8 @@ export class SupervisorTransactionsComponent implements OnInit {
     this.loadingSubscription.unsubscribe();
     this.errrorSubscription.unsubscribe();
   }
+
+  asIsOrder(a, b) {
+    return 1;
+  }
 }

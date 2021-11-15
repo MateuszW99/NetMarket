@@ -1,6 +1,6 @@
 export const Statuses = new Map<string, string>([
   ['Started', 'Started'],
-  ['AwaitingSender', 'Awaitng sender'],
+  ['AwaitingSender', 'Awating sender'],
   ['EnRouteFromSeller', 'En route from seller'],
   ['Arrived', 'Arrived'],
   ['Checked', 'Checked'],

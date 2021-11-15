@@ -54,4 +54,8 @@ export class ManageTransactionComponent implements OnInit {
         }
       );
   }
+
+  asIsOrder(a, b) {
+    return 1;
+  }
 }
