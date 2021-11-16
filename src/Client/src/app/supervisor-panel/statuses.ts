@@ -4,7 +4,7 @@ export const Statuses = new Map<string, string>([
   ['EnRouteFromSeller', 'En route from seller'],
   ['Arrived', 'Arrived'],
   ['Checked', 'Checked'],
-  ['PayoutSend', 'Payout send'],
+  ['PayoutSend', 'Payout sent'],
   ['EnRouteFromWarehouse', 'En route from warehouse'],
   ['Delivered', 'Delivered']
 ]);

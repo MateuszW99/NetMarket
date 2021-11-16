@@ -37,6 +37,7 @@ export class SupervisorService {
           response.body.hasPreviousPage,
           response.body.hasNextPage
         );
+
         this.transactionsChanged.next(transactions);
         this.loading.next(false);
       },

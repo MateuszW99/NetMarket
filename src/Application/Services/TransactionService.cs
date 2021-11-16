@@ -162,7 +162,7 @@ namespace Application.Services
                 .Include(x => x.Ask)
                 .ThenInclude(y => y.Item).DefaultIfEmpty()
                 .Include(x => x.Bid).DefaultIfEmpty()
-                .Where(x => x.CreatedBy == userId)
+                .Where(x => x.Ask.CreatedBy == userId || x.Bid.CreatedBy == userId)
                 .AsQueryable();
 
             if (!string.IsNullOrEmpty(searchQuery))
