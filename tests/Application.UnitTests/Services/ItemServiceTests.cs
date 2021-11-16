@@ -69,7 +69,7 @@ namespace Application.UnitTests.Services
                 new() {Id = Guid.NewGuid()},
                 new() {Id = Guid.NewGuid()}
             };
-             var asks = new List<Ask>()
+            var asks = new List<Ask>()
             {
                 new() {Id = new Guid()}
             };
@@ -139,9 +139,10 @@ namespace Application.UnitTests.Services
                 new() {Id = Guid.NewGuid(), Category = otherCategory},
             };
             items.AddRange(Enumerable.Repeat(new Item()
-                {
-                    Id = Guid.NewGuid(), Category = categoryToLookup
-                },
+            {
+                Id = Guid.NewGuid(),
+                Category = categoryToLookup
+            },
                 lookupCount));
 
             var mockedItems = items.AsQueryable().BuildMockDbSet();
@@ -159,7 +160,8 @@ namespace Application.UnitTests.Services
             var brandId = Guid.NewGuid();
             var brand = new Brand()
             {
-                Id = brandId, Name = "Nike"
+                Id = brandId,
+                Name = "Nike"
             };
             var price = 200m;
             var category = "Sneakers";
@@ -189,7 +191,7 @@ namespace Application.UnitTests.Services
 
             var command = new CreateItemCommand()
             {
-                Brand = new BrandObject() {Id = brandId.ToString(), Name = "Nile"},
+                Brand = "Nike",
                 Category = category,
                 Description = description,
                 Gender = gender,
@@ -204,9 +206,9 @@ namespace Application.UnitTests.Services
 
             var itemsBefore = new List<Item>();
             var mockedItemsBefore = itemsBefore.AsQueryable().BuildMockDbSet();
-            var brands = new List<Brand>() {brand};
+            var brands = new List<Brand>() { brand };
             var mockedBrands = brands.AsQueryable().BuildMockDbSet();
-            var itemsAfter = new List<Item>() {item};
+            var itemsAfter = new List<Item>() { item };
             var mockedItemsAfter = itemsAfter.AsQueryable().BuildMockDbSet();
 
             _context.Setup(x => x.Brands).Returns(mockedBrands.Object);
@@ -231,7 +233,8 @@ namespace Application.UnitTests.Services
             var brandId = Guid.NewGuid();
             var brand = new Brand()
             {
-                Id = brandId, Name = "Nike"
+                Id = brandId,
+                Name = "Nike"
             };
             var price = 200m;
             var category = "Sneakers";
@@ -282,7 +285,7 @@ namespace Application.UnitTests.Services
             var command = new UpdateItemCommand()
             {
                 Id = id.ToString(),
-                Brand = new BrandObject() {Id = brandId.ToString(), Name = "Nike"},
+                Brand = new BrandObject() { Id = brandId.ToString(), Name = "Nike" },
                 Description = newDescriptions,
                 Make = make,
                 Model = newModel,
@@ -295,11 +298,11 @@ namespace Application.UnitTests.Services
                 Name = name
             };
 
-            var itemsBefore = new List<Item>() {itemToUpdate};
+            var itemsBefore = new List<Item>() { itemToUpdate };
             var mockedItemsBefore = itemsBefore.AsQueryable().BuildMockDbSet();
-            var brands = new List<Brand>() {brand};
+            var brands = new List<Brand>() { brand };
             var mockedBrands = brands.AsQueryable().BuildMockDbSet();
-            var itemsAfter = new List<Item>() {updatedItem};
+            var itemsAfter = new List<Item>() { updatedItem };
             var mockedItemsAfter = itemsAfter.AsQueryable().BuildMockDbSet();
 
             _context.Setup(x => x.Brands).Returns(mockedBrands.Object);

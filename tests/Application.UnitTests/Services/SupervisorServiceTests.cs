@@ -18,12 +18,14 @@ namespace Application.UnitTests.Services
         private readonly ISupervisorService _sut;
         private readonly Mock<IApplicationDbContext> _context;
         private readonly Mock<IUserManagerService> _userManagerService;
+        private readonly Mock<IIdentityService> _idenityService;
 
         public SupervisorServiceTests()
         {
             _context = new Mock<IApplicationDbContext>();
             _userManagerService = new Mock<IUserManagerService>();
-            _sut = new SupervisorService(_context.Object, _userManagerService.Object);
+            _idenityService = new Mock<IIdentityService>();
+            _sut = new SupervisorService(_context.Object, _userManagerService.Object, _idenityService.Object);
         }
         
         [Fact]

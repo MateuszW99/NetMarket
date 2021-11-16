@@ -9,14 +9,14 @@
       <div class="modal-body">
         <div class="row">
           <div class="col d-flex flex-wrap justify-content-center">
-            <button type="button" class="btn btn-outline-info m-1" [ngClass]="{'active': selectedSize == size}"
+            <button mat-stroked-button [ngClass]="selectedSize === size ? 'mat-raised-button' : 'mat-stroked-button'" color="primary" type="button" class="m-1"
               *ngFor="let size of sizes" (click)="onSelect(size)">{{ size | uppercase}}</button>
           </div>
         </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" (click)="onSaveChanges()" data-bs-dismiss="modal">Save
+        <button mat-raised-button color="success" type="button" (click)="onSaveChanges()" data-bs-dismiss="modal">Save
           changes</button>
       </div>
     </div>

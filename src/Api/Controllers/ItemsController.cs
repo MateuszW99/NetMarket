@@ -27,22 +27,23 @@ namespace Api.Controllers
             var result = await _mediator.Send(new GetItemByIdQuery(id));
             return Ok(result);
         }
-        
+
         [HttpGet]
         public async Task<ActionResult<PaginatedList<ItemObject>>> GetItems([FromQuery] SearchItemsQuery query)
         {
             var result = await _mediator.Send(new GetItemsQuery()
             {
-                SearchQuery =  query,
-                PageIndex = query.PageIndex, 
+                SearchQuery = query,
+                PageIndex = query.PageIndex,
                 PageSize = query.PageSize
             });
-            
+
             return Ok(result);
         }
 
         [HttpGet("category")]
-        public async Task<ActionResult<PaginatedList<ItemObject>>> GetItemsByCategory([FromQuery] ItemsWithCategoryQuery query)
+        public async Task<ActionResult<PaginatedList<ItemObject>>> GetItemsByCategory(
+            [FromQuery] ItemsWithCategoryQuery query)
         {
             var result = await _mediator.Send(new GetItemsWithCategoryQuery()
             {
@@ -60,7 +61,7 @@ namespace Api.Controllers
             var result = await _mediator.Send(query);
             return Ok(result);
         }
-        
+
         [HttpPost]
         [Authorize(Policy = "AdminAccess")]
         public async Task<ActionResult> CreateItem([FromBody] CreateItemCommand command)
@@ -68,12 +69,20 @@ namespace Api.Controllers
             await _mediator.Send(command);
             return Ok();
         }
-        
+
         [HttpPut("{id}")]
         [Authorize(Policy = "AdminAccess")]
         public async Task<ActionResult> UpdateItem(string id, [FromBody] UpdateItemCommand command)
         {
             await _mediator.Send(command);
+            return Ok();
+        }
+
+        [HttpDelete("{id}")]
+        [Authorize(Policy = "AdminAccess")]
+        public async Task<ActionResult> DeleteItem(string id)
+        {
+            await _mediator.Send(new DeleteItemCommand() {Id = id});
             return Ok();
         }
     }

@@ -29,7 +29,6 @@ import { ToastrModule } from 'ngx-toastr';
 import { SizeModalComponent } from './shared/size-modal/size-modal.component';
 import { CategoryCardComponent } from './landing-page/category-card/category-card.component';
 import { TrendingItemsComponent } from './landing-page/trending-items/trending-items.component';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AccountComponent } from './account/account.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -58,6 +57,26 @@ import { FaqComponent } from './faq/faq.component';
 import { CustomerServiceFaqComponent } from './faq/customer-service-faq/customer-service-faq.component';
 import { BidFaqComponent } from './faq/bid-faq/bid-faq.component';
 import { AskFaqComponent } from './faq/ask-faq/ask-faq.component';
+import { FooterComponent } from './shared/footer/footer.component';
+import { SupervisorPanelComponent } from './supervisor-panel/supervisor-panel.component';
+import { ManagementComponent } from './supervisor-panel/management/management.component';
+import { SupervisorTransactionsComponent } from './supervisor-panel/management/supervisor-transactions/supervisor-transactions.component';
+import { ManageTransactionComponent } from './supervisor-panel/management/manage-transaction/manage-transaction.component';
+import { AdminPanelComponent } from './admin-panel/admin-panel.component';
+import { EmployeesComponent } from './admin-panel/employees/employees.component';
+import { ProductsComponent } from './admin-panel/products/products.component';
+import { AdminAndSupervisorSettingsComponent } from './shared/admin-and-supervisor-settings/admin-and-supervisor-settings.component';
+import { ProductFiltersComponent } from './admin-panel/products/products-table/product-filters/product-filters.component';
+import { ProductsTableComponent } from './admin-panel/products/products-table/products-table.component';
+import { EditProductComponent } from './admin-panel/products/edit-product/edit-product.component';
+import { AddProductComponent } from './admin-panel/products/add-product/add-product.component';
+import { SupervisorsTableComponent } from './admin-panel/employees/supervisors-table/supervisors-table.component';
+import { AddSupervisorComponent } from './admin-panel/employees/add-supervisor/add-supervisor.component';
+import { DeleteSupervisorComponent } from './admin-panel/employees/delete-supervisor/delete-supervisor.component';
+import { SupervisorFiltersComponent } from './admin-panel/employees/supervisors-table/supervisor-filters/supervisor-filters.component';
+import { TransactionsComponent } from './account/transactions/transactions.component';
+import { TransactionsTableComponent } from './account/transactions/transactions-table/transactions-table.component';
+import { TransactionsFiltersComponent } from './account/transactions/transactions-table/transactions-filters/transactions-filters.component';
 
 @NgModule({
   declarations: [
@@ -103,7 +122,27 @@ import { AskFaqComponent } from './faq/ask-faq/ask-faq.component';
     FaqComponent,
     CustomerServiceFaqComponent,
     BidFaqComponent,
-    AskFaqComponent
+    AskFaqComponent,
+    FooterComponent,
+    SupervisorPanelComponent,
+    ManagementComponent,
+    SupervisorTransactionsComponent,
+    ManageTransactionComponent,
+    AdminPanelComponent,
+    EmployeesComponent,
+    ProductsComponent,
+    AdminAndSupervisorSettingsComponent,
+    ProductsTableComponent,
+    ProductFiltersComponent,
+    EditProductComponent,
+    AddProductComponent,
+    SupervisorsTableComponent,
+    AddSupervisorComponent,
+    DeleteSupervisorComponent,
+    SupervisorFiltersComponent,
+    TransactionsComponent,
+    TransactionsTableComponent,
+    TransactionsFiltersComponent
   ],
   imports: [
     BrowserModule,
@@ -114,7 +153,6 @@ import { AskFaqComponent } from './faq/ask-faq/ask-faq.component';
     ClipboardModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
-    FontAwesomeModule,
     MatToolbarModule,
     MatSidenavModule,
     MatButtonModule,

@@ -23,15 +23,15 @@ import { FaqComponent } from './faq/faq.component';
 import { AskFaqComponent } from './faq/ask-faq/ask-faq.component';
 import { CustomerServiceFaqComponent } from './faq/customer-service-faq/customer-service-faq.component';
 import { BidFaqComponent } from './faq/bid-faq/bid-faq.component';
+import { SupervisorPanelComponent } from './supervisor-panel/supervisor-panel.component';
+import { ManagementComponent } from './supervisor-panel/management/management.component';
+import { AdminPanelComponent } from './admin-panel/admin-panel.component';
+import { EmployeesComponent } from './admin-panel/employees/employees.component';
+import { ProductsComponent } from './admin-panel/products/products.component';
+import { AdminAndSupervisorSettingsComponent } from './shared/admin-and-supervisor-settings/admin-and-supervisor-settings.component';
+import { TransactionsComponent } from './account/transactions/transactions.component';
 
 const routes: Routes = [
-  //AUTH GUARD ussage example
-  // {
-  //   path: 'admin',
-  //   component: AdminComponent,
-  //   canActivate: [AuthGuard],
-  //   data: { roles: [Roles.Admin] }
-  // },
   { path: '', component: LandingPageComponent, pathMatch: 'full' },
   {
     path: 'auth',
@@ -55,7 +55,31 @@ const routes: Routes = [
         component: UserBidsComponent
       },
       { path: 'asks', component: UserAsksComponent },
+      { path: 'transactions', component: TransactionsComponent },
       { path: 'settings', component: SettingsComponent }
+    ]
+  },
+  {
+    path: 'supervisor-panel',
+    component: SupervisorPanelComponent,
+    canActivate: [AuthGuard],
+    data: { roles: [Roles.Supervisor] },
+    children: [
+      { path: '', redirectTo: 'management', pathMatch: 'full' },
+      { path: 'management', component: ManagementComponent },
+      { path: 'settings', component: AdminAndSupervisorSettingsComponent }
+    ]
+  },
+  {
+    path: 'admin-panel',
+    component: AdminPanelComponent,
+    canActivate: [AuthGuard],
+    data: { roles: [Roles.Admin] },
+    children: [
+      { path: '', redirectTo: 'employees', pathMatch: 'full' },
+      { path: 'employees', component: EmployeesComponent },
+      { path: 'products', component: ProductsComponent },
+      { path: 'settings', component: AdminAndSupervisorSettingsComponent }
     ]
   },
   {

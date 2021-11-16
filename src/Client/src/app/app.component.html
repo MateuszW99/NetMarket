@@ -1,2 +1,7 @@
-<app-search-bar *ngIf="!isAuthPage"></app-search-bar>
-<router-outlet></router-outlet>
+<div class="d-flex flex-column min-vh-100">
+    <app-search-bar *ngIf="!isAuthPage"></app-search-bar>
+    <router-outlet></router-outlet>
+    <footer class="mt-auto py-3 bg-light">
+        <app-footer ></app-footer>
+    </footer>
+</div>

@@ -56,8 +56,6 @@ export class RegisterComponent implements OnInit {
       )
       .subscribe(
         () => {
-          console.log('registered');
-
           this.errorMessage = '';
           this.form.reset();
           this.isLoading = false;
@@ -65,7 +63,6 @@ export class RegisterComponent implements OnInit {
         },
         (error) => {
           this.isLoading = false;
-          console.log(error);
           if (
             !error.error.errorMessages ||
             error.error.errorMessages.length === 0

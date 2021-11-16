@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container d-flex">
-    <a class="navbar-brand" href="#"><img src="{{ logoPath }}" alt="Logo" class="logo"></a>
+    <a class="navbar-brand" routerLink="/"><img src="{{ logoPath }}" alt="Logo" class="logo"></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -13,7 +13,7 @@
       </select>
       <input class="form-control" type="search" placeholder="Search" id="searchText" formControlName="searchText">
       <div class="input-group-append">
-        <button class="btn border search-icon" type="submit" routerLink="/{{ this.form.value.category }}">
+        <button class="btn border search-icon" type="submit">
           <img src="{{ searchIconPath }}" alt="Search">
         </button>
       </div>
@@ -43,12 +43,11 @@
           </ul>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" routerLink="/account">
+          <a type="button" class="nav-link active" (click)="onNavigate()">
             <img src="{{ accountIconPath }}" alt="Account" class="menu-icon">
           </a>
         </li>
         <li class="nav-item">
-          <!-- TODO: add path to faq -->
           <a class="nav-link" routerLink="/faq"><img src="{{ helpIconPath }}" alt="Help" class="menu-icon"></a>
         </li>
       </ul>

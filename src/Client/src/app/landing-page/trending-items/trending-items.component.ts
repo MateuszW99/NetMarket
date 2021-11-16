@@ -1,5 +1,4 @@
 import { Component, Input } from '@angular/core';
-import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { ItemDetails } from 'src/app/shared/items/item-details/item-details.model';
 
 @Component({
@@ -10,6 +9,4 @@ import { ItemDetails } from 'src/app/shared/items/item-details/item-details.mode
 export class TrendingItemsComponent {
   @Input() category = '';
   @Input() items: ItemDetails[];
-  faArrowLeft = faArrowLeft;
-  faArrowRight = faArrowRight;
 }

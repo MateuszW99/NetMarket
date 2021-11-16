@@ -17,5 +17,6 @@ namespace Application.Common.Interfaces
         Task UpdateTransactionAsync(UpdateTransactionCommand command, CancellationToken cancellationToken);
         Task UpdateTransactionStatusAsync(UpdateTransactionStatusCommand command, string supervisorId, CancellationToken cancellationToken);
         Task InitializeTransaction(Ask ask, Bid bid, DateTime startDate, Guid supervisorId, CancellationToken cancellationToken);
+        Task<List<Transaction>> GetUserTransactionsAsync(Guid userId, string searchQuery);
     }
 }

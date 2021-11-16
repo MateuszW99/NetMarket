@@ -17,7 +17,7 @@ namespace Application.Models.ApiModels.Items.Commands
         public string SmallImageUrl { get; set; }
         public string ThumbUrl { get; set; }
         public string Category { get; set; }
-        public BrandObject Brand { get; set; }
+        public string Brand { get; set; }
     }
 
     public class CreateItemCommandValidator : AbstractValidator<CreateItemCommand>
@@ -38,12 +38,12 @@ namespace Application.Models.ApiModels.Items.Commands
                 .NotNull()
                 .MinimumLength(0)
                 .MaximumLength(150);
-            
+
             RuleFor(x => x.Gender)
                 .NotNull()
                 .MinimumLength(0)
                 .MaximumLength(10);
-            
+
             RuleFor(x => x.Description)
                 .MinimumLength(0)
                 .MaximumLength(1500);
@@ -52,16 +52,16 @@ namespace Application.Models.ApiModels.Items.Commands
                 .GreaterThanOrEqualTo((decimal) 0.0);
 
             RuleFor(x => x.ImageUrl).MustMatchUrlPattern();
-            
+
             RuleFor(x => x.SmallImageUrl).MustMatchUrlPattern();
-            
+
             RuleFor(x => x.ThumbUrl).MustMatchUrlPattern();
 
             RuleFor(x => x.Category).NotNull()
                 .NotEmpty()
                 .MaximumLength(150);
-            
-            RuleFor(x => x.Brand).NotNull();
+
+            RuleFor(x => x.Brand).NotNull().MaximumLength(150);
         }
     }
 }

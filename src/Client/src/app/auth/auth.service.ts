@@ -109,6 +109,12 @@ export class AuthService {
     return this.user.value !== null;
   }
 
+  getUserRole(): string {
+    return this.isUserLoggedIn() === true
+      ? this.user.value.role
+      : 'notLoggedIn';
+  }
+
   private handleAuthentication(token: string, rememberMe: boolean): void {
     const decodedToken: TokenClaims = jwt_decode(token);
 

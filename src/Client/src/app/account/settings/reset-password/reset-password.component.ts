@@ -51,13 +51,11 @@ export class ResetPasswordComponent implements OnInit, OnDestroy {
   }
 
   onSubmit(): void {
-    console.log(this.form.value as ResetPasswordRequest);
     const request = new ResetPasswordRequest(
       this.form.value.email,
       this.form.value.password,
       this.form.value.newPasswords.password
     );
-    console.log(request);
 
     this.resetPasswordSubscription = this.authService
       .resetPassword(request)

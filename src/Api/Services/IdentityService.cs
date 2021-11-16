@@ -9,6 +9,7 @@ using Api.Common;
 using Application.Common.Interfaces;
 using Application.Identity;
 using Application.Identity.Responses;
+using Application.Models.DTOs;
 using Domain;
 using Infrastructure.Identity;
 using Microsoft.AspNetCore.Identity;
@@ -30,7 +31,8 @@ namespace Api.Services
             _roleManager = roleManager;
         }
 
-        public async Task<AuthenticationResult> RegisterAsync(string email, string username, string password)
+        public async Task<AuthenticationResult> RegisterAsync(string email, string username, string password,
+            string role = "User")
         {
             var existingUser = await _userManager.FindByEmailAsync(email);
 
@@ -38,7 +40,7 @@ namespace Api.Services
             {
                 return new AuthenticationResult()
                 {
-                    ErrorMessages = new[] {"User with this email address already exists."}
+                    ErrorMessages = new[] { "User with this email address already exists." }
                 };
             }
 
@@ -58,7 +60,7 @@ namespace Api.Services
                 };
             }
 
-            await _userManager.AddToRoleAsync(newUser, Roles.User);
+            await _userManager.AddToRoleAsync(newUser, role);
 
             return await GenerateAuthenticationResult(newUser);
         }
@@ -71,7 +73,7 @@ namespace Api.Services
             {
                 return new AuthenticationResult()
                 {
-                    ErrorMessages = new[] {"User does not exist."}
+                    ErrorMessages = new[] { "User does not exist." }
                 };
             }
 
@@ -80,7 +82,7 @@ namespace Api.Services
             {
                 return new AuthenticationResult()
                 {
-                    ErrorMessages = new[] {"Email/password combination is wrong"}
+                    ErrorMessages = new[] { "Email/password combination is wrong" }
                 };
             }
 
@@ -95,7 +97,7 @@ namespace Api.Services
             {
                 return new ResetPasswordResponse()
                 {
-                    ErrorMessages = new[] {"User does not exist."}
+                    ErrorMessages = new[] { "User does not exist." }
                 };
             }
 
@@ -104,7 +106,7 @@ namespace Api.Services
             {
                 return new ResetPasswordResponse()
                 {
-                    ErrorMessages = new[] {"Password is wrong"}
+                    ErrorMessages = new[] { "Password is wrong" }
                 };
             }
 
@@ -120,6 +122,46 @@ namespace Api.Services
             }
 
             return new ResetPasswordResponse()
+            {
+                Success = true
+            };
+        }
+
+        public async Task<List<SupervisorObject>> GetSupervisorsAsync()
+        {
+            var supervisorUsers = await _userManager.GetUsersInRoleAsync(Roles.Supervisor);
+
+            return supervisorUsers.Select(applicationUser => new SupervisorObject()
+            {
+                Id = applicationUser.Id.ToString(),
+                Email = applicationUser.Email,
+                Username = applicationUser.UserName
+            }).ToList();
+        }
+
+        public async Task<DeleteUserResponse> DeleteUserAsync(string id)
+        {
+            var user = await _userManager.FindByIdAsync(id);
+
+            if (user == null)
+            {
+                return new DeleteUserResponse()
+                {
+                    ErrorMessages = new[] { "User does not exist." }
+                };
+            }
+
+            var deleteUserResult = await _userManager.DeleteAsync(user);
+
+            if (!deleteUserResult.Succeeded)
+            {
+                return new DeleteUserResponse()
+                {
+                    ErrorMessages = deleteUserResult.Errors.Select(x => x.Description)
+                };
+            }
+
+            return new DeleteUserResponse()
             {
                 Success = true
             };
