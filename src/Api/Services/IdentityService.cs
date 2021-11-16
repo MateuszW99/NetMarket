@@ -40,7 +40,7 @@ namespace Api.Services
             {
                 return new AuthenticationResult()
                 {
-                    ErrorMessages = new[] {"User with this email address already exists."}
+                    ErrorMessages = new[] { "User with this email address already exists." }
                 };
             }
 
@@ -73,7 +73,7 @@ namespace Api.Services
             {
                 return new AuthenticationResult()
                 {
-                    ErrorMessages = new[] {"User does not exist."}
+                    ErrorMessages = new[] { "User does not exist." }
                 };
             }
 
@@ -82,7 +82,7 @@ namespace Api.Services
             {
                 return new AuthenticationResult()
                 {
-                    ErrorMessages = new[] {"Email/password combination is wrong"}
+                    ErrorMessages = new[] { "Email/password combination is wrong" }
                 };
             }
 
@@ -97,7 +97,7 @@ namespace Api.Services
             {
                 return new ResetPasswordResponse()
                 {
-                    ErrorMessages = new[] {"User does not exist."}
+                    ErrorMessages = new[] { "User does not exist." }
                 };
             }
 
@@ -106,7 +106,7 @@ namespace Api.Services
             {
                 return new ResetPasswordResponse()
                 {
-                    ErrorMessages = new[] {"Password is wrong"}
+                    ErrorMessages = new[] { "Password is wrong" }
                 };
             }
 
@@ -133,24 +133,26 @@ namespace Api.Services
 
             return supervisorUsers.Select(applicationUser => new SupervisorObject()
             {
-                Id = applicationUser.Id.ToString(), Email = applicationUser.Email, Username = applicationUser.UserName
+                Id = applicationUser.Id.ToString(),
+                Email = applicationUser.Email,
+                Username = applicationUser.UserName
             }).ToList();
         }
 
         public async Task<DeleteUserResponse> DeleteUserAsync(string id)
         {
             var user = await _userManager.FindByIdAsync(id);
-            
+
             if (user == null)
             {
                 return new DeleteUserResponse()
                 {
-                    ErrorMessages = new[] {"User does not exist."}
+                    ErrorMessages = new[] { "User does not exist." }
                 };
             }
 
             var deleteUserResult = await _userManager.DeleteAsync(user);
-            
+
             if (!deleteUserResult.Succeeded)
             {
                 return new DeleteUserResponse()

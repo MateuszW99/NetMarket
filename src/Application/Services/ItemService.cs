@@ -32,7 +32,7 @@ namespace Application.Services
                 {
                     Name = command.Brand
                 };
-                
+
                 await _context.Brands.AddAsync(newBrand, cancellationToken);
                 await _context.SaveChangesAsync(cancellationToken);
                 brand = newBrand;
@@ -62,6 +62,13 @@ namespace Application.Services
             var item = await _context.Items
                 .Include(x => x.Brand)
                 .FirstOrDefaultAsync(x => x.Id == id);
+
+            if (item != null)
+            {
+                item.Asks = await GetItemAsks(item.Id);
+                item.Bids = await GetItemBids(item.Id);
+            }
+
 
             if (item != null)
             {

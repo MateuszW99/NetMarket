@@ -79,6 +79,7 @@ export class AuthService {
     this.router.navigate(['/auth']);
     localStorage.removeItem('userData');
     localStorage.removeItem('rememberMe');
+    console.log('logout');
   }
 
   autoLogin(): void {
