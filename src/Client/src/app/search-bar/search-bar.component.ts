@@ -1,9 +1,11 @@
 import { Component, DoCheck, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/auth/auth.service';
-import { ItemsService } from "../shared/items/items.service";
-import { ItemsParams } from "../shared/items/items-params";
-import { RoutingService } from "../shared/services/routing/routing.service";
+import { ItemsService } from '../shared/items/items.service';
+import { ItemsParams } from '../shared/items/items-params';
+import { RoutingService } from '../shared/services/routing/routing.service';
+import { Router } from '@angular/router';
+import { Roles } from '../auth/roles';
 
 @Component({
   selector: 'app-search-bar',
@@ -19,12 +21,19 @@ export class SearchBarComponent implements OnInit, DoCheck {
   helpIconPath: string;
   isUserLoggedIn: boolean;
 
-  categories: string[] = [ 'sneakers', 'electronics', 'streetwear', 'collectibles' ];
+  categories: string[] = [
+    'sneakers',
+    'electronics',
+    'streetwear',
+    'collectibles'
+  ];
   currentCategory: string;
 
-  constructor(private authService: AuthService,
-              private itemsService: ItemsService,
-              private routingService: RoutingService
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private itemsService: ItemsService,
+    private routingService: RoutingService
   ) {}
 
   ngOnInit(): void {
@@ -37,7 +46,7 @@ export class SearchBarComponent implements OnInit, DoCheck {
     this.searchIconPath = '../../../assets/search.svg';
     this.dropdownIconPath = '../../../assets/expand_more.svg';
     this.accountIconPath = '../../../assets/account.svg';
-    this.helpIconPath  = '../../../assets/help.svg';
+    this.helpIconPath = '../../../assets/help.svg';
 
     this.isUserLoggedIn = this.authService.isUserLoggedIn();
   }
@@ -50,11 +59,38 @@ export class SearchBarComponent implements OnInit, DoCheck {
   }
 
   onSearch(): void {
-    this.itemsService.getItems(new ItemsParams(15, 1, this.form.value.category, this.form.value.searchText));
-}
+    const searchQuery = this.form.value.searchText;
+    const currentRoute = this.routingService.getCurrentRoute();
+
+    if (
+      currentRoute !== 'sneakers' &&
+      currentRoute !== 'streetwear' &&
+      currentRoute !== 'collectibles' &&
+      currentRoute !== 'electronics'
+    ) {
+      this.router.navigate([this.form.value.category], {
+        state: { searchQuery: searchQuery }
+      });
+    } else {
+      this.itemsService.getItems(
+        new ItemsParams(15, 1, this.form.value.category, searchQuery)
+      );
+    }
+  }
 
   logout(): void {
     this.authService.logout();
+  }
+
+  onNavigate(): void {
+    const role = this.authService.getUserRole();
+    if (role == Roles.Admin) {
+      this.router.navigate(['/admin-panel']);
+    } else if (role == Roles.Supervisor) {
+      this.router.navigate(['/supervisor-panel']);
+    } else {
+      this.router.navigate(['/account']);
+    }
   }
 
   ngDoCheck(): void {

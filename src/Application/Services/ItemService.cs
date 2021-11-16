@@ -24,11 +24,23 @@ namespace Application.Services
 
         public async Task CreateItemAsync(CreateItemCommand command, CancellationToken cancellationToken)
         {
-            var brand = _context.Brands.FirstOrDefaultAsync(x => x.Id == Guid.Parse(command.Brand.Id));
+            var brand = await _context.Brands.FirstOrDefaultAsync(x => x.Name == command.Brand, cancellationToken: cancellationToken);
+
+            if (brand == null)
+            {
+                var newBrand = new Brand()
+                {
+                    Name = command.Brand
+                };
+                
+                await _context.Brands.AddAsync(newBrand, cancellationToken);
+                await _context.SaveChangesAsync(cancellationToken);
+                brand = newBrand;
+            }
 
             var item = new Item()
             {
-                Brand = await brand,
+                Brand = brand,
                 Make = command.Make,
                 Model = command.Model,
                 Gender = command.Gender,
@@ -50,13 +62,13 @@ namespace Application.Services
             var item = await _context.Items
                 .Include(x => x.Brand)
                 .FirstOrDefaultAsync(x => x.Id == id);
-            
+
             if (item != null)
             {
                 item.Asks = await GetItemAsks(item.Id);
                 item.Bids = await GetItemBids(item.Id);
             }
-           
+
 
             return item;
         }
@@ -115,7 +127,13 @@ namespace Application.Services
 
             await _context.SaveChangesAsync(cancellationToken);
         }
-        
+
+        public async Task DeleteItemAsync(Item item, CancellationToken cancellationToken)
+        {
+            _context.Items.Remove(item);
+            await _context.SaveChangesAsync(cancellationToken);
+        }
+
         private async Task<List<Item>> FilterItems(IQueryable<Item> itemsQuery, SearchItemsQuery query)
         {
             if (!string.IsNullOrEmpty(query.Name))

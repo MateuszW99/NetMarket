@@ -42,14 +42,15 @@ namespace Application.Services
         public async Task<List<Transaction>> GetSupervisorTransactions(SearchTransactionsQuery query, string supervisorId)
         {
             var transactionsQuery = _context.Transactions
-                .Include(x => x.Ask).DefaultIfEmpty()
+                .Include(x => x.Ask)
+                .ThenInclude(y => y.Item).DefaultIfEmpty()
                 .Include(x => x.Bid).DefaultIfEmpty()
                 .Where(x => x.AssignedSupervisorId == Guid.Parse(supervisorId))
                 .AsQueryable();
 
             if (!string.IsNullOrEmpty(query.Status))
             {
-                transactionsQuery = transactionsQuery.Where(x => x.Status.ToString() == query.Status);
+                transactionsQuery = transactionsQuery.Where(x => x.Status == (TransactionStatus)Enum.Parse(typeof(TransactionStatus), query.Status));
             }
 
             return await transactionsQuery.OrderBy(x => x.StartDate).ToListAsync();
@@ -153,6 +154,23 @@ namespace Application.Services
             
             await _context.Transactions.AddAsync(transaction, cancellationToken);
             await _context.SaveChangesAsync(cancellationToken);
+        }
+
+        public async Task<List<Transaction>> GetUserTransactionsAsync(Guid userId, string searchQuery)
+        {
+            var transactionsQuery = _context.Transactions
+                .Include(x => x.Ask)
+                .ThenInclude(y => y.Item).DefaultIfEmpty()
+                .Include(x => x.Bid).DefaultIfEmpty()
+                .Where(x => x.Ask.CreatedBy == userId || x.Bid.CreatedBy == userId)
+                .AsQueryable();
+
+            if (!string.IsNullOrEmpty(searchQuery))
+            {
+                transactionsQuery = transactionsQuery.Where(x => x.Ask.Item.Name.ToLower().Contains(searchQuery.ToLower()));
+            }
+
+            return await transactionsQuery.OrderBy(x => x.StartDate).ToListAsync();
         }
     }
 }

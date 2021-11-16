@@ -1,4 +1,5 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { PagedList } from '../../paged-list';
 import { Pagination } from '../../pagination';
@@ -22,10 +23,15 @@ export class ItemsListComponent implements OnInit, OnDestroy {
   errorSubscription: Subscription;
   loadingSubscription: Subscription;
   itemsParamsSubscription: Subscription;
+  searchQuery = '';
 
   constructor(private itemsService: ItemsService) {}
 
   ngOnInit(): void {
+    if (history.state.searchQuery !== undefined){
+      this.searchQuery = history.state.searchQuery;
+    }
+    
     this.loadingSubscription = this.itemsService.loading.subscribe(
       (isLoading) => {
         this.loading = isLoading;
@@ -38,8 +44,8 @@ export class ItemsListComponent implements OnInit, OnDestroy {
       }
     );
 
-    this.itemsService.getItems(new ItemsParams(15, 1, this.category));
-
+    this.itemsService.getItems(new ItemsParams(15, 1, this.category, this.searchQuery));
+    
     this.itemsSubscription = this.itemsService.itemsChanged.subscribe(
       (items) => {
         this.empty = items.totalCount === 0;

@@ -2,6 +2,7 @@
 using Application.Models.ApiModels.UserSettings.Commands;
 using Application.Models.ApiModels.UserSettings.Queries;
 using Application.Models.DTOs;
+using Domain;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
@@ -10,7 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Api.Controllers
 {
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-    [Authorize(Roles = "User")]
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class UserController : ControllerBase
@@ -29,6 +30,7 @@ namespace Api.Controllers
             return Ok(result);
         }
 
+        [Authorize(Roles = "User")]
         [HttpGet("level")]
         public async Task<ActionResult<string>> GetUserSellerLevel()
         {

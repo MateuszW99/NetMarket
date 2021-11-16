@@ -26,7 +26,7 @@ namespace Application.Handlers.TransactionHandlers
         public async Task<PaginatedList<TransactionObject>> Handle(GetSupervisorTransactionsQuery request, CancellationToken cancellationToken)
         {
             var supervisorId = _httpService.GetUserId();
-            var rawTransactions = _transactionService.GetSupervisorTransactions(request.SearchTransactionsQuery, supervisorId);
+            var rawTransactions = await _transactionService.GetSupervisorTransactions(request.SearchTransactionsQuery, supervisorId);
             var transactions = _mapper.Map<List<TransactionObject>>(rawTransactions);
             return PaginatedList<TransactionObject>.Create(transactions,
                 request.SearchTransactionsQuery.PageIndex, request.SearchTransactionsQuery.PageSize);

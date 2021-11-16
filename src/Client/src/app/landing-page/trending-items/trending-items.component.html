@@ -4,33 +4,33 @@
             <h3 class="mb-3">Trending {{ category }}:</h3>
         </div>
         <div class="col-6 text-end d-none d-lg-block">
-            <a class="btn btn-info mb-3 me-1" role="button" [attr.data-bs-target]="'#' + category + 'Lg'"
+            <a mat-raised-button color="primary" class="mb-3 me-1" role="button" [attr.data-bs-target]="'#' + category + 'Lg'"
                 data-bs-slide="prev">
-                <fa-icon [icon]="faArrowLeft"></fa-icon>
+                <mat-icon>arrow_back</mat-icon>
             </a>
-            <a class="btn btn-info mb-3 ms-1" role="button" [attr.data-bs-target]="'#' + category + 'Lg'"
+            <a mat-raised-button color="primary" class="mb-3 ms-1" role="button" [attr.data-bs-target]="'#' + category + 'Lg'"
                 data-bs-slide="next">
-                <fa-icon [icon]="faArrowRight"></fa-icon>
+                <mat-icon>arrow_forward</mat-icon>
             </a>
         </div>
         <div class="col-6 text-end d-none d-md-block d-lg-none">
-            <a class="btn btn-info mb-3 me-1" role="button" [attr.data-bs-target]="'#' + category + 'Md'"
+            <a mat-raised-button color="primary" class="mb-3 me-1" role="button" [attr.data-bs-target]="'#' + category + 'Md'"
                 data-bs-slide="prev">
-                <fa-icon [icon]="faArrowLeft"></fa-icon>
+                <mat-icon>arrow_back</mat-icon>
             </a>
-            <a class="btn btn-info mb-3 ms-1" role="button" [attr.data-bs-target]="'#' + category +'Md'"
+            <a mat-raised-button color="primary" class="mb-3 ms-1" role="button" [attr.data-bs-target]="'#' + category +'Md'"
                 data-bs-slide="next">
-                <fa-icon [icon]="faArrowRight"></fa-icon>
+                <mat-icon>arrow_forward</mat-icon>
             </a>
         </div>
         <div class="col-6 text-end d-md-none">
-            <a class="btn btn-info mb-3 me-1" role="button" [attr.data-bs-target]="'#' + category + 'Sm'"
+            <a mat-raised-button color="primary" class="mb-3 me-1" role="button" [attr.data-bs-target]="'#' + category + 'Sm'"
                 data-bs-slide="prev">
-                <fa-icon [icon]="faArrowLeft"></fa-icon>
+                <mat-icon>arrow_back</mat-icon>
             </a>
-            <a class="btn btn-info mb-3 ms-1" role="button" [attr.data-bs-target]="'#' + category +'Sm'"
+            <a mat-raised-button color="primary" class="mb-3 ms-1" role="button" [attr.data-bs-target]="'#' + category +'Sm'"
                 data-bs-slide="next">
-                <fa-icon [icon]="faArrowRight"></fa-icon>
+                <mat-icon>arrow_forward</mat-icon>
             </a>
         </div>
         
@@ -42,7 +42,7 @@
                     <div class="carousel-inner">
                         <ng-container *ngFor="let item of items; let i = index">
                             <div class="carousel-item" [ngClass]="{'active': i === 0}" *ngIf="i % 3 === 0">
-                                <div class="row">
+                                <div class="row mt-3">
                                     <div class="col-lg-4 mb-3 d-flex justify-content-center">
                                         <app-item-card [item]="items[i].item"></app-item-card>
                                     </div>

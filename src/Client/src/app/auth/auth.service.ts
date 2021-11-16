@@ -79,7 +79,6 @@ export class AuthService {
     this.router.navigate(['/auth']);
     localStorage.removeItem('userData');
     localStorage.removeItem('rememberMe');
-    console.log('logout');
   }
 
   autoLogin(): void {
@@ -107,6 +106,12 @@ export class AuthService {
 
   isUserLoggedIn(): boolean {
     return this.user.value !== null;
+  }
+
+  getUserRole(): string {
+    return this.isUserLoggedIn() === true
+      ? this.user.value.role
+      : 'notLoggedIn';
   }
 
   private handleAuthentication(token: string, rememberMe: boolean): void {

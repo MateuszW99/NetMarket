@@ -28,7 +28,7 @@ export class AuthGuard implements CanActivate {
         const isAuthenticated = !!user;
         if (isAuthenticated) {
           if (
-            (route.data.roles && route.data.roles == user.role) ||
+            (route.data.roles && user.role.includes(route.data.roles[0])) ||
             !route.data.roles
           ) {
             return true;
